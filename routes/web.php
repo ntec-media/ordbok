@@ -13,4 +13,8 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::inertia('/', 'Welcome');
+Route::inertia('/', 'Search');
+Route::inertia('/statistics', 'Statistics');
+
+
+
