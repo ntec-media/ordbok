@@ -6,7 +6,7 @@ import { createInertiaApp } from "@inertiajs/inertia-react";
 import { InertiaProgress } from "@inertiajs/progress";
 
 createInertiaApp({
-    resolve: (name) => require(`./Components/${name}.tsx`),
+    resolve: (name) => require(`./Pages/${name}.tsx`),
     setup({ el, App, props }) {
         render(<App {...props} />, el);
     },
