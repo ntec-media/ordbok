@@ -1,13 +1,19 @@
 import React from "react";
-import Navbar from "./Navbar";
+import BottomNavbar from "../Components/BottomNavbar";
+import Navbar from "../Components/Navbar";
 
 export default function Layout(props: {
     children: JSX.Element | JSX.Element[];
 }) {
     return (
-        <main>
+        <main className="bg-gray-100">
             <Navbar />
-            <article>{props.children}</article>
+            <div className="max-w-7xl h-screen mx-auto lg:px-8 mt-1">
+                <div className="bg-white h-full shadow pt-20">
+                    <article>{props.children}</article>
+                </div>
+            </div>
+            <BottomNavbar />
         </main>
     );
 }
