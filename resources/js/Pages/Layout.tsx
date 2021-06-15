@@ -8,7 +8,7 @@ export default function Layout(props: {
     return (
         <main className="bg-gray-100">
             <Navbar />
-            <div className="max-w-7xl h-screen mx-auto lg:px-8 mt-1">
+            <div className="max-w-7xl h-screen mx-auto lg:px-8">
                 <div className="bg-white h-full shadow pt-20">
                     <article>{props.children}</article>
                 </div>
