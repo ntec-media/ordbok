@@ -5,7 +5,7 @@ import { Disclosure, Menu, Transition } from "@headlessui/react";
 import { GlobeAltIcon, MenuIcon, XIcon } from "@heroicons/react/outline";
 import { InertiaLink } from "@inertiajs/inertia-react";
 
-function classNames(...classes) {
+function classNames(...classes: any) {
     return classes.filter(Boolean).join(" ");
 }
 

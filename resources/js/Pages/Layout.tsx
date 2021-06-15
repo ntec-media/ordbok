@@ -1,12 +1,13 @@
 import React from "react";
-import { InertiaLink } from "@inertiajs/inertia-react";
-import Navbar from "./Navbar.tsx";
+import Navbar from "./Navbar";
 
-export default function Layout({ children }) {
+export default function Layout(props: {
+    children: JSX.Element | JSX.Element[];
+}) {
     return (
         <main>
             <Navbar />
-            <article>{children}</article>
+            <article>{props.children}</article>
         </main>
     );
 }
