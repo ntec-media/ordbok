@@ -16,7 +16,10 @@ export default function Navbar() {
     }, []);
 
     return (
-        <Disclosure as="nav" className="bg-white shadow fixed w-full z-50">
+        <Disclosure
+            as="nav"
+            className="bg-white shadow w-full border-2 border-gray-300 z-50"
+        >
             {({ open }) => (
                 <>
                     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -85,7 +88,7 @@ export default function Navbar() {
                                         <>
                                             <div>
                                                 <Menu.Button className="bg-white rounded-full flex text-sm focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
-                                                    <button className="bg-white p-1 rounded-full text-gray-400 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
+                                                    <div className="bg-white p-1 rounded-full text-gray-400 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
                                                         <span className="sr-only">
                                                             Velg språk
                                                         </span>
@@ -93,7 +96,7 @@ export default function Navbar() {
                                                             className="h-6 w-6"
                                                             aria-hidden="true"
                                                         />
-                                                    </button>
+                                                    </div>
                                                 </Menu.Button>
                                             </div>
                                             <Transition
@@ -108,7 +111,7 @@ export default function Navbar() {
                                             >
                                                 <Menu.Items
                                                     static
-                                                    className="origin-top-right absolute right-0 mt-2 w-48 rounded-md shadow-lg py-1 bg-white ring-1 ring-black ring-opacity-5 focus:outline-none"
+                                                    className="origin-top-right absolute right-0 mt-2 w-48 rounded-md shadow-lg py-1 bg-white ring-1 ring-black ring-opacity-5 z-50 focus:outline-none"
                                                 >
                                                     <Menu.Item>
                                                         {({ active }) => (

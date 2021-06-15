@@ -1,8 +1,8 @@
 import { Disclosure } from "@headlessui/react";
 import React from "react";
 
-const BottomNavbar = () => {
-    return <></>;
+const Footer = () => {
+    return <p>footer</p>;
 };
 
-export default BottomNavbar;
+export default Footer;

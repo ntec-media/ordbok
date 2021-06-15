@@ -48,6 +48,88 @@ const MockList: IResultCard[] = [
         translation: "čiekči",
         source: "Andres Kintel",
     },
+    {
+        word: "Fotball",
+        translation: "čiekčanspábba",
+        source: "Andres Kintel",
+    },
+    {
+        word: "fotballag",
+        translation: "spábbačiekčanjoavku",
+        source: "Andres Kintel",
+    },
+
+    {
+        word: "fotballbane",
+        translation: "spábbačiekčanšillju",
+        source: "Andres Kintel",
+    },
+    {
+        word: "fotballforbund",
+        translation: "spábbačiekčanlihttu",
+        source: "Andres Kintel",
+    },
+    {
+        word: "fotballkamp",
+        translation: "čiekčan",
+        source: "Andres Kintel",
+    },
+    {
+        word: "fotballklubb",
+        translation: "spábbačiekčansearvi",
+        source: "Andres Kintel",
+    },
+    {
+        word: "fotballkrets",
+        translation: "spábbačiekčanbiire",
+        source: "Andres Kintel",
+    },
+    {
+        word: "fotballspiller",
+        translation: "čiekči",
+        source: "Andres Kintel",
+    },
+    {
+        word: "Fotball",
+        translation: "čiekčanspábba",
+        source: "Andres Kintel",
+    },
+    {
+        word: "fotballag",
+        translation: "spábbačiekčanjoavku",
+        source: "Andres Kintel",
+    },
+
+    {
+        word: "fotballbane",
+        translation: "spábbačiekčanšillju",
+        source: "Andres Kintel",
+    },
+    {
+        word: "fotballforbund",
+        translation: "spábbačiekčanlihttu",
+        source: "Andres Kintel",
+    },
+    {
+        word: "fotballkamp",
+        translation: "čiekčan",
+        source: "Andres Kintel",
+    },
+    {
+        word: "fotballklubb",
+        translation: "spábbačiekčansearvi",
+        source: "Andres Kintel",
+    },
+    {
+        word: "fotballkrets",
+        translation: "spábbačiekčanbiire",
+        source: "Andres Kintel",
+    },
+    {
+        word: "fotballspiller",
+        translation: "čiekči",
+        source: "Andres Kintel",
+    },
 ];
 
 const Search = () => {
@@ -64,27 +146,38 @@ const Search = () => {
 
     return (
         <Layout>
-            <SearchField updateInput={(newInput) => setInput(newInput)} />
-            {results.length > 0 ? (
-                <SearchResultList results={results} />
-            ) : (
-                <div className="mt-24">
-                    <Typography variant="h5" align="center" className="italic">
-                        Julev er en ordbok utviklet av{" "}
-                        <a
-                            className="text-blue-500"
-                            href="https://internia.no/"
+            <div className="relative h-full">
+                <SearchField updateInput={(newInput) => setInput(newInput)} />
+                {results.length > 0 ? (
+                    <div className="overflow-y-scroll relative h-5/6">
+                        <SearchResultList results={results} />
+                    </div>
+                ) : (
+                    <div>
+                        <Typography
+                            variant="h5"
+                            align="center"
+                            className="italic"
                         >
-                            Ntec Media
-                        </a>{" "}
-                        i samarbeid med{" "}
-                        <a className="text-blue-500" href="https://divvun.no/">
-                            Divvun
-                        </a>
-                        .
-                    </Typography>
-                </div>
-            )}
+                            Julev er en ordbok utviklet av{" "}
+                            <a
+                                className="text-blue-500"
+                                href="https://internia.no/"
+                            >
+                                Ntec Media
+                            </a>{" "}
+                            i samarbeid med{" "}
+                            <a
+                                className="text-blue-500"
+                                href="https://divvun.no/"
+                            >
+                                Divvun
+                            </a>
+                            .
+                        </Typography>
+                    </div>
+                )}
+            </div>
         </Layout>
     );
 };
