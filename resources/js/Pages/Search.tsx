@@ -68,7 +68,7 @@ const Search = () => {
             {results.length > 0 ? (
                 <SearchResultList results={results} />
             ) : (
-                <div className="mt-24 animate-pulse">
+                <div className="mt-24">
                     <Typography variant="h5" align="center" className="italic">
                         Julev er en ordbok utviklet av{" "}
                         <a
