@@ -75,7 +75,7 @@ const Search = () => {
                             className="text-blue-500"
                             href="https://internia.no/"
                         >
-                            NTech Media
+                            Ntec Media
                         </a>{" "}
                         i samarbeid med{" "}
                         <a className="text-blue-500" href="https://divvun.no/">
