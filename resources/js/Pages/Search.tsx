@@ -4,6 +4,7 @@ import SearchField from "../Components/SearchField";
 import SearchResultList from "../Components/SearchResultList";
 import { IResultCard } from "../Components/ResultCard";
 import { useEffect } from "react";
+import { Typography } from "@material-ui/core";
 
 const MockList: IResultCard[] = [
     {
@@ -64,7 +65,26 @@ const Search = () => {
     return (
         <Layout>
             <SearchField updateInput={(newInput) => setInput(newInput)} />
-            <SearchResultList results={results} />
+            {results.length > 0 ? (
+                <SearchResultList results={results} />
+            ) : (
+                <div className="mt-24 animate-pulse">
+                    <Typography variant="h5" align="center" className="italic">
+                        Julev er en ordbok utviklet av{" "}
+                        <a
+                            className="text-blue-500"
+                            href="https://internia.no/"
+                        >
+                            NTech Media
+                        </a>{" "}
+                        i samarbeid med{" "}
+                        <a className="text-blue-500" href="https://divvun.no/">
+                            Divvun
+                        </a>
+                        .
+                    </Typography>
+                </div>
+            )}
         </Layout>
     );
 };

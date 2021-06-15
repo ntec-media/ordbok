@@ -38,7 +38,7 @@ const SearchField = (props: Props) => {
     }, [input]);
 
     return (
-        <div className="flex justify-center mt-12">
+        <div className="flex justify-center mt-12 mx-2">
             <Autocomplete
                 className="w-5/6 lg:w-4/6"
                 freeSolo
