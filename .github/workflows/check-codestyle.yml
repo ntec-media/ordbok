@@ -55,4 +55,4 @@ jobs:
           
       - name: Check JS/TS codestyle
         run: |
-          npx prettier --watch "resources/js/**"
+          npx prettier --check "resources/js/**"
