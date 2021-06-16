@@ -18,7 +18,7 @@ export default function Navbar() {
     return (
         <Disclosure
             as="nav"
-            className="bg-white shadow w-full border-2 border-gray-300 z-50"
+            className="bg-white shadow w-full border-b-2 border-gray-300 z-50"
         >
             {({ open }) => (
                 <>
@@ -240,6 +240,17 @@ export default function Navbar() {
                                 }
                             >
                                 Last ned App
+                            </a>
+
+                            <a
+                                href="/about"
+                                className={
+                                    path === "/about"
+                                        ? "bg-indigo-50 border-indigo-500 text-indigo-700 block pl-3 pr-4 py-2 border-l-4 text-base font-medium"
+                                        : "border-transparent text-gray-500 hover:bg-gray-50 hover:border-gray-300 hover:text-gray-700 block pl-3 pr-4 py-2 border-l-4 text-base font-medium"
+                                }
+                            >
+                                Om appen
                             </a>
                         </div>
                     </Disclosure.Panel>
