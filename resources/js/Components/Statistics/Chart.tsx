@@ -8,13 +8,25 @@ interface Props {
     data: number[];
 }
 
+const test = [
+    "rgba(255, 99, 132, 0.5)",
+    "rgba(54, 162, 235, 0.5)",
+    "rgba(255, 206, 86, 0.5)",
+    "rgba(75, 192, 192, 0.5)",
+    "rgba(153, 102, 255, 0.5)",
+    "rgba(255, 159, 64, 0.5)",
+];
+
+const test1 = [
+    "rgba(255, 99, 132, 1.0)",
+    "rgba(54, 162, 235, 1.0)",
+    "rgba(255, 206, 86, 1.0)",
+    "rgba(75, 192, 192, 1.0)",
+    "rgba(153, 102, 255, 1.0)",
+    "rgba(255, 159, 64, 1.0)",
+];
+
 const Chart = (props: Props) => {
-    const [bgColors, setBgColors] = useState<string[]>([]);
-
-    useEffect(() => {
-        setBgColors(props.data.map((d) => getRandomColor()));
-    }, [props.data]);
-
     return (
         <Bar
             data={{
@@ -23,8 +35,8 @@ const Chart = (props: Props) => {
                     {
                         label: "Antall Søk",
                         data: props.data,
-                        backgroundColor: bgColors,
-                        borderColor: bgColors,
+                        backgroundColor: test,
+                        borderColor: test1,
                         borderWidth: 1,
                     },
                 ],
@@ -40,12 +52,3 @@ const Chart = (props: Props) => {
 };
 
 export default Chart;
-
-function getRandomColor() {
-    var letters = "0123456789ABCDEF";
-    var color = "#";
-    for (var i = 0; i < 6; i++) {
-        color += letters[Math.floor(Math.random() * 16)];
-    }
-    return color;
-}

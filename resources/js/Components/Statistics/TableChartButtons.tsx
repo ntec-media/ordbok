@@ -1,15 +1,12 @@
 import React from "react";
 import { TableIcon, ChartBarIcon } from "@heroicons/react/outline";
-import { useState } from "react";
 
-const TableChartButtons = (props: { toggle: () => void }) => {
-    const [showTable, setShowTable] = useState(false);
-
+const TableChartButtons = (props: {
+    showTable: boolean;
+    toggle: () => void;
+}) => {
     const toggle = (bool: boolean) => {
-        if (bool !== showTable) {
-            setShowTable(bool);
-            props.toggle();
-        }
+        if (bool !== props.showTable) props.toggle();
     };
 
     return (
@@ -22,7 +19,7 @@ const TableChartButtons = (props: { toggle: () => void }) => {
                 <ChartBarIcon
                     className={
                         "h-5 w-5 " +
-                        (showTable ? "text-gray-400" : "text-blue-600")
+                        (props.showTable ? "text-gray-400" : "text-blue-600")
                     }
                 />
             </button>
@@ -34,7 +31,7 @@ const TableChartButtons = (props: { toggle: () => void }) => {
                 <TableIcon
                     className={
                         "h-5 w-5 " +
-                        (showTable ? "text-blue-600" : "text-gray-600")
+                        (props.showTable ? "text-blue-600" : "text-gray-600")
                     }
                 />
             </button>

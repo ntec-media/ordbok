@@ -3,6 +3,7 @@ import { useEffect } from "react";
 import { useState } from "react";
 import Chart from "../Components/Statistics/Chart";
 import Tab from "../Components/Statistics/Tab";
+import Table from "../Components/Statistics/Table";
 import TableChartButtons from "../Components/Statistics/TableChartButtons";
 import Layout from "./Layout";
 
@@ -35,7 +36,7 @@ const Statistics = () => {
     const [currentTab, setCurrentTab] = useState<string>("week");
     const [data, setData] = useState<number[]>([]);
     const [labels, setLabels] = useState<string[]>([]);
-    const [showTable, setShowTable] = useState(false);
+    const [showTable, setShowTable] = useState(true);
 
     useEffect(() => {
         switch (currentTab) {
@@ -66,16 +67,21 @@ const Statistics = () => {
 
     return (
         <Layout>
-            <div className="flex flex-col px-4">
+            <div className="relative h-full flex flex-col px-4">
                 <div className="flex justify-around items-center mt-8">
                     <TableChartButtons
+                        showTable={showTable}
                         toggle={() => setShowTable(!showTable)}
                     />
                     <Tab setTab={(newTab) => setCurrentTab(newTab)} />
                     <p>{}</p>
                 </div>
-                <div className="flex justify-center mt-8">
-                    {showTable ? <></> : <Chart data={data} labels={labels} />}
+                <div className="h-5/6 flex justify-center mt-8 md:mx-24">
+                    {showTable ? (
+                        <Table data={data} labels={labels} />
+                    ) : (
+                        <Chart data={data} labels={labels} />
+                    )}
                 </div>
             </div>
         </Layout>
