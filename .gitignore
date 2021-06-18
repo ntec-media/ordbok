@@ -473,3 +473,4 @@ _ide_helper_models.php
 /public/img/
 /public/css/
 /public/mix-manifest.json
+.php-cs-fixer.cache
