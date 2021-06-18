@@ -1,6 +1,9 @@
 import { Button, CircularProgress, TextField } from "@material-ui/core";
 import React from "react";
 import { useState } from "react";
+import CustomSnackbar, {
+    CustomSnackbarProps,
+} from "../Components/CustomSnackbar";
 import Layout from "./Layout";
 
 const WordSuggestion = () => {
@@ -9,30 +12,74 @@ const WordSuggestion = () => {
     const [description, setDescription] = useState("");
     const [name, setName] = useState("");
     const [isSubmitting, setIsSubmitting] = useState(false);
+    const [snackbarProps, setSnackbarProps] = useState<CustomSnackbarProps>({
+        type: "success",
+        open: false,
+        message: "Ordet er lagret!",
+        handleClose: () => setSnackbarProps({ ...snackbarProps, open: false }),
+    });
 
     const submit = () => {
+        const error = true;
+
         setIsSubmitting(true);
+        if (samInput.val === "") {
+            setSamInput({ ...samInput, error: true });
+            setIsSubmitting(false);
+        }
+        if (norInput.val === "") {
+            setNorInput({ ...norInput, error: true });
+            setIsSubmitting(false);
+        }
+
         // API REQUEST
+        setTimeout(() => {
+            if (!error) {
+                setSnackbarProps({
+                    ...snackbarProps,
+                    open: true,
+                    type: "success",
+                    message: "Ordet er sendt til behandling",
+                });
+                setIsSubmitting(false);
+            } else {
+                setSnackbarProps({
+                    ...snackbarProps,
+                    open: true,
+                    type: "warning",
+                    message: "Ordet eksisterer allerede",
+                });
+                setIsSubmitting(false);
+            }
+        }, 1500);
     };
 
     return (
         <Layout>
-            <div className="h-full lg:h-4/6 flex flex-col justify-center items-center pt-12 md:pt-20 lg:pt-36 overflow-y-auto">
-                <h1 className="m-2 text-3xl text-gray-600  text-center">
-                    Foreslå nytt ord
-                </h1>
-                <p></p>
-                <form className="flex flex-col h-full  w-full p-6 md:w-3/6 lg:w-2/6">
+            <div className="h-full lg:h-4/6 flex flex-col justify-center items-center pt-12 md:pt-20 lg:pt-26 overflow-y-auto">
+                <div className="w-full p-6 md:w-3/6 lg:w-2/6">
+                    <h1 className="m-8 text-3xl text-gray-600 text-center">
+                        Foreslå nytt ord
+                    </h1>
+                    <p>
+                        Ord som sends inn vil bli sendt til UiT hvor de lagres i
+                        en database. Forfattere som har avtale med UiT vil kunne
+                        benytte denne databasen i utgivelse av nye ordbøker.
+                    </p>
+                </div>
+                <form className="flex flex-col px-2 h-full w-full pb-6 md:w-3/6 lg:w-2/6">
                     <div className="my-4">
                         <TextField
                             fullWidth
                             variant="outlined"
                             label="Norsk"
+                            error={norInput.error}
+                            helperText={norInput.error && "Ugyldig"}
                             onChange={(
                                 e: React.ChangeEvent<HTMLInputElement>
                             ) =>
                                 setNorInput({
-                                    ...norInput,
+                                    error: false,
                                     val: e.target.value,
                                 })
                             }
@@ -43,11 +90,13 @@ const WordSuggestion = () => {
                             fullWidth
                             variant="outlined"
                             label="Samisk"
+                            error={samInput.error}
+                            helperText={samInput.error && "Ugyldig"}
                             onChange={(
                                 e: React.ChangeEvent<HTMLInputElement>
                             ) =>
                                 setSamInput({
-                                    ...samInput,
+                                    error: false,
                                     val: e.target.value,
                                 })
                             }
@@ -75,16 +124,12 @@ const WordSuggestion = () => {
                             ) => setName(e.target.value)}
                         />
                     </div>
-                    <div className="my-4 flex items-center">
+                    <div className="pt-4 pb-8 flex items-center border-b-2 border-600-blue">
                         <Button
                             className="w-64 h-12"
                             variant="contained"
                             color="primary"
-                            disabled={
-                                isSubmitting ||
-                                norInput.val === "" ||
-                                samInput.val === ""
-                            }
+                            disabled={isSubmitting}
                             onClick={submit}
                         >
                             Send inn
@@ -99,6 +144,7 @@ const WordSuggestion = () => {
                     </div>
                 </form>
             </div>
+            <CustomSnackbar {...snackbarProps} />
         </Layout>
     );
 };
