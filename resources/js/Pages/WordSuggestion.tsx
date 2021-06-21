@@ -1,10 +1,17 @@
-import { Button, CircularProgress, TextField } from "@material-ui/core";
+import {
+    Button,
+    CircularProgress,
+    IconButton,
+    TextField,
+    Tooltip,
+} from "@material-ui/core";
 import React from "react";
 import { useState } from "react";
 import CustomSnackbar, {
     CustomSnackbarProps,
 } from "../Components/CustomSnackbar";
 import Layout from "./Layout";
+import InfoIcon from "@material-ui/icons/InfoOutlined";
 
 const WordSuggestion = () => {
     const [norInput, setNorInput] = useState({ val: "", error: false });
@@ -18,6 +25,7 @@ const WordSuggestion = () => {
         message: "Ordet er lagret!",
         handleClose: () => setSnackbarProps({ ...snackbarProps, open: false }),
     });
+    const [tooltipOpen, setTooltipOpen] = useState(false);
 
     const submit = () => {
         const error = true;
@@ -56,9 +64,9 @@ const WordSuggestion = () => {
 
     return (
         <Layout>
-            <div className="h-full lg:h-4/6 flex flex-col justify-center items-center pt-12 md:pt-20 lg:pt-26 overflow-y-auto">
-                <div className="w-full p-6 md:w-3/6 lg:w-2/6">
-                    <h1 className="m-8 text-3xl text-gray-600 text-center">
+            <div className="h-full lg:h-auto flex flex-col justify-center items-center md:pt-20 lg:pt-26 overflow-y-auto overflow-x-hidden">
+                <div className="hidden md:block w-full p-6 md:w-3/6 lg:w-2/6">
+                    <h1 className="p-8 text-3xl text-gray-600 text-center">
                         Foreslå nytt ord
                     </h1>
                     <p>
@@ -66,6 +74,24 @@ const WordSuggestion = () => {
                         en database. Forfattere som har avtale med UiT vil kunne
                         benytte denne databasen i utgivelse av nye ordbøker.
                     </p>
+                </div>
+                <div className="w-full py-6 md:hidden flex items-center">
+                    <Tooltip
+                        title="Ord som sends inn vil bli sendt til UiT hvor de lagres i
+                        en database. Forfattere som har avtale med UiT vil kunne
+                        benytte denne databasen i utgivelse av nye ordbøker."
+                        open={tooltipOpen}
+                        onClose={() => setTooltipOpen(false)}
+                    >
+                        <IconButton
+                            onClick={() => setTooltipOpen(!tooltipOpen)}
+                        >
+                            <InfoIcon color="primary" />
+                        </IconButton>
+                    </Tooltip>
+                    <h1 className="text-3xl text-gray-600 text-center">
+                        Foreslå nytt ord
+                    </h1>
                 </div>
                 <form className="flex flex-col px-2 h-full w-full pb-6 md:w-3/6 lg:w-2/6">
                     <div className="my-4">
