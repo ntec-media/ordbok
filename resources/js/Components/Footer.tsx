@@ -6,9 +6,18 @@ const Footer = () => {
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                 <div className="flex flex-row justify-between text-gray-400 text-opacity-80 py-6">
                     <div className="flex-1">
-                        <a href="https://internia.no" className="block cursor-pointer text-blue-600 text-opacity-60">NTec Media AS</a>
-                        <a href="https://divvun.no" className="block cursor-pointer text-blue-600 text-opacity-60">Divvun</a>
-
+                        <a
+                            href="https://internia.no"
+                            className="block cursor-pointer text-blue-600 text-opacity-60"
+                        >
+                            NTec Media AS
+                        </a>
+                        <a
+                            href="https://divvun.no"
+                            className="block cursor-pointer text-blue-600 text-opacity-60"
+                        >
+                            Divvun
+                        </a>
                     </div>
                     <div className="flex-1">
                         <p className="flex-1">
