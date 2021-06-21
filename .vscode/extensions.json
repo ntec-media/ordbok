@@ -1,0 +1,17 @@
+{
+    "recommendations": [
+        "amiralizadeh9480.laravel-extra-intellisense",
+        "bradlc.vscode-tailwindcss",
+        "dbaeumer.vscode-eslint",
+        "dsznajder.es7-react-js-snippets",
+        "esbenp.prettier-vscode",
+        "felixfbecker.php-debug",
+        "heybourn.headwind",
+        "MehediDracula.php-namespace-resolver",
+        "mikestead.dotenv",
+        "OfHumanBondage.react-proptypes-intellisense",
+        "rafa-acioly.laravel-helpers",
+        "ryannaddy.laravel-artisan",
+        "stef-k.laravel-goto-controller"
+    ]
+}
