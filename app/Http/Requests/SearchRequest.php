@@ -23,10 +23,10 @@ class SearchRequest extends FormRequest
      */
     public function rules()
     {
-        return [    
+        return [
             'value' => ['required'],
             'dicts' => ['required'],
-            'langs' => ['required']
+            'langs' => ['required'],
         ];
     }
 }
