@@ -7,6 +7,13 @@ import { IconButton, InputAdornment, TextField } from "@material-ui/core";
 import DropDown from "./Shared/DropDown";
 import { MenuBook, TranslateOutlined } from "@material-ui/icons";
 import TranslateLanguageModal from "./Modals/TranslateLanguageModal";
+import MultipleSelectModal from "./Modals/MultipleSelectModal";
+import { useCookies } from "react-cookie";
+import {
+    dicstSupported,
+    ILang,
+    translateLanguagesSupported,
+} from "../interfaces";
 
 interface Props {
     updateInput: (newInput: string) => void;
@@ -23,9 +30,40 @@ const SearchField = (props: Props) => {
     const loading = false;
 
     useEffect(() => {
-        // API CALL ?
         props.updateInput(input);
     }, [input]);
+
+    const LangDictModals = () => {
+        const [cookies, setCookies] = useCookies(["translang", "dicts"]);
+
+        const updateCookie = (name: string, items: any) => {
+            setCookies(name, JSON.stringify(items), { path: "/" });
+        };
+
+        return (
+            <>
+                <MultipleSelectModal
+                    open={langModalOpen}
+                    closeModal={(items) => {
+                        updateCookie("translang", items);
+                        setLangModalOpen(false);
+                    }}
+                    title="Velg språk for oversettelse"
+                    items={cookies.translang || translateLanguagesSupported}
+                />
+
+                <MultipleSelectModal
+                    open={dictModalOpen}
+                    closeModal={(items) => {
+                        updateCookie("dicts", items);
+                        setDictModalOpen(false);
+                    }}
+                    title="Velg ordbøker for oversettelse"
+                    items={cookies.dicts || dicstSupported}
+                />
+            </>
+        );
+    };
 
     return (
         <>
@@ -85,16 +123,13 @@ const SearchField = (props: Props) => {
             />
             <div className="flex justify-center w-32">
                 <IconButton onClick={() => setLangModalOpen(true)}>
-                    <TranslateOutlined />
+                    <TranslateOutlined color="primary" />
                 </IconButton>
                 <IconButton onClick={() => setDictModalOpen(true)}>
-                    <MenuBook />
+                    <MenuBook color="primary" />
                 </IconButton>
             </div>
-            <TranslateLanguageModal
-                open={true}
-                closeModal={() => setLangModalOpen(false)}
-            />
+            <LangDictModals />
         </>
     );
 };

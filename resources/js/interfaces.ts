@@ -39,3 +39,71 @@ export const translateLanguagesSupported: ILang[] = [
     { name: "Svensk", short: "swe", selected: false },
     { name: "Nynorsk", short: "nno", selected: false },
 ];
+
+export const dicstSupported: ILang[] = [
+    {
+        name: "Pekka Sammalahti's North Sami – Finnish dictionary",
+        short: "sammallahtismefin",
+        selected: false,
+    },
+    {
+        name: "Giellagáldu's multilingual terms",
+        short: "termwiki",
+        selected: false,
+    },
+    {
+        name: "Giellatekno's North Sami – Bokmål dictionary",
+        short: "gtsmenob",
+        selected: false,
+    },
+    {
+        name: "Giellatekno's Bokmål – North Sami dictionary",
+        short: "gtnobsme",
+        selected: false,
+    },
+    {
+        name: "Giellatekno's Bokmål – South Sami dictionary",
+        short: "gtnobsma",
+        selected: false,
+    },
+    {
+        name: "Giellatekno's South Sami – Bokmål dictionary",
+        short: "gtsmanob",
+        selected: false,
+    },
+    {
+        name: "Giellatekno's North Sami – Finnish dictionary",
+        short: "gtsmefin",
+        selected: false,
+    },
+    {
+        name: "Giellatekno's Finnish – North Sami dictionary",
+        short: "gtfinsme",
+        selected: false,
+    },
+    {
+        name: "Giellatekno's North Sami – Inari Sami dictionary",
+        short: "gtsmesmn",
+        selected: false,
+    },
+    {
+        name: "Giellatekno's Inari Sami – North Sami dictionary",
+        short: "gtsmnsme",
+        selected: false,
+    },
+    {
+        name: "Giellatekno's Finnish – Inari Sami dictionary",
+        short: "gtfinsmn",
+        selected: false,
+    },
+    {
+        name: "Giellatekno's Inari Sami – Finnish dictionary",
+        short: "gtsmnfin",
+        selected: false,
+    },
+    {
+        name: "Trond Trosterud's Finnish – Norwegian dictionary",
+        short: "gtfinnob",
+        selected: false,
+    },
+];

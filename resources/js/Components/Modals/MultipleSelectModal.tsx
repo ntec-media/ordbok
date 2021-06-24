@@ -1,3 +1,5 @@
+import React, { useState } from "react";
+import { ILang } from "../../interfaces";
 import {
     Checkbox,
     Dialog,
@@ -8,45 +10,36 @@ import {
     ListItemIcon,
     ListItemText,
 } from "@material-ui/core";
-import React from "react";
-import { useState } from "react";
 import { useEffect } from "react";
-import { useCookies } from "react-cookie";
-import { ILang, translateLanguagesSupported } from "../../interfaces";
 
 interface Props {
     open: boolean;
-    closeModal: () => void;
+    closeModal: (items: ILang[]) => void;
+    items: ILang[];
+    title: string;
 }
 
-const TranslateLanguageModal = (props: Props) => {
-    const [cookies, setCookies] = useCookies(["translang"]);
+const MultipleSelectModal = (props: Props) => {
     const [selected, setSelected] = useState<ILang[]>([]);
 
     useEffect(() => {
-        const translang = cookies.translang;
-        setSelected(translang || translateLanguagesSupported);
-    }, [open]);
-
-    const updateCookie = () => {
-        setCookies("translang", JSON.stringify(selected), { path: "/" });
-        props.closeModal();
-    };
+        props.open && setSelected(props.items);
+    }, [props.open]);
 
     return (
-        <Dialog open={props.open} onClose={updateCookie}>
+        <Dialog open={props.open} onClose={() => props.closeModal(selected)}>
             <DialogTitle>Velg språk for oversettelse</DialogTitle>
             <DialogContent style={{ padding: 0 }}>
                 <List>
-                    {selected.map((lang) => (
+                    {selected.map((item) => (
                         <ListItem
-                            key={lang.short}
+                            key={item.short}
                             dense
                             button
                             onClick={() =>
                                 setSelected(
                                     selected.map((s) =>
-                                        s.short === lang.short
+                                        s.short === item.short
                                             ? { ...s, selected: !s.selected }
                                             : s
                                     )
@@ -56,12 +49,12 @@ const TranslateLanguageModal = (props: Props) => {
                             <ListItemIcon>
                                 <Checkbox
                                     edge="start"
-                                    checked={lang.selected}
+                                    checked={item.selected}
                                     tabIndex={-1}
                                     disableRipple
                                 />
                             </ListItemIcon>
-                            <ListItemText id={lang.short} primary={lang.name} />
+                            <ListItemText id={item.short} primary={item.name} />
                         </ListItem>
                     ))}
                 </List>
@@ -70,4 +63,4 @@ const TranslateLanguageModal = (props: Props) => {
     );
 };
 
-export default TranslateLanguageModal;
+export default MultipleSelectModal;
