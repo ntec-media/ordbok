@@ -1,4 +1,4 @@
-import { List, ListItem, makeStyles } from "@material-ui/core";
+import { List, ListItem } from "@material-ui/core";
 import React from "react";
 import ResultCard, { IResultCard } from "./ResultCard";
 
@@ -8,10 +8,14 @@ interface Prosp {
 
 const SearchResultList = (props: Prosp) => {
     return (
-        <div>
+        <div className="relative h-full overflow-y-auto md:px-16">
             <List>
                 {props.results.map((res: IResultCard, index: number) => (
-                    <ListItem key={index} className="w-full">
+                    <ListItem
+                        key={index}
+                        className="w-full"
+                        style={{ padding: 2 }}
+                    >
                         <ResultCard {...res} />
                     </ListItem>
                 ))}
