@@ -11,6 +11,7 @@ import { InertiaLink } from "@inertiajs/inertia-react";
 import { useCookies } from "react-cookie";
 import LanguageModal from "./Modals/LanguageModal";
 import { languagesSupported } from "../interfaces";
+import DropDown from "./Shared/DropDown";
 
 function classNames(...classes: any) {
     return classes.filter(Boolean).join(" ");
@@ -34,21 +35,21 @@ export default function Navbar() {
         <>
             <Disclosure
                 as="nav"
-                className="bg-white shadow w-full border-b-2 border-gray-300 z-50"
+                className="z-50 w-full bg-white border-b-2 border-gray-300 shadow"
             >
                 {({ open }) => (
                     <>
-                        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                        <div className="px-4 mx-auto max-w-7xl sm:px-6 lg:px-8">
                             <div className="flex justify-between h-16">
                                 <div className="flex">
-                                    <div className="flex-shrink-0 flex items-center">
+                                    <div className="flex items-center flex-shrink-0">
                                         <img
-                                            className="block lg:hidden h-8 w-auto rounded-3xl"
+                                            className="block w-auto h-8 lg:hidden rounded-3xl"
                                             src="https://www.beneathnorthernlights.com/wp-content/uploads/2019/01/Design-uten-navn-5-e1549918936927-746x550.jpg"
                                             alt="Workflow"
                                         />
                                         <img
-                                            className="hidden lg:block h-8 w-auto"
+                                            className="hidden w-auto h-8 lg:block"
                                             src="https://www.beneathnorthernlights.com/wp-content/uploads/2019/01/Design-uten-navn-5-e1549918936927-746x550.jpg"
                                             alt="Workflow"
                                         />
@@ -97,87 +98,39 @@ export default function Navbar() {
                                         </InertiaLink>
                                     </div>
                                 </div>
-                                <div className="hidden sm:ml-6 sm:flex sm:items-center">
-                                    {/* Profile dropdown */}
-                                    <Menu as="div" className="ml-3 relative">
-                                        {({ open }) => (
-                                            <>
-                                                <div>
-                                                    <Menu.Button className="bg-white rounded-full flex text-sm focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
-                                                        <div className="bg-white p-1 rounded-full text-gray-400 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
-                                                            <span className="sr-only">
-                                                                Velg språk
-                                                            </span>
-                                                            <GlobeAltIcon
-                                                                className="h-6 w-6"
-                                                                aria-hidden="true"
-                                                            />
-                                                        </div>
-                                                    </Menu.Button>
-                                                </div>
-                                                <Transition
-                                                    show={open}
-                                                    as={Fragment}
-                                                    enter="transition ease-out duration-200"
-                                                    enterFrom="transform opacity-0 scale-95"
-                                                    enterTo="transform opacity-100 scale-100"
-                                                    leave="transition ease-in duration-75"
-                                                    leaveFrom="transform opacity-100 scale-100"
-                                                    leaveTo="transform opacity-0 scale-95"
-                                                >
-                                                    <Menu.Items
-                                                        static
-                                                        className="origin-top-right absolute right-0 mt-2 w-48 rounded-md shadow-lg py-1 bg-white ring-1 ring-black ring-opacity-5 z-50 focus:outline-none"
-                                                    >
-                                                        {languagesSupported.map(
-                                                            (language) => (
-                                                                <Menu.Item
-                                                                    key={
-                                                                        language.short
-                                                                    }
-                                                                >
-                                                                    <p
-                                                                        className="block px-4 py-2 text-sm text-gray-700 flex justify-between cursor-pointer hover:bg-gray-100"
-                                                                        onClick={() =>
-                                                                            updateLang(
-                                                                                language.short
-                                                                            )
-                                                                        }
-                                                                    >
-                                                                        {
-                                                                            language.name
-                                                                        }
-                                                                        {cookies.lang ===
-                                                                            language.short && (
-                                                                            <CheckIcon
-                                                                                className="mr-3 h-5 w-5 text-gray-400 group-hover:text-gray-500"
-                                                                                aria-hidden="true"
-                                                                            />
-                                                                        )}
-                                                                    </p>
-                                                                </Menu.Item>
-                                                            )
-                                                        )}
-                                                    </Menu.Items>
-                                                </Transition>
-                                            </>
+                                <div className="hidden md:flex">
+                                    <DropDown
+                                        items={languagesSupported.map(
+                                            (lang) => {
+                                                return {
+                                                    display: lang.name,
+                                                    id: lang.short,
+                                                };
+                                            }
                                         )}
-                                    </Menu>
+                                        title="Velg språk"
+                                        mainIcon={GlobeAltIcon}
+                                        itemSelected={cookies.lang}
+                                        onSelect={(newLang) =>
+                                            updateLang(newLang as string)
+                                        }
+                                    />
                                 </div>
-                                <div className="-mr-2 flex items-center sm:hidden">
+
+                                <div className="flex items-center -mr-2 sm:hidden">
                                     {/* Mobile menu button */}
-                                    <Disclosure.Button className="inline-flex items-center justify-center p-2 rounded-md text-gray-400 hover:text-gray-500 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-indigo-500">
+                                    <Disclosure.Button className="inline-flex items-center justify-center p-2 text-gray-400 rounded-md hover:text-gray-500 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-indigo-500">
                                         <span className="sr-only">
                                             Open main menu
                                         </span>
                                         {open ? (
                                             <XIcon
-                                                className="block h-6 w-6"
+                                                className="block w-6 h-6"
                                                 aria-hidden="true"
                                             />
                                         ) : (
                                             <MenuIcon
-                                                className="block h-6 w-6"
+                                                className="block w-6 h-6"
                                                 aria-hidden="true"
                                             />
                                         )}

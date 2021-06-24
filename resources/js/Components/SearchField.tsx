@@ -1,9 +1,10 @@
-import React, { useEffect, useState } from "react";
+import React, { Fragment, useEffect, useState } from "react";
 import SearchIcon from "@material-ui/icons/Search";
 import { Autocomplete } from "@material-ui/lab";
 import CircularProgress from "@material-ui/core/CircularProgress";
-
+import DropDownIcon from "@material-ui/icons/ArrowDropDown";
 import { InputAdornment, TextField } from "@material-ui/core";
+import DropDown from "./Shared/DropDown";
 
 interface Props {
     updateInput: (newInput: string) => void;
@@ -47,7 +48,7 @@ const SearchField = (props: Props) => {
                         InputProps={{
                             ...params.InputProps,
                             endAdornment: (
-                                <React.Fragment>
+                                <>
                                     {loading ? (
                                         <CircularProgress
                                             color="inherit"
@@ -55,7 +56,18 @@ const SearchField = (props: Props) => {
                                         />
                                     ) : null}
                                     {params.InputProps.endAdornment}
-                                </React.Fragment>
+                                    <DropDown
+                                        items={[
+                                            { display: "á" },
+                                            { display: "ŋ" },
+                                        ]}
+                                        title="Tegn"
+                                        onSelect={(newLetter) =>
+                                            setInput(input + newLetter)
+                                        }
+                                        mainIcon={DropDownIcon}
+                                    />
+                                </>
                             ),
                             startAdornment: (
                                 <InputAdornment position="start">
@@ -66,20 +78,6 @@ const SearchField = (props: Props) => {
                     />
                 )}
             />
-            <button
-                type="button"
-                className="inline-flex items-center px-4 py-2 ml-2 text-sm font-medium text-indigo-700 bg-indigo-100 border border-transparent rounded-md hover:bg-indigo-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
-                onClick={() => setInput(input + "á")}
-            >
-                á
-            </button>
-            <button
-                type="button"
-                className="inline-flex items-center px-4 py-2 ml-2 text-sm font-medium text-indigo-700 bg-indigo-100 border border-transparent rounded-md hover:bg-indigo-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
-                onClick={() => setInput(input + "ŋ")}
-            >
-                ŋ
-            </button>
         </>
     );
 };
