@@ -34,7 +34,7 @@ const About = () => {
                 </div>
                 <div></div>
                 <div className="p-4 border-t-2 boder-gray-200">
-                    Divvun © NTec Media AS 2021
+                    Divvun © Ntec Media AS 2021
                 </div>
             </div>
         </Layout>
