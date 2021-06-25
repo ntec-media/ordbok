@@ -9,7 +9,7 @@ const About = () => {
                     <h1 className="font-bold">Om appen</h1>
                     <br />
                     <p>
-                        Julev er en ordbok som er utviklet av NTec Media AS i
+                        Julev er en ordbok som er utviklet av Ntec Media AS i
                         samarbeid med UiT og med støtte fra sametinget.
                     </p>
                     <p>
