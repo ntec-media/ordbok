@@ -10,7 +10,7 @@ const Footer = () => {
                             href="https://internia.no"
                             className="block cursor-pointer text-blue-600 text-opacity-60"
                         >
-                            NTec Media AS
+                            Ntec Media AS
                         </a>
                         <a
                             href="https://divvun.no"
