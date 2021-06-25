@@ -22,7 +22,7 @@ const About = () => {
                             className="block text-indigo-600"
                             href="https://internia.no"
                         >
-                            NTec Media
+                            Ntec Media
                         </a>
                         <a
                             className="block text-indigo-600"
