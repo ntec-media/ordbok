@@ -34,21 +34,21 @@ export default function Navbar() {
         <>
             <Disclosure
                 as="nav"
-                className="bg-white shadow w-full border-b-2 border-gray-300 z-50"
+                className="z-50 w-full bg-white border-b-2 border-gray-300 shadow"
             >
                 {({ open }) => (
                     <>
-                        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                        <div className="px-4 mx-auto max-w-7xl sm:px-6 lg:px-8">
                             <div className="flex justify-between h-16">
                                 <div className="flex">
-                                    <div className="flex-shrink-0 flex items-center">
+                                    <div className="flex items-center flex-shrink-0">
                                         <img
-                                            className="block lg:hidden h-8 w-auto rounded-3xl"
+                                            className="block w-auto h-8 lg:hidden rounded-3xl"
                                             src="https://www.beneathnorthernlights.com/wp-content/uploads/2019/01/Design-uten-navn-5-e1549918936927-746x550.jpg"
                                             alt="Workflow"
                                         />
                                         <img
-                                            className="hidden lg:block h-8 w-auto"
+                                            className="hidden w-auto h-8 lg:block"
                                             src="https://www.beneathnorthernlights.com/wp-content/uploads/2019/01/Design-uten-navn-5-e1549918936927-746x550.jpg"
                                             alt="Workflow"
                                         />
@@ -99,17 +99,17 @@ export default function Navbar() {
                                 </div>
                                 <div className="hidden sm:ml-6 sm:flex sm:items-center">
                                     {/* Profile dropdown */}
-                                    <Menu as="div" className="ml-3 relative">
+                                    <Menu as="div" className="relative ml-3">
                                         {({ open }) => (
                                             <>
                                                 <div>
-                                                    <Menu.Button className="bg-white rounded-full flex text-sm focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
-                                                        <div className="bg-white p-1 rounded-full text-gray-400 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
+                                                    <Menu.Button className="flex text-sm bg-white rounded-full focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
+                                                        <div className="p-1 text-gray-400 bg-white rounded-full hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
                                                             <span className="sr-only">
                                                                 Velg språk
                                                             </span>
                                                             <GlobeAltIcon
-                                                                className="h-6 w-6"
+                                                                className="w-6 h-6"
                                                                 aria-hidden="true"
                                                             />
                                                         </div>
@@ -127,7 +127,7 @@ export default function Navbar() {
                                                 >
                                                     <Menu.Items
                                                         static
-                                                        className="origin-top-right absolute right-0 mt-2 w-48 rounded-md shadow-lg py-1 bg-white ring-1 ring-black ring-opacity-5 z-50 focus:outline-none"
+                                                        className="absolute right-0 z-50 w-48 py-1 mt-2 origin-top-right bg-white rounded-md shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none"
                                                     >
                                                         {languagesSupported.map(
                                                             (language) => (
@@ -137,7 +137,7 @@ export default function Navbar() {
                                                                     }
                                                                 >
                                                                     <p
-                                                                        className="block px-4 py-2 text-sm text-gray-700 flex justify-between cursor-pointer hover:bg-gray-100"
+                                                                        className="flex justify-between block px-4 py-2 text-sm text-gray-700 cursor-pointer hover:bg-gray-100"
                                                                         onClick={() =>
                                                                             updateLang(
                                                                                 language.short
@@ -150,7 +150,7 @@ export default function Navbar() {
                                                                         {cookies.lang ===
                                                                             language.short && (
                                                                             <CheckIcon
-                                                                                className="mr-3 h-5 w-5 text-gray-400 group-hover:text-gray-500"
+                                                                                className="w-5 h-5 mr-3 text-gray-400 group-hover:text-gray-500"
                                                                                 aria-hidden="true"
                                                                             />
                                                                         )}
@@ -164,20 +164,20 @@ export default function Navbar() {
                                         )}
                                     </Menu>
                                 </div>
-                                <div className="-mr-2 flex items-center sm:hidden">
+                                <div className="flex items-center -mr-2 sm:hidden">
                                     {/* Mobile menu button */}
-                                    <Disclosure.Button className="inline-flex items-center justify-center p-2 rounded-md text-gray-400 hover:text-gray-500 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-indigo-500">
+                                    <Disclosure.Button className="inline-flex items-center justify-center p-2 text-gray-400 rounded-md hover:text-gray-500 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-indigo-500">
                                         <span className="sr-only">
                                             Open main menu
                                         </span>
                                         {open ? (
                                             <XIcon
-                                                className="block h-6 w-6"
+                                                className="block w-6 h-6"
                                                 aria-hidden="true"
                                             />
                                         ) : (
                                             <MenuIcon
-                                                className="block h-6 w-6"
+                                                className="block w-6 h-6"
                                                 aria-hidden="true"
                                             />
                                         )}
@@ -189,7 +189,7 @@ export default function Navbar() {
                         <Disclosure.Panel className="sm:hidden">
                             <div className="pt-2 pb-3 space-y-1">
                                 {/* Current: "bg-indigo-50 border-indigo-500 text-indigo-700", Default: "border-transparent text-gray-500 hover:bg-gray-50 hover:border-gray-300 hover:text-gray-700" */}
-                                <a
+                                <InertiaLink
                                     href="/"
                                     className={
                                         path === "/"
@@ -198,8 +198,8 @@ export default function Navbar() {
                                     }
                                 >
                                     Søk
-                                </a>
-                                <a
+                                </InertiaLink>
+                                <InertiaLink
                                     href="/newWord"
                                     className={
                                         path === "/newWord"
@@ -208,8 +208,8 @@ export default function Navbar() {
                                     }
                                 >
                                     Nytt ord
-                                </a>
-                                <a
+                                </InertiaLink>
+                                <InertiaLink
                                     href="/statistics"
                                     className={
                                         path === "/statistics"
@@ -218,7 +218,7 @@ export default function Navbar() {
                                     }
                                 >
                                     Statistikk
-                                </a>
+                                </InertiaLink>
 
                                 <p
                                     onClick={() => setLangModalOpen(true)}
@@ -231,7 +231,7 @@ export default function Navbar() {
                                     Velg språk
                                 </p>
 
-                                <a
+                                <InertiaLink
                                     href="/app"
                                     className={
                                         path === "/app"
@@ -240,9 +240,9 @@ export default function Navbar() {
                                     }
                                 >
                                     Last ned App
-                                </a>
+                                </InertiaLink>
 
-                                <a
+                                <InertiaLink
                                     href="/about"
                                     className={
                                         path === "/about"
@@ -251,7 +251,7 @@ export default function Navbar() {
                                     }
                                 >
                                     Om appen
-                                </a>
+                                </InertiaLink>
                             </div>
                         </Disclosure.Panel>
                     </>

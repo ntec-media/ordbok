@@ -34,7 +34,7 @@ const App = () => {
                         </li>
                         <li className="flex flex-row items-center text-sm italic text-gray-500 opacity-50 md:text-xl">
                             <ChevronDoubleRightIcon className="w-8 h-8 mr-6 text-blue-600" />
-                            Mulighet for å sende forslag til nye ord til Divvun
+                            Foreslå nytt ord og send til behandling
                         </li>
                         <li className="flex flex-row items-center text-sm italic text-gray-500 opacity-50 md:text-xl">
                             <ChevronDoubleRightIcon className="w-8 h-8 mr-6 text-blue-600" />

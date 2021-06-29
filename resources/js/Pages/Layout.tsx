@@ -27,11 +27,9 @@ export default function Layout(props: {
                 <div>
                     <Navbar />
                 </div>
-                <div className="flex-1 w-full mx-auto overflow-y-auto max-w-7xl lg:px-8">
-                    <article className="h-full bg-white shadow">
-                        {props.children}
-                    </article>
-                </div>
+                <article className="flex-1 w-full mx-auto overflow-y-auto bg-white shadow max-w-7xl lg:px-8 ">
+                    {props.children}
+                </article>
                 <div>
                     <Footer />
                     {!cookieApproved && (
