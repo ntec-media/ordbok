@@ -149,7 +149,7 @@ const Search = () => {
             <div className="relative h-full">
                 <SearchField updateInput={(newInput) => setInput(newInput)} />
                 {results.length > 0 ? (
-                    <div className="overflow-y-auto relative h-3/4">
+                    <div className="relative overflow-y-auto h-3/4">
                         <SearchResultList results={results} />
                     </div>
                 ) : (
