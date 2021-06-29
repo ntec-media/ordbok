@@ -8,7 +8,7 @@ export default function Layout(props: {
 }) {
     return (
         <CookiesProvider>
-            <main className="flex flex-col justify-between h-screen my-4 bg-gray-100">
+            <main className="flex flex-col justify-between h-screen bg-gray-100">
                 <div>
                     <Navbar />
                 </div>
