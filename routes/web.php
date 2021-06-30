@@ -16,7 +16,8 @@ use Illuminate\Support\Facades\Route;
 Route::inertia('/', 'Search');
 Route::inertia('/statistics', 'Statistics');
 Route::inertia('/app', 'App');
-Route::inertia('about', "About");
+Route::inertia('/word', 'WordSuggestion');
+Route::inertia('/about', "About");
 
 
 
