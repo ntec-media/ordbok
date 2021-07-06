@@ -2,43 +2,35 @@ import React, { useState } from "react";
 import Layout from "./Layout";
 import SearchField from "../Components/SearchField";
 import SearchResultList from "../Components/SearchResultList";
-import { IResultCard } from "../Components/ResultCard";
 import { useEffect } from "react";
-import { Inertia } from "@inertiajs/inertia";
 import NoSearch from "../Components/NoSearch";
+import { Inertia } from "@inertiajs/inertia";
+import { usePage } from "@inertiajs/inertia-react";
 
 let value = "";
 
-const Search = (props: any) => {
-    const [data, setData] = useState({
-        value: "",
-        dicts: [""],
-        langs: [""],
-    });
-    const [results, setResults] = useState<IResultCard[]>([]);
+const Search = () => {
+    const props: any = usePage().props;
+    const [search, setSearch] = useState<string>();
 
     useEffect(() => {
-        value = data.value;
+        value = search || "";
         setTimeout(() => {
-            console.log("Enter");
-            if (data.value === value && data.value !== "")
+            if (search === value && search !== "")
                 // @ts-ignore
-                Inertia.post("/", data);
+                Inertia.get(
+                    "/",
+                    { search: search },
+                    {
+                        replace: true,
+                        preserveState: true,
+                    }
+                );
         }, 700);
-    }, [data.value]);
+    }, [search]);
 
     useEffect(() => {
-        if (props.data) {
-            setResults(
-                props.data.map((t: any) => {
-                    return {
-                        word: t.oversatt_fra === "norsk" ? t.fra : t.til,
-                        translation: t.oversatt_fra === "norsk" ? t.til : t.fra,
-                        source: t.kredittering,
-                    };
-                })
-            );
-        }
+        setSearch(props.search);
     }, [props]);
 
     return (
@@ -46,14 +38,31 @@ const Search = (props: any) => {
             <div className="relative flex flex-col h-full">
                 <div className="relative flex justify-center px-2 pt-2 md:py-14">
                     <SearchField
-                        updateInput={(newInput) =>
-                            setData({ ...data, value: newInput })
-                        }
+                        defaultValue={search}
+                        updateInput={(newInput) => setSearch(newInput)}
                     />
                 </div>
-                {results.length > 0 ? (
-                    <div className="relative overflow-y-auto h-5/6">
-                        <SearchResultList results={results} />
+                {props.res.length > 0 ? (
+                    <div
+                        className="relative overflow-y-auto h-5/6"
+                        onScroll={(e: any) => {
+                            const bottom =
+                                e.target.scrollHeight - e.target.scrollTop ===
+                                e.target.clientHeight;
+                            if (bottom) {
+                                const cursor = props.nextPageUrl.split("=");
+                                Inertia.get(
+                                    "/",
+                                    { search: search, cursor: cursor[1] },
+                                    {
+                                        replace: true,
+                                        preserveState: true,
+                                    }
+                                );
+                            }
+                        }}
+                    >
+                        <SearchResultList results={props.res} />
                     </div>
                 ) : (
                     <div className="p-4">

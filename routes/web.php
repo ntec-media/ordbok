@@ -14,11 +14,11 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::inertia('/', 'Search');
+
+Route::get("/", [LocalDictionaryController::class, "words"]);
+
 Route::inertia('/statistics', 'Statistics');
 Route::inertia('/app', 'App');
-
-Route::post("/", [LocalDictionaryController::class, "words"]);
 
 
 

@@ -6,21 +6,39 @@ use App\Http\Requests\SearchRequest;
 use Illuminate\Support\Facades\DB;
 use Inertia\Inertia;
 
-class LocalDictionaryController extends Controller implements ISearch
-{
-    public function words(SearchRequest $request)
-    {
-        $data = json_decode($request->getContent());
 
-        $d1 = DB::table('ord_norsk_samisk_BACKUP')->where('fra', 'like', '%' . $data->value . '%')->get();
-        $d2 = DB::table('ord_norsk_samisk_BACKUP')->where('til', 'like', '%' . $data->value . '%')->get();
+class LocalDictionaryController extends Controller
+{
+    public function words()
+    {
+        $arr = [];
+        $nextPageUrl = "";
+
+        if (Request()->query("search")) {
+
+            $data = DB::table('ord_norsk_samisk_BACKUP')
+            ->where('fra', 'like', Request()->query("search"))
+            ->orWhere('til', 'like', Request()->query("search"))
+            ->orWhere('fra', 'like', '%' . Request()->query("search"))
+            ->orWhere('til', 'like', '%' . Request()->query("search"))
+            ->orWhere('fra', 'like', '%' . Request()->query("search") . '%')
+            ->orWhere('til', 'like', '%' . Request()->query("search") . '%')
+            ->orderBy('id')
+            ->cursorPaginate(500);
+            
+            $arr = $data->items();
+            $nextPageUrl = $data->nextPageUrl();
+        }
 
         return Inertia::render('Search', [
-            'data' => $d1->merge($d2),
+            'search' => Request()->query("search"),
+            'res' => $arr,
+            'nextPageUrl' => $nextPageUrl
         ]);
     }
 
     public function lookup(SearchRequest $request)
     {
     }
+
 }

@@ -24,9 +24,7 @@ class SearchRequest extends FormRequest
     public function rules()
     {
         return [
-            'value' => ['required'],
-            'dicts' => ['required'],
-            'langs' => ['required'],
+            'value' => ['required']
         ];
     }
 }

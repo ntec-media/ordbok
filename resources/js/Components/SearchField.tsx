@@ -6,6 +6,7 @@ import CircularProgress from "@material-ui/core/CircularProgress";
 import { InputAdornment, TextField } from "@material-ui/core";
 
 interface Props {
+    defaultValue: string | undefined;
     updateInput: (newInput: string) => void;
 }
 
@@ -18,8 +19,12 @@ const SearchField = (props: Props) => {
 
     useEffect(() => {
         // API CALL ?
-        props.updateInput(input);
+        props.updateInput(input as string);
     }, [input]);
+
+    useEffect(() => {
+        props.defaultValue && setInput(props.defaultValue);
+    }, [props.defaultValue]);
 
     return (
         <>
@@ -42,6 +47,7 @@ const SearchField = (props: Props) => {
                 renderInput={(params) => (
                     <TextField
                         {...params}
+                        value={input}
                         label="Søk"
                         variant="outlined"
                         InputProps={{
