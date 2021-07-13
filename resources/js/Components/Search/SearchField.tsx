@@ -4,16 +4,15 @@ import { Autocomplete } from "@material-ui/lab";
 import CircularProgress from "@material-ui/core/CircularProgress";
 import DropDownIcon from "@material-ui/icons/ArrowDropDown";
 import { IconButton, InputAdornment, TextField } from "@material-ui/core";
-import DropDown from "./Shared/DropDown";
+import DropDown from "../Shared/DropDown";
 import { MenuBook, TranslateOutlined } from "@material-ui/icons";
-import TranslateLanguageModal from "./Modals/TranslateLanguageModal";
-import MultipleSelectModal from "./Modals/MultipleSelectModal";
+import MultipleSelectModal from "../Modals/MultipleSelectModal";
 import { useCookies } from "react-cookie";
 import {
     dicstSupported,
     ILang,
     translateLanguagesSupported,
-} from "../interfaces";
+} from "../../interfaces";
 
 interface Props {
     updateInput: (newInput: string) => void;

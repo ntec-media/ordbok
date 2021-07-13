@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 import Layout from "./Layout";
-import SearchField from "../Components/SearchField";
-import SearchResultList from "../Components/SearchResultList";
-import { IResultCard } from "../Components/ResultCard";
+import SearchField from "../Components/Search/SearchField";
+import SearchResultList from "../Components/Search/SearchResultList";
+import { IResultCard } from "../Components/Search/ResultCard";
 import { useEffect } from "react";
 import { Inertia } from "@inertiajs/inertia";
 import NoSearch from "../Components/NoSearch";
