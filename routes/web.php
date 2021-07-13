@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\LocalDictionaryController;
+use App\Http\Controllers\NewWordController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -14,7 +15,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-
+// Search
 Route::inertia("/", "Search");
 Route::post("/", [LocalDictionaryController::class, "words"]);
 
@@ -24,6 +25,8 @@ Route::inertia('/app', 'App');
 Route::inertia('/word', 'WordSuggestion');
 Route::inertia('/about', "About");
 
+// New Word
+Route::post("/word", [NewWordController::class, "store"]);
 
 
 

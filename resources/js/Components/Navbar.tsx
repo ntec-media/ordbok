@@ -152,7 +152,7 @@ export default function Navbar() {
                                     Søk
                                 </InertiaLink>
                                 <InertiaLink
-                                    href="/newWord"
+                                    href="/word"
                                     className={
                                         path === "/word"
                                             ? "bg-indigo-50 border-indigo-500 text-indigo-700 block pl-3 pr-4 py-2 border-l-4 text-base font-medium"
