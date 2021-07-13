@@ -15,7 +15,9 @@ use Illuminate\Support\Facades\Route;
 */
 
 
-Route::get("/", [LocalDictionaryController::class, "words"]);
+Route::inertia("/", "Search");
+Route::post("/", [LocalDictionaryController::class, "words"]);
+
 
 Route::inertia('/statistics', 'Statistics');
 Route::inertia('/app', 'App');

@@ -11,12 +11,7 @@ const SearchResultList = (props: Prosp) => {
     const [results, setResults] = useState<ISearchResult[]>([]);
 
     useEffect(() => {
-        const newItems: ISearchResult[] = [];
-        props.results.forEach((res) => {
-            !results.find((s) => s.id === res.id) && newItems.push(res);
-        });
-        setResults(results.concat(newItems));
-        console.log(results.length);
+        setResults(props.results);
     }, [props.results]);
 
     return (

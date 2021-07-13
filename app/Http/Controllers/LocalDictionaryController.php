@@ -2,39 +2,36 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\SearchRequest;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
-use Inertia\Inertia;
+use App\Http\Requests\SearchRequest;
+use App\Models\Search;
+use Illuminate\Pagination\Paginator;
 
 
 class LocalDictionaryController extends Controller
 {
-    public function words()
+    public function words(Request $request)
     {
-        $arr = [];
-        $nextPageUrl = "";
+        $body = json_decode($request->getContent());
+        $currentPage = $body->page;
 
-        if (Request()->query("search")) {
+        Paginator::currentPageResolver(function () use ($currentPage) {
+            return $currentPage;
+        });
 
-            $data = DB::table('ord_norsk_samisk_BACKUP')
-            ->where('fra', 'like', Request()->query("search"))
-            ->orWhere('til', 'like', Request()->query("search"))
-            ->orWhere('fra', 'like', '%' . Request()->query("search"))
-            ->orWhere('til', 'like', '%' . Request()->query("search"))
-            ->orWhere('fra', 'like', '%' . Request()->query("search") . '%')
-            ->orWhere('til', 'like', '%' . Request()->query("search") . '%')
-            ->orderBy('id')
-            ->cursorPaginate(500);
-            
-            $arr = $data->items();
-            $nextPageUrl = $data->nextPageUrl();
-        }
 
-        return Inertia::render('Search', [
-            'search' => Request()->query("search"),
-            'res' => $arr,
-            'nextPageUrl' => $nextPageUrl
-        ]);
+        $data = DB::table('ord_norsk_samisk_BACKUP')
+        ->where('fra', 'like', $body->search)
+        ->orWhere('til', 'like', $body->search)
+        ->orWhere('fra', 'like', '%' . $body->search)
+        ->orWhere('til', 'like', '%' . $body->search)
+        ->orWhere('fra', 'like', '%' . $body->search . '%')
+        ->orWhere('til', 'like', '%' . $body->search . '%')
+        ->orderBy('fra')
+        ->simplePaginate(100);
+
+        return $data->items();
     }
 
     public function lookup(SearchRequest $request)

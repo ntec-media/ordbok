@@ -8,6 +8,7 @@ import { InputAdornment, TextField } from "@material-ui/core";
 interface Props {
     defaultValue: string | undefined;
     updateInput: (newInput: string) => void;
+    resetPage: () => void;
 }
 
 const SearchField = (props: Props) => {
@@ -35,6 +36,10 @@ const SearchField = (props: Props) => {
                 open={open}
                 onInputChange={(_e, newVal) => {
                     setInput(newVal);
+                    if (props.defaultValue) {
+                        if (props.defaultValue.length > newVal.length)
+                            props.resetPage();
+                    }
                 }}
                 onOpen={() => {
                     setOpen(true);
