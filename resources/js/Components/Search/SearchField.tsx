@@ -16,6 +16,7 @@ import {
 
 interface Props {
     updateInput: (newInput: string) => void;
+    resetPage: () => void;
 }
 
 const SearchField = (props: Props) => {
@@ -29,7 +30,8 @@ const SearchField = (props: Props) => {
     const loading = false;
 
     useEffect(() => {
-        props.updateInput(input);
+        // API CALL ?
+        props.updateInput(input as string);
     }, [input]);
 
     const LangDictModals = () => {
@@ -70,6 +72,7 @@ const SearchField = (props: Props) => {
                 className="w-5/6 lg:w-4/6"
                 freeSolo
                 value={input}
+                onKeyDown={(e) => e.key === "backspace" && props.resetPage()}
                 open={open}
                 onInputChange={(_e, newVal) => {
                     setInput(newVal);
@@ -85,6 +88,7 @@ const SearchField = (props: Props) => {
                 renderInput={(params) => (
                     <TextField
                         {...params}
+                        value={input}
                         label="Søk"
                         variant="outlined"
                         InputProps={{

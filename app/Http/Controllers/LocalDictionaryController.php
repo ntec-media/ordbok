@@ -3,21 +3,32 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\SearchRequest;
+use Illuminate\Pagination\Paginator;
 use Illuminate\Support\Facades\DB;
-use Inertia\Inertia;
 
-class LocalDictionaryController extends Controller implements ISearch
+class LocalDictionaryController extends Controller
 {
     public function words(SearchRequest $request)
     {
-        $data = json_decode($request->getContent());
+        $body = json_decode($request->getContent());
+        $currentPage = $body->page;
 
-        $d1 = DB::table('ord_norsk_samisk_BACKUP')->where('fra', 'like', '%' . $data->value . '%')->get();
-        $d2 = DB::table('ord_norsk_samisk_BACKUP')->where('til', 'like', '%' . $data->value . '%')->get();
+        Paginator::currentPageResolver(function () use ($currentPage) {
+            return $currentPage;
+        });
 
-        return Inertia::render('Search', [
-            'data' => $d1->merge($d2),
-        ]);
+
+        $data = DB::table('ord_norsk_samisk_BACKUP')
+        ->where('fra', 'like', $body->search)
+        ->orWhere('til', 'like', $body->search)
+        ->orWhere('fra', 'like', '%' . $body->search)
+        ->orWhere('til', 'like', '%' . $body->search)
+        ->orWhere('fra', 'like', '%' . $body->search . '%')
+        ->orWhere('til', 'like', '%' . $body->search . '%')
+        ->orderBy('fra')
+        ->simplePaginate(50);
+
+        return $data->items();
     }
 
     public function lookup(SearchRequest $request)

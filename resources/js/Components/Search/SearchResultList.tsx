@@ -1,26 +1,27 @@
 import { List, ListItem } from "@material-ui/core";
-import React from "react";
-import ResultCard, { IResultCard } from "./ResultCard";
+import React, { useEffect, useState } from "react";
+import ResultCard from "./ResultCard";
+import ISearchResult from "../../Interfaces/ISearchResult";
 
 interface Prosp {
-    results: IResultCard[];
+    results: ISearchResult[];
 }
 
 const SearchResultList = (props: Prosp) => {
+    const [results, setResults] = useState<ISearchResult[]>([]);
+
+    useEffect(() => {
+        setResults(props.results);
+    }, [props.results]);
+
     return (
-        <div className="relative h-full overflow-y-auto md:px-16">
-            <List>
-                {props.results.map((res: IResultCard, index: number) => (
-                    <ListItem
-                        key={index}
-                        className="w-full"
-                        style={{ padding: 2 }}
-                    >
-                        <ResultCard {...res} />
-                    </ListItem>
-                ))}
-            </List>
-        </div>
+        <List>
+            {results.map((res: ISearchResult, index: number) => (
+                <ListItem key={index} className="p-2">
+                    <ResultCard {...res} />
+                </ListItem>
+            ))}
+        </List>
     );
 };
 

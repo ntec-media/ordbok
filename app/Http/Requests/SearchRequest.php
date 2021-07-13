@@ -24,9 +24,8 @@ class SearchRequest extends FormRequest
     public function rules()
     {
         return [
-            'value' => ['required'],
-            'dicts' => ['required'],
-            'langs' => ['required'],
+            'search' => 'required|string|max:255|min:2',
+            'page' => 'required|numeric',
         ];
     }
 }
