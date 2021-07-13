@@ -1,5 +1,5 @@
 import React from "react";
-import ISearchResult from "../Interfaces/ISearchResult";
+import ISearchResult from "../../Interfaces/ISearchResult";
 
 const ResultCard = (props: ISearchResult) => {
     return (
