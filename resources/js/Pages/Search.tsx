@@ -17,12 +17,12 @@ const Search = () => {
     useEffect(() => {
         value = input || "";
         setTimeout(() => {
-            if (input === value && input !== "") {
+            if (input === value && input !== "" && input.length > 1) {
                 getResultArray(input as string, results, page).then((res) => {
                     setResults(res);
                 });
             }
-        }, 400);
+        }, 150);
     }, [input]);
 
     return (
@@ -30,14 +30,16 @@ const Search = () => {
             <div className="relative flex flex-col h-full">
                 <div className="relative flex justify-center px-2 pt-2 md:py-14">
                     <SearchField
-                        defaultValue={input}
-                        updateInput={(newInput) => setInput(newInput)}
+                        updateInput={(newInput) => {
+                            newInput.length === 0 && setResults([]);
+                            setInput(newInput);
+                        }}
                         resetPage={() => {
                             setPage(1);
                         }}
                     />
                 </div>
-                {results.length > 0 ? (
+                {results.length > 0 && input !== "" ? (
                     <div
                         className="relative overflow-y-auto h-5/6"
                         onScroll={(e: any) => {
@@ -74,11 +76,28 @@ const getResultArray = async (
     currentPage: number
 ) => {
     const newData: ISearchResult[] = await search(input, currentPage);
+    const sortedArray = sort(newData, input);
     if (currentPage === 1) {
-        return newData;
+        return sortedArray;
     } else {
-        return currentArray.concat(newData);
+        return currentArray.concat(sortedArray);
     }
+};
+
+const sort = (arr: ISearchResult[], value: string) => {
+    const newData: { data: ISearchResult; count: number }[] = [];
+    arr.forEach((item) => {
+        let count = 0;
+        for (let i = 0; i < value.length; i++) {
+            if (value.charAt(i) === item.fra.charAt(i)) count++;
+        }
+        newData.push({ data: item, count: count / item.fra.length });
+    });
+    return newData
+        .sort((a, b) => {
+            return b.count - a.count;
+        })
+        .map((d) => d.data);
 };
 
 export default Search;

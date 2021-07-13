@@ -6,7 +6,6 @@ import CircularProgress from "@material-ui/core/CircularProgress";
 import { InputAdornment, TextField } from "@material-ui/core";
 
 interface Props {
-    defaultValue: string | undefined;
     updateInput: (newInput: string) => void;
     resetPage: () => void;
 }
@@ -23,23 +22,16 @@ const SearchField = (props: Props) => {
         props.updateInput(input as string);
     }, [input]);
 
-    useEffect(() => {
-        props.defaultValue && setInput(props.defaultValue);
-    }, [props.defaultValue]);
-
     return (
         <>
             <Autocomplete
                 className="w-5/6 lg:w-4/6"
                 freeSolo
                 value={input}
+                onKeyDown={(e) => e.key === "backspace" && props.resetPage()}
                 open={open}
                 onInputChange={(_e, newVal) => {
                     setInput(newVal);
-                    if (props.defaultValue) {
-                        if (props.defaultValue.length > newVal.length)
-                            props.resetPage();
-                    }
                 }}
                 onOpen={() => {
                     setOpen(true);

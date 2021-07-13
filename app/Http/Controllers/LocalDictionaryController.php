@@ -2,16 +2,13 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
 use App\Http\Requests\SearchRequest;
-use App\Models\Search;
 use Illuminate\Pagination\Paginator;
-
+use Illuminate\Support\Facades\DB;
 
 class LocalDictionaryController extends Controller
 {
-    public function words(Request $request)
+    public function words(SearchRequest $request)
     {
         $body = json_decode($request->getContent());
         $currentPage = $body->page;
@@ -29,7 +26,7 @@ class LocalDictionaryController extends Controller
         ->orWhere('fra', 'like', '%' . $body->search . '%')
         ->orWhere('til', 'like', '%' . $body->search . '%')
         ->orderBy('fra')
-        ->simplePaginate(100);
+        ->simplePaginate(50);
 
         return $data->items();
     }
@@ -37,5 +34,4 @@ class LocalDictionaryController extends Controller
     public function lookup(SearchRequest $request)
     {
     }
-
 }
