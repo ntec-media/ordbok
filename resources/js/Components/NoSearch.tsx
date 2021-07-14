@@ -6,11 +6,11 @@ const NoSearch = () => {
     return (
         <div>
             <Typography variant="h5" align="center" className="italic">
-                {trans("NoSearch.header")}
+                {trans("Search.NoSearch.header.main_1")}
                 <a className="text-blue-500" href="https://internia.no/">
                     Ntec Media
                 </a>{" "}
-                i samarbeid med{" "}
+                {trans("Search.NoSearch.header.main_2")}
                 <a className="text-blue-500" href="https://divvun.no/">
                     Divvun
                 </a>

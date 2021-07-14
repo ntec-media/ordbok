@@ -1,22 +1,19 @@
+import { trans } from "matice";
 import React from "react";
 import { useState } from "react";
 
 const Tab = (props: { setTab: (newTab: string) => void }) => {
     const [tabs, setTabs] = useState([
-        { key: "week", name: "Uke", current: true },
-        { key: "month", name: "Måned", current: false },
-        { key: "year", name: "År", current: false },
+        { key: "week", current: true },
+        { key: "month", current: false },
+        { key: "year", current: false },
     ]);
 
     function classNames(...classes: any) {
         return classes.filter(Boolean).join(" ");
     }
 
-    const setNewTab = (newTab: {
-        key: string;
-        name: string;
-        current: boolean;
-    }) => {
+    const setNewTab = (newTab: { key: string; current: boolean }) => {
         setTabs(
             tabs.map((tab) =>
                 tab.key === newTab.key
@@ -39,26 +36,26 @@ const Tab = (props: { setTab: (newTab: string) => void }) => {
                         name="tabs"
                         onChange={(e) => {
                             const newTab = tabs.find(
-                                (t) => t.name === e.target.value
+                                (t) => t.key === e.target.value
                             );
                             setNewTab(newTab!);
                         }}
-                        className="block w-full focus:ring-indigo-500 focus:border-indigo-500 border-gray-300 rounded-md"
-                        defaultValue={tabs.find((tab) => tab.current)!.name}
+                        className="block w-full border-gray-300 rounded-md focus:ring-indigo-500 focus:border-indigo-500"
+                        defaultValue={tabs.find((tab) => tab.current)!.key}
                     >
                         {tabs.map((tab) => (
-                            <option key={tab.name}>{tab.name}</option>
+                            <option key={tab.key}>{tab.key}</option>
                         ))}
                     </select>
                 </div>
                 <div className="hidden sm:block">
                     <nav
-                        className="relative z-0 rounded-lg shadow flex divide-x divide-gray-200"
+                        className="relative z-0 flex divide-x divide-gray-200 rounded-lg shadow"
                         aria-label="Tabs"
                     >
                         {tabs.map((tab, tabIdx) => (
                             <p
-                                key={tab.name}
+                                key={tab.key}
                                 onClick={() => setNewTab(tab)}
                                 className={classNames(
                                     tab.current
@@ -72,7 +69,7 @@ const Tab = (props: { setTab: (newTab: string) => void }) => {
                                 )}
                                 aria-current={tab.current ? "page" : undefined}
                             >
-                                <span>{tab.name}</span>
+                                <span>{trans(`Statistics.${tab.key}`)}</span>
                                 <span
                                     aria-hidden="true"
                                     className={classNames(

@@ -13,6 +13,7 @@ import CustomSnackbar, {
 import Layout from "./Layout";
 import InfoIcon from "@material-ui/icons/InfoOutlined";
 import { newWord } from "../utils";
+import { trans } from "matice";
 
 const WordSuggestion = () => {
     const [norInput, setNorInput] = useState({ val: "", error: false });
@@ -53,7 +54,7 @@ const WordSuggestion = () => {
                     ...snackbarProps,
                     type: "success",
                     open: true,
-                    message: "Forslaget er lagret!",
+                    message: trans("WordSuggestion.success"),
                 });
                 break;
             case 200:
@@ -61,7 +62,7 @@ const WordSuggestion = () => {
                     ...snackbarProps,
                     type: "warning",
                     open: true,
-                    message: "Forslaget er allerede lagret",
+                    message: trans("WordSuggestion.warning"),
                 });
                 break;
             default:
@@ -69,7 +70,7 @@ const WordSuggestion = () => {
                     ...snackbarProps,
                     type: "error",
                     open: true,
-                    message: "En feil har oppstått, forslaget ble ikke lagret",
+                    message: trans("WordSuggestion.error"),
                 });
                 break;
         }
@@ -80,19 +81,13 @@ const WordSuggestion = () => {
             <div className="flex flex-col items-center justify-center h-full overflow-x-hidden overflow-y-auto lg:h-auto">
                 <div className="hidden w-full p-6 md:block md:w-3/6 lg:w-2/6">
                     <h1 className="p-8 text-3xl text-center text-gray-600">
-                        Foreslå nytt ord
+                        {trans("WordSuggestion.header")}
                     </h1>
-                    <p>
-                        Ord som sends inn vil bli sendt til UiT hvor de lagres i
-                        en database. Forfattere som har avtale med UiT vil kunne
-                        benytte denne databasen i utgivelse av nye ordbøker.
-                    </p>
+                    <p>{trans("WordSuggestion.subtitle")}</p>
                 </div>
                 <div className="flex items-center w-full py-6 md:hidden">
                     <Tooltip
-                        title="Ord som sends inn vil bli sendt til UiT hvor de lagres i
-                        en database. Forfattere som har avtale med UiT vil kunne
-                        benytte denne databasen i utgivelse av nye ordbøker."
+                        title={trans("WordSuggestion.header")}
                         open={tooltipOpen}
                         onClose={() => setTooltipOpen(false)}
                     >
@@ -103,7 +98,7 @@ const WordSuggestion = () => {
                         </IconButton>
                     </Tooltip>
                     <h1 className="text-3xl text-center text-gray-600">
-                        Foreslå nytt ord
+                        {trans("WordSuggestion.header")}
                     </h1>
                 </div>
                 <form className="flex flex-col w-full h-full px-2 pb-6 md:w-3/6 lg:w-2/6">
@@ -111,9 +106,12 @@ const WordSuggestion = () => {
                         <TextField
                             fullWidth
                             variant="outlined"
-                            label="Norsk"
+                            label={trans("WordSuggestion.norwegian")}
                             error={norInput.error}
-                            helperText={norInput.error && "Ugyldig"}
+                            helperText={
+                                norInput.error &&
+                                trans("WordSuggestion.invalid")
+                            }
                             onChange={(
                                 e: React.ChangeEvent<HTMLInputElement>
                             ) =>
@@ -128,9 +126,12 @@ const WordSuggestion = () => {
                         <TextField
                             fullWidth
                             variant="outlined"
-                            label="Samisk"
+                            label={trans("WordSuggestion.sami")}
                             error={samInput.error}
-                            helperText={samInput.error && "Ugyldig"}
+                            helperText={
+                                samInput.error &&
+                                trans("WordSuggestion.invalid")
+                            }
                             onChange={(
                                 e: React.ChangeEvent<HTMLInputElement>
                             ) =>
@@ -147,7 +148,7 @@ const WordSuggestion = () => {
                             variant="outlined"
                             multiline
                             rows="3"
-                            label="Beskrivelse (optional)"
+                            label={trans("WordSuggestion.description")}
                             onChange={(
                                 e: React.ChangeEvent<HTMLInputElement>
                             ) => setDescription(e.target.value)}
@@ -157,7 +158,7 @@ const WordSuggestion = () => {
                         <TextField
                             fullWidth
                             variant="outlined"
-                            label="Navn/Epost (optional)"
+                            label={trans("WordSuggestion.email")}
                             onChange={(
                                 e: React.ChangeEvent<HTMLInputElement>
                             ) => setName(e.target.value)}
@@ -171,7 +172,7 @@ const WordSuggestion = () => {
                             disabled={isSubmitting}
                             onClick={validate}
                         >
-                            Send inn
+                            {trans("WordSuggestion.btnText")}
                         </Button>
                         <div
                             className={

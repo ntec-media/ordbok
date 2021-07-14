@@ -1,3 +1,4 @@
+import { trans } from "matice";
 import React from "react";
 
 interface Props {
@@ -16,16 +17,18 @@ const Table = (props: Props) => {
                                 <tr>
                                     <th
                                         scope="col"
-                                        className="px-6 py-3 text-xs font-medium tracking-wider text-left text-center text-gray-500 uppercase w-96"
+                                        className="px-6 py-3 text-xs font-medium tracking-wider text-left text-gray-500 uppercase w-96"
                                     >
-                                        Dag
+                                        {props.labels.length == 12
+                                            ? trans("Statistics.month")
+                                            : trans("Statistics.day")}
                                     </th>
 
                                     <th
                                         scope="col"
-                                        className="px-6 py-3 text-xs font-medium tracking-wider text-left text-center text-gray-500 uppercase w-96"
+                                        className="px-6 py-3 text-xs font-medium tracking-wider text-left text-gray-500 uppercase w-96"
                                     >
-                                        Søk
+                                        {trans("Statistics.search")}
                                     </th>
                                 </tr>
                             </thead>
@@ -40,7 +43,11 @@ const Table = (props: Props) => {
                                         }
                                     >
                                         <td className="px-6 py-4 text-sm font-medium text-gray-900 whitespace-nowrap">
-                                            {props.labels[index]}
+                                            {props.labels.length <= 12 // check if tab is not month
+                                                ? trans(
+                                                      `Statistics.${props.labels[index]}`
+                                                  )
+                                                : props.labels[index]}
                                         </td>
                                         <td className="px-6 py-4 text-sm text-gray-500 whitespace-nowrap">
                                             {data}

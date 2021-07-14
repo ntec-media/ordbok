@@ -7,6 +7,11 @@ return [
     'norwegian' => 'Norwegian',
     'sami' => 'Sami',
     'description' => 'Description (optional)',
-    'epost' => 'Email/name (optional)',
-    'btnText' => 'Submit'
+    'email' => 'Email/name (optional)',
+    'btnText' => 'Submit',
+    'success' => 'The suggestion was submitted!',
+    'warning' => 'The suggestion have already been submitted',
+    'error' => 'An error occurred. The suggestion was not submitted',
+    'invalid' => 'Invalid'
+
 ];

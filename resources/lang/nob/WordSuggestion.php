@@ -6,6 +6,10 @@ return [
     'norwegian' => 'Norsk',
     'sami' => 'Samisk',
     'description' => 'Beskrivelse (valgfritt)',
-    'epost' => 'Epost/navn (valgfritt)',
-    'btnText' => 'Send inn'
+    'email' => 'Epost/navn (valgfritt)',
+    'btnText' => 'Send inn',
+    'success' => 'Forslaget er lagret!',
+    'warning' => 'Forslaget er allerede lagret',
+    'error' => 'En feil har oppstått, forslaget ble ikke lagret',
+    'invalid' => 'Ugyldig'
 ];
