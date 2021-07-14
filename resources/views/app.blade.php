@@ -6,6 +6,7 @@
     <link href="{{ mix('/css/app.css') }}" rel="stylesheet" />
     <script src="{{ mix('/js/app.js') }}" defer></script>
     <title>Julevbágo</title>
+    @translations()
   </head>
   <body>
     @inertia

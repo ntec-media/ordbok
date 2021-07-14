@@ -10,7 +10,6 @@ class LocalDictionaryController extends Controller
 {
     public function words(SearchRequest $request)
     {
-        return $request;
         $body = json_decode($request->getContent());
         $currentPage = $body->page;
 
