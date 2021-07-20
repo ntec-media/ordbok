@@ -2,15 +2,15 @@
 
 namespace App\Models;
 
-use Illuminate\Support\Facades\DB;
-use App\Interfaces\SearchInterface;
 use App\Http\Requests\SearchRequest;
+use App\Interfaces\SearchInterface;
 use Illuminate\Pagination\Paginator;
+use Illuminate\Support\Facades\DB;
 
 class LocalSearch implements SearchInterface
 {
-
-    public function words(SearchRequest $request) {
+    public function words(SearchRequest $request)
+    {
         $currentPage = $request->input('page');
 
         Paginator::currentPageResolver(function () use ($currentPage) {
@@ -34,7 +34,8 @@ class LocalSearch implements SearchInterface
     /**
      * Not implimented in this class
      */
-    public function lookup(SearchRequest $request) {
+    public function lookup(SearchRequest $request)
+    {
         return null;
     }
 }

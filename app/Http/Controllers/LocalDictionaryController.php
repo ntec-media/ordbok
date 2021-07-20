@@ -10,6 +10,7 @@ class LocalDictionaryController extends Controller
     public function words(SearchRequest $request)
     {
         $localSearch = new LocalSearch();
+
         return $localSearch->words($request);
     }
 }
