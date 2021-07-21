@@ -3,24 +3,14 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\SearchRequest;
-use Illuminate\Support\Facades\DB;
-use Inertia\Inertia;
+use App\Models\LocalSearch;
 
-class LocalDictionaryController extends Controller implements ISearch
+class LocalDictionaryController extends Controller
 {
     public function words(SearchRequest $request)
     {
-        $data = json_decode($request->getContent());
+        $localSearch = new LocalSearch();
 
-        $d1 = DB::table('ord_norsk_samisk_BACKUP')->where('fra', 'like', '%' . $data->value . '%')->get();
-        $d2 = DB::table('ord_norsk_samisk_BACKUP')->where('til', 'like', '%' . $data->value . '%')->get();
-
-        return Inertia::render('Search', [
-            'data' => $d1->merge($d2),
-        ]);
-    }
-
-    public function lookup(SearchRequest $request)
-    {
+        return $localSearch->words($request);
     }
 }

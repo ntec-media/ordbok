@@ -4,19 +4,15 @@ import { Autocomplete } from "@material-ui/lab";
 import CircularProgress from "@material-ui/core/CircularProgress";
 import DropDownIcon from "@material-ui/icons/ArrowDropDown";
 import { IconButton, InputAdornment, TextField } from "@material-ui/core";
-import DropDown from "./Shared/DropDown";
+import DropDown from "../Shared/DropDown";
 import { MenuBook, TranslateOutlined } from "@material-ui/icons";
-import TranslateLanguageModal from "./Modals/TranslateLanguageModal";
-import MultipleSelectModal from "./Modals/MultipleSelectModal";
+import MultipleSelectModal from "../Modals/MultipleSelectModal";
 import { useCookies } from "react-cookie";
-import {
-    dicstSupported,
-    ILang,
-    translateLanguagesSupported,
-} from "../interfaces";
+import { dicstSupported, translateLanguagesSupported } from "../../interfaces";
 
 interface Props {
     updateInput: (newInput: string) => void;
+    resetPage: () => void;
 }
 
 const SearchField = (props: Props) => {
@@ -71,6 +67,7 @@ const SearchField = (props: Props) => {
                 className="w-5/6 lg:w-4/6"
                 freeSolo
                 value={input}
+                onKeyDown={(e) => e.key === "backspace" && props.resetPage()}
                 open={open}
                 onInputChange={(_e, newVal) => {
                     setInput(newVal);
@@ -86,6 +83,7 @@ const SearchField = (props: Props) => {
                 renderInput={(params) => (
                     <TextField
                         {...params}
+                        value={input}
                         label="Søk"
                         variant="outlined"
                         InputProps={{

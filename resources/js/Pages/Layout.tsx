@@ -1,11 +1,26 @@
 import React from "react";
 import Footer from "../Components/Footer";
 import Navbar from "../Components/Navbar";
-import { CookiesProvider } from "react-cookie";
+import { CookiesProvider, useCookies } from "react-cookie";
+import CookiePopup from "../Components/CookiePopup";
+import { useEffect } from "react";
+import { useState } from "react";
 
 export default function Layout(props: {
     children: JSX.Element | JSX.Element[];
 }) {
+    const [cookies, setCookies] = useCookies(["lang"]);
+    const [cookieApproved, setCookieApproved] = useState(true);
+
+    useEffect(() => {
+        setCookieApproved(cookies.termsApproved);
+    }, []);
+
+    const updateCookie = () => {
+        setCookies("termsApproved", true, { path: "/" });
+        setCookieApproved(true);
+    };
+
     return (
         <CookiesProvider>
             <main className="flex flex-col justify-between h-screen bg-gray-100">
@@ -19,6 +34,9 @@ export default function Layout(props: {
                 </div>
                 <div>
                     <Footer />
+                    {!cookieApproved && (
+                        <CookiePopup setCookieTrue={() => updateCookie()} />
+                    )}
                 </div>
             </main>
         </CookiesProvider>

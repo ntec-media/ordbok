@@ -1,6 +1,5 @@
 <?php
 
-use App\Http\Controllers\LocalDictionaryController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -14,11 +13,11 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::inertia('/', 'Search');
+Route::inertia("/", "Search");
 Route::inertia('/statistics', 'Statistics');
 Route::inertia('/app', 'App');
-
-Route::post("/", [LocalDictionaryController::class, "words"]);
+Route::inertia('/word', 'WordSuggestion');
+Route::inertia('/about', "About");
 
 
 
