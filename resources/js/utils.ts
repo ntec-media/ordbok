@@ -28,6 +28,30 @@ export const week = async () => {
         });
 };
 
+export const month = async () => {
+    return await axios
+        .post("/api/statistic/month")
+        .then((res) => {
+            return res.data;
+        })
+        .catch((err) => {
+            console.error(err);
+            return err;
+        });
+};
+
+export const year = async () => {
+    return await axios
+        .post("/api/statistic/year")
+        .then((res) => {
+            return res.data;
+        })
+        .catch((err) => {
+            console.error(err);
+            return err;
+        });
+};
+
 export const newWord = async (values: INewWord) => {
     return await axios
         .post("/word", {

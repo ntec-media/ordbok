@@ -5,7 +5,7 @@ import Chart from "../Components/Statistics/Chart";
 import Tab from "../Components/Statistics/Tab";
 import Table from "../Components/Statistics/Table";
 import TableChartButtons from "../Components/Statistics/TableChartButtons";
-import { week } from "../utils";
+import { month, week, year } from "../utils";
 import Layout from "./Layout";
 
 const days = [
@@ -40,9 +40,36 @@ const Statistics = () => {
     const [showTable, setShowTable] = useState(true);
 
     useEffect(() => {
-        week().then((res) => {
-            console.log(res);
-        });
+        switch (currentTab) {
+            case "week":
+                {
+                    week().then((res) => {
+                        setLabels(days);
+                        setData(res.map((obj: any) => obj.searches));
+                    });
+                }
+                break;
+            case "month":
+                {
+                    month().then((res) => {
+                        setLabels(
+                            Array.from({ length: 31 }, (_, i) =>
+                                (i + 1).toString()
+                            )
+                        );
+                        console.log(res);
+                    });
+                }
+                break;
+            case "year":
+                {
+                    year().then((res) => {
+                        setLabels(months);
+                        console.log(res);
+                    });
+                }
+                break;
+        }
     }, [currentTab]);
 
     return (
