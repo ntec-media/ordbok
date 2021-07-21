@@ -22,9 +22,8 @@ export interface ILang {
 
 export const languagesSupported: ILang[] = [
     { name: "Norsk", short: "nob" },
-    { name: "Engelsk", short: "eng" },
+    { name: "Engelsk", short: "en" },
     { name: "Lulesamisk", short: "lusm" },
-    { name: "Nordsamisk", short: "nosm" },
 ];
 
 export const translateLanguagesSupported: ILang[] = [

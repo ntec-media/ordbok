@@ -8,6 +8,31 @@ import TableChartButtons from "../Components/Statistics/TableChartButtons";
 import { week } from "../utils";
 import Layout from "./Layout";
 
+const days = [
+    "monday",
+    "tuesday",
+    "weednesday",
+    "thirsday",
+    "friday",
+    "saturday",
+    "sunday",
+];
+
+const months = [
+    "january",
+    "february",
+    "march",
+    "april",
+    "may",
+    "june",
+    "july",
+    "august",
+    "september",
+    "october",
+    "november",
+    "december",
+];
+
 const Statistics = () => {
     const [currentTab, setCurrentTab] = useState<string>("week");
     const [data, setData] = useState<number[]>([]);

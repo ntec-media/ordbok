@@ -1,5 +1,6 @@
 import { Menu, Transition } from "@headlessui/react";
 import { CheckIcon } from "@heroicons/react/outline";
+import { trans } from "matice";
 import React, { ElementType, Fragment } from "react";
 
 interface Props {
@@ -54,7 +55,11 @@ const DropDown = (props: Props) => {
                                                 )
                                             }
                                         >
-                                            {item.display}
+                                            {item.id
+                                                ? trans(
+                                                      `Layout.navbar.languages.${item.id}`
+                                                  )
+                                                : item.display}
                                             {props.itemSelected &&
                                                 props.itemSelected ===
                                                     item.id && (

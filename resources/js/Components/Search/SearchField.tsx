@@ -8,7 +8,12 @@ import DropDown from "../Shared/DropDown";
 import { MenuBook, TranslateOutlined } from "@material-ui/icons";
 import MultipleSelectModal from "../Modals/MultipleSelectModal";
 import { useCookies } from "react-cookie";
-import { dicstSupported, translateLanguagesSupported } from "../../interfaces";
+import {
+    dicstSupported,
+    ILang,
+    translateLanguagesSupported,
+} from "../../interfaces";
+import { trans } from "matice";
 
 interface Props {
     updateInput: (newInput: string) => void;
@@ -26,7 +31,8 @@ const SearchField = (props: Props) => {
     const loading = false;
 
     useEffect(() => {
-        props.updateInput(input);
+        // API CALL ?
+        props.updateInput(input as string);
     }, [input]);
 
     const LangDictModals = () => {
@@ -44,7 +50,7 @@ const SearchField = (props: Props) => {
                         updateCookie("translang", items);
                         setLangModalOpen(false);
                     }}
-                    title="Velg språk for oversettelse"
+                    title={trans("Search.SearchField.langModalHeader")}
                     items={cookies.translang || translateLanguagesSupported}
                 />
 
@@ -54,7 +60,7 @@ const SearchField = (props: Props) => {
                         updateCookie("dicts", items);
                         setDictModalOpen(false);
                     }}
-                    title="Velg ordbøker for oversettelse"
+                    title={trans("Search.SearchField.dictModalHeader")}
                     items={cookies.dicts || dicstSupported}
                 />
             </>
@@ -84,7 +90,7 @@ const SearchField = (props: Props) => {
                     <TextField
                         {...params}
                         value={input}
-                        label="Søk"
+                        label={trans("Search.SearchField.search")}
                         variant="outlined"
                         InputProps={{
                             ...params.InputProps,
