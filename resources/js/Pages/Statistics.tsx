@@ -57,7 +57,15 @@ const Statistics = () => {
                                 (i + 1).toString()
                             )
                         );
-                        console.log(res);
+                        const dataArr = [];
+                        for (let i = 1; i < 32; i++) {
+                            const item = res.find(
+                                (s: any) =>
+                                    s.date.split("-")[2] === i.toString()
+                            );
+                            dataArr[i - 1] = item ? item.searches : 0;
+                        }
+                        setData(dataArr);
                     });
                 }
                 break;

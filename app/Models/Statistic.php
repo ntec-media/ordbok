@@ -35,8 +35,10 @@ class Statistic extends Model
 
     public function getMonthly()
     {
-        // Logic
-        return 1;
+        $test = [date('Y-m-01'), date('Y-m-t')];
+        $dates = $this::whereBetween('date', [date('Y-m-01'), date('Y-m-t')])->get();
+
+        return $dates;
     }
 
     public function getYearly()
