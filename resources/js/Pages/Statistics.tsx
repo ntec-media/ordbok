@@ -73,7 +73,7 @@ const Statistics = () => {
                 {
                     year().then((res) => {
                         setLabels(months);
-                        console.log(res);
+                        setData(res);
                     });
                 }
                 break;

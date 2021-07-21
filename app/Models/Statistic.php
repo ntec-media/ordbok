@@ -25,6 +25,11 @@ class Statistic extends Model
         $stats->save();
     }
 
+    /**
+     * Return searches for the current week, monday-sunday.
+     *
+     * Can be improved for spesified week in the future.
+     */
     public function getWeekly()
     {
         $dates = $this->getDatesInWeek((new DateTime(date('Y/m/d')))->format('W'));
@@ -33,18 +38,30 @@ class Statistic extends Model
         return $data;
     }
 
+    /**
+     * Return searchs for the current month, 1-31.
+     */
     public function getMonthly()
     {
-        $test = [date('Y-m-01'), date('Y-m-t')];
-        $dates = $this::whereBetween('date', [date('Y-m-01'), date('Y-m-t')])->get();
-
-        return $dates;
+        return $this::whereBetween('date', [date('Y-m-01'), date('Y-m-t')])->get();
     }
 
+    /**
+     * Return searches for the current year, January-December
+     */
     public function getYearly()
     {
-        // Logic
-        return 1;
+        $data = [];
+        for ($i = 1; $i < 13; $i++) {
+            $monthly = $this::whereBetween('date', [date("Y-$i-01"), date("Y-$i-t")])->get();
+            $searches = 0;
+            for ($j = 0; $j < $monthly->count(); $j++) {
+                $searches += $monthly[$j]->searches;
+            }
+            $data[$i - 1] = $searches;
+        }
+
+        return $data;
     }
 
     /**
