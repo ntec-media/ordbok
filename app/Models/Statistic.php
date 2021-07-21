@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use DateTime;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
@@ -19,14 +20,17 @@ class Statistic extends Model
     public function registerSearch()
     {
         // TODO: IMPLEMENT QUEUE.
-        $stats = $this::firstOrNew(['date' => date('Y/m/d')]);
+        $stats = $this::firstOrNew(['date' => new DateTime('today')]);
         $stats->searches = $stats->searches + 1;
         $stats->save();
     }
 
     public function getWeekly()
     {
-        // Logic
+        $dates = $this->getDatesInWeek((new DateTime(date('Y/m/d')))->format('W'));
+        $data = $this::whereIn('date', $dates)->get();
+
+        return $data;
     }
 
     public function getMonthly()
@@ -39,5 +43,18 @@ class Statistic extends Model
     {
         // Logic
         return 1;
+    }
+
+    /**
+     * Return array of dates in string form for a given week.
+     */
+    private function getDatesInWeek($weekNumber)
+    {
+        $arr = [];
+        for ($i = 0; $i < 7; $i++) {
+            $arr[$i] = (new DateTime())->setISODate(2021, $weekNumber, $i + 1)->format('Y/m/d');
+        }
+
+        return $arr;
     }
 }
