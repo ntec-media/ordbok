@@ -2,7 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\LocalDictionaryController;
-
+use App\Http\Controllers\StatisticsController;
 
 /*
 |--------------------------------------------------------------------------
@@ -16,3 +16,6 @@ use App\Http\Controllers\LocalDictionaryController;
 */
 
 Route::post("/search", [LocalDictionaryController::class, "words"]);
+Route::post("/statistic/week", [StatisticsController::class, "week"]);
+Route::post("/statistic/month", [StatisticsController::class, "month"]);
+Route::post("/statistic/year", [StatisticsController::class, "year"]);
