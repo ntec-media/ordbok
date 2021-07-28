@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Jobs\ProcessStatistic;
 use DateTime;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
@@ -17,12 +18,12 @@ class Statistic extends Model
         'searches',
     ];
 
+    /**
+     * Creates a queued job that updates the statistics for today.
+     */
     public function registerSearch()
     {
-        // TODO: IMPLEMENT QUEUE.
-        $stats = $this::firstOrNew(['date' => new DateTime('today')]);
-        $stats->searches = $stats->searches + 1;
-        $stats->save();
+        ProcessStatistic::dispatch();
     }
 
     /**
