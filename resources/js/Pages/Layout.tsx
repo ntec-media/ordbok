@@ -23,12 +23,12 @@ export default function Layout(props: {
 
     return (
         <CookiesProvider>
-            <main className="flex flex-col justify-between h-screen bg-gray-100">
-                <div>
-                    <Navbar />
-                </div>
-                <div className="flex-1 w-full mx-auto overflow-y-auto max-w-7xl lg:px-8">
-                    <article className="h-full bg-white shadow">
+            <main className="bg-gray-200">
+                <div className="flex flex-col min-h-screen">
+                    <div>
+                        <Navbar />
+                    </div>
+                    <article className="flex-1 w-full mx-auto overflow-y-auto bg-white shadow max-w-7xl lg:px-8">
                         {props.children}
                     </article>
                 </div>

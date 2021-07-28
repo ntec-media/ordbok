@@ -41,7 +41,7 @@ const Search = () => {
                 </div>
                 {results.length > 0 && input !== "" ? (
                     <div
-                        className="relative overflow-y-auto h-5/6"
+                        className="relative h-5/6"
                         onScroll={(e: any) => {
                             const bottom =
                                 e.target.scrollHeight - e.target.scrollTop ===
