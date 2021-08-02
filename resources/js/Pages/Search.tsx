@@ -6,19 +6,21 @@ import { useEffect } from "react";
 import NoSearch from "../Components/NoSearch";
 import { search } from "../utils";
 import ISearchResult from "../Interfaces/ISearchResult";
+import Header from "../Components/Search/Header";
 
 let value = "";
 
 const Search = () => {
     const [input, setInput] = useState<string>();
-    const [results, setResults] = useState<ISearchResult[]>([]);
+    const [results, setResults] = useState<ISearchResult[] | null>(null);
     const [page, setPage] = useState(1);
 
     useEffect(() => {
         value = input || "";
         setTimeout(() => {
-            if (input === value && input !== "" && input.length > 1) {
-                getResultArray(input as string, results, page).then((res) => {
+            if (input === value && input !== "" && input.length > 0) {
+                getResultArray(input as string, results!, page).then((res) => {
+                    console.log("Enter 1");
                     setResults(res);
                 });
             }
@@ -28,18 +30,15 @@ const Search = () => {
     return (
         <Layout>
             <div className="relative flex flex-col h-full">
-                <div className="relative flex justify-center px-2 pt-2 md:py-14">
-                    <SearchField
-                        updateInput={(newInput) => {
-                            newInput.length === 0 && setResults([]);
-                            setInput(newInput);
-                        }}
-                        resetPage={() => {
-                            setPage(1);
-                        }}
-                    />
-                </div>
-                {results.length > 0 && input !== "" ? (
+                {console.log(results)}
+                <Header />
+                <SearchField
+                    updateInput={(newInput) => setInput(newInput)}
+                    resetPage={() => {
+                        setPage(1);
+                    }}
+                />
+                {results !== null ? (
                     <div
                         className="relative h-5/6"
                         onScroll={(e: any) => {
@@ -49,7 +48,7 @@ const Search = () => {
                             if (bottom) {
                                 getResultArray(
                                     input as string,
-                                    results,
+                                    results!,
                                     page + 1
                                 ).then((res) => {
                                     setResults(res);

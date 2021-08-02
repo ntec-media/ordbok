@@ -68,7 +68,7 @@ const SearchField = (props: Props) => {
     };
 
     return (
-        <>
+        <div className="relative flex justify-center px-2 pt-2 md:py-10">
             <Autocomplete
                 className="w-5/6 lg:w-4/6"
                 freeSolo
@@ -134,7 +134,7 @@ const SearchField = (props: Props) => {
                 </IconButton>
             </div>
             <LangDictModals />
-        </>
+        </div>
     );
 };
 
