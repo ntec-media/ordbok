@@ -28,7 +28,7 @@ export default function Layout(props: {
                     <div>
                         <Navbar />
                     </div>
-                    <article className="flex-1 w-full mx-auto overflow-y-auto bg-white shadow max-w-7xl lg:px-8">
+                    <article className="flex-1 w-full mx-auto overflow-y-auto bg-white shadow fadeIn max-w-7xl lg:px-8">
                         {props.children}
                     </article>
                 </div>
