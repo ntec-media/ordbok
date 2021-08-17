@@ -3,7 +3,7 @@ import Layout from "./Layout";
 import SearchField from "../Components/Search/SearchField";
 import SearchResultList from "../Components//Search/SearchResultList";
 import { useEffect } from "react";
-import NoSearch from "../Components/NoSearch";
+import NoSearch from "../Components/Search/NoSearch";
 import { search } from "../utils";
 import ISearchResult from "../Interfaces/ISearchResult";
 import Header from "../Components/Search/Header";
@@ -20,7 +20,6 @@ const Search = () => {
         setTimeout(() => {
             if (input === value && input !== "" && input.length > 0) {
                 getResultArray(input as string, results!, page).then((res) => {
-                    console.log("Enter 1");
                     setResults(res);
                 });
             }
@@ -30,7 +29,6 @@ const Search = () => {
     return (
         <Layout>
             <div className="relative flex flex-col h-full">
-                {console.log(results)}
                 <Header />
                 <SearchField
                     updateInput={(newInput) => setInput(newInput)}
