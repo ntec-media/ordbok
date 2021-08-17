@@ -54,7 +54,7 @@ const WordSuggestion = () => {
                             Foreslå nytt ord
                         </h1>
                         <div className="flex justify-between md:hidden">
-                            <h1 className="ml-2 text-3xl md:ml-8 ">
+                            <h1 className="mt-2 ml-2 text-3xl">
                                 Foreslå nytt ord
                             </h1>
                             <InfoIcon />

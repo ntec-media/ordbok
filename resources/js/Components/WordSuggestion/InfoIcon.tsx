@@ -7,13 +7,21 @@ import Icon from "@material-ui/icons/InfoOutlined";
 const InfoIcon = () => {
     const [tooltipOpen, setTooltipOpen] = useState(false);
 
+    // Open tooltip for 6 seconds
+    const handleClick = () => {
+        if (tooltipOpen) {
+            setTooltipOpen(false);
+        } else {
+            setTooltipOpen(true);
+            setTimeout(() => {
+                setTooltipOpen(false);
+            }, 6000);
+        }
+    };
+
     return (
-        <Tooltip
-            title={trans("WordSuggestion.header")}
-            open={tooltipOpen}
-            onClose={() => setTooltipOpen(false)}
-        >
-            <IconButton onClick={() => setTooltipOpen(!tooltipOpen)}>
+        <Tooltip title={trans("WordSuggestion.subtitle")} open={tooltipOpen}>
+            <IconButton onClick={handleClick}>
                 <Icon color="primary" />
             </IconButton>
         </Tooltip>

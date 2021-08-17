@@ -32,11 +32,14 @@ const Tab = (props: { setTab: (newTab: string) => void }) => {
                         Select a tab
                     </label>
                     <select
+                        value={tabs.find((s) => s.current === true)?.key}
                         id="tabs"
                         name="tabs"
                         onChange={(e) => {
                             const newTab = tabs.find(
-                                (t) => t.key === e.target.value
+                                (t) =>
+                                    trans(`Statistics.${t.key}`) ===
+                                    e.target.value
                             );
                             setNewTab(newTab!);
                         }}
@@ -44,7 +47,12 @@ const Tab = (props: { setTab: (newTab: string) => void }) => {
                         defaultValue={tabs.find((tab) => tab.current)!.key}
                     >
                         {tabs.map((tab) => (
-                            <option key={tab.key}>{tab.key}</option>
+                            <option
+                                key={tab.key}
+                                value={trans(`Statistics.${tab.key}`)}
+                            >
+                                {trans(`Statistics.${tab.key}`)}
+                            </option>
                         ))}
                     </select>
                 </div>
