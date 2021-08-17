@@ -1,9 +1,7 @@
 <?php
 
+
 return [
-    'header' => 'Julev er tilgjenglig for nedlastning på Android og iOS',
-    'opt_1' => 'Enkelt ordsøk mellom lulesamisk og norsk',
-    'opt_2' => 'Mulighet for søk offline',
-    'opt_3' => 'Foreslå nytt ord og send til behandling',
-    'opt_4' => 'Støtte for flere samiske språk'
+    'header' => 'Last ned Julev på mobil',
+    'subtitle' => 'Søk i samiske ordbøker uansett hvor i verden du befinner deg.'
 ];

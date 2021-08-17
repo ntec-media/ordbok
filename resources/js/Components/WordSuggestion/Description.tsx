@@ -1,14 +1,11 @@
+import { trans } from "matice";
 import React from "react";
 
 const Description = () => (
     <>
-        <p>
-            Ord som sends inn vil bli sendt til UiT hvor de lagres i en
-            database. Forfattere som har avtale med UiT vil kunne benytte denne
-            databasen i utgivelse av nye ordbøker.
-        </p>
+        <p>{trans("WordSuggestion.subtitle")}</p>
         <br />
-        <p>Feldt med * må fylles inn. </p>
+        <p>{trans("WordSuggestion.subtitle2")}</p>
     </>
 );
 

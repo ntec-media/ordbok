@@ -51,11 +51,11 @@ const WordSuggestion = () => {
                 <div className="flex w-full md:border md:border-blue-200 md:w-8/12 md:py-8 md:mt-16 rounded-xl">
                     <div className="w-full md:w-8/12">
                         <h1 className="hidden ml-2 text-3xl md:flex md:ml-8 ">
-                            Foreslå nytt ord
+                            {trans("WordSuggestion.header")}
                         </h1>
                         <div className="flex justify-between md:hidden">
                             <h1 className="mt-2 ml-2 text-3xl">
-                                Foreslå nytt ord
+                                {trans("WordSuggestion.header")}
                             </h1>
                             <InfoIcon />
                         </div>

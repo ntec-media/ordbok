@@ -10,7 +10,9 @@ return [
             'nob' => 'Norsk',
             'en' => 'Engelsk',
             'lusm' => 'Lulesamisk',
-        ]
+        ],
+        'choose_language' => 'Velg språk',
+        'about' => 'Om appen' 
     ],
     'footer' => [
         'content' => 'Julev er en ordbok som er utviklet av Ntec Media AS i samarbeid med UiT og med støtte fra sametinget.'

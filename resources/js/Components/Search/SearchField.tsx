@@ -1,4 +1,4 @@
-import React, { Fragment, useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import SearchIcon from "@material-ui/icons/Search";
 import { Autocomplete } from "@material-ui/lab";
 import CircularProgress from "@material-ui/core/CircularProgress";
@@ -8,11 +8,7 @@ import DropDown from "../Shared/DropDown";
 import { MenuBook, TranslateOutlined } from "@material-ui/icons";
 import MultipleSelectModal from "../Modals/MultipleSelectModal";
 import { useCookies } from "react-cookie";
-import {
-    dicstSupported,
-    ILang,
-    translateLanguagesSupported,
-} from "../../interfaces";
+import { dicstSupported, translateLanguagesSupported } from "../../interfaces";
 import { trans } from "matice";
 
 interface Props {

@@ -20,7 +20,14 @@ const InfoIcon = () => {
     };
 
     return (
-        <Tooltip title={trans("WordSuggestion.subtitle")} open={tooltipOpen}>
+        <Tooltip
+            title={
+                trans("WordSuggestion.subtitle") +
+                " " +
+                trans("WordSuggestion.subtitle2")
+            }
+            open={tooltipOpen}
+        >
             <IconButton onClick={handleClick}>
                 <Icon color="primary" />
             </IconButton>

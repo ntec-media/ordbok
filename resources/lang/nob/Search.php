@@ -1,15 +1,14 @@
 <?php
 
 return [
+    'header' => 'Søk i Julevs ordbok database',
     'SearchField' => [
         'search' => 'Søk',
         'langModalHeader' => 'Velg språk for oversettelse',
         'dictModalHeader' => 'Velg ordbøker for oversettelse'
     ],
     'NoSearch' => [
-        'header' => [
-            'main_1' => 'Julev er en ordbok utviklet av ',
-            'main_2' => 'i samarbeid med ',
-        ]
+        'header' => 'Velkommen',
+       'subtitle' => 'Søk i Anders Kintels ordbok 2013, Sáme Giellagálldo 2013 og Medisijnalasj báhkogirjje.' 
     ]
 ];

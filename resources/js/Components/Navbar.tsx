@@ -35,11 +35,14 @@ export default function Navbar() {
                 {({ open }) => (
                     <>
                         <div className="mx-auto max-w-7xl">
-                            <div className="flex justify-between h-24 mx-4 lg:mx-0">
+                            <div className="flex justify-between h-16 mx-4 md:h-24 lg:mx-0">
                                 <div className="flex">
                                     <div className="flex items-center flex-shrink-0">
                                         <img
-                                            className="block w-auto h-12 md:hidden"
+                                            onClick={() =>
+                                                (window.location.href = "/")
+                                            }
+                                            className="block w-auto h-16 -ml-4 cursor-pointer md:h-24 md:hidden"
                                             src="https://www.beneathnorthernlights.com/wp-content/uploads/2019/01/Design-uten-navn-5-e1549918936927-746x550.jpg"
                                             alt="sami flag"
                                         />
@@ -140,7 +143,7 @@ export default function Navbar() {
                                             : "border-transparent text-white hover:bg-gray-50 hover:border-gray-300 hover:text-gray-700 block pl-3 pr-4 py-2 border-l-4 text-base font-medium"
                                     }
                                 >
-                                    Søk
+                                    {trans("Layout.navbar.search")}
                                 </InertiaLink>
                                 <InertiaLink
                                     href="/word"
@@ -150,7 +153,7 @@ export default function Navbar() {
                                             : "border-transparent text-white hover:bg-gray-50 hover:border-gray-300 hover:text-gray-700 block pl-3 pr-4 py-2 border-l-4 text-base font-medium"
                                     }
                                 >
-                                    Nytt ord
+                                    {trans("Layout.navbar.wordSuggestion")}
                                 </InertiaLink>
                                 <InertiaLink
                                     href="/statistics"
@@ -160,7 +163,7 @@ export default function Navbar() {
                                             : "border-transparent text-white hover:bg-gray-50 hover:border-gray-300 hover:text-gray-700 block pl-3 pr-4 py-2 border-l-4 text-base font-medium"
                                     }
                                 >
-                                    Statistikk
+                                    {trans("Layout.navbar.statistics")}
                                 </InertiaLink>
 
                                 <p
@@ -171,7 +174,7 @@ export default function Navbar() {
                                             : "border-transparent text-white hover:bg-gray-50 hover:border-gray-300 hover:text-gray-700 block pl-3 pr-4 py-2 border-l-4 text-base font-medium"
                                     }
                                 >
-                                    Velg språk
+                                    {trans("Layout.navbar.choose_language")}
                                 </p>
 
                                 <InertiaLink
@@ -182,7 +185,7 @@ export default function Navbar() {
                                             : "border-transparent text-white hover:bg-gray-50 hover:border-gray-300 hover:text-gray-700 block pl-3 pr-4 py-2 border-l-4 text-base font-medium"
                                     }
                                 >
-                                    Last ned App
+                                    {trans("Layout.navbar.app")}
                                 </InertiaLink>
 
                                 <InertiaLink
@@ -193,7 +196,7 @@ export default function Navbar() {
                                             : "border-transparent text-white hover:bg-gray-50 hover:border-gray-300 hover:text-gray-700 block pl-3 pr-4 py-2 border-l-4 text-base font-medium"
                                     }
                                 >
-                                    Om appen
+                                    {trans("Layout.navbar.about")}
                                 </InertiaLink>
                             </div>
                         </Disclosure.Panel>
