@@ -1,5 +1,5 @@
-import { trans } from "matice";
-import React from "react";
+import {trans} from 'matice';
+import React from 'react';
 
 interface Props {
     labels: string[];
@@ -19,16 +19,16 @@ const Table = (props: Props) => {
                                         scope="col"
                                         className="px-6 py-3 text-xs font-medium tracking-wider text-left text-gray-500 uppercase w-96"
                                     >
-                                        {props.labels.length == 12
-                                            ? trans("Statistics.month")
-                                            : trans("Statistics.day")}
+                                        {props.labels.length === 12
+                                            ? trans('Statistics.month')
+                                            : trans('Statistics.day')}
                                     </th>
 
                                     <th
                                         scope="col"
                                         className="px-6 py-3 text-xs font-medium tracking-wider text-left text-gray-500 uppercase w-96"
                                     >
-                                        {trans("Statistics.search")}
+                                        {trans('Statistics.search')}
                                     </th>
                                 </tr>
                             </thead>
@@ -38,8 +38,8 @@ const Table = (props: Props) => {
                                         key={index}
                                         className={
                                             index % 2 === 0
-                                                ? "bg-white"
-                                                : "bg-gray-50"
+                                                ? 'bg-white'
+                                                : 'bg-gray-50'
                                         }
                                     >
                                         <td className="px-6 py-4 text-sm font-medium text-gray-900 whitespace-nowrap">

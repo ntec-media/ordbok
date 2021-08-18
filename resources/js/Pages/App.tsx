@@ -1,11 +1,11 @@
-import React from "react";
-import Layout from "./Layout";
+import React from 'react';
+import Layout from './Layout';
 // import CheckIcon from "@material-ui/icons/Check";
 import {
     CheckCircleIcon,
     ChevronDoubleRightIcon,
-} from "@heroicons/react/outline";
-import { trans } from "matice";
+} from '@heroicons/react/outline';
+import {trans} from 'matice';
 
 const App = () => {
     return (
@@ -13,7 +13,7 @@ const App = () => {
             <div className="relative h-full overflow-y-auto">
                 <div className="justify-center hidden pt-2 lg:flex md:pt-20 lg:pt-36">
                     <h3 className="m-2 text-3xl text-center text-gray-600">
-                        {trans("App.header")}
+                        {trans('App.header')}
                     </h3>
                 </div>
                 <div className="flex justify-center m-4 sm:m-6 md:m-10">
@@ -27,19 +27,19 @@ const App = () => {
                     <ul className="flex flex-col justify-around h-48 mb-8">
                         <li className="flex flex-row items-center italic text-md md:text-xl">
                             <CheckCircleIcon className="w-8 h-8 mr-6 text-green-500" />
-                            {trans("App.opt_1")}
+                            {trans('App.opt_1')}
                         </li>
                         <li className="flex flex-row items-center text-sm italic text-gray-500 opacity-50 md:text-xl">
                             <ChevronDoubleRightIcon className="w-8 h-8 mr-6 text-blue-600" />
-                            {trans("App.opt_2")}
+                            {trans('App.opt_2')}
                         </li>
                         <li className="flex flex-row items-center text-sm italic text-gray-500 opacity-50 md:text-xl">
                             <ChevronDoubleRightIcon className="w-8 h-8 mr-6 text-blue-600" />
-                            {trans("App.opt_3")}
+                            {trans('App.opt_3')}
                         </li>
                         <li className="flex flex-row items-center text-sm italic text-gray-500 opacity-50 md:text-xl">
                             <ChevronDoubleRightIcon className="w-8 h-8 mr-6 text-blue-600" />
-                            {trans("App.opt_4")}
+                            {trans('App.opt_4')}
                         </li>
                     </ul>
                 </div>

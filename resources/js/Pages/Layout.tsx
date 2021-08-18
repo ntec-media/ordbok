@@ -1,15 +1,13 @@
-import React from "react";
-import Footer from "../Components/Footer";
-import Navbar from "../Components/Navbar";
-import { CookiesProvider, useCookies } from "react-cookie";
-import CookiePopup from "../Components/CookiePopup";
-import { useEffect } from "react";
-import { useState } from "react";
+import React from 'react';
+import Footer from '../Components/Footer';
+import Navbar from '../Components/Navbar';
+import {CookiesProvider, useCookies} from 'react-cookie';
+import CookiePopup from '../Components/CookiePopup';
+import {useEffect} from 'react';
+import {useState} from 'react';
 
-export default function Layout(props: {
-    children: JSX.Element | JSX.Element[];
-}) {
-    const [cookies, setCookies] = useCookies(["lang"]);
+export default function Layout(props: {children: JSX.Element | JSX.Element[]}) {
+    const [cookies, setCookies] = useCookies(['lang']);
     const [cookieApproved, setCookieApproved] = useState(true);
 
     useEffect(() => {
@@ -17,7 +15,7 @@ export default function Layout(props: {
     }, []);
 
     const updateCookie = () => {
-        setCookies("termsApproved", true, { path: "/" });
+        setCookies('termsApproved', true, {path: '/'});
         setCookieApproved(true);
     };
 

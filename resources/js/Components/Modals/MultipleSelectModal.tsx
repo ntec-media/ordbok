@@ -1,5 +1,5 @@
-import React, { useState } from "react";
-import { ILang } from "../../interfaces";
+import React, {useState} from 'react';
+import {ILang} from '../../interfaces';
 import {
     Checkbox,
     Dialog,
@@ -9,8 +9,8 @@ import {
     ListItem,
     ListItemIcon,
     ListItemText,
-} from "@material-ui/core";
-import { useEffect } from "react";
+} from '@material-ui/core';
+import {useEffect} from 'react';
 
 interface Props {
     open: boolean;
@@ -29,18 +29,18 @@ const MultipleSelectModal = (props: Props) => {
     return (
         <Dialog open={props.open} onClose={() => props.closeModal(selected)}>
             <DialogTitle>{props.title}</DialogTitle>
-            <DialogContent style={{ padding: 0 }}>
+            <DialogContent style={{padding: 0}}>
                 <List>
-                    {selected.map((item) => (
+                    {selected.map(item => (
                         <ListItem
                             key={item.short}
                             dense
                             button
                             onClick={() =>
                                 setSelected(
-                                    selected.map((s) =>
+                                    selected.map(s =>
                                         s.short === item.short
-                                            ? { ...s, selected: !s.selected }
+                                            ? {...s, selected: !s.selected}
                                             : s
                                     )
                                 )

@@ -1,9 +1,9 @@
-import { Dialog, FormControlLabel, Radio, RadioGroup } from "@material-ui/core";
-import { DialogContent, FormControl } from "@material-ui/core";
-import React from "react";
-import { useCookies } from "react-cookie";
-import { languagesSupported } from "../../interfaces";
-import { trans } from "matice";
+import {Dialog, FormControlLabel, Radio, RadioGroup} from '@material-ui/core';
+import {DialogContent, FormControl} from '@material-ui/core';
+import React from 'react';
+import {useCookies} from 'react-cookie';
+import {languagesSupported} from '../../interfaces';
+import {trans} from 'matice';
 
 interface Props {
     open: boolean;
@@ -11,7 +11,7 @@ interface Props {
 }
 
 const LanguageModal = (props: Props) => {
-    const [cookies, setCookies] = useCookies(["lang"]);
+    const [cookies, setCookies] = useCookies(['lang']);
 
     return (
         <Dialog open={props.open} onClose={props.closeModal}>
@@ -22,13 +22,14 @@ const LanguageModal = (props: Props) => {
                         onChange={(
                             event: React.ChangeEvent<HTMLInputElement>
                         ) => {
-                            setCookies("lang", event.target.value, {
-                                path: "/",
+                            setCookies('lang', event.target.value, {
+                                path: '/',
                             });
+                            // eslint-disable-next-line no-self-assign
                             window.location.href = window.location.href;
                         }}
                     >
-                        {languagesSupported.map((language) => (
+                        {languagesSupported.map(language => (
                             <FormControlLabel
                                 key={language.short}
                                 value={language.short}

@@ -1,7 +1,7 @@
-import { List, ListItem } from "@material-ui/core";
-import React, { useEffect, useState } from "react";
-import ResultCard from "./ResultCard";
-import ISearchResult from "../../Interfaces/ISearchResult";
+import {List, ListItem} from '@material-ui/core';
+import React, {useEffect, useState} from 'react';
+import ResultCard from './ResultCard';
+import ISearchResult from '../../Interfaces/ISearchResult';
 
 interface Prosp {
     results: ISearchResult[];

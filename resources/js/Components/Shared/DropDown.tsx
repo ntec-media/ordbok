@@ -1,7 +1,7 @@
-import { Menu, Transition } from "@headlessui/react";
-import { CheckIcon } from "@heroicons/react/outline";
-import { trans } from "matice";
-import React, { ElementType, Fragment } from "react";
+import {Menu, Transition} from '@headlessui/react';
+import {CheckIcon} from '@heroicons/react/outline';
+import {trans} from 'matice';
+import React, {ElementType, Fragment} from 'react';
 
 interface Props {
     items: {
@@ -18,7 +18,7 @@ const DropDown = (props: Props) => {
     return (
         <div className="flex items-center ml-6">
             <Menu as="div" className="relative ml-3">
-                {({ open }) => (
+                {({open}) => (
                     <>
                         <div>
                             <Menu.Button className="flex text-sm bg-white rounded-full focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">

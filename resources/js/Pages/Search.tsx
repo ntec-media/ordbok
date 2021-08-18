@@ -1,14 +1,14 @@
-import React, { useState } from "react";
-import Layout from "./Layout";
-import SearchField from "../Components/Search/SearchField";
-import SearchResultList from "../Components//Search/SearchResultList";
-import { useEffect } from "react";
-import NoSearch from "../Components/Search/NoSearch";
-import { search } from "../utils";
-import ISearchResult from "../Interfaces/ISearchResult";
-import Header from "../Components/Search/Header";
+import React, {useState} from 'react';
+import Layout from './Layout';
+import SearchField from '../Components/Search/SearchField';
+import SearchResultList from '../Components//Search/SearchResultList';
+import {useEffect} from 'react';
+import NoSearch from '../Components/Search/NoSearch';
+import {search} from '../utils';
+import ISearchResult from '../Interfaces/ISearchResult';
+import Header from '../Components/Search/Header';
 
-let value = "";
+let value = '';
 
 const Search = () => {
     const [input, setInput] = useState<string>();
@@ -16,10 +16,10 @@ const Search = () => {
     const [page, setPage] = useState(1);
 
     useEffect(() => {
-        value = input || "";
+        value = input || '';
         setTimeout(() => {
-            if (input === value && input !== "" && input.length > 0) {
-                getResultArray(input as string, results!, page).then((res) => {
+            if (input === value && input !== '' && input.length > 0) {
+                getResultArray(input as string, results!, page).then(res => {
                     setResults(res);
                 });
             }
@@ -31,7 +31,7 @@ const Search = () => {
             <div className="relative flex flex-col h-full">
                 <Header />
                 <SearchField
-                    updateInput={(newInput) => setInput(newInput)}
+                    updateInput={newInput => setInput(newInput)}
                     resetPage={() => {
                         setPage(1);
                     }}
@@ -48,7 +48,7 @@ const Search = () => {
                                     input as string,
                                     results!,
                                     page + 1
-                                ).then((res) => {
+                                ).then(res => {
                                     setResults(res);
                                 });
                                 setPage(page + 1);
@@ -82,19 +82,19 @@ const getResultArray = async (
 };
 
 const sort = (arr: ISearchResult[], value: string) => {
-    const newData: { data: ISearchResult; count: number }[] = [];
-    arr.forEach((item) => {
+    const newData: {data: ISearchResult; count: number}[] = [];
+    arr.forEach(item => {
         let count = 0;
         for (let i = 0; i < value.length; i++) {
             if (value.charAt(i) === item.fra.charAt(i)) count++;
         }
-        newData.push({ data: item, count: count / item.fra.length });
+        newData.push({data: item, count: count / item.fra.length});
     });
     return newData
         .sort((a, b) => {
             return b.count - a.count;
         })
-        .map((d) => d.data);
+        .map(d => d.data);
 };
 
 export default Search;
