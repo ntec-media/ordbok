@@ -1,11 +1,11 @@
-import { trans } from "matice";
-import React from "react";
+import {trans} from 'matice';
+import React from 'react';
 
 const Description = () => (
     <>
-        <p>{trans("WordSuggestion.subtitle")}</p>
+        <p>{trans('WordSuggestion.subtitle')}</p>
         <br />
-        <p>{trans("WordSuggestion.subtitle2")}</p>
+        <p>{trans('WordSuggestion.subtitle2')}</p>
     </>
 );
 
