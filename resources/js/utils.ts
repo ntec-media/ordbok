@@ -1,16 +1,16 @@
-import axios from "axios";
-import INewWord from "./Interfaces/INewWord";
+import axios from 'axios';
+import INewWord from './Interfaces/INewWord';
 
 export const search = async (value: string, page: number) => {
     return await axios
-        .post("/api/search", {
+        .post('/api/search', {
             search: value,
             page: page,
         })
-        .then((res) => {
+        .then(res => {
             return res.data;
         })
-        .catch((err) => {
+        .catch(err => {
             console.error(err);
             return err;
         });
@@ -18,11 +18,11 @@ export const search = async (value: string, page: number) => {
 
 export const week = async () => {
     return await axios
-        .post("/api/statistic/week")
-        .then((res) => {
+        .post('/api/statistic/week')
+        .then(res => {
             return res.data;
         })
-        .catch((err) => {
+        .catch(err => {
             console.error(err);
             return err;
         });
@@ -30,11 +30,11 @@ export const week = async () => {
 
 export const month = async () => {
     return await axios
-        .post("/api/statistic/month")
-        .then((res) => {
+        .post('/api/statistic/month')
+        .then(res => {
             return res.data;
         })
-        .catch((err) => {
+        .catch(err => {
             console.error(err);
             return err;
         });
@@ -42,11 +42,11 @@ export const month = async () => {
 
 export const year = async () => {
     return await axios
-        .post("/api/statistic/year")
-        .then((res) => {
+        .post('/api/statistic/year')
+        .then(res => {
             return res.data;
         })
-        .catch((err) => {
+        .catch(err => {
             console.error(err);
             return err;
         });
@@ -54,13 +54,13 @@ export const year = async () => {
 
 export const newWord = async (values: INewWord) => {
     return await axios
-        .post("/word", {
+        .post('/word', {
             norwegian: values.norwegian,
             sami: values.sami,
             description: values.description,
             email: values.email,
         })
-        .then((res) => {
+        .then(res => {
             return res;
         });
 };

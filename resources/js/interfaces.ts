@@ -22,88 +22,88 @@ export interface ILang {
 
 // Short must be same as i language->Layout php file
 export const languagesSupported: ILang[] = [
-    { name: "Norsk", short: "nob" },
-    { name: "Engelsk", short: "en" },
-    { name: "Lulesamisk", short: "lusm" },
+    {name: 'Norsk', short: 'nob'},
+    {name: 'Engelsk', short: 'en'},
+    {name: 'Lulesamisk', short: 'lusm'},
 ];
 
 export const translateLanguagesSupported: ILang[] = [
-    { name: "Norsk", short: "no", selected: false },
-    { name: "Engelsk", short: "eng", selected: false },
-    { name: "Lulesamisk", short: "smj", selected: false },
-    { name: "Nordsamisk", short: "sme", selected: false },
-    { name: "Sørsamisk", short: "sma", selected: false },
-    { name: "Inarisamisk", short: "smn", selected: false },
-    { name: "Skoltsamisk", short: "sms", selected: false },
-    { name: "Finsk", short: "fin", selected: false },
-    { name: "Svensk", short: "swe", selected: false },
-    { name: "Nynorsk", short: "nno", selected: false },
+    {name: 'Norsk', short: 'no', selected: false},
+    {name: 'Engelsk', short: 'eng', selected: false},
+    {name: 'Lulesamisk', short: 'smj', selected: false},
+    {name: 'Nordsamisk', short: 'sme', selected: false},
+    {name: 'Sørsamisk', short: 'sma', selected: false},
+    {name: 'Inarisamisk', short: 'smn', selected: false},
+    {name: 'Skoltsamisk', short: 'sms', selected: false},
+    {name: 'Finsk', short: 'fin', selected: false},
+    {name: 'Svensk', short: 'swe', selected: false},
+    {name: 'Nynorsk', short: 'nno', selected: false},
 ];
 
 export const dicstSupported: ILang[] = [
     {
         name: "Pekka Sammalahti's North Sami – Finnish dictionary",
-        short: "sammallahtismefin",
+        short: 'sammallahtismefin',
         selected: false,
     },
     {
         name: "Giellagáldu's multilingual terms",
-        short: "termwiki",
+        short: 'termwiki',
         selected: false,
     },
     {
         name: "Giellatekno's North Sami – Bokmål dictionary",
-        short: "gtsmenob",
+        short: 'gtsmenob',
         selected: false,
     },
     {
         name: "Giellatekno's Bokmål – North Sami dictionary",
-        short: "gtnobsme",
+        short: 'gtnobsme',
         selected: false,
     },
     {
         name: "Giellatekno's Bokmål – South Sami dictionary",
-        short: "gtnobsma",
+        short: 'gtnobsma',
         selected: false,
     },
     {
         name: "Giellatekno's South Sami – Bokmål dictionary",
-        short: "gtsmanob",
+        short: 'gtsmanob',
         selected: false,
     },
     {
         name: "Giellatekno's North Sami – Finnish dictionary",
-        short: "gtsmefin",
+        short: 'gtsmefin',
         selected: false,
     },
     {
         name: "Giellatekno's Finnish – North Sami dictionary",
-        short: "gtfinsme",
+        short: 'gtfinsme',
         selected: false,
     },
     {
         name: "Giellatekno's North Sami – Inari Sami dictionary",
-        short: "gtsmesmn",
+        short: 'gtsmesmn',
         selected: false,
     },
     {
         name: "Giellatekno's Inari Sami – North Sami dictionary",
-        short: "gtsmnsme",
+        short: 'gtsmnsme',
         selected: false,
     },
     {
         name: "Giellatekno's Finnish – Inari Sami dictionary",
-        short: "gtfinsmn",
+        short: 'gtfinsmn',
         selected: false,
     },
     {
         name: "Giellatekno's Inari Sami – Finnish dictionary",
-        short: "gtsmnfin",
+        short: 'gtsmnfin',
         selected: false,
     },
     {
         name: "Trond Trosterud's Finnish – Norwegian dictionary",
-        short: "gtfinnob",
+        short: 'gtfinnob',
         selected: false,
     },
 ];
