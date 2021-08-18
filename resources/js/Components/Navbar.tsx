@@ -7,11 +7,23 @@ import LanguageModal from './Modals/LanguageModal';
 import {languagesSupported} from '../interfaces';
 import DropDown from './Shared/DropDown';
 import {setLocale, trans} from 'matice';
+import LanguageTranslationModal from './Shared/LanguageTranslationModal';
+import DictionaryModal from './Shared/DictionaryModal';
+import SearchIcon from '@material-ui/icons/Search';
+import PostAddIcon from '@material-ui/icons/PostAdd';
+import BarChartIcon from '@material-ui/icons/BarChart';
+import GetAppIcon from '@material-ui/icons/GetApp';
+import LanguageIcon from '@material-ui/icons/Language';
+import MenuBookIcon from '@material-ui/icons/MenuBook';
+import InfoIcon from '@material-ui/icons/Info';
 
 export default function Navbar() {
     const [path, setPath] = useState('');
     const [cookies, setCookies] = useCookies(['lang']);
     const [langModalOpen, setLangModalOpen] = useState(false);
+    const [langTranslationModalOpen, setLangTranslationModalOpen] =
+        useState(false);
+    const [dictModalOpen, setDictModalOpen] = useState(false);
 
     useEffect(() => {
         if (!cookies.lang) {
@@ -38,14 +50,13 @@ export default function Navbar() {
                             <div className="flex justify-between h-16 mx-4 md:h-24 lg:mx-0">
                                 <div className="flex">
                                     <div className="flex items-center flex-shrink-0">
-                                        <img
-                                            onClick={() =>
-                                                (window.location.href = '/')
-                                            }
-                                            className="block w-auto h-16 -ml-4 cursor-pointer md:h-24 md:hidden"
-                                            src="https://www.beneathnorthernlights.com/wp-content/uploads/2019/01/Design-uten-navn-5-e1549918936927-746x550.jpg"
-                                            alt="sami flag"
-                                        />
+                                        <InertiaLink href="/">
+                                            <img
+                                                className="block w-auto h-16 -ml-4 cursor-pointer md:h-24 md:hidden"
+                                                src="https://www.beneathnorthernlights.com/wp-content/uploads/2019/01/Design-uten-navn-5-e1549918936927-746x550.jpg"
+                                                alt="sami flag"
+                                            />
+                                        </InertiaLink>
                                     </div>
                                     <div className="hidden sm:mr-6 sm:flex sm:space-x-8">
                                         <InertiaLink
@@ -56,6 +67,7 @@ export default function Navbar() {
                                                     : 'border-transparent text-white     hover:border-gray-300 hover:text-blue-400 inline-flex items-center px-1 pt-1 border-b-2 text-lg '
                                             }
                                         >
+                                            <SearchIcon className="mr-2" />
                                             {trans('Layout.navbar.search')}
                                         </InertiaLink>
                                         <InertiaLink
@@ -66,6 +78,7 @@ export default function Navbar() {
                                                     : 'border-transparent text-white hover:border-gray-300 hover:text-blue-400 inline-flex items-center px-1 pt-1 border-b-2 text-lg'
                                             }
                                         >
+                                            <PostAddIcon className="mr-2" />
                                             {trans(
                                                 'Layout.navbar.wordSuggestion'
                                             )}
@@ -78,6 +91,7 @@ export default function Navbar() {
                                                     : 'border-transparent text-white hover:border-gray-300 hover:text-blue-400 inline-flex items-center px-1 pt-1 border-b-2 text-lg'
                                             }
                                         >
+                                            <BarChartIcon className="mr-2" />
                                             {trans('Layout.navbar.statistics')}
                                         </InertiaLink>
                                         <InertiaLink
@@ -88,6 +102,7 @@ export default function Navbar() {
                                                     : 'border-transparent text-white hover:border-gray-300 hover:text-blue-400 inline-flex items-center px-1 pt-1 border-b-2 text-lg'
                                             }
                                         >
+                                            <GetAppIcon className="mr-2" />
                                             {trans('Layout.navbar.app')}
                                         </InertiaLink>
                                     </div>
@@ -141,6 +156,7 @@ export default function Navbar() {
                                             : 'border-transparent text-white hover:bg-gray-50 hover:border-gray-300 hover:text-gray-700 block pl-3 pr-4 py-2 border-l-4 text-base font-medium'
                                     }
                                 >
+                                    <SearchIcon className="mr-2" />
                                     {trans('Layout.navbar.search')}
                                 </InertiaLink>
                                 <InertiaLink
@@ -151,6 +167,7 @@ export default function Navbar() {
                                             : 'border-transparent text-white hover:bg-gray-50 hover:border-gray-300 hover:text-gray-700 block pl-3 pr-4 py-2 border-l-4 text-base font-medium'
                                     }
                                 >
+                                    <PostAddIcon className="mr-2" />
                                     {trans('Layout.navbar.wordSuggestion')}
                                 </InertiaLink>
                                 <InertiaLink
@@ -161,6 +178,7 @@ export default function Navbar() {
                                             : 'border-transparent text-white hover:bg-gray-50 hover:border-gray-300 hover:text-gray-700 block pl-3 pr-4 py-2 border-l-4 text-base font-medium'
                                     }
                                 >
+                                    <BarChartIcon className="mr-2" />
                                     {trans('Layout.navbar.statistics')}
                                 </InertiaLink>
 
@@ -172,9 +190,32 @@ export default function Navbar() {
                                             : 'border-transparent text-white hover:bg-gray-50 hover:border-gray-300 hover:text-gray-700 block pl-3 pr-4 py-2 border-l-4 text-base font-medium'
                                     }
                                 >
+                                    <LanguageIcon className="mr-2" />
                                     {trans('Layout.navbar.choose_language')}
                                 </p>
-
+                                <p
+                                    onClick={() =>
+                                        setLangTranslationModalOpen(true)
+                                    }
+                                    className={
+                                        path === '/lang'
+                                            ? 'bg-indigo-50 border-indigo-500 text-indigo-700 hidden pl-3 pr-4 py-2 border-l-4 text-base font-medium'
+                                            : 'border-transparent text-white hover:bg-gray-50 hover:border-gray-300 hover:text-gray-700 hidden pl-3 pr-4 py-2 border-l-4 text-base font-medium'
+                                    }
+                                >
+                                    {trans('Layout.navbar.choose_translations')}
+                                </p>
+                                <p
+                                    onClick={() => setDictModalOpen(true)}
+                                    className={
+                                        path === '/lang'
+                                            ? 'bg-indigo-50 border-indigo-500 text-indigo-700 block pl-3 pr-4 py-2 border-l-4 text-base font-medium'
+                                            : 'border-transparent text-white hover:bg-gray-50 hover:border-gray-300 hover:text-gray-700 block pl-3 pr-4 py-2 border-l-4 text-base font-medium'
+                                    }
+                                >
+                                    <MenuBookIcon className="mr-2" />
+                                    {trans('Layout.navbar.choose_dicts')}
+                                </p>
                                 <InertiaLink
                                     href="/app"
                                     className={
@@ -183,6 +224,7 @@ export default function Navbar() {
                                             : 'border-transparent text-white hover:bg-gray-50 hover:border-gray-300 hover:text-gray-700 block pl-3 pr-4 py-2 border-l-4 text-base font-medium'
                                     }
                                 >
+                                    <GetAppIcon className="mr-2" />
                                     {trans('Layout.navbar.app')}
                                 </InertiaLink>
 
@@ -194,6 +236,7 @@ export default function Navbar() {
                                             : 'border-transparent text-white hover:bg-gray-50 hover:border-gray-300 hover:text-gray-700 block pl-3 pr-4 py-2 border-l-4 text-base font-medium'
                                     }
                                 >
+                                    <InfoIcon className="mr-2" />
                                     {trans('Layout.navbar.about')}
                                 </InertiaLink>
                             </div>
@@ -204,6 +247,15 @@ export default function Navbar() {
             <LanguageModal
                 open={langModalOpen}
                 closeModal={() => setLangModalOpen(false)}
+            />
+            <LanguageTranslationModal
+                open={langTranslationModalOpen}
+                closeModal={() => setLangTranslationModalOpen(false)}
+            />
+
+            <DictionaryModal
+                open={dictModalOpen}
+                closeModal={() => setDictModalOpen(false)}
             />
         </>
     );

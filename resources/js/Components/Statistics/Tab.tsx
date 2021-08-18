@@ -14,7 +14,6 @@ const Tab = (props: {setTab: (newTab: string) => void}) => {
     }
 
     const setNewTab = (newTab: {key: string; current: boolean}) => {
-        console.log(newTab);
         setTabs(
             tabs.map(tab =>
                 tab.key === newTab.key

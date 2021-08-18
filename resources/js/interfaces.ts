@@ -27,6 +27,7 @@ export const languagesSupported: ILang[] = [
     {name: 'Lulesamisk', short: 'lusm'},
 ];
 
+// Based of Divvun's current API.
 export const translateLanguagesSupported: ILang[] = [
     {name: 'Norsk', short: 'no', selected: false},
     {name: 'Engelsk', short: 'eng', selected: false},
@@ -40,6 +41,26 @@ export const translateLanguagesSupported: ILang[] = [
     {name: 'Nynorsk', short: 'nno', selected: false},
 ];
 
+// Dictionaries available in local database
+export const localDictsSupported: ILang[] = [
+    {
+        name: 'Anders Kintel 2013',
+        short: 'ak2013',
+        selected: true,
+    },
+    {
+        name: 'Sáme Giellagálldo 2013',
+        short: 'sg2013',
+        selected: true,
+    },
+    {
+        name: 'Medisijnalasj báhkogirjje',
+        short: 'mb',
+        selected: true,
+    },
+];
+
+// Dictionaries available in divvun database
 export const dicstSupported: ILang[] = [
     {
         name: "Pekka Sammalahti's North Sami – Finnish dictionary",

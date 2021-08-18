@@ -17,6 +17,7 @@ const Search = () => {
 
     useEffect(() => {
         value = input || '';
+        setPage(1);
         setTimeout(() => {
             if (input === value && input !== '' && input.length > 0) {
                 getResultArray(input as string, results!, page).then(res => {
@@ -38,7 +39,9 @@ const Search = () => {
                 />
                 {results !== null ? (
                     <div
-                        className="relative h-5/6"
+                        className="relative h-screen overflow-y-auto"
+                        // React.UIEventHandler<HTMLDivElement> causes trouble when attempting to access scrollProperties
+                        // eslint-disable-next-line @typescript-eslint/no-explicit-any
                         onScroll={(e: any) => {
                             const bottom =
                                 e.target.scrollHeight - e.target.scrollTop ===

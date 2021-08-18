@@ -12,6 +12,8 @@ return [
             'lusm' => 'Lulesamisk',
         ],
         'choose_language' => 'Velg språk',
+        'choose_translations' => 'Velg språk for oversettelse',
+        'choose_dicts' => 'Velg ordbøker',
         'about' => 'Om appen' 
     ],
     'footer' => [
