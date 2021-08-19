@@ -1,3 +1,4 @@
+// es-lint-disable-next-line
 import axios from 'axios';
 import INewWord from './Interfaces/INewWord';
 
