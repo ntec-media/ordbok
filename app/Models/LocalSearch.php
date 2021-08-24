@@ -22,19 +22,33 @@ class LocalSearch implements SearchInterface
             return $currentPage;
         });
 
-        $data = DB::table('ord_norsk_samisk_BACKUP')
-        ->where('fra', 'like', $request->input('search'))
-        ->orWhere('til', 'like', $request->input('search'))
-        ->orWhere('fra', 'like', '%' . $request->input('search'))
-        ->orWhere('til', 'like', '%' . $request->input('search'))
-        ->orWhere('fra', 'like', '%' . $request->input('search') . '%')
-        ->orWhere('til', 'like', '%' . $request->input('search') . '%')
-        ->orderBy('fra')
-        ->simplePaginate(50);
+        // Query 1:
+        $q1 = DB::table('ord_norsk_samisk_BACKUP')
+        ->where(
+            [
+            ['fra', $request->input('search')], ],
+        )
+            ->whereIn('kredittering', $request->input('dicts'))
+            ->get();
 
-        $this->statistic->registerSearch();
+        return $q1;
 
-        return $data->items();
+        /*
+                if ($request->page === 1) {
+                $query1 = DB::table('ord_norsk_samisk_BACKUO')
+                ->where('fra', 'like', $request->input('search'))
+                ->orWhere('til', 'like', $request->input('search'))
+                ->orWhere('fra', 'like', '%' . $request->input('search'))
+                ->orWhere('fra', 'like', '%' . $request->input('search') . '%')
+                ->get();
+                }
+
+
+
+                $this->statistic->registerSearch();
+
+                return $query1->items();
+                */
     }
 
     /**

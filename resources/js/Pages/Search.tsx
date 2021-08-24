@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useCallback, useState} from 'react';
 import Layout from './Layout';
 import SearchField from '../Components/Search/SearchField';
 import SearchResultList from '../Components//Search/SearchResultList';
@@ -7,25 +7,51 @@ import NoSearch from '../Components/Search/NoSearch';
 import {search} from '../utils';
 import ISearchResult from '../Interfaces/ISearchResult';
 import Header from '../Components/Search/Header';
-
-let value = '';
+import {ILang} from '../interfaces';
+import {useCookies} from 'react-cookie';
+import {debounce} from 'lodash';
 
 const Search = () => {
-    const [input, setInput] = useState<string>();
+    const [input, setInput] = useState<string>('');
     const [results, setResults] = useState<ISearchResult[] | null>(null);
     const [page, setPage] = useState(1);
+    const [cookies] = useCookies(['dicts']);
+    const [dicts, setDicts] = useState<ILang[]>([]);
 
     useEffect(() => {
-        value = input || '';
-        setPage(1);
-        setTimeout(() => {
-            if (input === value && input !== '' && input.length > 0) {
-                getResultArray(input as string, results!, page).then(res => {
-                    setResults(res);
-                });
+        setDicts(cookies.dicts);
+    }, [cookies]);
+
+    const delayedQuery = useCallback(
+        debounce(
+            (query: string, dicts: ILang[]) => sendQuery(query, dicts),
+            250
+        ),
+        []
+    );
+
+    const sendQuery = useCallback(
+        async (query: string, dicts: ILang[]): Promise<any> => {
+            if (query === '') return;
+            try {
+                setResults(
+                    await getResultArray(
+                        query,
+                        results as ISearchResult[],
+                        page,
+                        dicts.filter(dict => dict.selected)
+                    )
+                );
+            } catch (error) {
+                console.error(error);
             }
-        }, 150);
-    }, [input]);
+        },
+        []
+    );
+
+    useEffect(() => {
+        delayedQuery(input, dicts);
+    }, [input, dicts]);
 
     return (
         <Layout>
@@ -50,7 +76,8 @@ const Search = () => {
                                 getResultArray(
                                     input as string,
                                     results!,
-                                    page + 1
+                                    page + 1,
+                                    cookies.dicts
                                 ).then(res => {
                                     setResults(res);
                                 });
@@ -73,31 +100,15 @@ const Search = () => {
 const getResultArray = async (
     input: string,
     currentArray: ISearchResult[],
-    currentPage: number
+    currentPage: number,
+    cookies: ILang[]
 ) => {
-    const newData: ISearchResult[] = await search(input, currentPage);
-    const sortedArray = sort(newData, input);
+    const newData: ISearchResult[] = await search(input, currentPage, cookies);
     if (currentPage === 1) {
-        return sortedArray;
+        return newData;
     } else {
-        return currentArray.concat(sortedArray);
+        return currentArray.concat(newData);
     }
-};
-
-const sort = (arr: ISearchResult[], value: string) => {
-    const newData: {data: ISearchResult; count: number}[] = [];
-    arr.forEach(item => {
-        let count = 0;
-        for (let i = 0; i < value.length; i++) {
-            if (value.charAt(i) === item.fra.charAt(i)) count++;
-        }
-        newData.push({data: item, count: count / item.fra.length});
-    });
-    return newData
-        .sort((a, b) => {
-            return b.count - a.count;
-        })
-        .map(d => d.data);
 };
 
 export default Search;

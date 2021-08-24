@@ -1,6 +1,6 @@
 import {trans} from 'matice';
-import React from 'react';
-import {useCookies} from 'react-cookie';
+import React, {useContext} from 'react';
+import {Context} from '../../Store';
 import {localDictsSupported} from '../../interfaces';
 import MultipleSelectModal from '../Modals/MultipleSelectModal';
 
@@ -10,7 +10,7 @@ interface Props {
 }
 
 const DictionaryModal = (props: Props) => {
-    const [cookies, setCookies] = useCookies(['translang', 'dicts']);
+    const [cookies, setCookies] = useContext(Context);
 
     const updateCookie = (name: string, items: Object) => {
         setCookies(name, JSON.stringify(items), {path: '/'});

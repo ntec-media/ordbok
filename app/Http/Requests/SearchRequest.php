@@ -16,6 +16,7 @@ class SearchRequest extends FormRequest
         return [
             'search' => 'required|string|max:255',
             'page' => 'required|numeric',
+            'dicts' => 'required',
         ];
     }
 }

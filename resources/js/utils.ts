@@ -1,12 +1,18 @@
 // es-lint-disable-next-line
 import axios from 'axios';
+import {ILang} from './interfaces';
 import INewWord from './Interfaces/INewWord';
 
-export const search = async (value: string, page: number) => {
+export const search = async (
+    value: string,
+    page: number,
+    dictionaries: ILang[]
+) => {
     return await axios
         .post('/api/search', {
             search: value,
             page: page,
+            dicts: dictionaries.map(dict => dict.short),
         })
         .then(res => {
             return res.data;

@@ -5,7 +5,6 @@ import DropDownIcon from '@material-ui/icons/ArrowDropDown';
 import {IconButton, InputAdornment, TextField} from '@material-ui/core';
 import DropDown from '../Shared/DropDown';
 import {MenuBook, TranslateOutlined} from '@material-ui/icons';
-import {useCookies} from 'react-cookie';
 import {trans} from 'matice';
 import LanguageTranslationModal from '../Shared/LanguageTranslationModal';
 import DictionaryModal from '../Shared/DictionaryModal';
@@ -21,16 +20,11 @@ const SearchField = (props: Props) => {
     const [input, setInput] = useState('');
     const [langModalOpen, setLangModalOpen] = useState(false);
     const [dictModalOpen, setDictModalOpen] = useState(false);
-    const [cookies, setCookies] = useCookies(['translang', 'dicts']);
 
     useEffect(() => {
         // API CALL ?
         props.updateInput(input as string);
     }, [input]);
-
-    const updateCookie = (name: string, items: Object) => {
-        setCookies(name, JSON.stringify(items), {path: '/'});
-    };
 
     return (
         <div className="relative flex justify-center px-2 pt-2 md:py-10">

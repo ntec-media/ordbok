@@ -45,17 +45,17 @@ export const translateLanguagesSupported: ILang[] = [
 export const localDictsSupported: ILang[] = [
     {
         name: 'Anders Kintel 2013',
-        short: 'ak2013',
+        short: 'A. Kintel 2013',
         selected: true,
     },
     {
         name: 'Sáme Giellagálldo 2013',
-        short: 'sg2013',
+        short: 'Sáme Giellagálldo 2013',
         selected: true,
     },
     {
         name: 'Medisijnalasj báhkogirjje',
-        short: 'mb',
+        short: 'Medisijnalasj báhkogirjje',
         selected: true,
     },
 ];

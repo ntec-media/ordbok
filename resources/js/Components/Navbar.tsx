@@ -1,8 +1,7 @@
-import React, {useEffect, useState} from 'react';
+import React, {useContext, useEffect, useState} from 'react';
 import {Disclosure} from '@headlessui/react';
 import {GlobeAltIcon, MenuIcon, XIcon} from '@heroicons/react/outline';
 import {InertiaLink} from '@inertiajs/inertia-react';
-import {useCookies} from 'react-cookie';
 import LanguageModal from './Modals/LanguageModal';
 import {languagesSupported} from '../interfaces';
 import DropDown from './Shared/DropDown';
@@ -16,10 +15,11 @@ import GetAppIcon from '@material-ui/icons/GetApp';
 import LanguageIcon from '@material-ui/icons/Language';
 import MenuBookIcon from '@material-ui/icons/MenuBook';
 import InfoIcon from '@material-ui/icons/Info';
+import {Context} from '../Store';
 
 export default function Navbar() {
     const [path, setPath] = useState('');
-    const [cookies, setCookies] = useCookies(['lang']);
+    const [cookies, setCookies] = useContext(Context);
     const [langModalOpen, setLangModalOpen] = useState(false);
     const [langTranslationModalOpen, setLangTranslationModalOpen] =
         useState(false);
