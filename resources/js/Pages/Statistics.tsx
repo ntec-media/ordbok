@@ -8,28 +8,28 @@ import TableChartButtons from "../Components/Statistics/TableChartButtons";
 import Layout from "./Layout";
 
 const days = [
-    "Mandag",
-    "Tirsdag",
-    "Onsdag",
-    "Torsdag",
-    "Fredag",
-    "Lørdag",
-    "Søndag",
+    "monday",
+    "tuesday",
+    "weednesday",
+    "thirsday",
+    "friday",
+    "saturday",
+    "sunday",
 ];
 
 const months = [
-    "Januar",
-    "Februar",
-    "Mars",
-    "April",
-    "Mai",
-    "Juni",
-    "Juli",
-    "August",
-    "September",
-    "Oktober",
-    "November",
-    "Desember",
+    "january",
+    "february",
+    "march",
+    "april",
+    "may",
+    "june",
+    "july",
+    "august",
+    "september",
+    "october",
+    "november",
+    "december",
 ];
 
 const Statistics = () => {

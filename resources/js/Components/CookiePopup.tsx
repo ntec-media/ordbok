@@ -1,5 +1,6 @@
 import React from "react";
 import { InformationCircleIcon } from "@heroicons/react/solid";
+import { trans } from "matice";
 
 const CookiePopup = (props: { setCookieTrue: () => void }) => {
     return (
@@ -14,16 +15,10 @@ const CookiePopup = (props: { setCookieTrue: () => void }) => {
                     </div>
                     <div className="ml-3">
                         <h3 className="text-sm font-medium text-blue-800">
-                            Informasjonskapselerklæring
+                            {trans("Layout.cookie.header")}
                         </h3>
                         <div className="mt-2 text-sm text-blue-600">
-                            <p>
-                                Julev benytter seg av informasjonskapsler
-                                (cookies) for å optimalisere dine personlige
-                                preferanser. Vi lagrer spårkvalg, ordbøker som
-                                du ønsker å benytte og språk du ønsker å
-                                oversette fra.
-                            </p>
+                            <p>{trans("Layout.cookie.content")}</p>
                         </div>
                         <div className="mt-4">
                             <div className="-mx-2 -my-1.5 flex">
@@ -32,7 +27,7 @@ const CookiePopup = (props: { setCookieTrue: () => void }) => {
                                     className="bg-blue-200 px-2 py-1.5 rounded-md text-sm font-medium text-blue-800 hover:bg-blue-100 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-blue-50 focus:ring-blue-600"
                                     onClick={() => props.setCookieTrue()}
                                 >
-                                    Jeg forstår
+                                    {trans("Layout.cookie.btnText")}
                                 </button>
                             </div>
                         </div>

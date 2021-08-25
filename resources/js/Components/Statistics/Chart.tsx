@@ -1,6 +1,5 @@
-import React from "react";
-import { useEffect } from "react";
-import { useState } from "react";
+import { trans } from "matice";
+import React, { useEffect, useState } from "react";
 import { Bar } from "react-chartjs-2";
 
 interface Props {
@@ -27,13 +26,27 @@ const test1 = [
 ];
 
 const Chart = (props: Props) => {
+    const [labels, setLabels] = useState<any[]>([]);
+
+    useEffect(() => {
+        if (props.labels.length > 12) {
+            setLabels(props.labels);
+        } else {
+            setLabels(
+                props.labels.map((label) => {
+                    return trans(`Statistics.${label}`);
+                })
+            );
+        }
+    }, [props.labels]);
+
     return (
         <Bar
             data={{
-                labels: props.labels,
+                labels: labels,
                 datasets: [
                     {
-                        label: "Antall Søk",
+                        label: trans("Statistics.number_of_search"),
                         data: props.data,
                         backgroundColor: test,
                         borderColor: test1,

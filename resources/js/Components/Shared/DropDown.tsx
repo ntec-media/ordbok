@@ -1,5 +1,6 @@
 import { Menu, Transition } from "@headlessui/react";
 import { CheckIcon } from "@heroicons/react/outline";
+import { trans } from "matice";
 import React, { ElementType, Fragment } from "react";
 
 interface Props {
@@ -47,14 +48,18 @@ const DropDown = (props: Props) => {
                                 {props.items.map((item, index) => (
                                     <Menu.Item key={index}>
                                         <p
-                                            className="flex justify-between block px-4 py-2 text-sm text-gray-700 cursor-pointer hover:bg-gray-100"
+                                            className="flex justify-between px-4 py-2 text-sm text-gray-700 cursor-pointer hover:bg-gray-100"
                                             onClick={() =>
                                                 props.onSelect(
                                                     item.id || item.display
                                                 )
                                             }
                                         >
-                                            {item.display}
+                                            {item.id
+                                                ? trans(
+                                                      `Layout.navbar.languages.${item.id}`
+                                                  )
+                                                : item.display}
                                             {props.itemSelected &&
                                                 props.itemSelected ===
                                                     item.id && (

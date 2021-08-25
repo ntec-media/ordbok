@@ -13,6 +13,7 @@ import {
     ILang,
     translateLanguagesSupported,
 } from "../../interfaces";
+import { trans } from "matice";
 
 interface Props {
     updateInput: (newInput: string) => void;
@@ -49,7 +50,7 @@ const SearchField = (props: Props) => {
                         updateCookie("translang", items);
                         setLangModalOpen(false);
                     }}
-                    title="Velg språk for oversettelse"
+                    title={trans("Search.SearchField.langModalHeader")}
                     items={cookies.translang || translateLanguagesSupported}
                 />
 
@@ -59,7 +60,7 @@ const SearchField = (props: Props) => {
                         updateCookie("dicts", items);
                         setDictModalOpen(false);
                     }}
-                    title="Velg ordbøker for oversettelse"
+                    title={trans("Search.SearchField.dictModalHeader")}
                     items={cookies.dicts || dicstSupported}
                 />
             </>
@@ -89,7 +90,7 @@ const SearchField = (props: Props) => {
                     <TextField
                         {...params}
                         value={input}
-                        label="Søk"
+                        label={trans("Search.SearchField.search")}
                         variant="outlined"
                         InputProps={{
                             ...params.InputProps,

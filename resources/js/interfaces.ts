@@ -21,14 +21,13 @@ export interface ILang {
 }
 
 export const languagesSupported: ILang[] = [
-    { name: "Norsk", short: "nob" },
-    { name: "Engelsk", short: "eng" },
-    { name: "Lulesamisk", short: "lusm" },
-    { name: "Nordsamisk", short: "nosm" },
+    { name: "Norsk", short: "nb" },
+    { name: "Engelsk", short: "en" },
+    { name: "Lulesamisk", short: "smj" },
 ];
 
 export const translateLanguagesSupported: ILang[] = [
-    { name: "Norsk", short: "no", selected: false },
+    { name: "Norsk", short: "nb", selected: false },
     { name: "Engelsk", short: "eng", selected: false },
     { name: "Lulesamisk", short: "smj", selected: false },
     { name: "Nordsamisk", short: "sme", selected: false },

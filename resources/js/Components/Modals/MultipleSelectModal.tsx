@@ -28,7 +28,7 @@ const MultipleSelectModal = (props: Props) => {
 
     return (
         <Dialog open={props.open} onClose={() => props.closeModal(selected)}>
-            <DialogTitle>Velg språk for oversettelse</DialogTitle>
+            <DialogTitle>{props.title}</DialogTitle>
             <DialogContent style={{ padding: 0 }}>
                 <List>
                     {selected.map((item) => (

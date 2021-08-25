@@ -1,21 +1,12 @@
 import React, { useEffect, useState } from "react";
-import { Fragment } from "react";
-import { Disclosure, Menu, Transition } from "@headlessui/react";
-import {
-    GlobeAltIcon,
-    MenuIcon,
-    XIcon,
-    CheckIcon,
-} from "@heroicons/react/outline";
+import { Disclosure } from "@headlessui/react";
+import { GlobeAltIcon, MenuIcon, XIcon } from "@heroicons/react/outline";
 import { InertiaLink } from "@inertiajs/inertia-react";
 import { useCookies } from "react-cookie";
 import LanguageModal from "./Modals/LanguageModal";
 import { languagesSupported } from "../interfaces";
 import DropDown from "./Shared/DropDown";
-
-function classNames(...classes: any) {
-    return classes.filter(Boolean).join(" ");
-}
+import { setLocale, trans } from "matice";
 
 export default function Navbar() {
     const [path, setPath] = useState("");
@@ -23,12 +14,16 @@ export default function Navbar() {
     const [langModalOpen, setLangModalOpen] = useState(false);
 
     useEffect(() => {
-        if (!cookies.lang) setCookies("lang", "no", { path: "/" });
+        if (!cookies.lang) {
+            setCookies("lang", "nb", { path: "/" });
+        } else setLocale(cookies.lang);
         setPath(window.location.pathname);
     }, []);
 
     const updateLang = (newLang: string) => {
         setCookies("lang", newLang, { path: "/" });
+        setLocale("en");
+        window.location.href = path;
     };
 
     return (
@@ -64,7 +59,7 @@ export default function Navbar() {
                                                     : "border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700 inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium"
                                             }
                                         >
-                                            Søk
+                                            {trans("Layout.navbar.search")}
                                         </InertiaLink>
                                         <InertiaLink
                                             href="/word"
@@ -74,7 +69,9 @@ export default function Navbar() {
                                                     : "border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700 inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium"
                                             }
                                         >
-                                            Ordforslag
+                                            {trans(
+                                                "Layout.navbar.wordSuggestion"
+                                            )}
                                         </InertiaLink>
                                         <InertiaLink
                                             href="/statistics"
@@ -84,7 +81,7 @@ export default function Navbar() {
                                                     : "border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700 inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium"
                                             }
                                         >
-                                            Statistikk
+                                            {trans("Layout.navbar.statistics")}
                                         </InertiaLink>
                                         <InertiaLink
                                             href="/app"
@@ -94,7 +91,7 @@ export default function Navbar() {
                                                     : "border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700 inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium"
                                             }
                                         >
-                                            Last ned app
+                                            {trans("Layout.navbar.app")}
                                         </InertiaLink>
                                     </div>
                                 </div>
