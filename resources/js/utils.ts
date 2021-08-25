@@ -3,12 +3,16 @@ import INewWord from "./Interfaces/INewWord";
 
 export const search = async (value: string, page: number) => {
     return await axios
-        .post("/", {
+        .post("/api/search", {
             search: value,
             page: page,
         })
         .then((res) => {
             return res.data;
+        })
+        .catch((err) => {
+            console.error(err);
+            return err;
         });
 };
 
