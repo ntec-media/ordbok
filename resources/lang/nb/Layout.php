@@ -7,9 +7,9 @@ return [
         'statistics' => 'Statistikk',
         'app' => 'Last ned app',
         'languages' => [
-            'nob' => 'Norsk',
+            'nb' => 'Norsk',
             'en' => 'Engelsk',
-            'lusm' => 'Lulesamisk',
+            'smj' => 'Lulesamisk',
         ]
     ],
     'footer' => [
