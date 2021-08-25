@@ -11,12 +11,10 @@ class NewWordController extends Controller
     {
         $body = json_decode($request->getContent());
 
-        $word = NewWord::firstOrNew([
+        $word = NewWord::firstOrCreate([
             'norwegian' => $body->norwegian,
             'sami' => $body->sami,
         ]);
-
-        $word->save();
 
 
         return $word;
