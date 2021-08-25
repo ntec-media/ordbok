@@ -9,11 +9,9 @@ class NewWordController extends Controller
 {
     public function store(NewWordRequest $request)
     {
-        $body = json_decode($request->getContent());
-
         $word = NewWord::firstOrCreate([
-            'norwegian' => $body->norwegian,
-            'sami' => $body->sami,
+            'norwegian' => $request->input('norwegian'),
+            'sami' => $request->input('sami'),
         ]);
 
 
