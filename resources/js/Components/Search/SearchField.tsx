@@ -1,9 +1,18 @@
-import React, { useEffect, useState } from "react";
+import React, { Fragment, useEffect, useState } from "react";
 import SearchIcon from "@material-ui/icons/Search";
 import { Autocomplete } from "@material-ui/lab";
 import CircularProgress from "@material-ui/core/CircularProgress";
-
-import { InputAdornment, TextField } from "@material-ui/core";
+import DropDownIcon from "@material-ui/icons/ArrowDropDown";
+import { IconButton, InputAdornment, TextField } from "@material-ui/core";
+import DropDown from "../Shared/DropDown";
+import { MenuBook, TranslateOutlined } from "@material-ui/icons";
+import MultipleSelectModal from "../Modals/MultipleSelectModal";
+import { useCookies } from "react-cookie";
+import {
+    dicstSupported,
+    ILang,
+    translateLanguagesSupported,
+} from "../../interfaces";
 
 interface Props {
     updateInput: (newInput: string) => void;
@@ -14,6 +23,9 @@ const SearchField = (props: Props) => {
     const [open, setOpen] = useState(false);
     const [options, setOptions] = useState<string[]>([]);
     const [input, setInput] = useState("");
+    const [langModalOpen, setLangModalOpen] = useState(false);
+    const [dictModalOpen, setDictModalOpen] = useState(false);
+
     // const loading = open && options.length === 0 && input.length > 0;
     const loading = false;
 
@@ -21,6 +33,38 @@ const SearchField = (props: Props) => {
         // API CALL ?
         props.updateInput(input as string);
     }, [input]);
+
+    const LangDictModals = () => {
+        const [cookies, setCookies] = useCookies(["translang", "dicts"]);
+
+        const updateCookie = (name: string, items: any) => {
+            setCookies(name, JSON.stringify(items), { path: "/" });
+        };
+
+        return (
+            <>
+                <MultipleSelectModal
+                    open={langModalOpen}
+                    closeModal={(items) => {
+                        updateCookie("translang", items);
+                        setLangModalOpen(false);
+                    }}
+                    title="Velg språk for oversettelse"
+                    items={cookies.translang || translateLanguagesSupported}
+                />
+
+                <MultipleSelectModal
+                    open={dictModalOpen}
+                    closeModal={(items) => {
+                        updateCookie("dicts", items);
+                        setDictModalOpen(false);
+                    }}
+                    title="Velg ordbøker for oversettelse"
+                    items={cookies.dicts || dicstSupported}
+                />
+            </>
+        );
+    };
 
     return (
         <>
@@ -50,7 +94,7 @@ const SearchField = (props: Props) => {
                         InputProps={{
                             ...params.InputProps,
                             endAdornment: (
-                                <React.Fragment>
+                                <>
                                     {loading ? (
                                         <CircularProgress
                                             color="inherit"
@@ -58,7 +102,18 @@ const SearchField = (props: Props) => {
                                         />
                                     ) : null}
                                     {params.InputProps.endAdornment}
-                                </React.Fragment>
+                                    <DropDown
+                                        items={[
+                                            { display: "á" },
+                                            { display: "ŋ" },
+                                        ]}
+                                        title="Tegn"
+                                        onSelect={(newLetter) =>
+                                            setInput(input + newLetter)
+                                        }
+                                        mainIcon={DropDownIcon}
+                                    />
+                                </>
                             ),
                             startAdornment: (
                                 <InputAdornment position="start">
@@ -69,20 +124,15 @@ const SearchField = (props: Props) => {
                     />
                 )}
             />
-            <button
-                type="button"
-                className="inline-flex items-center px-4 py-2 ml-2 text-sm font-medium text-indigo-700 bg-indigo-100 border border-transparent rounded-md hover:bg-indigo-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
-                onClick={() => setInput(input + "á")}
-            >
-                á
-            </button>
-            <button
-                type="button"
-                className="inline-flex items-center px-4 py-2 ml-2 text-sm font-medium text-indigo-700 bg-indigo-100 border border-transparent rounded-md hover:bg-indigo-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
-                onClick={() => setInput(input + "ŋ")}
-            >
-                ŋ
-            </button>
+            <div className="flex justify-center w-32">
+                <IconButton onClick={() => setLangModalOpen(true)}>
+                    <TranslateOutlined color="primary" />
+                </IconButton>
+                <IconButton onClick={() => setDictModalOpen(true)}>
+                    <MenuBook color="primary" />
+                </IconButton>
+            </div>
+            <LangDictModals />
         </>
     );
 };

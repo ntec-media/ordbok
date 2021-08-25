@@ -12,6 +12,7 @@ import CustomSnackbar, {
 } from "../Components/CustomSnackbar";
 import Layout from "./Layout";
 import InfoIcon from "@material-ui/icons/InfoOutlined";
+import { newWord } from "../utils";
 
 const WordSuggestion = () => {
     const [norInput, setNorInput] = useState({ val: "", error: false });
@@ -27,46 +28,58 @@ const WordSuggestion = () => {
     });
     const [tooltipOpen, setTooltipOpen] = useState(false);
 
-    const submit = () => {
-        const error = true;
-
-        setIsSubmitting(true);
+    const validate = () => {
         if (samInput.val === "") {
             setSamInput({ ...samInput, error: true });
-            setIsSubmitting(false);
-        }
-        if (norInput.val === "") {
+        } else if (norInput.val === "") {
             setNorInput({ ...norInput, error: true });
-            setIsSubmitting(false);
+        } else {
+            submit();
         }
+    };
+    const submit = async () => {
+        setIsSubmitting(true);
+        const res = await newWord({
+            norwegian: norInput.val,
+            sami: samInput.val,
+            description: description,
+            email: name,
+        });
+        setIsSubmitting(false);
 
-        // API REQUEST
-        setTimeout(() => {
-            if (!error) {
+        switch (res.status) {
+            case 201:
                 setSnackbarProps({
                     ...snackbarProps,
-                    open: true,
                     type: "success",
-                    message: "Ordet er sendt til behandling",
+                    open: true,
+                    message: "Forslaget er lagret!",
                 });
-                setIsSubmitting(false);
-            } else {
+                break;
+            case 200:
                 setSnackbarProps({
                     ...snackbarProps,
-                    open: true,
                     type: "warning",
-                    message: "Ordet eksisterer allerede",
+                    open: true,
+                    message: "Forslaget er allerede lagret",
                 });
-                setIsSubmitting(false);
-            }
-        }, 1500);
+                break;
+            default:
+                setSnackbarProps({
+                    ...snackbarProps,
+                    type: "error",
+                    open: true,
+                    message: "En feil har oppstått, forslaget ble ikke lagret",
+                });
+                break;
+        }
     };
 
     return (
         <Layout>
-            <div className="h-full lg:h-auto flex flex-col justify-center items-center md:pt-20 lg:pt-26 overflow-y-auto overflow-x-hidden">
-                <div className="hidden md:block w-full p-6 md:w-3/6 lg:w-2/6">
-                    <h1 className="p-8 text-3xl text-gray-600 text-center">
+            <div className="flex flex-col items-center justify-center h-full overflow-x-hidden overflow-y-auto lg:h-auto">
+                <div className="hidden w-full p-6 md:block md:w-3/6 lg:w-2/6">
+                    <h1 className="p-8 text-3xl text-center text-gray-600">
                         Foreslå nytt ord
                     </h1>
                     <p>
@@ -75,7 +88,7 @@ const WordSuggestion = () => {
                         benytte denne databasen i utgivelse av nye ordbøker.
                     </p>
                 </div>
-                <div className="w-full py-6 md:hidden flex items-center">
+                <div className="flex items-center w-full py-6 md:hidden">
                     <Tooltip
                         title="Ord som sends inn vil bli sendt til UiT hvor de lagres i
                         en database. Forfattere som har avtale med UiT vil kunne
@@ -89,12 +102,12 @@ const WordSuggestion = () => {
                             <InfoIcon color="primary" />
                         </IconButton>
                     </Tooltip>
-                    <h1 className="text-3xl text-gray-600 text-center">
+                    <h1 className="text-3xl text-center text-gray-600">
                         Foreslå nytt ord
                     </h1>
                 </div>
-                <form className="flex flex-col px-2 h-full w-full pb-6 md:w-3/6 lg:w-2/6">
-                    <div className="my-4">
+                <form className="flex flex-col w-full h-full px-2 pb-6 md:w-3/6 lg:w-2/6">
+                    <div className="my-2 md:my-4">
                         <TextField
                             fullWidth
                             variant="outlined"
@@ -111,7 +124,7 @@ const WordSuggestion = () => {
                             }
                         />
                     </div>
-                    <div className="my-4">
+                    <div className="my-2 md:my-4">
                         <TextField
                             fullWidth
                             variant="outlined"
@@ -128,7 +141,7 @@ const WordSuggestion = () => {
                             }
                         />
                     </div>
-                    <div className="my-4">
+                    <div className="my-2 md:my-4">
                         <TextField
                             fullWidth
                             variant="outlined"
@@ -140,7 +153,7 @@ const WordSuggestion = () => {
                             ) => setDescription(e.target.value)}
                         />
                     </div>
-                    <div className="my-4">
+                    <div className="my-2 md:my-4">
                         <TextField
                             fullWidth
                             variant="outlined"
@@ -150,13 +163,13 @@ const WordSuggestion = () => {
                             ) => setName(e.target.value)}
                         />
                     </div>
-                    <div className="pt-4 pb-8 flex items-center border-b-2 border-600-blue">
+                    <div className="flex items-center pt-4 pb-8">
                         <Button
                             className="w-64 h-12"
                             variant="contained"
                             color="primary"
                             disabled={isSubmitting}
-                            onClick={submit}
+                            onClick={validate}
                         >
                             Send inn
                         </Button>
