@@ -33,7 +33,7 @@ const Table = (props: Props) => {
                                 </tr>
                             </thead>
                             <tbody>
-                                {props.data.map((data, index) => (
+                                {props.labels.map((label, index) => (
                                     <tr
                                         key={index}
                                         className={
@@ -44,13 +44,13 @@ const Table = (props: Props) => {
                                     >
                                         <td className="px-6 py-4 text-sm font-medium text-gray-900 whitespace-nowrap">
                                             {props.labels.length <= 12 // check if tab is not month
-                                                ? trans(
-                                                      `Statistics.${props.labels[index]}`
-                                                  )
-                                                : props.labels[index]}
+                                                ? trans(`Statistics.${label}`)
+                                                : label}
                                         </td>
                                         <td className="px-6 py-4 text-sm text-gray-500 whitespace-nowrap">
-                                            {data}
+                                            {props.data[index]
+                                                ? props.data[index]
+                                                : 0}
                                         </td>
                                     </tr>
                                 ))}

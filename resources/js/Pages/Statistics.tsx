@@ -5,6 +5,7 @@ import Chart from "../Components/Statistics/Chart";
 import Tab from "../Components/Statistics/Tab";
 import Table from "../Components/Statistics/Table";
 import TableChartButtons from "../Components/Statistics/TableChartButtons";
+import { month, week, year } from "../utils";
 import Layout from "./Layout";
 
 const days = [
@@ -42,24 +43,38 @@ const Statistics = () => {
         switch (currentTab) {
             case "week":
                 {
-                    setData(getMockWeek());
-                    setLabels(days);
+                    week().then((res) => {
+                        setLabels(days);
+                        setData(res.map((obj: any) => obj.searches));
+                    });
                 }
                 break;
             case "month":
                 {
-                    const monthData = getMockMonth();
-                    const monthLabels = monthData.map((d, i) =>
-                        (i + 1).toString()
-                    );
-                    setData(monthData);
-                    setLabels(monthLabels);
+                    month().then((res) => {
+                        setLabels(
+                            Array.from({ length: 31 }, (_, i) =>
+                                (i + 1).toString()
+                            )
+                        );
+                        const dataArr = [];
+                        for (let i = 1; i < 32; i++) {
+                            const item = res.find(
+                                (s: any) =>
+                                    s.date.split("-")[2] === i.toString()
+                            );
+                            dataArr[i - 1] = item ? item.searches : 0;
+                        }
+                        setData(dataArr);
+                    });
                 }
                 break;
             case "year":
                 {
-                    setData(getMockYear());
-                    setLabels(months);
+                    year().then((res) => {
+                        setLabels(months);
+                        setData(res);
+                    });
                 }
                 break;
         }
@@ -89,27 +104,3 @@ const Statistics = () => {
 };
 
 export default Statistics;
-
-const getMockWeek = () => {
-    const data = [];
-    for (let i = 0; i < 7; i++) {
-        data.push(Math.floor(Math.random() * 1200 + 900));
-    }
-    return data;
-};
-
-const getMockMonth = () => {
-    const data = [];
-    for (let i = 0; i < 31; i++) {
-        data.push(Math.floor(Math.random() * 1200 + 900));
-    }
-    return data;
-};
-
-const getMockYear = () => {
-    const data = [];
-    for (let i = 0; i < 12; i++) {
-        data.push(Math.floor(Math.random() * 8000 + 10000));
-    }
-    return data;
-};

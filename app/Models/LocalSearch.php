@@ -9,6 +9,11 @@ use Illuminate\Support\Facades\DB;
 
 class LocalSearch implements SearchInterface
 {
+    public function __construct()
+    {
+        $this->statistic = new Statistic();
+    }
+
     public function words(SearchRequest $request)
     {
         $currentPage = $request->input('page');
@@ -16,7 +21,6 @@ class LocalSearch implements SearchInterface
         Paginator::currentPageResolver(function () use ($currentPage) {
             return $currentPage;
         });
-
 
         $data = DB::table('ord_norsk_samisk_BACKUP')
         ->where('fra', 'like', $request->input('search'))
@@ -27,6 +31,8 @@ class LocalSearch implements SearchInterface
         ->orWhere('til', 'like', '%' . $request->input('search') . '%')
         ->orderBy('fra')
         ->simplePaginate(50);
+
+        $this->statistic->registerSearch();
 
         return $data->items();
     }
