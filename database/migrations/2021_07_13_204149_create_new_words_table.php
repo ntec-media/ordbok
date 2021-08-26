@@ -15,11 +15,11 @@ class CreateNewWordsTable extends Migration
     {
         Schema::create('new_words', function (Blueprint $table) {
             $table->id();
-            $table->timestamps();
             $table->string('norwegian')->require();
             $table->string('sami')->require();
             $table->string('description')->nullable();
             $table->string('email')->nullable();
+            $table->timestamps();
         });
     }
 

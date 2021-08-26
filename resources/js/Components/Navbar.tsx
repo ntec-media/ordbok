@@ -15,7 +15,7 @@ export default function Navbar() {
 
     useEffect(() => {
         if (!cookies.lang) {
-            setCookies("lang", "nob", { path: "/" });
+            setCookies("lang", "nb", { path: "/" });
         } else setLocale(cookies.lang);
         setPath(window.location.pathname);
     }, []);
