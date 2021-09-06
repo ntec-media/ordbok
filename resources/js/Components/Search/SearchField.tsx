@@ -1,12 +1,16 @@
-import React, {useEffect, useState} from 'react';
 import SearchIcon from '@material-ui/icons/Search';
+import {
+    debounce,
+    IconButton,
+    InputAdornment,
+    TextField,
+} from '@material-ui/core';
 import {Autocomplete} from '@material-ui/lab';
-import DropDownIcon from '@material-ui/icons/ArrowDropDown';
-import {IconButton, InputAdornment, TextField} from '@material-ui/core';
-import DropDown from '../Shared/DropDown';
-import {MenuBook, TranslateOutlined} from '@material-ui/icons';
 import {trans} from 'matice';
-import LanguageTranslationModal from '../Shared/LanguageTranslationModal';
+import React, {useCallback, useEffect, useState} from 'react';
+import DropDown from '../Shared/DropDown';
+import DropDownIcon from '@material-ui/icons/ArrowDropDown';
+import {MenuBook} from '@material-ui/icons';
 import DictionaryModal from '../Shared/DictionaryModal';
 
 interface Props {
@@ -15,16 +19,25 @@ interface Props {
 }
 
 const SearchField = (props: Props) => {
-    const [open, setOpen] = useState(false);
-    const [options, setOptions] = useState<string[]>([]); // Options recieved from Divvun API in future version.
     const [input, setInput] = useState('');
-    const [langModalOpen, setLangModalOpen] = useState(false);
     const [dictModalOpen, setDictModalOpen] = useState(false);
 
     useEffect(() => {
-        // API CALL ?
-        props.updateInput(input as string);
+        delayedQuery(input);
     }, [input]);
+
+    const delayedQuery = useCallback(
+        debounce((input: string) => newInput(input), 200),
+        []
+    );
+
+    const newInput = useCallback((input: string) => {
+        try {
+            props.updateInput(input);
+        } catch (error) {
+            console.error(error);
+        }
+    }, []);
 
     return (
         <div className="relative flex justify-center px-2 pt-2 md:py-10">
@@ -33,17 +46,10 @@ const SearchField = (props: Props) => {
                 freeSolo
                 value={input}
                 onKeyDown={e => e.key === 'backspace' && props.resetPage()}
-                open={open}
                 onInputChange={(_e, newVal) => {
                     setInput(newVal);
                 }}
-                onOpen={() => {
-                    setOpen(true);
-                }}
-                onClose={() => {
-                    setOpen(false);
-                }}
-                options={options}
+                options={[]}
                 renderInput={params => (
                     <TextField
                         {...params}
@@ -74,23 +80,11 @@ const SearchField = (props: Props) => {
                     />
                 )}
             />
-            <div className="justify-center hidden md:w-32 md:flex">
-                <div className="hidden">
-                    <IconButton
-                        hidden={true}
-                        onClick={() => setLangModalOpen(true)}
-                    >
-                        <TranslateOutlined color="primary" />
-                    </IconButton>
-                </div>
+            <div className="justify-center hidden md:flex">
                 <IconButton onClick={() => setDictModalOpen(true)}>
                     <MenuBook color="primary" />
                 </IconButton>
             </div>
-            <LanguageTranslationModal
-                open={langModalOpen}
-                closeModal={() => setLangModalOpen(false)}
-            />
             <DictionaryModal
                 open={dictModalOpen}
                 closeModal={() => setDictModalOpen(false)}

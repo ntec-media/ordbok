@@ -3,7 +3,7 @@ import {Disclosure} from '@headlessui/react';
 import {GlobeAltIcon, MenuIcon, XIcon} from '@heroicons/react/outline';
 import {InertiaLink} from '@inertiajs/inertia-react';
 import LanguageModal from './Modals/LanguageModal';
-import {languagesSupported} from '../interfaces';
+import {languagesSupported, localDictsSupported} from '../interfaces';
 import DropDown from './Shared/DropDown';
 import {setLocale, trans} from 'matice';
 import LanguageTranslationModal from './Shared/LanguageTranslationModal';
@@ -29,6 +29,9 @@ export default function Navbar() {
         if (!cookies.lang) {
             setCookies('lang', 'nb', {path: '/'});
         } else setLocale(cookies.lang);
+        if (!cookies.dicts) {
+            setCookies('dicts', localDictsSupported, {path: '/'});
+        }
         setPath(window.location.pathname);
     }, []);
 
