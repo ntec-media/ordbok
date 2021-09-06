@@ -7,9 +7,9 @@ return [
         'statistics' => 'Statistics',
         'app' => 'Download App',
         'languages' => [
-            'nob' => 'Norwegian',
+            'nb' => 'Norwegian',
             'en' => 'English',
-            'lusm' => 'Lule Sami',
+            'smj' => 'Lule Sami',
         ],
         'choose_language' => 'Choose language',
         'choose_translations' => 'Choose language for translation',

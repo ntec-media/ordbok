@@ -48,7 +48,7 @@ const DropDown = (props: Props) => {
                                 {props.items.map((item, index) => (
                                     <Menu.Item key={index}>
                                         <p
-                                            className="flex justify-between block px-4 py-2 text-sm text-gray-700 cursor-pointer hover:bg-gray-100"
+                                            className="flex justify-between px-4 py-2 text-sm text-gray-700 cursor-pointer hover:bg-gray-100"
                                             onClick={() =>
                                                 props.onSelect(
                                                     item.id || item.display

@@ -22,14 +22,14 @@ export interface ILang {
 
 // Short must be same as i language->Layout php file
 export const languagesSupported: ILang[] = [
-    {name: 'Norsk', short: 'nob'},
+    {name: 'Norsk', short: 'nb'},
     {name: 'Engelsk', short: 'en'},
-    {name: 'Lulesamisk', short: 'lusm'},
+    {name: 'Lulesamisk', short: 'smj'},
 ];
 
 // Based of Divvun's current API.
 export const translateLanguagesSupported: ILang[] = [
-    {name: 'Norsk', short: 'no', selected: false},
+    {name: 'Norsk', short: 'nb', selected: false},
     {name: 'Engelsk', short: 'eng', selected: false},
     {name: 'Lulesamisk', short: 'smj', selected: false},
     {name: 'Nordsamisk', short: 'sme', selected: false},
