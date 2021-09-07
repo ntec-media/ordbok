@@ -1,14 +1,9 @@
-import {
-    Dialog,
-    FormControlLabel,
-    FormLabel,
-    Radio,
-    RadioGroup,
-} from "@material-ui/core";
-import { DialogContent, DialogTitle, FormControl } from "@material-ui/core";
+import { Dialog, FormControlLabel, Radio, RadioGroup } from "@material-ui/core";
+import { DialogContent, FormControl } from "@material-ui/core";
 import React from "react";
 import { useCookies } from "react-cookie";
 import { languagesSupported } from "../../interfaces";
+import { trans } from "matice";
 
 interface Props {
     open: boolean;
@@ -30,7 +25,7 @@ const LanguageModal = (props: Props) => {
                             setCookies("lang", event.target.value, {
                                 path: "/",
                             });
-                            props.closeModal();
+                            window.location.href = window.location.href;
                         }}
                     >
                         {languagesSupported.map((language) => (
@@ -38,7 +33,9 @@ const LanguageModal = (props: Props) => {
                                 key={language.short}
                                 value={language.short}
                                 control={<Radio />}
-                                label={language.name}
+                                label={trans(
+                                    `Layout.navbar.languages.${language.short}`
+                                )}
                             />
                         ))}
                     </RadioGroup>

@@ -3,6 +3,7 @@
 return [
     'header' => 'Foreslå nytt ord',
     'subtitle' => 'Ord som sends inn vil bli sendt til UiT hvor de lagres i en database. Forfattere som har avtale med UiT vil kunne benytte denne databasen i utgivelse av nye ordbøker.',
+    'subtitle2' => 'Feldt med * må fylles inn.',
     'norwegian' => 'Norsk',
     'sami' => 'Samisk',
     'description' => 'Beskrivelse (valgfritt)',

@@ -25,5 +25,5 @@ return [
     'november' => 'November',
     'december' => 'December',
     'search' => 'Search',
-    'number_of_search' => 'Number of search'
+    'number_of_search' => 'Number of searches'
 ];

@@ -14,6 +14,7 @@ const Tab = (props: { setTab: (newTab: string) => void }) => {
     }
 
     const setNewTab = (newTab: { key: string; current: boolean }) => {
+        console.log(newTab);
         setTabs(
             tabs.map((tab) =>
                 tab.key === newTab.key
@@ -32,19 +33,30 @@ const Tab = (props: { setTab: (newTab: string) => void }) => {
                         Select a tab
                     </label>
                     <select
+                        value={trans(
+                            `Statistics.${
+                                tabs.find((s) => s.current === true)?.key
+                            }`
+                        )}
                         id="tabs"
                         name="tabs"
                         onChange={(e) => {
                             const newTab = tabs.find(
-                                (t) => t.key === e.target.value
+                                (t) =>
+                                    trans(`Statistics.${t.key}`) ===
+                                    e.target.value
                             );
                             setNewTab(newTab!);
                         }}
                         className="block w-full border-gray-300 rounded-md focus:ring-indigo-500 focus:border-indigo-500"
-                        defaultValue={tabs.find((tab) => tab.current)!.key}
                     >
                         {tabs.map((tab) => (
-                            <option key={tab.key}>{tab.key}</option>
+                            <option
+                                key={tab.key}
+                                value={trans(`Statistics.${tab.key}`)}
+                            >
+                                {trans(`Statistics.${tab.key}`)}
+                            </option>
                         ))}
                     </select>
                 </div>

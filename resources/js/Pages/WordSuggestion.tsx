@@ -1,54 +1,23 @@
-import {
-    Button,
-    CircularProgress,
-    IconButton,
-    TextField,
-    Tooltip,
-} from "@material-ui/core";
-import React from "react";
-import { useState } from "react";
+import React, { useState } from "react";
 import CustomSnackbar, {
     CustomSnackbarProps,
 } from "../Components/CustomSnackbar";
+import Description from "../Components/WordSuggestion/Description";
+import Form from "../Components/WordSuggestion/Form";
 import Layout from "./Layout";
-import InfoIcon from "@material-ui/icons/InfoOutlined";
-import { newWord } from "../utils";
 import { trans } from "matice";
+import InfoIcon from "../Components/WordSuggestion/InfoIcon";
 
 const WordSuggestion = () => {
-    const [norInput, setNorInput] = useState({ val: "", error: false });
-    const [samInput, setSamInput] = useState({ val: "", error: false });
-    const [description, setDescription] = useState("");
-    const [name, setName] = useState("");
-    const [isSubmitting, setIsSubmitting] = useState(false);
     const [snackbarProps, setSnackbarProps] = useState<CustomSnackbarProps>({
         type: "success",
         open: false,
         message: "Ordet er lagret!",
         handleClose: () => setSnackbarProps({ ...snackbarProps, open: false }),
     });
-    const [tooltipOpen, setTooltipOpen] = useState(false);
 
-    const validate = () => {
-        if (samInput.val === "") {
-            setSamInput({ ...samInput, error: true });
-        } else if (norInput.val === "") {
-            setNorInput({ ...norInput, error: true });
-        } else {
-            submit();
-        }
-    };
-    const submit = async () => {
-        setIsSubmitting(true);
-        const res = await newWord({
-            norwegian: norInput.val,
-            sami: samInput.val,
-            description: description,
-            email: name,
-        });
-        setIsSubmitting(false);
-
-        switch (res.status) {
+    const displayResponse = (status: number) => {
+        switch (status) {
             case 201:
                 setSnackbarProps({
                     ...snackbarProps,
@@ -78,111 +47,24 @@ const WordSuggestion = () => {
 
     return (
         <Layout>
-            <div className="flex flex-col items-center justify-center h-full overflow-x-hidden overflow-y-auto lg:h-auto">
-                <div className="hidden w-full p-6 md:block md:w-3/6 lg:w-2/6">
-                    <h1 className="p-8 text-3xl text-center text-gray-600">
-                        {trans("WordSuggestion.header")}
-                    </h1>
-                    <p>{trans("WordSuggestion.subtitle")}</p>
-                </div>
-                <div className="flex items-center w-full py-6 md:hidden">
-                    <Tooltip
-                        title={trans("WordSuggestion.header")}
-                        open={tooltipOpen}
-                        onClose={() => setTooltipOpen(false)}
-                    >
-                        <IconButton
-                            onClick={() => setTooltipOpen(!tooltipOpen)}
-                        >
-                            <InfoIcon color="primary" />
-                        </IconButton>
-                    </Tooltip>
-                    <h1 className="text-3xl text-center text-gray-600">
-                        {trans("WordSuggestion.header")}
-                    </h1>
-                </div>
-                <form className="flex flex-col w-full h-full px-2 pb-6 md:w-3/6 lg:w-2/6">
-                    <div className="my-2 md:my-4">
-                        <TextField
-                            fullWidth
-                            variant="outlined"
-                            label={trans("WordSuggestion.norwegian")}
-                            error={norInput.error}
-                            helperText={
-                                norInput.error &&
-                                trans("WordSuggestion.invalid")
-                            }
-                            onChange={(
-                                e: React.ChangeEvent<HTMLInputElement>
-                            ) =>
-                                setNorInput({
-                                    error: false,
-                                    val: e.target.value,
-                                })
-                            }
-                        />
-                    </div>
-                    <div className="my-2 md:my-4">
-                        <TextField
-                            fullWidth
-                            variant="outlined"
-                            label={trans("WordSuggestion.sami")}
-                            error={samInput.error}
-                            helperText={
-                                samInput.error &&
-                                trans("WordSuggestion.invalid")
-                            }
-                            onChange={(
-                                e: React.ChangeEvent<HTMLInputElement>
-                            ) =>
-                                setSamInput({
-                                    error: false,
-                                    val: e.target.value,
-                                })
-                            }
-                        />
-                    </div>
-                    <div className="my-2 md:my-4">
-                        <TextField
-                            fullWidth
-                            variant="outlined"
-                            multiline
-                            rows="3"
-                            label={trans("WordSuggestion.description")}
-                            onChange={(
-                                e: React.ChangeEvent<HTMLInputElement>
-                            ) => setDescription(e.target.value)}
-                        />
-                    </div>
-                    <div className="my-2 md:my-4">
-                        <TextField
-                            fullWidth
-                            variant="outlined"
-                            label={trans("WordSuggestion.email")}
-                            onChange={(
-                                e: React.ChangeEvent<HTMLInputElement>
-                            ) => setName(e.target.value)}
-                        />
-                    </div>
-                    <div className="flex items-center pt-4 pb-8">
-                        <Button
-                            className="w-64 h-12"
-                            variant="contained"
-                            color="primary"
-                            disabled={isSubmitting}
-                            onClick={validate}
-                        >
-                            {trans("WordSuggestion.btnText")}
-                        </Button>
-                        <div
-                            className={
-                                "mx-8 " + (isSubmitting ? "inline" : "hidden")
-                            }
-                        >
-                            <CircularProgress size={30} color="primary" />
+            <div className="flex justify-center ">
+                <div className="flex w-full md:border md:border-blue-200 md:w-8/12 md:py-8 md:mt-16 rounded-xl">
+                    <div className="w-full md:w-8/12">
+                        <h1 className="hidden ml-2 text-3xl md:flex md:ml-8 ">
+                            {trans("WordSuggestion.header")}
+                        </h1>
+                        <div className="flex justify-between md:hidden">
+                            <h1 className="mt-2 ml-2 text-3xl">
+                                {trans("WordSuggestion.header")}
+                            </h1>
+                            <InfoIcon />
                         </div>
+                        <Form result={(status) => displayResponse(status)} />
                     </div>
-                </form>
+                    <div className="hidden w-4/12 p-4 mt-16 md:block">
+                        <Description />
+                    </div>
+                </div>
             </div>
             <CustomSnackbar {...snackbarProps} />
         </Layout>

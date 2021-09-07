@@ -1,15 +1,14 @@
 <?php
 
 return [
+    'header' => 'Search in Julev\'s dictionary database',
     'SearchField' => [
         'search' => 'Search',
         'langModalHeader' => 'Select languages for translation',
         'dictModalHeader' => 'Select dictionaries for translation'
     ],
     'NoSearch' => [
-        'header' => [
-            'main_1' => 'Julev is developed by ',
-            'main_2' => 'in cooperation with ',
-        ]
+        'header' => 'Welcome',
+       'subtitle' => 'Search in Anders Kintels dictionary 2013, Sáme Giellagálldo 2013 and Medisijnalasj báhkogirjje.' 
     ]
 ];

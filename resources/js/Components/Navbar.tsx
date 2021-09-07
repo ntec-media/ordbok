@@ -30,33 +30,30 @@ export default function Navbar() {
         <>
             <Disclosure
                 as="nav"
-                className="z-50 w-full bg-white border-b-2 border-gray-300 shadow"
+                className="z-50 w-full bg-blue-800 border-b-2 border-gray-300 shadow"
             >
                 {({ open }) => (
                     <>
-                        <div className="px-4 mx-auto max-w-7xl sm:px-6 lg:px-8">
-                            <div className="flex justify-between h-16">
+                        <div className="mx-auto max-w-7xl">
+                            <div className="flex justify-between h-16 mx-4 md:h-24 lg:mx-0">
                                 <div className="flex">
                                     <div className="flex items-center flex-shrink-0">
                                         <img
-                                            className="block w-auto h-8 lg:hidden rounded-3xl"
+                                            onClick={() =>
+                                                (window.location.href = "/")
+                                            }
+                                            className="block w-auto h-16 -ml-4 cursor-pointer md:h-24 md:hidden"
                                             src="https://www.beneathnorthernlights.com/wp-content/uploads/2019/01/Design-uten-navn-5-e1549918936927-746x550.jpg"
-                                            alt="Workflow"
-                                        />
-                                        <img
-                                            className="hidden w-auto h-8 lg:block"
-                                            src="https://www.beneathnorthernlights.com/wp-content/uploads/2019/01/Design-uten-navn-5-e1549918936927-746x550.jpg"
-                                            alt="Workflow"
+                                            alt="sami flag"
                                         />
                                     </div>
-                                    <div className="hidden sm:ml-6 sm:flex sm:space-x-8">
-                                        {/* Current: "border-indigo-500 text-gray-900", Default: "border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700" */}
+                                    <div className="hidden sm:mr-6 sm:flex sm:space-x-8">
                                         <InertiaLink
                                             href="/"
                                             className={
                                                 path === "/"
-                                                    ? "border-indigo-500 text-gray-900 inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium"
-                                                    : "border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700 inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium"
+                                                    ? "border-red-600 text-blue-300 inline-flex items-center px-1 pt-1 border-b-2 text-lg"
+                                                    : "border-transparent text-white     hover:border-gray-300 hover:text-blue-400 inline-flex items-center px-1 pt-1 border-b-2 text-lg "
                                             }
                                         >
                                             {trans("Layout.navbar.search")}
@@ -65,8 +62,8 @@ export default function Navbar() {
                                             href="/word"
                                             className={
                                                 path === "/word"
-                                                    ? "border-indigo-500 text-gray-900 inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium"
-                                                    : "border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700 inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium"
+                                                    ? "border-red-600 text-blue-300 inline-flex items-center px-1 pt-1 border-b-2 text-lg "
+                                                    : "border-transparent text-white hover:border-gray-300 hover:text-blue-400 inline-flex items-center px-1 pt-1 border-b-2 text-lg"
                                             }
                                         >
                                             {trans(
@@ -77,8 +74,8 @@ export default function Navbar() {
                                             href="/statistics"
                                             className={
                                                 path === "/statistics"
-                                                    ? "border-indigo-500 text-gray-900 inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium"
-                                                    : "border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700 inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium"
+                                                    ? "border-red-600 text-blue-300 inline-flex items-center px-1 pt-1 border-b-2 text-lg"
+                                                    : "border-transparent text-white hover:border-gray-300 hover:text-blue-400 inline-flex items-center px-1 pt-1 border-b-2 text-lg"
                                             }
                                         >
                                             {trans("Layout.navbar.statistics")}
@@ -87,8 +84,8 @@ export default function Navbar() {
                                             href="/app"
                                             className={
                                                 path === "/app"
-                                                    ? "border-indigo-500 text-gray-900 inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium"
-                                                    : "border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700 inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium"
+                                                    ? "border-red-600 text-blue-300 inline-flex items-center px-1 pt-1 border-b-2 text-lg"
+                                                    : "border-transparent text-white hover:border-gray-300 hover:text-blue-400 inline-flex items-center px-1 pt-1 border-b-2 text-lg"
                                             }
                                         >
                                             {trans("Layout.navbar.app")}
@@ -115,7 +112,7 @@ export default function Navbar() {
                                 </div>
                                 <div className="flex items-center -mr-2 sm:hidden">
                                     {/* Mobile menu button */}
-                                    <Disclosure.Button className="inline-flex items-center justify-center p-2 text-gray-400 rounded-md hover:text-gray-500 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-indigo-500">
+                                    <Disclosure.Button className="inline-flex items-center justify-center p-2 text-gray-400 rounded-md hover:text-white hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-indigo-500">
                                         <span className="sr-only">
                                             Open main menu
                                         </span>
@@ -137,36 +134,36 @@ export default function Navbar() {
 
                         <Disclosure.Panel className="sm:hidden">
                             <div className="pt-2 pb-3 space-y-1">
-                                {/* Current: "bg-indigo-50 border-indigo-500 text-indigo-700", Default: "border-transparent text-gray-500 hover:bg-gray-50 hover:border-gray-300 hover:text-gray-700" */}
+                                {/* Current: "bg-indigo-50 border-indigo-500 text-indigo-700", Default: "border-transparent text-white hover:bg-gray-50 hover:border-gray-300 hover:text-gray-700" */}
                                 <InertiaLink
                                     href="/"
                                     className={
                                         path === "/"
                                             ? "bg-indigo-50 border-indigo-500 text-indigo-700 block pl-3 pr-4 py-2 border-l-4 text-base font-medium"
-                                            : "border-transparent text-gray-500 hover:bg-gray-50 hover:border-gray-300 hover:text-gray-700 block pl-3 pr-4 py-2 border-l-4 text-base font-medium"
+                                            : "border-transparent text-white hover:bg-gray-50 hover:border-gray-300 hover:text-gray-700 block pl-3 pr-4 py-2 border-l-4 text-base font-medium"
                                     }
                                 >
-                                    Søk
+                                    {trans("Layout.navbar.search")}
                                 </InertiaLink>
                                 <InertiaLink
                                     href="/word"
                                     className={
                                         path === "/word"
                                             ? "bg-indigo-50 border-indigo-500 text-indigo-700 block pl-3 pr-4 py-2 border-l-4 text-base font-medium"
-                                            : "border-transparent text-gray-500 hover:bg-gray-50 hover:border-gray-300 hover:text-gray-700 block pl-3 pr-4 py-2 border-l-4 text-base font-medium"
+                                            : "border-transparent text-white hover:bg-gray-50 hover:border-gray-300 hover:text-gray-700 block pl-3 pr-4 py-2 border-l-4 text-base font-medium"
                                     }
                                 >
-                                    Nytt ord
+                                    {trans("Layout.navbar.wordSuggestion")}
                                 </InertiaLink>
                                 <InertiaLink
                                     href="/statistics"
                                     className={
                                         path === "/statistics"
                                             ? "bg-indigo-50 border-indigo-500 text-indigo-700 block pl-3 pr-4 py-2 border-l-4 text-base font-medium"
-                                            : "border-transparent text-gray-500 hover:bg-gray-50 hover:border-gray-300 hover:text-gray-700 block pl-3 pr-4 py-2 border-l-4 text-base font-medium"
+                                            : "border-transparent text-white hover:bg-gray-50 hover:border-gray-300 hover:text-gray-700 block pl-3 pr-4 py-2 border-l-4 text-base font-medium"
                                     }
                                 >
-                                    Statistikk
+                                    {trans("Layout.navbar.statistics")}
                                 </InertiaLink>
 
                                 <p
@@ -174,10 +171,10 @@ export default function Navbar() {
                                     className={
                                         path === "/lang"
                                             ? "bg-indigo-50 border-indigo-500 text-indigo-700 block pl-3 pr-4 py-2 border-l-4 text-base font-medium"
-                                            : "border-transparent text-gray-500 hover:bg-gray-50 hover:border-gray-300 hover:text-gray-700 block pl-3 pr-4 py-2 border-l-4 text-base font-medium"
+                                            : "border-transparent text-white hover:bg-gray-50 hover:border-gray-300 hover:text-gray-700 block pl-3 pr-4 py-2 border-l-4 text-base font-medium"
                                     }
                                 >
-                                    Velg språk
+                                    {trans("Layout.navbar.choose_language")}
                                 </p>
 
                                 <InertiaLink
@@ -185,10 +182,10 @@ export default function Navbar() {
                                     className={
                                         path === "/app"
                                             ? "bg-indigo-50 border-indigo-500 text-indigo-700 block pl-3 pr-4 py-2 border-l-4 text-base font-medium"
-                                            : "border-transparent text-gray-500 hover:bg-gray-50 hover:border-gray-300 hover:text-gray-700 block pl-3 pr-4 py-2 border-l-4 text-base font-medium"
+                                            : "border-transparent text-white hover:bg-gray-50 hover:border-gray-300 hover:text-gray-700 block pl-3 pr-4 py-2 border-l-4 text-base font-medium"
                                     }
                                 >
-                                    Last ned App
+                                    {trans("Layout.navbar.app")}
                                 </InertiaLink>
 
                                 <InertiaLink
@@ -196,10 +193,10 @@ export default function Navbar() {
                                     className={
                                         path === "/about"
                                             ? "bg-indigo-50 border-indigo-500 text-indigo-700 block pl-3 pr-4 py-2 border-l-4 text-base font-medium"
-                                            : "border-transparent text-gray-500 hover:bg-gray-50 hover:border-gray-300 hover:text-gray-700 block pl-3 pr-4 py-2 border-l-4 text-base font-medium"
+                                            : "border-transparent text-white hover:bg-gray-50 hover:border-gray-300 hover:text-gray-700 block pl-3 pr-4 py-2 border-l-4 text-base font-medium"
                                     }
                                 >
-                                    Om appen
+                                    {trans("Layout.navbar.about")}
                                 </InertiaLink>
                             </div>
                         </Disclosure.Panel>

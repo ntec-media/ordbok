@@ -5,12 +5,14 @@ return [
         'search' => 'Search',
         'wordSuggestion' => 'Word suggestion',
         'statistics' => 'Statistics',
-        'app' => 'Download',
+        'app' => 'Download App',
         'languages' => [
             'nb' => 'Norwegian',
             'en' => 'English',
             'smj' => 'Lule Sami',
         ],
+        'choose_language' => 'Choose Language',
+        'about' => 'About the app' 
     ],
     'footer' => [
         'content' => 'Julev is a online dictionary developed by Ntec Media with support from the  Sámi Parliament of Norway',
