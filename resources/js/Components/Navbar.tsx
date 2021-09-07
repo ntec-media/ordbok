@@ -61,7 +61,7 @@ export default function Navbar() {
                                             />
                                         </InertiaLink>
                                     </div>
-                                    <div className="hidden sm:mr-6 sm:flex sm:space-x-8">
+                                    <div className="hidden mr-6 space-x-8 md:flex">
                                         <InertiaLink
                                             href="/"
                                             className={
@@ -126,7 +126,7 @@ export default function Navbar() {
                                         }
                                     />
                                 </div>
-                                <div className="flex items-center -mr-2 sm:hidden">
+                                <div className="flex items-center -mr-2 md:hidden">
                                     {/* Mobile menu button */}
                                     <Disclosure.Button className="inline-flex items-center justify-center p-2 text-gray-400 rounded-md hover:text-white hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-indigo-500">
                                         <span className="sr-only">
@@ -148,7 +148,7 @@ export default function Navbar() {
                             </div>
                         </div>
 
-                        <Disclosure.Panel className="sm:hidden">
+                        <Disclosure.Panel className="md:hidden">
                             <div className="pt-2 pb-3 space-y-1">
                                 {/* Current: "bg-indigo-50 border-indigo-500 text-indigo-700", Default: "border-transparent text-white hover:bg-gray-50 hover:border-gray-300 hover:text-gray-700" */}
                                 <InertiaLink

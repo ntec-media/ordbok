@@ -1,6 +1,7 @@
 import {Button, List, ListItem} from '@material-ui/core';
+import {trans} from 'matice';
 import React, {useEffect, useState} from 'react';
-import {ILang} from '../../interfaces';
+import {ILang, localDictsSupported} from '../../interfaces';
 import ISearchResult from '../../Interfaces/ISearchResult';
 import {search} from '../../utils';
 import NoSearch from './NoSearch';
@@ -35,7 +36,8 @@ const SearchResultList = (props: Props) => {
             search(
                 props.input,
                 page,
-                props.dicts.filter(dict => dict.selected)
+                props.dicts?.filter(dict => dict.selected) ||
+                    localDictsSupported
             ).then(res => {
                 if (page === 1) {
                     setResults(res);
@@ -51,7 +53,11 @@ const SearchResultList = (props: Props) => {
             {results.length > 0 ? (
                 <>
                     <h2 className="px-4 text-gray-500">
-                        Fant {results.length} ord
+                        {trans('Search.SearchResult.found') +
+                            ' ' +
+                            results.length +
+                            ' ' +
+                            trans('Search.SearchResult.words')}
                     </h2>
                     <List>
                         {results.map((res: ISearchResult, index: number) => (

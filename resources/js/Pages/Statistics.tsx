@@ -82,7 +82,7 @@ const Statistics = () => {
 
     return (
         <Layout>
-            <div className="relative flex flex-col h-full px-4">
+            <div className="flex flex-col px-4 ">
                 <div className="flex items-center justify-around mt-8">
                     <TableChartButtons
                         showTable={showTable}
@@ -91,7 +91,7 @@ const Statistics = () => {
                     <Tab setTab={newTab => setCurrentTab(newTab)} />
                     <p>{}</p>
                 </div>
-                <div className="flex justify-center mt-8 h-5/6 md:mx-24">
+                <div className="flex justify-center mt-8 md:mx-24">
                     {showTable ? (
                         <Table data={data} labels={labels} />
                     ) : (
