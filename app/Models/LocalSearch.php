@@ -57,13 +57,13 @@ class LocalSearch implements SearchInterface
         ->where('fra', 'like', '%' . $request->input('search') . '%')
         ->whereIn('kredittering', $request->input('dicts'))
         ->paginate(10, ['*']);
-        
+
         $query8 = DB::table('ord_norsk_samisk_BACKUP')
         ->where('til', 'like', '%' . $request->input('search') . '%')
         ->whereIn('kredittering', $request->input('dicts'))
         ->paginate(10, ['*']);
 
-        if($currentPage == 1) {
+        if ($currentPage == 1) {
             return $query1
             ->merge($query2->items())
             ->merge($query3->items())
