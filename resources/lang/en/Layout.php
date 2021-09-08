@@ -11,7 +11,9 @@ return [
             'en' => 'English',
             'smj' => 'Lule Sami',
         ],
-        'choose_language' => 'Choose Language',
+        'choose_language' => 'Choose language',
+        'choose_translations' => 'Choose language for translation',
+        'choose_dicts' => 'Choose dictionaries',
         'about' => 'About the app' 
     ],
     'footer' => [

@@ -17,24 +17,23 @@ class LocalSearch implements SearchInterface
     public function words(SearchRequest $request)
     {
         $currentPage = $request->input('page');
-
         Paginator::currentPageResolver(function () use ($currentPage) {
             return $currentPage;
         });
 
-        $data = DB::table('ord_norsk_samisk_BACKUP')
-        ->where('fra', 'like', $request->input('search'))
-        ->orWhere('til', 'like', $request->input('search'))
-        ->orWhere('fra', 'like', '%' . $request->input('search'))
-        ->orWhere('til', 'like', '%' . $request->input('search'))
-        ->orWhere('fra', 'like', '%' . $request->input('search') . '%')
-        ->orWhere('til', 'like', '%' . $request->input('search') . '%')
-        ->orderBy('fra')
-        ->simplePaginate(50);
+        $search = preg_replace('/((?<=[^*])( ))+/', '* ', $request->input('search'));
 
-        $this->statistic->registerSearch();
+        $search = str_ends_with($search, '*') ? $search : $search . '*';
 
-        return $data->items();
+        $results = DB::table('ord_norsk_samisk_BACKUP')
+                    ->select('*')
+                    ->whereIn('kredittering', $request->input('dicts'))
+                    ->whereRaw("MATCH (fra,til) AGAINST (? IN BOOLEAN MODE)", $search)
+                    ->orderByRaw("MATCH (fra) AGAINST (? IN BOOLEAN MODE) DESC", $search)
+                    ->orderByRaw("MATCH (til) AGAINST (? IN BOOLEAN MODE) DESC", $search);
+
+        return $results->paginate(25)->items();
+        ;
     }
 
     /**

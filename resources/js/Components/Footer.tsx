@@ -1,5 +1,5 @@
-import { trans } from "matice";
-import React from "react";
+import {trans} from 'matice';
+import React from 'react';
 
 const Footer = () => {
     return (
@@ -22,11 +22,11 @@ const Footer = () => {
                     </div>
                     <div className="flex-1">
                         <p className="flex-1">
-                            {"© Ntec Media AS " + new Date().getFullYear()}
+                            {'© Ntec Media AS ' + new Date().getFullYear()}
                         </p>
                         <p className="cursor-pointer ">Cookie Policy</p>
                     </div>
-                    <p className="flex-1">{trans("Layout.footer.content")}</p>
+                    <p className="flex-1">{trans('Layout.footer.content')}</p>
                 </div>
             </div>
         </div>

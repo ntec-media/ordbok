@@ -1,25 +1,24 @@
-import { trans } from "matice";
-import React from "react";
-import { useState } from "react";
+import {trans} from 'matice';
+import React from 'react';
+import {useState} from 'react';
 
-const Tab = (props: { setTab: (newTab: string) => void }) => {
+const Tab = (props: {setTab: (newTab: string) => void}) => {
     const [tabs, setTabs] = useState([
-        { key: "week", current: true },
-        { key: "month", current: false },
-        { key: "year", current: false },
+        {key: 'week', current: true},
+        {key: 'month', current: false},
+        {key: 'year', current: false},
     ]);
 
     function classNames(...classes: any) {
-        return classes.filter(Boolean).join(" ");
+        return classes.filter(Boolean).join(' ');
     }
 
-    const setNewTab = (newTab: { key: string; current: boolean }) => {
-        console.log(newTab);
+    const setNewTab = (newTab: {key: string; current: boolean}) => {
         setTabs(
-            tabs.map((tab) =>
+            tabs.map(tab =>
                 tab.key === newTab.key
-                    ? { ...newTab, current: true }
-                    : { ...tab, current: false }
+                    ? {...newTab, current: true}
+                    : {...tab, current: false}
             )
         );
         props.setTab(newTab.key);
@@ -35,14 +34,14 @@ const Tab = (props: { setTab: (newTab: string) => void }) => {
                     <select
                         value={trans(
                             `Statistics.${
-                                tabs.find((s) => s.current === true)?.key
+                                tabs.find(s => s.current === true)?.key
                             }`
                         )}
                         id="tabs"
                         name="tabs"
-                        onChange={(e) => {
+                        onChange={e => {
                             const newTab = tabs.find(
-                                (t) =>
+                                t =>
                                     trans(`Statistics.${t.key}`) ===
                                     e.target.value
                             );
@@ -50,7 +49,7 @@ const Tab = (props: { setTab: (newTab: string) => void }) => {
                         }}
                         className="block w-full border-gray-300 rounded-md focus:ring-indigo-500 focus:border-indigo-500"
                     >
-                        {tabs.map((tab) => (
+                        {tabs.map(tab => (
                             <option
                                 key={tab.key}
                                 value={trans(`Statistics.${tab.key}`)}
@@ -71,24 +70,24 @@ const Tab = (props: { setTab: (newTab: string) => void }) => {
                                 onClick={() => setNewTab(tab)}
                                 className={classNames(
                                     tab.current
-                                        ? "text-gray-900"
-                                        : "text-gray-500 hover:text-gray-700",
-                                    tabIdx === 0 ? "rounded-l-lg" : "",
+                                        ? 'text-gray-900'
+                                        : 'text-gray-500 hover:text-gray-700',
+                                    tabIdx === 0 ? 'rounded-l-lg' : '',
                                     tabIdx === tabs.length - 1
-                                        ? "rounded-r-lg"
-                                        : "",
-                                    "group relative min-w-0 flex-1 overflow-hidden bg-white py-4 px-4 text-sm font-medium text-center cursor-pointer hover:bg-gray-50 focus:z-10"
+                                        ? 'rounded-r-lg'
+                                        : '',
+                                    'group relative min-w-0 flex-1 overflow-hidden bg-white py-4 px-4 text-sm font-medium text-center cursor-pointer hover:bg-gray-50 focus:z-10'
                                 )}
-                                aria-current={tab.current ? "page" : undefined}
+                                aria-current={tab.current ? 'page' : undefined}
                             >
                                 <span>{trans(`Statistics.${tab.key}`)}</span>
                                 <span
                                     aria-hidden="true"
                                     className={classNames(
                                         tab.current
-                                            ? "bg-indigo-500"
-                                            : "bg-transparent",
-                                        "absolute inset-x-0 bottom-0 h-0.5"
+                                            ? 'bg-indigo-500'
+                                            : 'bg-transparent',
+                                        'absolute inset-x-0 bottom-0 h-0.5'
                                     )}
                                 />
                             </p>

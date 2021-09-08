@@ -1,11 +1,11 @@
-import { Snackbar } from "@material-ui/core";
-import { Alert } from "@material-ui/lab";
-import React from "react";
+import {Snackbar} from '@material-ui/core';
+import {Alert} from '@material-ui/lab';
+import React from 'react';
 
 export interface CustomSnackbarProps {
     open: boolean;
     handleClose?: () => void;
-    type: "error" | "warning" | "info" | "success";
+    type: 'error' | 'warning' | 'info' | 'success';
     message: string;
 }
 
@@ -18,8 +18,8 @@ const CustomSnackbar = (props: CustomSnackbarProps) => {
                     autoHideDuration={4000}
                     onClose={props.handleClose}
                     anchorOrigin={{
-                        vertical: "bottom",
-                        horizontal: "left",
+                        vertical: 'bottom',
+                        horizontal: 'left',
                     }}
                 >
                     <Alert

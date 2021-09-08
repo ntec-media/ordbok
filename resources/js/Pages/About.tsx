@@ -1,15 +1,15 @@
-import { trans } from "matice";
-import React from "react";
-import Layout from "./Layout";
+import {trans} from 'matice';
+import React from 'react';
+import Layout from './Layout';
 
 const About = () => {
     return (
         <Layout>
             <div className="flex flex-col justify-between h-full p-4">
                 <div>
-                    <h1 className="font-bold">{trans("About.header")}</h1>
+                    <h1 className="font-bold">{trans('About.header')}</h1>
                     <br />
-                    <p>{trans("About.main")}</p>
+                    <p>{trans('About.main')}</p>
                     <div className="mt-6">
                         <a
                             className="block text-indigo-600"
