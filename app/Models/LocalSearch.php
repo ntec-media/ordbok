@@ -25,7 +25,7 @@ class LocalSearch implements SearchInterface
 
         $search = str_ends_with($search, '*') ? $search : $search . '*';
 
-        $results = DB::table('ord_norsk_samisk_BACKUP')
+        $results = DB::table('smj_translations')
                     ->select('*')
                     ->whereIn('kredittering', $request->input('dicts'))
                     ->whereRaw("MATCH (fra,til) AGAINST (? IN BOOLEAN MODE)", $search)
