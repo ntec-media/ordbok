@@ -4,6 +4,7 @@ namespace App\Models;
 
 use App\Http\Requests\SearchRequest;
 use App\Interfaces\SearchInterface;
+use App\Jobs\ProcessStatistic;
 use Illuminate\Pagination\Paginator;
 use Illuminate\Support\Facades\DB;
 
@@ -32,8 +33,9 @@ class LocalSearch implements SearchInterface
                     ->orderByRaw("MATCH (fra) AGAINST (? IN BOOLEAN MODE) DESC", $search)
                     ->orderByRaw("MATCH (til) AGAINST (? IN BOOLEAN MODE) DESC", $search);
 
+        ProcessStatistic::dispatch();
+
         return $results->paginate(25)->items();
-        ;
     }
 
     /**
