@@ -22,8 +22,7 @@ return [
     'cookie' => [
         'header' => 'Cookie declaration',
         'content' => 'Julev uses cookies to optimize your personal prefrences. We save language,
-         dictionaries and which languages you want to get translations from, The application also saves information used to 
-         communicating with the server.',
+         dictionaries and which languages you want to get translations from.',
         'btnText' => 'I understand'
     ]
 ];

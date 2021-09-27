@@ -22,9 +22,7 @@ return [
 
     'cookie' => [
         'header' => 'Informasjonskapselerklæring',
-        'content' => 'Julev benytter seg av informasjonskapsler
-        (cookies) for å optimalisere dine personlige
-        preferanser. Vi lagrer spårkvalg, ordbøker som
+        'content' => 'Julev benytter seg av informasjonskapsler. Vi lagrer språkvalg, ordbøker som
         du ønsker å benytte og språk du ønsker å
         oversette fra.',
         'btnText' => 'Jeg forstår'

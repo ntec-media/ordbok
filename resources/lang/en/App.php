@@ -2,5 +2,5 @@
 
 return [
     'header' => 'Download Julev to mobile',
-    'subtitle' => 'Lookup words wherever you are in the world.'
+    'subtitle' => 'Look up words wherever you are in the world.'
 ];
