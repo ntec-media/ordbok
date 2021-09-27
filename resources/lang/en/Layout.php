@@ -8,8 +8,8 @@ return [
         'app' => 'Download App',
         'languages' => [
             'nb' => 'Norwegian',
-            'en' => 'English',
             'smj' => 'Lule Sami',
+            'en' => 'English',
         ],
         'choose_language' => 'Choose language',
         'choose_translations' => 'Choose language for translation',

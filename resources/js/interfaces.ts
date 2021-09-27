@@ -23,8 +23,8 @@ export interface ILang {
 // Short must be same as i language->Layout php file
 export const languagesSupported: ILang[] = [
     {name: 'Norsk', short: 'nb'},
-    {name: 'Engelsk', short: 'en'},
     {name: 'Lulesamisk', short: 'smj'},
+    {name: 'Engelsk', short: 'en'},
 ];
 
 // Based of Divvun's current API.

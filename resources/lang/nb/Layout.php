@@ -8,9 +8,13 @@ return [
         'app' => 'Last ned app',
         'languages' => [
             'nb' => 'Norsk',
-            'en' => 'Engelsk',
             'smj' => 'Lulesamisk',
-        ]
+            'en' => 'Engelsk',
+        ],
+        'choose_language' => 'Velg språk',
+        'choose_translations' => 'Velg språk for oversettelse',
+        'choose_dicts' => 'Velg ordbøker',
+        'about' => 'Om appen' 
     ],
     'footer' => [
         'content' => 'Julev er en ordbok som er utviklet av Ntec Media AS i samarbeid med UiT og med støtte fra sametinget.'
