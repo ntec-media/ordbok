@@ -8,8 +8,8 @@ return [
         'app' => 'Last ned app',
         'languages' => [
             'nb' => 'Norsk',
-            'en' => 'Engelsk',
             'smj' => 'Lulesamisk',
+            'en' => 'Engelsk',
         ]
     ],
     'footer' => [
