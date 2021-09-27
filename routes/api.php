@@ -1,7 +1,8 @@
 <?php
 
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\LocalDictionaryController;
+use App\Http\Controllers\StatisticsController;
 
 /*
 |--------------------------------------------------------------------------
@@ -14,6 +15,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::middleware('auth:api')->get('/user', function (Request $request) {
-    return $request->user();
-});
+Route::post("/search", [LocalDictionaryController::class, "words"]);
+Route::post("/statistic/week", [StatisticsController::class, "week"]);
+Route::post("/statistic/month", [StatisticsController::class, "month"]);
+Route::post("/statistic/year", [StatisticsController::class, "year"]);

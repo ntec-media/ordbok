@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\NewWordController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -13,4 +14,15 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::inertia('/', 'Welcome');
+// Search
+Route::inertia("/", "Search");
+Route::inertia('/statistics', 'Statistics');
+Route::inertia('/app', 'DownloadApp');
+Route::inertia('/word', 'WordSuggestion');
+Route::inertia('/about', "About");
+
+// New Word
+Route::post("/word", [NewWordController::class, "store"]);
+
+
+
