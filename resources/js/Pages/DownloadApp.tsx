@@ -16,6 +16,7 @@ const DownloadApp = () => (
                     <a
                         className="w-1/2"
                         href="https://apps.apple.com/no/app/julevb%C3%A1go/id878913855"
+                        target="_blank"
                     >
                         <img
                             className="w-full"
@@ -26,6 +27,7 @@ const DownloadApp = () => (
                     <a
                         className="w-1/2"
                         href="https://play.google.com/store/apps/details?id=no.ntec.same"
+                        target="_blank"
                     >
                         <img
                             className="w-full"
