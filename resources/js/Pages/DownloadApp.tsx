@@ -5,11 +5,6 @@ import Layout from './Layout';
 const DownloadApp = () => (
     <Layout>
         <div className="flex flex-row justify-around mt-4 md:mt-20">
-            <img
-                className="hidden w-3/12 md:flex"
-                src="https://www.mainfreight.com/getmedia/c50048a6-d73d-4cb9-82b7-6befbda53ebe/MF-mobile-app.png?width=226&height=500"
-                alt="julev illustration"
-            />
             <div className="flex flex-col justify-center w-11/12 text-center md:w-3/6">
                 <h1 className="text-3xl text-indigo-800 lg:text-5xl">
                     {trans('App.header')}
