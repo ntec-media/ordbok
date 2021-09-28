@@ -23,7 +23,7 @@ return [
     'september' => 'Ragátmánno',
     'october' => 'Gålgådismánno',
     'november' => 'Basádismánno',
-    'december' => 'Desember',
-    'search' => 'Javllamánno',
+    'december' => 'Javllamánno',
+    'search' => 'Galles li åhtsåm',
     'number_of_search' => 'Galles li åhtsåm'
 ];
