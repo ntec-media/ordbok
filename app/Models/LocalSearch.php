@@ -26,13 +26,13 @@ class LocalSearch implements SearchInterface
 
         $results = DB::select(
             "select * from smj_translations where fra = '{$search}' 
-        UNION select * from ordbok.smj_translations where fra like '{$search}%'
-        UNION select * from ordbok.smj_translations where fra like '%{$search}'
-        UNION select * from ordbok.smj_translations where fra like '%{$search}%'
-        UNION SELECT * FROM ordbok.smj_translations where til = '{$search}'
-        UNION select * from ordbok.smj_translations where til like '{$search}%'
-        UNION select * from ordbok.smj_translations where til like '%{$search}'
-        UNION select * from ordbok.smj_translations where til like '%{$search}%'
+        UNION select * from smj_translations where fra like '{$search}%'
+        UNION select * from smj_translations where fra like '%{$search}'
+        UNION select * from smj_translations where fra like '%{$search}%'
+        UNION SELECT * FROM smj_translations where til = '{$search}'
+        UNION select * from smj_translations where til like '{$search}%'
+        UNION select * from smj_translations where til like '%{$search}'
+        UNION select * from smj_translations where til like '%{$search}%'
         limit 250
         "
         );
