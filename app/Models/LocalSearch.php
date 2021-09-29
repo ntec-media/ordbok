@@ -5,7 +5,6 @@ namespace App\Models;
 use App\Http\Requests\SearchRequest;
 use App\Interfaces\SearchInterface;
 use App\Jobs\ProcessStatistic;
-use Illuminate\Pagination\Paginator;
 use Illuminate\Support\Facades\DB;
 
 class LocalSearch implements SearchInterface
@@ -17,10 +16,10 @@ class LocalSearch implements SearchInterface
 
     public function words(SearchRequest $request)
     {
-
         $search = $request->input('search');
 
-        $results = DB::select("select * from smj_translations where fra = '{$search}'
+        $results = DB::select(
+            "select * from smj_translations where fra = '{$search}'
         UNION select * from ordbok.smj_translations where fra like '{$search}%'
         UNION select * from ordbok.smj_translations where fra like '%{$search}'
         UNION select * from ordbok.smj_translations where fra like '%{$search}%'
@@ -30,11 +29,11 @@ class LocalSearch implements SearchInterface
         UNION select * from ordbok.smj_translations where til like '%{$search}%'
         limit 250
         "
-    );
+        );
+
         return $results;
 
         ProcessStatistic::dispatch();
-
     }
 
     /**
