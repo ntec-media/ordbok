@@ -52,19 +52,26 @@ const SearchResultList = (props: Props) => {
         <div>
             {results.length > 0 ? (
                 <>
-                    <h2 className="px-4 text-gray-500">
-                        {results.length === 250
-                            ? 'Viser 250 ord'
-                            : trans('Search.SearchResult.found') +
-                              ' ' +
-                              results.length +
-                              ' ' +
-                              trans('Search.SearchResult.words')}
-                    </h2>
+                    <div className="flex justify-between w-full mt-2">
+                        <h2 className="px-4 text-gray-500">
+                            {results.length === 250
+                                ? 'Viser 250 ord'
+                                : trans('Search.SearchResult.found') +
+                                  ' ' +
+                                  results.length +
+                                  ' ' +
+                                  trans('Search.SearchResult.words')}
+                        </h2>
+                        <h2 className="hidden px-4 text-gray-500 md:flex">
+                            {props.dicts.map(
+                                dict => dict.selected && dict.name + ', '
+                            )}
+                        </h2>
+                    </div>
                     <List>
                         {results.map((res: ISearchResult, index: number) => (
                             <ListItem key={index} className="py-2">
-                                <ResultCard {...res} />
+                                <ResultCard input={props.input} result={res} />
                             </ListItem>
                         ))}
                     </List>
