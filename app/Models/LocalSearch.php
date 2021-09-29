@@ -17,25 +17,24 @@ class LocalSearch implements SearchInterface
 
     public function words(SearchRequest $request)
     {
-        $currentPage = $request->input('page');
-        Paginator::currentPageResolver(function () use ($currentPage) {
-            return $currentPage;
-        });
 
-        $search = preg_replace('/((?<=[^*])( ))+/', '* ', $request->input('search'));
+        $search = $request->input('search');
 
-        $search = str_ends_with($search, '*') ? $search : $search . '*';
-
-        $results = DB::table('smj_translations')
-                    ->select('*')
-                    ->whereIn('kredittering', $request->input('dicts'))
-                    ->whereRaw("MATCH (fra,til) AGAINST (? IN BOOLEAN MODE)", $search)
-                    ->orderByRaw("MATCH (fra) AGAINST (? IN BOOLEAN MODE) DESC", $search)
-                    ->orderByRaw("MATCH (til) AGAINST (? IN BOOLEAN MODE) DESC", $search);
+        $results = DB::select("select * from smj_translations where fra = '{$search}'
+        UNION select * from ordbok.smj_translations where fra like '{$search}%'
+        UNION select * from ordbok.smj_translations where fra like '%{$search}'
+        UNION select * from ordbok.smj_translations where fra like '%{$search}%'
+        UNION SELECT * FROM ordbok.smj_translations where til = '{$search}'
+        UNION select * from ordbok.smj_translations where til like '{$search}%'
+        UNION select * from ordbok.smj_translations where til like '%{$search}'
+        UNION select * from ordbok.smj_translations where til like '%{$search}%'
+        limit 250
+        "
+    );
+        return $results;
 
         ProcessStatistic::dispatch();
 
-        return $results->paginate(25)->items();
     }
 
     /**
