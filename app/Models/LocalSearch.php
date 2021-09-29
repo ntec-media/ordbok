@@ -5,7 +5,6 @@ namespace App\Models;
 use App\Http\Requests\SearchRequest;
 use App\Interfaces\SearchInterface;
 use App\Jobs\ProcessStatistic;
-use Illuminate\Pagination\Paginator;
 use Illuminate\Support\Facades\DB;
 
 class LocalSearch implements SearchInterface
@@ -17,25 +16,30 @@ class LocalSearch implements SearchInterface
 
     public function words(SearchRequest $request)
     {
-        $currentPage = $request->input('page');
-        Paginator::currentPageResolver(function () use ($currentPage) {
-            return $currentPage;
-        });
+        $search = $request->input('search');
 
-        $search = preg_replace('/((?<=[^*])( ))+/', '* ', $request->input('search'));
+        $dicts = "";
+        foreach ($request->input('dicts') as $dict) {
+            $dicts .= "'$dict', ";
+        }
+        $dicts = rtrim($dicts, ", ");
 
-        $search = str_ends_with($search, '*') ? $search : $search . '*';
+        $results = DB::select(
+            "select * from smj_translations where fra = '{$search}' and kredittering in ({$dicts}) 
+        UNION select * from ordbok.smj_translations where fra like '{$search}%' and kredittering in ({$dicts})
+        UNION select * from ordbok.smj_translations where fra like '%{$search}' and kredittering in ({$dicts})
+        UNION select * from ordbok.smj_translations where fra like '%{$search}%' and kredittering in ({$dicts})
+        UNION SELECT * FROM ordbok.smj_translations where til = '{$search}' and kredittering in ({$dicts})
+        UNION select * from ordbok.smj_translations where til like '{$search}%' and kredittering in ({$dicts})
+        UNION select * from ordbok.smj_translations where til like '%{$search}' and kredittering in ({$dicts})
+        UNION select * from ordbok.smj_translations where til like '%{$search}%' and kredittering in ({$dicts})
+        limit 250
+        "
+        );
 
-        $results = DB::table('smj_translations')
-                    ->select('*')
-                    ->whereIn('kredittering', $request->input('dicts'))
-                    ->whereRaw("MATCH (fra,til) AGAINST (? IN BOOLEAN MODE)", $search)
-                    ->orderByRaw("MATCH (fra) AGAINST (? IN BOOLEAN MODE) DESC", $search)
-                    ->orderByRaw("MATCH (til) AGAINST (? IN BOOLEAN MODE) DESC", $search);
+        return $results;
 
         ProcessStatistic::dispatch();
-
-        return $results->paginate(25)->items();
     }
 
     /**

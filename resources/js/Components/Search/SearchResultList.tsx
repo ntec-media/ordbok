@@ -53,11 +53,13 @@ const SearchResultList = (props: Props) => {
             {results.length > 0 ? (
                 <>
                     <h2 className="px-4 text-gray-500">
-                        {trans('Search.SearchResult.found') +
-                            ' ' +
-                            results.length +
-                            ' ' +
-                            trans('Search.SearchResult.words')}
+                        {results.length === 250
+                            ? 'Viser 250 ord'
+                            : trans('Search.SearchResult.found') +
+                              ' ' +
+                              results.length +
+                              ' ' +
+                              trans('Search.SearchResult.words')}
                     </h2>
                     <List>
                         {results.map((res: ISearchResult, index: number) => (
@@ -77,6 +79,8 @@ const SearchResultList = (props: Props) => {
                         </Button>
                     </div>
                 </>
+            ) : props.input !== '' ? (
+                <h2 className="text-xl italic text-center">Fant ingen ord</h2>
             ) : (
                 <NoSearch />
             )}
