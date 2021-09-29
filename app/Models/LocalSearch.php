@@ -18,21 +18,21 @@ class LocalSearch implements SearchInterface
     {
         $search = $request->input('search');
 
-        $dicts = "";
-        foreach ($request->input('dicts') as $dict) {
-            $dicts .= "'$dict', ";
-        }
-        $dicts = rtrim($dicts, ", ");
+        // $dicts = "";
+        // foreach ($request->input('dicts') as $dict) {
+        //     $dicts .= "'$dict', ";
+        // }
+        // $dicts = rtrim($dicts, ", ");
 
         $results = DB::select(
-            "select * from smj_translations where fra = '{$search}' and kredittering in ({$dicts}) 
-        UNION select * from ordbok.smj_translations where fra like '{$search}%' and kredittering in ({$dicts})
-        UNION select * from ordbok.smj_translations where fra like '%{$search}' and kredittering in ({$dicts})
-        UNION select * from ordbok.smj_translations where fra like '%{$search}%' and kredittering in ({$dicts})
-        UNION SELECT * FROM ordbok.smj_translations where til = '{$search}' and kredittering in ({$dicts})
-        UNION select * from ordbok.smj_translations where til like '{$search}%' and kredittering in ({$dicts})
-        UNION select * from ordbok.smj_translations where til like '%{$search}' and kredittering in ({$dicts})
-        UNION select * from ordbok.smj_translations where til like '%{$search}%' and kredittering in ({$dicts})
+            "select * from smj_translations where fra = '{$search}' 
+        UNION select * from ordbok.smj_translations where fra like '{$search}%'
+        UNION select * from ordbok.smj_translations where fra like '%{$search}'
+        UNION select * from ordbok.smj_translations where fra like '%{$search}%'
+        UNION SELECT * FROM ordbok.smj_translations where til = '{$search}'
+        UNION select * from ordbok.smj_translations where til like '{$search}%'
+        UNION select * from ordbok.smj_translations where til like '%{$search}'
+        UNION select * from ordbok.smj_translations where til like '%{$search}%'
         limit 250
         "
         );
