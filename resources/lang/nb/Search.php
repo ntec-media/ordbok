@@ -1,7 +1,7 @@
 <?php
 
 return [
-    'header' => 'Søk i Julevs ordbok database',
+    'header' => 'Søk i Julevs ordbokdatabase',
     'SearchField' => [
         'search' => 'Søk',
         'langModalHeader' => 'Velg språk for oversettelse',

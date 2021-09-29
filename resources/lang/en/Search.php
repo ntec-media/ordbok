@@ -1,7 +1,7 @@
 <?php
 
 return [
-    'header' => 'Search in Julev\'s dictionary database',
+    'header' => 'Search in Julev\'s dictionarydatabase',
     'SearchField' => [
         'search' => 'Search',
         'langModalHeader' => 'Select languages for translation',
