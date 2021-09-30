@@ -16,3 +16,11 @@
         opacity: 1;
     }
 }
+
+.icon-link {
+    transition: 0.2s;
+}
+
+.icon-link:hover {
+    transform: scale(1.1);
+}

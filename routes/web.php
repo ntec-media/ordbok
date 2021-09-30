@@ -20,6 +20,7 @@ Route::inertia('/statistics', 'Statistics');
 Route::inertia('/app', 'DownloadApp');
 Route::inertia('/word', 'WordSuggestion');
 Route::inertia('/about', "About");
+Route::inertia('/newSearch', "NewSearch");
 
 // New Word
 Route::post("/word", [NewWordController::class, "store"]);
