@@ -1,16 +1,8 @@
 import SearchIcon from '@material-ui/icons/Search';
-import {
-    Button,
-    debounce,
-    IconButton,
-    InputAdornment,
-    TextField,
-} from '@material-ui/core';
+import {debounce, InputAdornment, TextField} from '@material-ui/core';
 import {Autocomplete} from '@material-ui/lab';
 import {trans} from 'matice';
 import React, {useCallback, useEffect, useState} from 'react';
-import {MenuBook} from '@material-ui/icons';
-import DictionaryModal from '../Shared/DictionaryModal';
 
 interface Props {
     updateInput: (newInput: string) => void;
@@ -53,6 +45,7 @@ const SearchField = (props: Props) => {
                     <TextField
                         {...params}
                         value={input}
+                        placeholder="Søk i julevs ordbokdatabase"
                         label={trans('Search.SearchField.search')}
                         variant="outlined"
                         InputProps={{
@@ -66,6 +59,7 @@ const SearchField = (props: Props) => {
                     />
                 )}
             />
+
             <button
                 onClick={() => setInput(input + 'á')}
                 className="inline-flex items-center px-6 py-3 mx-2 text-base font-medium text-indigo-700 bg-indigo-100 border border-transparent rounded-md hover:bg-indigo-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
@@ -78,15 +72,6 @@ const SearchField = (props: Props) => {
             >
                 ŋ
             </button>
-            <div className="justify-center hidden md:flex">
-                <IconButton onClick={() => setDictModalOpen(true)}>
-                    <MenuBook color="primary" />
-                </IconButton>
-            </div>
-            <DictionaryModal
-                open={dictModalOpen}
-                closeModal={() => setDictModalOpen(false)}
-            />
         </div>
     );
 };

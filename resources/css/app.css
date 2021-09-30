@@ -16,3 +16,24 @@
         opacity: 1;
     }
 }
+
+.icon-link {
+    transition: 0.2s;
+}
+
+.icon-link:hover {
+    transform: scale(1.1);
+}
+
+.content {
+    animation: slide-in 1s ease-in-out forwards;
+}
+
+@keyframes slide-in {
+    0% {
+        left: -1000px;
+    }
+    100% {
+        left: 10px;
+    }
+}
