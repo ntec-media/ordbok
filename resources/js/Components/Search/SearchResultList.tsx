@@ -41,7 +41,7 @@ const SearchResultList = (props: Props) => {
                 props.dicts?.filter(dict => dict.selected) ||
                     localDictsSupported
             ).then(res => {
-                // setLoading(false);
+                setLoading(false);
                 if (page === 1) {
                     setResults(res);
                 } else {
