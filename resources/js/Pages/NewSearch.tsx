@@ -26,7 +26,7 @@ const Search = () => {
 
     return (
         <Layout>
-            <div className="py-4 2xl:py-8">
+            <div className="hidden py-4 md:block 2xl:py-8">
                 <Header />
             </div>
             <div className="justify-center hidden py-4 2xl:py-8 md:flex">

@@ -1,5 +1,4 @@
 import {
-    Button,
     Divider,
     Drawer,
     List,
@@ -8,8 +7,15 @@ import {
     ListItemText,
 } from '@material-ui/core';
 import React from 'react';
-import InboxIcon from '@material-ui/icons/MoveToInbox';
-import MailIcon from '@material-ui/icons/Mail';
+// Icons
+import InfoIcon from '@material-ui/icons/Info';
+import SearchIcon from '@material-ui/icons/Search';
+import PostAddIcon from '@material-ui/icons/PostAdd';
+import BarChartIcon from '@material-ui/icons/BarChart';
+import GetAppIcon from '@material-ui/icons/GetApp';
+import {InertiaLink} from '@inertiajs/inertia-react';
+// Image
+import samiFlag from '../../../images/sami_flag.png';
 
 interface Props {
     open: boolean;
@@ -24,27 +30,67 @@ const Sidebar = (props: Props) => {
             onKeyDown={() => props.toggle}
         >
             <List>
-                {['Inbox', 'Starred', 'Send email', 'Drafts'].map(
-                    (text, index) => (
-                        <ListItem button key={text}>
-                            <ListItemIcon>
-                                {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
-                            </ListItemIcon>
-                            <ListItemText primary={text} />
-                        </ListItem>
-                    )
-                )}
+                <ListItem>
+                    <InertiaLink href="/">
+                        <ListItemIcon>
+                            <img
+                                src={samiFlag}
+                                alt="sami flag"
+                                className="w-6 h-6 rounded-full"
+                            />
+                        </ListItemIcon>
+                    </InertiaLink>
+                    <h1 className="text-xl font-bold">Julevbago</h1>
+                </ListItem>
             </List>
             <Divider />
             <List>
-                {['All mail', 'Trash', 'Spam'].map((text, index) => (
-                    <ListItem button key={text}>
+                <ListItem button key="search">
+                    <InertiaLink href="/">
                         <ListItemIcon>
-                            {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
+                            <SearchIcon />
                         </ListItemIcon>
-                        <ListItemText primary={text} />
+                    </InertiaLink>
+                    <ListItemText primary="Søk" />
+                </ListItem>
+
+                <ListItem button key="word">
+                    <InertiaLink href="/word">
+                        <ListItemIcon>
+                            <PostAddIcon />
+                        </ListItemIcon>
+                    </InertiaLink>
+                    <ListItemText primary="Nytt ord forslag" />
+                </ListItem>
+
+                <ListItem button key="statistics">
+                    <InertiaLink href="/statistics">
+                        <ListItemIcon>
+                            <BarChartIcon />
+                        </ListItemIcon>
+                    </InertiaLink>
+                    <ListItemText primary="Statistikk" />
+                </ListItem>
+
+                <ListItem button key="download app">
+                    <InertiaLink href="/app">
+                        <ListItemIcon>
+                            <GetAppIcon />
+                        </ListItemIcon>
+                    </InertiaLink>
+                    <ListItemText primary="Statistikk" />
+                </ListItem>
+            </List>
+            <Divider />
+            <List>
+                <InertiaLink href="/about">
+                    <ListItem button key="about">
+                        <ListItemIcon>
+                            <InfoIcon />
+                        </ListItemIcon>
+                        <ListItemText primary="Om appen" />
                     </ListItem>
-                ))}
+                </InertiaLink>
             </List>
         </div>
     );
