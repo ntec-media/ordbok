@@ -10,6 +10,7 @@ import Sidebar from './Sidebar';
 const Navbar = () => {
     const [path, setPath] = useState('');
     const [cookies, setCookies] = useContext(Context);
+    const [sidebarOpen, setSidebarOpen] = useState(false);
 
     useEffect(() => {
         if (!cookies.lang) {
@@ -32,7 +33,10 @@ const Navbar = () => {
             <div className="flex justify-between w-full py-2 lg:mx-2">
                 <div>
                     <div className="flex md:hidden">
-                        <IconButton className="">
+                        <IconButton
+                            onClick={() => setSidebarOpen(true)}
+                            className=""
+                        >
                             <MenuIcon
                                 fontSize="large"
                                 className="text-blue-500"
@@ -46,6 +50,12 @@ const Navbar = () => {
                         setSelected={newLang => updateLang(newLang)}
                     />
                 </div>
+            </div>
+            <div>
+                <Sidebar
+                    open={sidebarOpen}
+                    toggle={() => setSidebarOpen(!sidebarOpen)}
+                />
             </div>
         </div>
     );
