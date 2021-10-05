@@ -52,8 +52,8 @@ const SearchResultList = (props: Props) => {
         <div>
             {results.length > 0 ? (
                 <>
-                    <div className="flex justify-between w-full mt-2">
-                        <h2 className="px-4 text-gray-500">
+                    <div className="flex justify-between w-full">
+                        <h2 className="text-gray-500 ">
                             {results.length === 250
                                 ? 'Viser 250 ord'
                                 : trans('Search.SearchResult.found') +
@@ -62,7 +62,7 @@ const SearchResultList = (props: Props) => {
                                   ' ' +
                                   trans('Search.SearchResult.words')}
                         </h2>
-                        <h2 className="hidden px-4 text-gray-500 md:flex">
+                        <h2 className="hidden text-gray-500 md:flex">
                             {props.dicts.map(
                                 dict => dict.selected && dict.name + ', '
                             )}
@@ -70,21 +70,14 @@ const SearchResultList = (props: Props) => {
                     </div>
                     <List>
                         {results.map((res: ISearchResult, index: number) => (
-                            <ListItem key={index} className="py-2">
+                            <ListItem
+                                key={index}
+                                style={{paddingLeft: 0, paddingRight: 0}}
+                            >
                                 <ResultCard input={props.input} result={res} />
                             </ListItem>
                         ))}
                     </List>
-                    <div className="flex justify-center mx-4 mb-4">
-                        <Button
-                            color="primary"
-                            className="w-full h-16"
-                            variant="outlined"
-                            onClick={() => setPage(page + 1)}
-                        >
-                            Last flere resultater
-                        </Button>
-                    </div>
                 </>
             ) : props.input !== '' ? (
                 <h2 className="text-xl italic text-center">Fant ingen ord</h2>

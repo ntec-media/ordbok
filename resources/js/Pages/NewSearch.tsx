@@ -10,6 +10,8 @@ import samiFlag from '../../images/sami_flag.png';
 import norwegianFlag from '../../images/norwegian_flag.png';
 import WordSuggestion from '../Components/NewSearch/WordSuggestion';
 import App from '../Components/NewSearch/App';
+import Layout from '../Components/Shared/Layout';
+import Menu from '../Components/NewSearch/Menu';
 
 const Search = () => {
     const [input, setInput] = useState('');
@@ -23,57 +25,26 @@ const Search = () => {
     }, [cookies]);
 
     return (
-        <Store>
-            <CookiesProvider>
-                <div>
-                    <div className="flex justify-center h-screen overflow-y-scroll bg-gray-200">
-                        <div className="relative w-6/12 h-full bg-white shadow-2xl">
-                            <div className="absolute flex top-5 right-5">
-                                <img
-                                    src={samiFlag}
-                                    style={{width: 32, height: 32}}
-                                    alt="sami flag"
-                                    className="mr-2 cursor-pointer"
-                                />
-                                <img
-                                    src={norwegianFlag}
-                                    style={{width: 32, height: 32}}
-                                    alt="norwegian flag"
-                                    className="cursor-pointer "
-                                />
-                            </div>
-                            <Header
-                                content={content}
-                                setContent={newContent =>
-                                    setContent(newContent)
-                                }
-                            />
-                            <div className="relative">
-                                {content === 0 && (
-                                    <>
-                                        <SearchField
-                                            updateInput={newInput =>
-                                                setInput(newInput)
-                                            }
-                                            resetPage={() => setPage(1)}
-                                        />
-                                        <SearchResultList
-                                            input={input}
-                                            page={page}
-                                            dicts={dicts}
-                                        />
-                                    </>
-                                )}
-                                {content === 1 && <WordSuggestion />}
-                                {content === 2 && <>Statistikk</>}
-                                {content === 3 && <App />}
-                            </div>
-                        </div>
-                    </div>
-                    <Footer />
-                </div>
-            </CookiesProvider>
-        </Store>
+        <Layout>
+            <div className="py-4 2xl:py-8">
+                <Header />
+            </div>
+            <div className="justify-center hidden py-4 2xl:py-8 md:flex">
+                <Menu
+                    content={content}
+                    setContent={newContent => setContent(newContent)}
+                />
+            </div>
+            <div className="py-4 2xl:py-8">
+                <SearchField
+                    updateInput={newInput => setInput(newInput)}
+                    resetPage={() => setPage(1)}
+                />
+            </div>
+            <div>
+                <SearchResultList input={input} page={page} dicts={dicts} />
+            </div>
+        </Layout>
     );
 };
 
