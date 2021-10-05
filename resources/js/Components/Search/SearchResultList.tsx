@@ -1,4 +1,4 @@
-import {Button, List, ListItem} from '@material-ui/core';
+import {Button, CircularProgress, List, ListItem} from '@material-ui/core';
 import {trans} from 'matice';
 import React, {useEffect, useState} from 'react';
 import {ILang, localDictsSupported} from '../../interfaces';
@@ -17,6 +17,7 @@ const SearchResultList = (props: Props) => {
     const [results, setResults] = useState<ISearchResult[]>([]);
     const [searching, setSearching] = useState(false);
     const [page, setPage] = useState(1);
+    const [loading, setLoading] = useState(true);
 
     useEffect(() => {
         if (props.input !== '') {
@@ -32,6 +33,7 @@ const SearchResultList = (props: Props) => {
     }, [props.input, props.page, props.dicts]);
 
     const getResultArray = () => {
+        setLoading(true);
         if (!searching) {
             search(
                 props.input,
@@ -39,6 +41,7 @@ const SearchResultList = (props: Props) => {
                 props.dicts?.filter(dict => dict.selected) ||
                     localDictsSupported
             ).then(res => {
+                // setLoading(false);
                 if (page === 1) {
                     setResults(res);
                 } else {
@@ -80,7 +83,16 @@ const SearchResultList = (props: Props) => {
                     </List>
                 </>
             ) : props.input !== '' ? (
-                <h2 className="text-xl italic text-center">Fant ingen ord</h2>
+                !loading ? (
+                    <h2 className="text-xl italic text-center">
+                        Fant ingen ord
+                    </h2>
+                ) : (
+                    <div className="flex items-center justify-center">
+                        <h2 className="mr-2 text-xl italic">Søker...</h2>
+                        <CircularProgress size={20} />
+                    </div>
+                )
             ) : (
                 <NoSearch />
             )}
