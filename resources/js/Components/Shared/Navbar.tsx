@@ -30,7 +30,7 @@ const Navbar = () => {
 
     return (
         <div>
-            <div className="flex justify-between w-full py-2 lg:mx-2">
+            <div className="flex items-center justify-between w-full py-2 lg:mx-2">
                 <div>
                     <div className="flex md:hidden">
                         <IconButton
@@ -44,6 +44,9 @@ const Navbar = () => {
                         </IconButton>
                     </div>
                 </div>
+                <h1 className="block text-2xl font-semibold md:hidden">
+                    Julevbago
+                </h1>
                 <div>
                     <LanguageDropDown
                         selected={cookies.lang}

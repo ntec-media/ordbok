@@ -31,11 +31,12 @@ const SearchField = (props: Props) => {
     }, []);
 
     return (
-        <div className="flex justify-center">
+        <div className="flex justify-center" style={{marginRight: 0}}>
             <Autocomplete
                 className="w-full"
                 freeSolo
                 value={input}
+                style={{marginRight: 0}}
                 onKeyDown={e => e.key === 'backspace' && props.resetPage()}
                 onInputChange={(_e, newVal) => {
                     setInput(newVal);
@@ -48,24 +49,24 @@ const SearchField = (props: Props) => {
                         placeholder="Søk i julevs ordbokdatabase"
                         label={trans('Search.SearchField.search')}
                         variant="outlined"
+                        style={{marginRight: 0}}
                         InputProps={{
-                            ...params.InputProps,
                             startAdornment: (
                                 <InputAdornment position="start">
                                     <SearchIcon />
                                 </InputAdornment>
                             ),
                             endAdornment: (
-                                <div>
+                                <div className="flex">
                                     <button
                                         onClick={() => setInput(input + 'á')}
-                                        className="items-center hidden px-6 py-3 mx-2 text-base font-medium text-indigo-700 bg-indigo-100 border border-transparent rounded-md md:inline-flex hover:bg-indigo-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+                                        className="hidden px-4 py-2 mx-2 text-base font-medium text-indigo-700 bg-indigo-100 border border-indigo-400 rounded-full md:block hover:bg-indigo-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
                                     >
                                         á
                                     </button>
                                     <button
                                         onClick={() => setInput(input + 'ŋ')}
-                                        className="inline-flex items-center px-6 py-3 text-base font-medium text-indigo-700 bg-indigo-100 border border-transparent rounded-md hover:bg-indigo-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+                                        className="items-center block px-4 py-2 text-sm font-medium text-indigo-700 bg-indigo-100 border border-indigo-400 rounded-full hover:bg-indigo-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
                                     >
                                         ŋ
                                     </button>
