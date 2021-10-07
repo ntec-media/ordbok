@@ -1,15 +1,10 @@
 import React, {useEffect, useState} from 'react';
-import {CookiesProvider, useCookies} from 'react-cookie';
-import Footer from '../Components/Footer';
+import {useCookies} from 'react-cookie';
 import Header from '../Components/NewSearch/Header';
-import SearchField from '../Components/Search/SearchField';
-import SearchResultList from '../Components/Search/SearchResultList';
+import SearchField from '../Components/NewSearch/SearchField';
+import SearchResultList from '../Components/NewSearch/SearchResultList';
 import {ILang} from '../interfaces';
-import Store from '../Store';
-import samiFlag from '../../images/sami_flag.png';
-import norwegianFlag from '../../images/norwegian_flag.png';
-import WordSuggestion from '../Components/NewSearch/WordSuggestion';
-import App from '../Components/NewSearch/App';
+
 import Layout from '../Components/Shared/Layout';
 import Menu from '../Components/NewSearch/Menu';
 
@@ -18,7 +13,6 @@ const Search = () => {
     const [dicts, setDicts] = useState<ILang[]>([]);
     const [cookies] = useCookies(['dicts']);
     const [page, setPage] = useState(1);
-    const [content, setContent] = useState(0);
 
     useEffect(() => {
         setDicts(cookies.dicts);
@@ -30,10 +24,7 @@ const Search = () => {
                 <Header />
             </div>
             <div className="justify-center hidden py-4 2xl:py-8 md:flex">
-                <Menu
-                    content={content}
-                    setContent={newContent => setContent(newContent)}
-                />
+                <Menu />
             </div>
             <div className="py-4 2xl:py-8">
                 <SearchField

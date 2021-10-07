@@ -45,7 +45,7 @@ const Navbar = () => {
                     </div>
                 </div>
                 <h1 className="block text-2xl font-semibold md:hidden">
-                    Julevbago
+                    Julevbágo
                 </h1>
                 <div>
                     <LanguageDropDown

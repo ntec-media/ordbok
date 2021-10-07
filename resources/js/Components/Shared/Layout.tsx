@@ -8,7 +8,7 @@ export default function Layout(props: {children: JSX.Element | JSX.Element[]}) {
     return (
         <Store>
             <CookiesProvider>
-                <main className="relative flex flex-col items-center min-h-screen px-2 lg:px-0 ">
+                <main className="relative flex flex-col items-center min-h-screen px-2 overflow-x-hidden lg:px-0 ">
                     <div className="w-full lg:w-8/12 2xl:w-6/12">
                         <Navbar />
                         <article>{props.children}</article>
