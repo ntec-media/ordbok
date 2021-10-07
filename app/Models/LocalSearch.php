@@ -24,18 +24,32 @@ class LocalSearch implements SearchInterface
         }
         $dicts = rtrim($dicts, ", ");
 
-        $results = DB::select(
-            "select * from smj_translations where fra = '{$search}' and kredittering in ({$dicts}) 
-        UNION select * from smj_translations where fra like '{$search}%' and kredittering in ({$dicts})
-        UNION select * from smj_translations where fra like '%{$search}' and kredittering in ({$dicts})
-        UNION select * from smj_translations where fra like '%{$search}%' and kredittering in ({$dicts})
-        UNION SELECT * FROM smj_translations where til = '{$search}' and kredittering in ({$dicts})
-        UNION select * from smj_translations where til like '{$search}%' and kredittering in ({$dicts})
-        UNION select * from smj_translations where til like '%{$search}' and kredittering in ({$dicts})
-        UNION select * from smj_translations where til like '%{$search}%' and kredittering in ({$dicts})
-        limit 250
-        "
-        );
+        if ($request->input('orderBy') === "norwegian") {
+            $results = DB::select(
+                "SELECT * FROM smj_translations WHERE fra = '{$search}' AND kredittering IN ({$dicts}) 
+            UNION SELECT * FROM smj_translations WHERE fra LIKE '{$search}%' AND kredittering IN ({$dicts})
+            UNION SELECT * FROM smj_translations WHERE fra LIKE '%{$search}' AND kredittering IN ({$dicts})
+            UNION SELECT * FROM smj_translations WHERE fra LIKE '%{$search}%' AND kredittering IN ({$dicts})
+            UNION SELECT * FROM smj_translations WHERE til = '{$search}' AND kredittering IN ({$dicts})
+            UNION SELECT * FROM smj_translations WHERE til LIKE '{$search}%' AND kredittering IN ({$dicts})
+            UNION SELECT * FROM smj_translations WHERE til LIKE '%{$search}' AND kredittering IN ({$dicts})
+            UNION SELECT * FROM smj_translations WHERE til LIKE '%{$search}%' AND kredittering IN ({$dicts})
+            limit 250
+            "
+            );
+        } else {
+            $results = DB::select(
+                "SELECT * FROM smj_translations WHERE til = '{$search}' AND kredittering IN ({$dicts})
+            UNION SELECT * FROM smj_translations WHERE til LIKE '{$search}%' AND kredittering IN ({$dicts})
+            UNION SELECT * FROM smj_translations WHERE til LIKE '%{$search}' AND kredittering IN ({$dicts})
+            UNION SELECT * FROM smj_translations WHERE til LIKE '%{$search}%' AND kredittering IN ({$dicts})
+            UNION SELECT * FROM smj_translations WHERE fra = '{$search}' AND kredittering IN ({$dicts}) 
+            UNION SELECT * FROM smj_translations WHERE fra LIKE '{$search}%' AND kredittering IN ({$dicts})
+            UNION SELECT * FROM smj_translations WHERE fra LIKE '%{$search}' AND kredittering IN ({$dicts})
+            UNION SELECT * FROM smj_translations WHERE fra LIKE '%{$search}%' AND kredittering IN ({$dicts})
+            limit 250"
+            );
+        }
 
         return $results;
 

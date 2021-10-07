@@ -39,7 +39,8 @@ const SearchResultList = (props: Props) => {
                 props.input,
                 page,
                 props.dicts?.filter(dict => dict.selected) ||
-                    localDictsSupported
+                    localDictsSupported,
+                'norwegian'
             ).then(res => {
                 setLoading(false);
                 if (page === 1) {

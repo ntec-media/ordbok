@@ -30,14 +30,15 @@ const SearchResultList = (props: Props) => {
         if (props.input !== '') {
             getResultsArray();
         } else setResults([]);
-    }, [props.input]);
+    }, [props.input, orderBy]);
 
     const getResultsArray = () => {
         setLoading(true);
         search(
             props.input,
             1,
-            props.dicts?.filter(dict => dict.selected) || localDictsSupported
+            props.dicts?.filter(dict => dict.selected) || localDictsSupported,
+            orderBy
         )
             .then(res => {
                 setLoading(false);
@@ -48,11 +49,35 @@ const SearchResultList = (props: Props) => {
             });
     };
 
+    const GroupByInput = () => (
+        <FormControl component="fieldset">
+            <RadioGroup
+                row
+                aria-label="order by"
+                value={orderBy}
+                onChange={e => setOrderBy(e.target.value)}
+                name="controlled-radio-buttons-group"
+            >
+                <FormControlLabel
+                    value="sami"
+                    control={<Radio color="primary" />}
+                    label="Lulesamisk-Norsk"
+                />
+                <FormControlLabel
+                    value="norwegian"
+                    control={<Radio color="primary" />}
+                    label="Norsk-Lulesamisk"
+                />
+            </RadioGroup>
+        </FormControl>
+    );
+
     return (
         <div>
             {results.length > 0 ? (
                 <>
-                    <div className="flex justify-between w-full">
+                    <div className="flex justify-between">
+                        <GroupByInput />
                         <h2 className="text-gray-500 ">
                             {results.length === 250
                                 ? 'Viser 250 ord'
@@ -61,11 +86,6 @@ const SearchResultList = (props: Props) => {
                                   results.length +
                                   ' ' +
                                   trans('Search.SearchResult.words')}
-                        </h2>
-                        <h2 className="hidden text-gray-500 md:flex">
-                            {props.dicts.map(
-                                dict => dict.selected && dict.name + ', '
-                            )}
                         </h2>
                     </div>
                     <List>
@@ -92,27 +112,7 @@ const SearchResultList = (props: Props) => {
                 )
             ) : (
                 <div>
-                    <FormControl component="fieldset">
-                        <RadioGroup
-                            row
-                            aria-label="order by"
-                            value={orderBy}
-                            onChange={e => setOrderBy(e.target.value)}
-                            name="controlled-radio-buttons-group"
-                        >
-                            <FormControlLabel
-                                value="sami"
-                                control={<Radio color="primary" />}
-                                label="Lulesamisk-Norsk"
-                            />
-                            <FormControlLabel
-                                value="norwegian"
-                                control={<Radio color="primary" />}
-                                label="Norsk-Lulesamisk"
-                            />
-                        </RadioGroup>
-                    </FormControl>
-
+                    <GroupByInput />
                     <NoSearch />
                 </div>
             )}
