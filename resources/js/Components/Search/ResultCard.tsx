@@ -9,53 +9,88 @@ interface Props {
     result: ISearchResult;
 }
 
-const ResultCard = (props: Props) => {
-    const [errorModal, setErrorModal] = useState(false);
+const escapeRE = new RegExp(/([.*+?^=!:$(){}|[\]\/\\])/g);
+const safeRE = (string: string) => {
+    return string.replace(escapeRE, '\\$1');
+};
 
-    function getTextWithHgihtligh(text: string) {
-        // Split text on highlight term, include term itself into parts, ignore case
-        const parts = text.split(new RegExp(`(${props.input})`, 'gi'));
+const ResultCard = (props: Props) => {
+    const [showAll, setShowAll] = useState(false);
+
+    const getFormattedString = (string: string) => {
+        const minItemsToShow = 5;
+        let newLines = string.split(';');
+        let sliced = false;
+        if (!showAll) {
+            if (newLines.length > minItemsToShow) sliced = true;
+            newLines = newLines.slice(0, minItemsToShow);
+        }
+
+        return newLines.map((word, index) => {
+            return (
+                <>
+                    <p
+                        dangerouslySetInnerHTML={{
+                            __html:
+                                word.replace(
+                                    safeRE(props.input),
+                                    `<span class="bg-yellow-200">${props.input}</span>`
+                                ) + ';',
+                        }}
+                    />
+                    {sliced && index === minItemsToShow - 1 && (
+                        <p
+                            onClick={() => setShowAll(true)}
+                            className="text-blue-500 cursor-pointer"
+                        >
+                            Se mer
+                        </p>
+                    )}
+                </>
+            );
+        });
+    };
+
+    const Report = () => {
+        const [open, setOpen] = useState(false);
         return (
-            <span>
-                {parts.map(part =>
-                    part.toLowerCase() === props.input.toLowerCase() ? (
-                        <span className="bg-yellow-200">{part}</span>
-                    ) : (
-                        part
-                    )
-                )}
-            </span>
+            <>
+                <Tooltip title="Raporter feil">
+                    <IconButton onClick={() => setOpen(true)}>
+                        <FlagIcon fontSize="small" className="text-red-500" />
+                    </IconButton>
+                </Tooltip>
+
+                <ReportErrorModal
+                    open={open}
+                    closeModal={() => setOpen(false)}
+                    report={{
+                        norwegian: props.result.fra,
+                        sami: props.result.til,
+                    }}
+                />
+            </>
         );
-    }
+    };
 
     return (
         <>
             <div className="flex-col w-full p-4 border border-indigo-200 rounded-lg shadow-md bg-gradient-to-r from-gray-100 via-gray-50 to-gray-100">
                 <div className="flex justify-between w-full mb-6">
-                    <p className="font-semibold">
-                        {getTextWithHgihtligh(props.result.fra)}
-                    </p>
-                    <p className="italic font-bold text-blue-600">
-                        {props.result.kredittering}
-                    </p>
+                    <div className="font-bold">
+                        {getFormattedString(props.result.fra)}
+                    </div>
+                    <div>
+                        <p className="italic font-bold text-blue-600">
+                            {props.result.kredittering}
+                        </p>
+                        <div className="absolute bottom-2 right-2">
+                            <Report />
+                        </div>
+                    </div>
                 </div>
-                <div className="flex justify-between w-full mb-6">
-                    {getTextWithHgihtligh(props.result.til)}
-                    <Tooltip title="Raporter feil">
-                        <IconButton onClick={() => setErrorModal(true)}>
-                            <FlagIcon
-                                fontSize="small"
-                                className="text-red-500"
-                            />
-                        </IconButton>
-                    </Tooltip>
-                </div>
+                <div>{getFormattedString(props.result.til)}</div>
             </div>
-            <ReportErrorModal
-                open={errorModal}
-                closeModal={() => setErrorModal(false)}
-                report={{norwegian: props.result.fra, sami: props.result.til}}
-            />
         </>
     );
 };
