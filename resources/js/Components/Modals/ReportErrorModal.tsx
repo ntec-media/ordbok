@@ -38,14 +38,14 @@ const ReportErrorModal = (props: Props) => {
             <DialogContent>
                 <FormControl className="flex flex-col w-full space-y-4">
                     <TextField
-                        label="Beskrivelse norsk"
+                        label="Fra"
                         variant="outlined"
                         color="primary"
                         disabled
                         value={inputs?.norwegian}
                     />
                     <TextField
-                        label="Beskrivelse samisk"
+                        label="Til"
                         variant="outlined"
                         color="primary"
                         disabled
