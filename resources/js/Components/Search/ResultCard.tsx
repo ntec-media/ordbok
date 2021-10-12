@@ -57,7 +57,10 @@ const ResultCard = (props: Props) => {
             <>
                 <Tooltip title="Raporter feil">
                     <IconButton onClick={() => setOpen(true)}>
-                        <FlagIcon fontSize="small" className="text-red-500" />
+                        <FlagIcon
+                            fontSize="small"
+                            className="text-gray-400 hover:text-red-400"
+                        />
                     </IconButton>
                 </Tooltip>
 
