@@ -44,9 +44,6 @@ const Navbar = () => {
                         </IconButton>
                     </div>
                 </div>
-                <h1 className="block text-2xl font-semibold md:hidden">
-                    Julevbágo
-                </h1>
                 <div>
                     <LanguageDropDown
                         selected={cookies.lang}
