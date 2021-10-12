@@ -28,7 +28,7 @@ const ResultCard = (props: Props) => {
 
         return newLines.map((word, index) => {
             return (
-                <>
+                <div key={index}>
                     <p
                         dangerouslySetInnerHTML={{
                             __html:
@@ -46,7 +46,7 @@ const ResultCard = (props: Props) => {
                             Se mer
                         </p>
                     )}
-                </>
+                </div>
             );
         });
     };

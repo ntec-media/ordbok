@@ -4,7 +4,9 @@ import Header from '../Components/Search/Header';
 import SearchField from '../Components/Search/SearchField';
 import SearchResultList from '../Components/Search/SearchResultList';
 import {ILang} from '../interfaces';
-import Layout from './Layout';
+
+import Layout from '../Components/Shared/Layout';
+import Menu from '../Components/Search/Menu';
 
 const Search = () => {
     const [input, setInput] = useState('');
@@ -18,12 +20,21 @@ const Search = () => {
 
     return (
         <Layout>
-            <Header />
-            <SearchField
-                updateInput={newInput => setInput(newInput)}
-                resetPage={() => setPage(1)}
-            />
-            <SearchResultList input={input} page={page} dicts={dicts} />
+            <div className="hidden py-4 md:block 2xl:py-8">
+                <Header />
+            </div>
+            <div className="justify-center hidden py-4 2xl:py-8 md:flex">
+                <Menu />
+            </div>
+            <div className="py-4 2xl:py-8">
+                <SearchField
+                    updateInput={newInput => setInput(newInput)}
+                    resetPage={() => setPage(1)}
+                />
+            </div>
+            <div>
+                <SearchResultList input={input} page={page} dicts={dicts} />
+            </div>
         </Layout>
     );
 };

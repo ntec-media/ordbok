@@ -1,18 +1,10 @@
-import {
-    CircularProgress,
-    FormControl,
-    FormControlLabel,
-    List,
-    ListItem,
-    Radio,
-    RadioGroup,
-} from '@material-ui/core';
+import {Button, CircularProgress, List, ListItem} from '@material-ui/core';
 import {trans} from 'matice';
 import React, {useEffect, useState} from 'react';
 import {ILang, localDictsSupported} from '../../interfaces';
 import ISearchResult from '../../Interfaces/ISearchResult';
 import {search} from '../../utils';
-import NoSearch from '../Search/NoSearch';
+import NoSearch from './NoSearch';
 import ResultCard from '../Search/ResultCard';
 
 interface Props {
@@ -23,61 +15,48 @@ interface Props {
 
 const SearchResultList = (props: Props) => {
     const [results, setResults] = useState<ISearchResult[]>([]);
-    const [loading, setLoading] = useState(false);
-    const [orderBy, setOrderBy] = useState('sami');
+    const [searching, setSearching] = useState(false);
+    const [page, setPage] = useState(1);
+    const [loading, setLoading] = useState(true);
 
     useEffect(() => {
         if (props.input !== '') {
-            getResultsArray();
+            getResultArray();
+        }
+    }, [page]);
+
+    useEffect(() => {
+        if (props.input !== '') {
+            getResultArray();
         } else setResults([]);
-    }, [props.input, orderBy]);
+        setPage(props.page);
+    }, [props.input, props.page, props.dicts]);
 
-    const getResultsArray = () => {
+    const getResultArray = () => {
         setLoading(true);
-        search(
-            props.input,
-            1,
-            props.dicts?.filter(dict => dict.selected) || localDictsSupported,
-            orderBy
-        )
-            .then(res => {
+        if (!searching) {
+            search(
+                props.input,
+                page,
+                props.dicts?.filter(dict => dict.selected) ||
+                    localDictsSupported,
+                'norwegian'
+            ).then(res => {
                 setLoading(false);
-                setResults(res);
-            })
-            .catch(() => {
-                setLoading(false);
+                if (page === 1) {
+                    setResults(res);
+                } else {
+                    setResults(results.concat(res));
+                }
             });
+        }
     };
-
-    const GroupByInput = () => (
-        <FormControl component="fieldset">
-            <RadioGroup
-                row
-                aria-label="order by"
-                value={orderBy}
-                onChange={e => setOrderBy(e.target.value)}
-                name="controlled-radio-buttons-group"
-            >
-                <FormControlLabel
-                    value="sami"
-                    control={<Radio color="primary" />}
-                    label="Lulesamisk-Norsk"
-                />
-                <FormControlLabel
-                    value="norwegian"
-                    control={<Radio color="primary" />}
-                    label="Norsk-Lulesamisk"
-                />
-            </RadioGroup>
-        </FormControl>
-    );
 
     return (
         <div>
             {results.length > 0 ? (
                 <>
-                    <div className="flex justify-between">
-                        <GroupByInput />
+                    <div className="flex justify-between w-full">
                         <h2 className="text-gray-500 ">
                             {results.length === 250
                                 ? 'Viser 250 ord'
@@ -86,6 +65,11 @@ const SearchResultList = (props: Props) => {
                                   results.length +
                                   ' ' +
                                   trans('Search.SearchResult.words')}
+                        </h2>
+                        <h2 className="hidden text-gray-500 md:flex">
+                            {props.dicts.map(
+                                dict => dict.selected && dict.name + ', '
+                            )}
                         </h2>
                     </div>
                     <List>
@@ -111,10 +95,7 @@ const SearchResultList = (props: Props) => {
                     </div>
                 )
             ) : (
-                <div>
-                    <GroupByInput />
-                    <NoSearch />
-                </div>
+                <NoSearch />
             )}
         </div>
     );
