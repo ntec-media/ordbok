@@ -90,10 +90,7 @@ const SearchResultList = (props: Props) => {
                     </div>
                     <List>
                         {results.map((res: ISearchResult, index: number) => (
-                            <ListItem
-                                key={index}
-                                style={{paddingLeft: 0, paddingRight: 0}}
-                            >
+                            <ListItem key={index} style={{padding: '2px 0px'}}>
                                 <ResultCard input={props.input} result={res} />
                             </ListItem>
                         ))}
