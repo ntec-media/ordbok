@@ -9,7 +9,7 @@ interface Props {
     result: ISearchResult;
 }
 
-const escapeRE = new RegExp(/([.*+?^=!:$(){}|[\]\/\\])/g);
+const escapeRE = new RegExp(/([.*+?^=!:$(){}|[\]/\\])/g);
 const safeRE = (string: string) => {
     return string.replace(escapeRE, '\\$1');
 };
@@ -80,9 +80,7 @@ const ResultCard = (props: Props) => {
         <>
             <div className="flex-col w-full p-4 border border-indigo-200 rounded-lg shadow-md bg-gradient-to-r from-gray-100 via-gray-50 to-gray-100">
                 <div className="flex justify-between w-full mb-6">
-                    <div className="font-bold">
-                        {getFormattedString(props.result.fra)}
-                    </div>
+                    <div className="font-bold">{props.result.fra}</div>
                     <div>
                         <p className="italic font-bold text-blue-600">
                             {props.result.kredittering}
