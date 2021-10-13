@@ -18,40 +18,73 @@ class LocalSearch implements SearchInterface
     {
         $search = $request->input('search');
 
-        $dicts = "";
-        foreach ($request->input('dicts') as $dict) {
-            $dicts .= "'$dict', ";
-        }
-        $dicts = rtrim($dicts, ", ");
+        $query1 = DB::table('smj_translations')
+            ->select()
+            ->where([
+                ["fra", "LIKE", "{$search}"],
+                ["oversatt_fra", "LIKE", "norsk"],
+            ]);
+        $query2 = DB::table('smj_translations')
+        ->select()
+        ->where([
+            ["fra", "LIKE", "{$search}%"],
+            ["oversatt_fra", "LIKE", "norsk"],
+        ])
+        ->union($query1);
 
-        if ($request->input('orderBy') === "norwegian") {
-            $results = DB::select(
-                "SELECT * FROM smj_translations WHERE fra = '{$search}' AND kredittering IN ({$dicts}) 
-            UNION SELECT * FROM smj_translations WHERE fra LIKE '{$search}%' AND kredittering IN ({$dicts})
-            UNION SELECT * FROM smj_translations WHERE fra LIKE '%{$search}' AND kredittering IN ({$dicts})
-            UNION SELECT * FROM smj_translations WHERE fra LIKE '%{$search}%' AND kredittering IN ({$dicts})
-            UNION SELECT * FROM smj_translations WHERE til = '{$search}' AND kredittering IN ({$dicts})
-            UNION SELECT * FROM smj_translations WHERE til LIKE '{$search}%' AND kredittering IN ({$dicts})
-            UNION SELECT * FROM smj_translations WHERE til LIKE '%{$search}' AND kredittering IN ({$dicts})
-            UNION SELECT * FROM smj_translations WHERE til LIKE '%{$search}%' AND kredittering IN ({$dicts})
-            limit 250
-            "
-            );
-        } else {
-            $results = DB::select(
-                "SELECT * FROM smj_translations WHERE til = '{$search}' AND kredittering IN ({$dicts})
-            UNION SELECT * FROM smj_translations WHERE til LIKE '{$search}%' AND kredittering IN ({$dicts})
-            UNION SELECT * FROM smj_translations WHERE til LIKE '%{$search}' AND kredittering IN ({$dicts})
-            UNION SELECT * FROM smj_translations WHERE til LIKE '%{$search}%' AND kredittering IN ({$dicts})
-            UNION SELECT * FROM smj_translations WHERE fra = '{$search}' AND kredittering IN ({$dicts}) 
-            UNION SELECT * FROM smj_translations WHERE fra LIKE '{$search}%' AND kredittering IN ({$dicts})
-            UNION SELECT * FROM smj_translations WHERE fra LIKE '%{$search}' AND kredittering IN ({$dicts})
-            UNION SELECT * FROM smj_translations WHERE fra LIKE '%{$search}%' AND kredittering IN ({$dicts})
-            limit 250"
-            );
-        }
+        $query3 = DB::table('smj_translations')
+        ->select()
+        ->where([
+            ["fra", "LIKE", "%{$search}"],
+            ["oversatt_fra", "LIKE", "norsk"],
+        ])
+        ->union($query2);
 
-        return $results;
+        $query4 = DB::table('smj_translations')
+        ->select()
+        ->where([
+            ["fra", "LIKE", "%{$search}%"],
+            ["oversatt_fra", "LIKE", "norsk"],
+        ])
+        ->union($query3);
+
+        $query5 = DB::table('smj_translations')
+        ->select()
+        ->where([
+            ["til", "LIKE", "{$search}"],
+            ["oversatt_til", "LIKE", "norsk"],
+        ])
+        ->union($query4);
+
+        $query6 = DB::table('smj_translations')
+        ->select()
+        ->where([
+            ["til", "LIKE", "{$search}%"],
+            ["oversatt_til", "LIKE", "norsk"],
+        ])
+        ->union($query5);
+
+        $query7 = DB::table('smj_translations')
+        ->select()
+        ->where([
+            ["til", "LIKE", "%{$search}"],
+            ["oversatt_til", "LIKE", "norsk"],
+        ])
+        ->union($query6);
+
+
+        $query8 = DB::table('smj_translations')
+        ->select()
+        ->where([
+            ["til", "LIKE", "%{$search}%"],
+            ["oversatt_til", "LIKE", "norsk"],
+        ])
+        ->union($query7)
+        ->limit(50)
+        ->get()
+        ;
+
+        return $query8;
 
         ProcessStatistic::dispatch();
     }
