@@ -1,11 +1,19 @@
-import {Button, CircularProgress, List, ListItem} from '@material-ui/core';
+import {
+    CircularProgress,
+    FormControl,
+    FormControlLabel,
+    List,
+    ListItem,
+    Radio,
+    RadioGroup,
+} from '@material-ui/core';
 import {trans} from 'matice';
 import React, {useEffect, useState} from 'react';
 import {ILang, localDictsSupported} from '../../interfaces';
 import ISearchResult from '../../Interfaces/ISearchResult';
 import {search} from '../../utils';
-import NoSearch from './NoSearch';
-import ResultCard from './ResultCard';
+import NoSearch from '../Search/NoSearch';
+import ResultCard from '../Search/ResultCard';
 
 interface Props {
     input: string;
@@ -15,40 +23,29 @@ interface Props {
 
 const SearchResultList = (props: Props) => {
     const [results, setResults] = useState<ISearchResult[]>([]);
-    const [searching, setSearching] = useState(false);
-    const [page, setPage] = useState(1);
-    const [loading, setLoading] = useState(true);
+    const [loading, setLoading] = useState(false);
+    const [orderBy, setOrderBy] = useState('sami');
 
     useEffect(() => {
         if (props.input !== '') {
-            getResultArray();
-        }
-    }, [page]);
-
-    useEffect(() => {
-        if (props.input !== '') {
-            getResultArray();
+            getResultsArray();
         } else setResults([]);
-        setPage(props.page);
-    }, [props.input, props.page, props.dicts]);
+    }, [props.input]);
 
-    const getResultArray = () => {
+    const getResultsArray = () => {
         setLoading(true);
-        if (!searching) {
-            search(
-                props.input,
-                page,
-                props.dicts?.filter(dict => dict.selected) ||
-                    localDictsSupported
-            ).then(res => {
+        search(
+            props.input,
+            1,
+            props.dicts?.filter(dict => dict.selected) || localDictsSupported
+        )
+            .then(res => {
                 setLoading(false);
-                if (page === 1) {
-                    setResults(res);
-                } else {
-                    setResults(results.concat(res));
-                }
+                setResults(res);
+            })
+            .catch(() => {
+                setLoading(false);
             });
-        }
     };
 
     return (
@@ -94,7 +91,30 @@ const SearchResultList = (props: Props) => {
                     </div>
                 )
             ) : (
-                <NoSearch />
+                <div>
+                    <FormControl component="fieldset">
+                        <RadioGroup
+                            row
+                            aria-label="order by"
+                            value={orderBy}
+                            onChange={e => setOrderBy(e.target.value)}
+                            name="controlled-radio-buttons-group"
+                        >
+                            <FormControlLabel
+                                value="sami"
+                                control={<Radio color="primary" />}
+                                label="Lulesamisk-Norsk"
+                            />
+                            <FormControlLabel
+                                value="norwegian"
+                                control={<Radio color="primary" />}
+                                label="Norsk-Lulesamisk"
+                            />
+                        </RadioGroup>
+                    </FormControl>
+
+                    <NoSearch />
+                </div>
             )}
         </div>
     );
