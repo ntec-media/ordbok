@@ -34,12 +34,7 @@ const SearchResultList = (props: Props) => {
 
     const getResultsArray = () => {
         setLoading(true);
-        search(
-            props.input,
-            1,
-            props.dicts?.filter(dict => dict.selected) || localDictsSupported,
-            orderBy
-        )
+        search(props.input, 1, orderBy)
             .then(res => {
                 setLoading(false);
                 setResults(res);

@@ -1,19 +1,12 @@
 // es-lint-disable-next-line
 import axios from 'axios';
-import {ILang} from './interfaces';
 import INewWord from './Interfaces/INewWord';
 
-export const search = async (
-    value: string,
-    page: number,
-    dictionaries: ILang[],
-    orderBy: string
-) => {
+export const search = async (value: string, page: number, orderBy: string) => {
     return await axios
         .post('/api/search', {
             search: value,
             page: page,
-            dicts: dictionaries.map(dict => dict.short), // SHOULD BE REMOVED AND PICKED FROM COOKIES AT BACKEND
             orderBy: orderBy,
         })
         .then(res => {
