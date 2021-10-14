@@ -2,7 +2,7 @@ import {trans} from 'matice';
 import React, {useContext} from 'react';
 import {Context} from '../../Store';
 import {localDictsSupported} from '../../interfaces';
-import MultipleSelectModal from '../Modals/MultipleSelectModal';
+import MultipleSelectModal from './MultipleSelectModal';
 
 interface Props {
     open: boolean;

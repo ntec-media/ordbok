@@ -1,15 +1,6 @@
-import {
-    CircularProgress,
-    FormControl,
-    FormControlLabel,
-    List,
-    ListItem,
-    Radio,
-    RadioGroup,
-} from '@material-ui/core';
+import {CircularProgress, List, ListItem} from '@material-ui/core';
 import {trans} from 'matice';
 import React, {useEffect, useState} from 'react';
-import {ILang} from '../../interfaces';
 import ISearchResult from '../../Interfaces/ISearchResult';
 import {search} from '../../utils';
 import NoSearch from './NoSearch';
@@ -18,23 +9,22 @@ import ResultCard from './ResultCard';
 interface Props {
     input: string;
     page: number;
-    dicts: ILang[];
+    orderBy: string;
 }
 
 const SearchResultList = (props: Props) => {
     const [results, setResults] = useState<ISearchResult[]>([]);
     const [loading, setLoading] = useState(false);
-    const [orderBy, setOrderBy] = useState('sami');
 
     useEffect(() => {
         if (props.input !== '') {
             getResultsArray();
         } else setResults([]);
-    }, [props.input, orderBy]);
+    }, [props.input, props.orderBy]);
 
     const getResultsArray = () => {
         setLoading(true);
-        search(props.input, 1, orderBy)
+        search(props.input, 1, props.orderBy)
             .then(res => {
                 setLoading(false);
                 setResults(res);
@@ -44,35 +34,11 @@ const SearchResultList = (props: Props) => {
             });
     };
 
-    const GroupByInput = () => (
-        <FormControl component="fieldset">
-            <RadioGroup
-                row
-                aria-label="order by"
-                value={orderBy}
-                onChange={e => setOrderBy(e.target.value)}
-                name="controlled-radio-buttons-group"
-            >
-                <FormControlLabel
-                    value="sami"
-                    control={<Radio color="primary" />}
-                    label="Lulesamisk-Norsk"
-                />
-                <FormControlLabel
-                    value="norwegian"
-                    control={<Radio color="primary" />}
-                    label="Norsk-Lulesamisk"
-                />
-            </RadioGroup>
-        </FormControl>
-    );
-
     return (
         <div>
             {results.length > 0 ? (
                 <>
                     <div className="flex justify-between">
-                        <GroupByInput />
                         <h2 className="text-gray-500 ">
                             {results.length === 250
                                 ? 'Viser 250 ord'
@@ -104,7 +70,6 @@ const SearchResultList = (props: Props) => {
                 )
             ) : (
                 <div>
-                    <GroupByInput />
                     <NoSearch />
                 </div>
             )}

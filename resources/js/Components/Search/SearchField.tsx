@@ -1,18 +1,14 @@
 import SearchIcon from '@material-ui/icons/Search';
-import {
-    debounce,
-    IconButton,
-    InputAdornment,
-    TextField,
-} from '@material-ui/core';
+import {debounce, InputAdornment, TextField} from '@material-ui/core';
 import {Autocomplete} from '@material-ui/lab';
 import {trans} from 'matice';
 import React, {useCallback, useEffect, useState} from 'react';
-import ArrowDropDown from '@material-ui/icons/ArrowDropDown';
+import SortingDropDown from '../Shared/SortingDropDown';
 
 interface Props {
     updateInput: (newInput: string) => void;
     resetPage: () => void;
+    setOrderBy: (newInput: string) => void;
 }
 
 const SearchField = (props: Props) => {
@@ -34,19 +30,6 @@ const SearchField = (props: Props) => {
             console.error(error);
         }
     }, []);
-
-    const SortDropDown = () => {
-        const [open, setOpen] = useState(false);
-
-        return (
-            <>
-                <IconButton onClick={() => setOpen(!open)}>
-                    <ArrowDropDown />
-                </IconButton>
-                <div className="absolute w-32 bg-gray-200 top-10">Content</div>
-            </>
-        );
-    };
 
     return (
         <div className="flex justify-center" style={{marginRight: 0}}>
@@ -76,7 +59,11 @@ const SearchField = (props: Props) => {
                             ),
                             endAdornment: (
                                 <div className="flex items-center">
-                                    <SortDropDown />
+                                    <SortingDropDown
+                                        setOrderBy={newVal =>
+                                            props.setOrderBy(newVal)
+                                        }
+                                    />
                                     <button
                                         onClick={() => setInput(input + 'á')}
                                         className="hidden px-4 py-2 mx-2 text-base font-medium text-gray-700 bg-gray-100 border border-gray-400 rounded-md md:block hover:bg-gray-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-500"

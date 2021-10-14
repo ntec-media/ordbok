@@ -1,22 +1,15 @@
-import React, {useEffect, useState} from 'react';
-import {useCookies} from 'react-cookie';
+import React, {useState} from 'react';
 import Header from '../Components/Search/Header';
 import SearchField from '../Components/Search/SearchField';
 import SearchResultList from '../Components/Search/SearchResultList';
-import {ILang} from '../interfaces';
 
 import Layout from '../Components/Shared/Layout';
 import Menu from '../Components/Search/Menu';
 
 const Search = () => {
     const [input, setInput] = useState('');
-    const [dicts, setDicts] = useState<ILang[]>([]);
-    const [cookies] = useCookies(['dicts']);
     const [page, setPage] = useState(1);
-
-    useEffect(() => {
-        setDicts(cookies.dicts);
-    }, [cookies]);
+    const [orderBy, setOrderBy] = useState('sami');
 
     return (
         <Layout>
@@ -30,10 +23,11 @@ const Search = () => {
                 <SearchField
                     updateInput={newInput => setInput(newInput)}
                     resetPage={() => setPage(1)}
+                    setOrderBy={newVal => setOrderBy(newVal)}
                 />
             </div>
             <div>
-                <SearchResultList input={input} page={page} dicts={dicts} />
+                <SearchResultList input={input} page={page} orderBy={orderBy} />
             </div>
         </Layout>
     );
