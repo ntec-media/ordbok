@@ -8,7 +8,6 @@ import ResultCard from './ResultCard';
 
 interface Props {
     input: string;
-    page: number;
     orderBy: string;
 }
 

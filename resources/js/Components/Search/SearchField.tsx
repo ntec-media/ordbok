@@ -7,7 +7,6 @@ import SortingDropDown from '../Shared/SortingDropDown';
 
 interface Props {
     updateInput: (newInput: string) => void;
-    resetPage: () => void;
     setOrderBy: (newInput: string) => void;
 }
 
@@ -39,9 +38,6 @@ const SearchField = (props: Props) => {
                 freeSolo
                 value={input}
                 style={{marginRight: 0}}
-                onKeyDown={e =>
-                    e.key.toLowerCase() === 'backspace' && props.resetPage()
-                }
                 onInputChange={(_e, newVal) => {
                     setInput(newVal);
                 }}

@@ -8,7 +8,6 @@ import Menu from '../Components/Search/Menu';
 
 const Search = () => {
     const [input, setInput] = useState('');
-    const [page, setPage] = useState(1);
     const [orderBy, setOrderBy] = useState('sami');
 
     return (
@@ -22,12 +21,11 @@ const Search = () => {
             <div className="py-4 2xl:py-8">
                 <SearchField
                     updateInput={newInput => setInput(newInput)}
-                    resetPage={() => setPage(1)}
                     setOrderBy={newVal => setOrderBy(newVal)}
                 />
             </div>
             <div>
-                <SearchResultList input={input} page={page} orderBy={orderBy} />
+                <SearchResultList input={input} orderBy={orderBy} />
             </div>
         </Layout>
     );
