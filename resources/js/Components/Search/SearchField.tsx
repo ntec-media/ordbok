@@ -17,7 +17,6 @@ interface Props {
 
 const SearchField = (props: Props) => {
     const [input, setInput] = useState('');
-    const [orderByOpen, setOrderByOpen] = useState(false);
 
     useEffect(() => {
         delayedQuery(input);
@@ -44,7 +43,7 @@ const SearchField = (props: Props) => {
                 <IconButton onClick={() => setOpen(!open)}>
                     <ArrowDropDown />
                 </IconButton>
-                <div className="relative"></div>
+                <div className="absolute w-32 bg-gray-200 top-10">Content</div>
             </>
         );
     };

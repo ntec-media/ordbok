@@ -9,7 +9,7 @@ import {
 } from '@material-ui/core';
 import {trans} from 'matice';
 import React, {useEffect, useState} from 'react';
-import {ILang, localDictsSupported} from '../../interfaces';
+import {ILang} from '../../interfaces';
 import ISearchResult from '../../Interfaces/ISearchResult';
 import {search} from '../../utils';
 import NoSearch from './NoSearch';

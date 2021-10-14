@@ -6,7 +6,6 @@ import Tab from '../Components/Statistics/Tab';
 import Table from '../Components/Statistics/Table';
 import TableChartButtons from '../Components/Statistics/TableChartButtons';
 import {month, week, year} from '../utils';
-import Layout from './Layout';
 
 const days = [
     'monday',
@@ -81,25 +80,23 @@ const Statistics = () => {
     }, [currentTab]);
 
     return (
-        <Layout>
-            <div className="flex flex-col px-4 ">
-                <div className="flex items-center justify-around mt-8">
-                    <TableChartButtons
-                        showTable={showTable}
-                        toggle={() => setShowTable(!showTable)}
-                    />
-                    <Tab setTab={newTab => setCurrentTab(newTab)} />
-                    <p>{}</p>
-                </div>
-                <div className="flex justify-center mt-8 md:mx-24">
-                    {showTable ? (
-                        <Table data={data} labels={labels} />
-                    ) : (
-                        <Chart data={data} labels={labels} />
-                    )}
-                </div>
+        <div className="flex flex-col px-4 ">
+            <div className="flex items-center justify-around mt-8">
+                <TableChartButtons
+                    showTable={showTable}
+                    toggle={() => setShowTable(!showTable)}
+                />
+                <Tab setTab={newTab => setCurrentTab(newTab)} />
+                <p>{}</p>
             </div>
-        </Layout>
+            <div className="flex justify-center mt-8 md:mx-24">
+                {showTable ? (
+                    <Table data={data} labels={labels} />
+                ) : (
+                    <Chart data={data} labels={labels} />
+                )}
+            </div>
+        </div>
     );
 };
 
