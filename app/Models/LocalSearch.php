@@ -68,7 +68,7 @@ class LocalSearch implements SearchInterface
             ->union($query2)
             ->union($query1)
             ->limit(50)
-            ->orderBy('oversatt_fra', $orderBy, 'oversatt_til', $orderBy)
+            ->orderBy('oversatt_fra', $orderBy)
             ->get();
 
         return $query8;
