@@ -17,41 +17,61 @@ class LocalSearch implements SearchInterface
     public function words(SearchRequest $request)
     {
         $search = $request->input('search');
+        $orderBy = $request->input('orderBy') === "sami" ? "DESC" : "ASC";
+        $dictionaries = ["A. Kintel 2013", "Sáme Giellagálldo 2013", "Medisijnalasj báhkogirjje"];
 
-        $dicts = "";
-        foreach ($request->input('dicts') as $dict) {
-            $dicts .= "'$dict', ";
-        }
-        $dicts = rtrim($dicts, ", ");
 
-        if ($request->input('orderBy') === "norwegian") {
-            $results = DB::select(
-                "SELECT * FROM smj_translations WHERE fra = '{$search}' AND kredittering IN ({$dicts}) 
-            UNION SELECT * FROM smj_translations WHERE fra LIKE '{$search}%' AND kredittering IN ({$dicts})
-            UNION SELECT * FROM smj_translations WHERE fra LIKE '%{$search}' AND kredittering IN ({$dicts})
-            UNION SELECT * FROM smj_translations WHERE fra LIKE '%{$search}%' AND kredittering IN ({$dicts})
-            UNION SELECT * FROM smj_translations WHERE til = '{$search}' AND kredittering IN ({$dicts})
-            UNION SELECT * FROM smj_translations WHERE til LIKE '{$search}%' AND kredittering IN ({$dicts})
-            UNION SELECT * FROM smj_translations WHERE til LIKE '%{$search}' AND kredittering IN ({$dicts})
-            UNION SELECT * FROM smj_translations WHERE til LIKE '%{$search}%' AND kredittering IN ({$dicts})
-            limit 250
-            "
-            );
-        } else {
-            $results = DB::select(
-                "SELECT * FROM smj_translations WHERE til = '{$search}' AND kredittering IN ({$dicts})
-            UNION SELECT * FROM smj_translations WHERE til LIKE '{$search}%' AND kredittering IN ({$dicts})
-            UNION SELECT * FROM smj_translations WHERE til LIKE '%{$search}' AND kredittering IN ({$dicts})
-            UNION SELECT * FROM smj_translations WHERE til LIKE '%{$search}%' AND kredittering IN ({$dicts})
-            UNION SELECT * FROM smj_translations WHERE fra = '{$search}' AND kredittering IN ({$dicts}) 
-            UNION SELECT * FROM smj_translations WHERE fra LIKE '{$search}%' AND kredittering IN ({$dicts})
-            UNION SELECT * FROM smj_translations WHERE fra LIKE '%{$search}' AND kredittering IN ({$dicts})
-            UNION SELECT * FROM smj_translations WHERE fra LIKE '%{$search}%' AND kredittering IN ({$dicts})
-            limit 250"
-            );
-        }
+        $query1 = DB::table('smj_translations')
+            ->select()
+            ->where("til", "LIKE", "%{$search}%")
+            ->whereIn('kredittering', $dictionaries);
 
-        return $results;
+        $query2 = DB::table('smj_translations')
+            ->select()
+            ->where("til", "LIKE", "%{$search}")
+            ->whereIn('kredittering', $dictionaries);
+
+        $query3 = DB::table('smj_translations')
+            ->select()
+            ->where("til", "LIKE", "{$search}%")
+            ->whereIn('kredittering', $dictionaries);
+
+        $query4 = DB::table('smj_translations')
+            ->select()
+            ->where("til", "LIKE", "{$search}")
+            ->whereIn('kredittering', $dictionaries);
+
+        $query5 = DB::table('smj_translations')
+            ->select()
+            ->where("fra", "LIKE", "%{$search}%")
+            ->whereIn('kredittering', $dictionaries);
+
+        $query6 = DB::table('smj_translations')
+            ->select()
+            ->where("fra", "LIKE", "%{$search}")
+            ->whereIn('kredittering', $dictionaries);
+
+        $query7 = DB::table('smj_translations')
+            ->select()
+            ->where("fra", "LIKE", "{$search}%")
+            ->whereIn('kredittering', $dictionaries);
+
+        $query8 = DB::table('smj_translations')
+            ->select()
+            ->where("fra", "LIKE", "{$search}")
+            ->whereIn('kredittering', $dictionaries)
+            ->union($query7)
+            ->union($query6)
+            ->union($query5)
+            ->union($query4)
+            ->union($query3)
+            ->union($query2)
+            ->union($query1)
+            ->limit(50)
+            ->orderBy('oversatt_fra', $orderBy)
+            ->get();
+
+        return $query8;
 
         ProcessStatistic::dispatch();
     }

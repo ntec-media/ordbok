@@ -12,8 +12,8 @@ import React, {useEffect, useState} from 'react';
 import {ILang, localDictsSupported} from '../../interfaces';
 import ISearchResult from '../../Interfaces/ISearchResult';
 import {search} from '../../utils';
-import NoSearch from './NoSearch';
-import ResultCard from './ResultCard';
+import NoSearch from '../Search/NoSearch';
+import ResultCard from '../Search/ResultCard';
 
 interface Props {
     input: string;
@@ -85,7 +85,10 @@ const SearchResultList = (props: Props) => {
                     </div>
                     <List>
                         {results.map((res: ISearchResult, index: number) => (
-                            <ListItem key={index} style={{padding: '2px 0px'}}>
+                            <ListItem
+                                key={index}
+                                style={{paddingLeft: 0, paddingRight: 0}}
+                            >
                                 <ResultCard input={props.input} result={res} />
                             </ListItem>
                         ))}
