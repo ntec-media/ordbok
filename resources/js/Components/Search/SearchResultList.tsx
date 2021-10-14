@@ -1,4 +1,4 @@
-import {CircularProgress, List, ListItem} from '@material-ui/core';
+import {Button, CircularProgress, List, ListItem} from '@material-ui/core';
 import {trans} from 'matice';
 import React, {useEffect, useState} from 'react';
 import ISearchResult from '../../Interfaces/ISearchResult';
@@ -63,16 +63,20 @@ const SearchResultList = (props: Props) => {
                         ))}
                     </List>
                     {page !== 0 && (
-                        <button
-                            className="w-full"
-                            onClick={() => {
-                                const newPage = page + 1;
-                                setPage(newPage);
-                                getResultsArray(newPage);
-                            }}
-                        >
-                            Last flere resultater
-                        </button>
+                        <div className="my-6">
+                            <Button
+                                fullWidth
+                                variant="contained"
+                                color="primary"
+                                onClick={() => {
+                                    const newPage = page + 1;
+                                    setPage(newPage);
+                                    getResultsArray(newPage);
+                                }}
+                            >
+                                Last flere resultater
+                            </Button>
+                        </div>
                     )}
                 </>
             ) : props.input !== '' ? (

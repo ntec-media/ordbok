@@ -73,7 +73,7 @@ class LocalSearch implements SearchInterface
             ->union($query2)
             ->union($query1)
             ->orderBy('oversatt_fra', $orderBy)
-            ->paginate(25, ['*'], );
+            ->simplePaginate(25, ['*']);
 
         return $query8;
 
