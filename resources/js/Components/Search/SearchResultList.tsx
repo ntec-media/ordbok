@@ -12,7 +12,7 @@ import React, {useEffect, useState} from 'react';
 import {ILang, localDictsSupported} from '../../interfaces';
 import ISearchResult from '../../Interfaces/ISearchResult';
 import {search} from '../../utils';
-import NoSearch from '../OldSearch/NoSearch';
+import NoSearch from './NoSearch';
 import ResultCard from './ResultCard';
 
 interface Props {
