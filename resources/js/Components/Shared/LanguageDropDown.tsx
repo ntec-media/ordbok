@@ -11,7 +11,6 @@ interface Props {
     setSelected: (newLang: string) => void;
 }
 
-// Unused component. Can be used in a potential v2
 const LanguageDropDown = (props: Props) => {
     return (
         <Menu as="div" className="relative ml-3">

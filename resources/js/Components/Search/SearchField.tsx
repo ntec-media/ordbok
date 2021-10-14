@@ -16,6 +16,7 @@ const SearchField = (props: Props) => {
 
     useEffect(() => {
         delayedQuery(input);
+        input;
     }, [input]);
 
     const delayedQuery = useCallback(
@@ -38,7 +39,9 @@ const SearchField = (props: Props) => {
                 freeSolo
                 value={input}
                 style={{marginRight: 0}}
-                onKeyDown={e => e.key === 'backspace' && props.resetPage()}
+                onKeyDown={e =>
+                    e.key.toLowerCase() === 'backspace' && props.resetPage()
+                }
                 onInputChange={(_e, newVal) => {
                     setInput(newVal);
                 }}

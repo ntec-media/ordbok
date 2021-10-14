@@ -15,19 +15,26 @@ interface Props {
 const SearchResultList = (props: Props) => {
     const [results, setResults] = useState<ISearchResult[]>([]);
     const [loading, setLoading] = useState(false);
+    const [page, setPage] = useState<number>(1);
 
     useEffect(() => {
+        setPage(1);
         if (props.input !== '') {
-            getResultsArray();
+            getResultsArray(1);
         } else setResults([]);
     }, [props.input, props.orderBy]);
 
-    const getResultsArray = () => {
+    const getResultsArray = (searchPage: number) => {
         setLoading(true);
-        search(props.input, 1, props.orderBy)
+        search(props.input, searchPage, props.orderBy)
             .then(res => {
+                if (results.length > 0 && searchPage > 1) {
+                    setResults(results.concat(res.data));
+                } else {
+                    setResults(res.data);
+                }
                 setLoading(false);
-                setResults(res);
+                res.next_page_url === null && setPage(0);
             })
             .catch(() => {
                 setLoading(false);
@@ -56,6 +63,18 @@ const SearchResultList = (props: Props) => {
                             </ListItem>
                         ))}
                     </List>
+                    {page !== 0 && (
+                        <button
+                            className="w-full"
+                            onClick={() => {
+                                const newPage = page + 1;
+                                setPage(newPage);
+                                getResultsArray(newPage);
+                            }}
+                        >
+                            Last flere resultater
+                        </button>
+                    )}
                 </>
             ) : props.input !== '' ? (
                 !loading ? (
