@@ -29,44 +29,44 @@ class LocalSearch implements SearchInterface
         $query2 = DB::table('smj_translations')
             ->select()
             ->where("til", "LIKE", "%{$search}")
-            ->whereIn('kredittering', $dictionaries)
-            ->union($query1);
+            ->whereIn('kredittering', $dictionaries);
 
         $query3 = DB::table('smj_translations')
             ->select()
             ->where("til", "LIKE", "{$search}%")
-            ->whereIn('kredittering', $dictionaries)
-            ->union($query2);
+            ->whereIn('kredittering', $dictionaries);
 
         $query4 = DB::table('smj_translations')
             ->select()
             ->where("til", "LIKE", "{$search}")
-            ->whereIn('kredittering', $dictionaries)
-            ->union($query3);
+            ->whereIn('kredittering', $dictionaries);
 
         $query5 = DB::table('smj_translations')
             ->select()
             ->where("fra", "LIKE", "%{$search}%")
-            ->whereIn('kredittering', $dictionaries)
-            ->union($query4);
+            ->whereIn('kredittering', $dictionaries);
 
         $query6 = DB::table('smj_translations')
             ->select()
             ->where("fra", "LIKE", "%{$search}")
-            ->whereIn('kredittering', $dictionaries)
-            ->union($query5);
+            ->whereIn('kredittering', $dictionaries);
 
         $query7 = DB::table('smj_translations')
             ->select()
             ->where("fra", "LIKE", "{$search}%")
-            ->whereIn('kredittering', $dictionaries)
-            ->union($query6);
+            ->whereIn('kredittering', $dictionaries);
 
         $query8 = DB::table('smj_translations')
             ->select()
             ->where("fra", "LIKE", "{$search}")
             ->whereIn('kredittering', $dictionaries)
             ->union($query7)
+            ->union($query6)
+            ->union($query5)
+            ->union($query4)
+            ->union($query3)
+            ->union($query2)
+            ->union($query1)
             ->limit(50)
             ->orderBy('oversatt_fra', $orderBy, 'oversatt_til', $orderBy)
             ->get();
