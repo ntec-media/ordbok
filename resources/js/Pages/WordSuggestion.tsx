@@ -1,7 +1,7 @@
 import React, {useState} from 'react';
 import CustomSnackbar, {
     CustomSnackbarProps,
-} from '../Components/CustomSnackbar';
+} from '../Components/Shared/CustomSnackbar';
 import Description from '../Components/WordSuggestion/Description';
 import Form from '../Components/WordSuggestion/Form';
 import {trans} from 'matice';
