@@ -30,7 +30,7 @@ const Navbar = () => {
 
     return (
         <div>
-            <div className="flex items-center justify-between w-full py-2 lg:mx-2">
+            <div className="flex items-center justify-between w-full py-1 lg:mx-2">
                 <div>
                     <div className="flex md:hidden">
                         <IconButton

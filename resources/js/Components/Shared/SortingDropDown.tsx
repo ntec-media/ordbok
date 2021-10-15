@@ -23,7 +23,7 @@ export default function SortingDropDown(props: Props) {
     }, [selected]);
 
     return (
-        <Menu as="div" className="relative z-50 inline-block text-left">
+        <Menu as="div" className="relative z-40 inline-block text-left">
             <div>
                 <Menu.Button className="flex items-center mx-2 text-gray-400 bg-gray-100 rounded-full hover:text-gray-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-100 focus:ring-indigo-500">
                     <span className="sr-only">Open options</span>

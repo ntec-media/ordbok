@@ -13,7 +13,7 @@ interface Props {
 
 const LanguageDropDown = (props: Props) => {
     return (
-        <Menu as="div" className="relative ml-3">
+        <Menu as="div" className="relative z-50 ml-3">
             {({open}) => (
                 <>
                     <div>
