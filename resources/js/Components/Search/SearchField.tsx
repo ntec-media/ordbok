@@ -3,15 +3,16 @@ import {debounce, InputAdornment, TextField} from '@material-ui/core';
 import {Autocomplete} from '@material-ui/lab';
 import {trans} from 'matice';
 import React, {useCallback, useEffect, useState} from 'react';
+import SortingDropDown from '../Shared/SortingDropDown';
 
 interface Props {
     updateInput: (newInput: string) => void;
     resetPage: () => void;
+    setOrderBy: (newInput: string) => void;
 }
 
 const SearchField = (props: Props) => {
     const [input, setInput] = useState('');
-    const [dictModalOpen, setDictModalOpen] = useState(false);
 
     useEffect(() => {
         delayedQuery(input);
@@ -57,16 +58,21 @@ const SearchField = (props: Props) => {
                                 </InputAdornment>
                             ),
                             endAdornment: (
-                                <div className="flex">
+                                <div className="flex items-center">
+                                    <SortingDropDown
+                                        setOrderBy={newVal =>
+                                            props.setOrderBy(newVal)
+                                        }
+                                    />
                                     <button
                                         onClick={() => setInput(input + 'á')}
-                                        className="hidden px-4 py-2 mx-2 text-base font-medium text-indigo-700 bg-indigo-100 border border-indigo-400 rounded-full md:block hover:bg-indigo-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+                                        className="hidden px-4 py-2 mx-2 text-base font-medium text-gray-700 bg-gray-100 border border-gray-400 rounded-md md:block hover:bg-gray-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-500"
                                     >
                                         á
                                     </button>
                                     <button
                                         onClick={() => setInput(input + 'ŋ')}
-                                        className="items-center block px-4 py-2 text-sm font-medium text-indigo-700 bg-indigo-100 border border-indigo-400 rounded-full hover:bg-indigo-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+                                        className="items-center block px-4 py-2 text-sm font-medium text-gray-700 bg-gray-100 border border-gray-400 rounded-md hover:bg-gray-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-500"
                                     >
                                         ŋ
                                     </button>

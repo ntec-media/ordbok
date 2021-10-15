@@ -9,7 +9,7 @@ interface Props {
     result: ISearchResult;
 }
 
-const escapeRE = new RegExp(/([.*+?^=!:$(){}|[\]\/\\])/g);
+const escapeRE = new RegExp(/([.*+?^=!:$(){}|[\]/\\])/g);
 const safeRE = (string: string) => {
     return string.replace(escapeRE, '\\$1');
 };
@@ -28,16 +28,27 @@ const ResultCard = (props: Props) => {
 
         return newLines.map((word, index) => {
             return (
-                <>
-                    <p
-                        dangerouslySetInnerHTML={{
-                            __html:
-                                word.replace(
+                <div key={index}>
+                    {newLines.length === 1 ? (
+                        <p
+                            dangerouslySetInnerHTML={{
+                                __html: word.replace(
                                     safeRE(props.input),
                                     `<span class="bg-yellow-200">${props.input}</span>`
-                                ) + ';',
-                        }}
-                    />
+                                ),
+                            }}
+                        />
+                    ) : (
+                        <p
+                            dangerouslySetInnerHTML={{
+                                __html:
+                                    word.replace(
+                                        safeRE(props.input),
+                                        `<span class="bg-yellow-200">${props.input}</span>`
+                                    ) + ';',
+                            }}
+                        />
+                    )}
                     {sliced && index === minItemsToShow - 1 && (
                         <p
                             onClick={() => setShowAll(true)}
@@ -46,7 +57,7 @@ const ResultCard = (props: Props) => {
                             Se mer
                         </p>
                     )}
-                </>
+                </div>
             );
         });
     };
@@ -57,7 +68,10 @@ const ResultCard = (props: Props) => {
             <>
                 <Tooltip title="Raporter feil">
                     <IconButton onClick={() => setOpen(true)}>
-                        <FlagIcon fontSize="small" className="text-red-500" />
+                        <FlagIcon
+                            fontSize="small"
+                            className="text-gray-400 hover:text-red-400"
+                        />
                     </IconButton>
                 </Tooltip>
 
