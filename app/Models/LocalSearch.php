@@ -2,11 +2,11 @@
 
 namespace App\Models;
 
-use App\Jobs\ProcessStatistic;
-use Illuminate\Support\Facades\DB;
-use App\Interfaces\SearchInterface;
 use App\Http\Requests\SearchRequest;
+use App\Interfaces\SearchInterface;
+use App\Jobs\ProcessStatistic;
 use Illuminate\Pagination\Paginator;
+use Illuminate\Support\Facades\DB;
 
 class LocalSearch implements SearchInterface
 {
