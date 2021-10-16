@@ -9,6 +9,7 @@ interface Props {
     closeModal: () => void;
 }
 
+// Unused component. Can be used in a potential v2
 const DictionaryModal = (props: Props) => {
     const [cookies, setCookies] = useContext(Context);
 

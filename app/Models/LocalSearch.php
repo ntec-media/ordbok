@@ -5,6 +5,7 @@ namespace App\Models;
 use App\Http\Requests\SearchRequest;
 use App\Interfaces\SearchInterface;
 use App\Jobs\ProcessStatistic;
+use Illuminate\Pagination\Paginator;
 use Illuminate\Support\Facades\DB;
 
 class LocalSearch implements SearchInterface
@@ -18,8 +19,12 @@ class LocalSearch implements SearchInterface
     {
         $search = $request->input('search');
         $orderBy = $request->input('orderBy') === "sami" ? "DESC" : "ASC";
-        $dictionaries = ["A. Kintel 2013", "Sáme Giellagálldo 2013", "Medisijnalasj báhkogirjje"];
+        $currentPage = $request->input('page');
+        Paginator::currentPageResolver(function () use ($currentPage) {
+            return $currentPage;
+        });
 
+        $dictionaries = ["A. Kintel 2013", "Sáme Giellagálldo 2013", "Medisijnalasj báhkogirjje"];
 
         $query1 = DB::table('smj_translations')
             ->select()
@@ -67,9 +72,8 @@ class LocalSearch implements SearchInterface
             ->union($query3)
             ->union($query2)
             ->union($query1)
-            ->limit(50)
             ->orderBy('oversatt_fra', $orderBy)
-            ->get();
+            ->simplePaginate(25, ['*']);
 
         return $query8;
 
