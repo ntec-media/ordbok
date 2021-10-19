@@ -30,8 +30,8 @@ const Sidebar = (props: Props) => {
             onKeyDown={() => props.toggle}
         >
             <List>
-                <ListItem>
-                    <InertiaLink href="/">
+                <InertiaLink href="/">
+                    <ListItem>
                         <ListItemIcon>
                             <img
                                 src={samiFlag}
@@ -39,47 +39,47 @@ const Sidebar = (props: Props) => {
                                 className="w-6 h-6 rounded-full"
                             />
                         </ListItemIcon>
-                    </InertiaLink>
-                    <h1 className="text-xl font-bold">Julevbago</h1>
-                </ListItem>
+                        <h1 className="text-xl font-bold">Julevbago</h1>
+                    </ListItem>
+                </InertiaLink>
             </List>
             <Divider />
             <List>
-                <ListItem button key="search">
-                    <InertiaLink href="/">
+                <InertiaLink href="/">
+                    <ListItem button key="search">
                         <ListItemIcon>
                             <SearchIcon />
                         </ListItemIcon>
-                    </InertiaLink>
-                    <ListItemText primary="Søk" />
-                </ListItem>
+                        <ListItemText primary="Søk" />
+                    </ListItem>
+                </InertiaLink>
 
-                <ListItem button key="word">
-                    <InertiaLink href="/word">
+                <InertiaLink href="/word">
+                    <ListItem button key="word">
                         <ListItemIcon>
                             <PostAddIcon />
                         </ListItemIcon>
-                    </InertiaLink>
-                    <ListItemText primary="Nytt ord forslag" />
-                </ListItem>
+                        <ListItemText primary="Nytt ord forslag" />
+                    </ListItem>
+                </InertiaLink>
 
-                <ListItem button key="statistics">
-                    <InertiaLink href="/statistics">
+                <InertiaLink href="/statistics">
+                    <ListItem button key="statistics">
                         <ListItemIcon>
                             <BarChartIcon />
                         </ListItemIcon>
-                    </InertiaLink>
-                    <ListItemText primary="Statistikk" />
-                </ListItem>
+                        <ListItemText primary="Statistikk" />
+                    </ListItem>
+                </InertiaLink>
 
-                <ListItem button key="download app">
-                    <InertiaLink href="/app">
+                <InertiaLink href="/app">
+                    <ListItem button key="download app">
                         <ListItemIcon>
                             <GetAppIcon />
                         </ListItemIcon>
-                    </InertiaLink>
-                    <ListItemText primary="Statistikk" />
-                </ListItem>
+                        <ListItemText primary="Last ned app" />
+                    </ListItem>
+                </InertiaLink>
             </List>
             <Divider />
             <List>

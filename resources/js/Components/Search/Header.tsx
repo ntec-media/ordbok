@@ -22,7 +22,7 @@ const Header = (props: {searching: boolean}) => {
                     </h1>
                 </div>
             </div>
-            <div className="justify-center hidden text-5xl md:flex top-3 2xl:text-7xl">
+            <div className="justify-center hidden py-12 text-5xl md:flex 2xl:text-7xl">
                 Julevbágo
             </div>
         </>

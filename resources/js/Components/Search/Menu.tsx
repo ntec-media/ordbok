@@ -12,7 +12,7 @@ interface Props {
 
 const Menu = (props: Props) => {
     return (
-        <ul className="flex justify-center space-x-12">
+        <ul className="justify-center hidden space-x-12 md:flex">
             <li
                 className="relative flex flex-col items-center justify-center"
                 onClick={() => props.setSelected(0)}
