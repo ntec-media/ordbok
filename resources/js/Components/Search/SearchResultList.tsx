@@ -1,9 +1,7 @@
 import {Button, CircularProgress, List, ListItem} from '@material-ui/core';
-import {trans} from 'matice';
 import React, {useEffect, useState} from 'react';
 import ISearchResult from '../../Interfaces/ISearchResult';
 import {search} from '../../utils';
-import NoSearch from './NoSearch';
 import ResultCard from './ResultCard';
 
 interface Props {
@@ -23,7 +21,7 @@ const SearchResultList = (props: Props) => {
         } else setResults([]);
     }, [props.input, props.orderBy]);
 
-    const getResultsArray = (searchPage: number) => {
+    const getResultsArray = async (searchPage: number) => {
         setLoading(true);
         search(props.input, searchPage, props.orderBy)
             .then(res => {
@@ -31,6 +29,10 @@ const SearchResultList = (props: Props) => {
                     setResults(results.concat(res.data));
                 } else {
                     setResults(res.data);
+                    // Move searchfield to top of page but also steals focus which will be more frustrating
+                    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+                    // @ts-ignore
+                    // window.location = '#searchfield';
                 }
                 setLoading(false);
                 res.next_page_url === null && setPage(0);
@@ -41,20 +43,16 @@ const SearchResultList = (props: Props) => {
     };
 
     return (
-        <div>
+        <>
             {results.length > 0 ? (
                 <>
-                    <div className="flex justify-between">
-                        <h2 className="text-gray-500 ">
-                            {results.length === 250
-                                ? 'Viser 250 ord'
-                                : trans('Search.SearchResult.found') +
-                                  ' ' +
-                                  results.length +
-                                  ' ' +
-                                  trans('Search.SearchResult.words')}
-                        </h2>
-                    </div>
+                    {loading ? (
+                        <div className="text-center">
+                            <CircularProgress size={20} />
+                        </div>
+                    ) : (
+                        <h2>{'Viser ' + results.length + ' Ord'}</h2>
+                    )}
                     <List>
                         {results.map((res: ISearchResult, index: number) => (
                             <ListItem key={index} style={{padding: '2px 0px'}}>
@@ -64,39 +62,34 @@ const SearchResultList = (props: Props) => {
                     </List>
                     {page !== 0 && (
                         <div className="mt-2 mb-6">
-                            <Button
-                                style={{padding: 20}}
-                                fullWidth
-                                variant="contained"
-                                color="primary"
-                                onClick={() => {
-                                    const newPage = page + 1;
-                                    setPage(newPage);
-                                    getResultsArray(newPage);
-                                }}
-                            >
-                                Last flere resultater
-                            </Button>
+                            {!loading ? (
+                                <Button
+                                    fullWidth
+                                    variant="contained"
+                                    onClick={() => {
+                                        const newPage = page + 1;
+                                        setPage(newPage);
+                                        getResultsArray(newPage);
+                                    }}
+                                >
+                                    Last flere resultater
+                                </Button>
+                            ) : (
+                                <div className="text-center">
+                                    <CircularProgress size={20} />
+                                </div>
+                            )}
                         </div>
                     )}
                 </>
-            ) : props.input !== '' ? (
-                !loading ? (
-                    <h2 className="text-xl italic text-center">
-                        Fant ingen ord
-                    </h2>
-                ) : (
-                    <div className="flex items-center justify-center">
-                        <h2 className="mr-2 text-xl italic">Søker...</h2>
-                        <CircularProgress size={20} />
-                    </div>
-                )
-            ) : (
-                <div>
-                    <NoSearch />
+            ) : loading ? (
+                <div className="text-center">
+                    <CircularProgress size={20} />
                 </div>
+            ) : (
+                <h2 className="text-center">Fant Ingen resultat</h2>
             )}
-        </div>
+        </>
     );
 };
 

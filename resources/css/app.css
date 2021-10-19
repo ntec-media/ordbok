@@ -24,3 +24,24 @@
 .icon-link:hover {
     transform: scale(1.1);
 }
+
+.slideIn {
+    -webkit-animation: slideInAnimation 2s ease-in-out forwards;
+    animation: slideInAnimation 1.5s ease-in-out forwards;
+    margin-left: auto;
+    margin-right: auto;
+    position: absolute;
+    margin-left: -50%;
+    left: -100px;
+    transform: translateX(-50%);
+    -webkit-transform: translateX(-50%);
+}
+
+@keyframes slideInAnimation {
+    100% {
+        margin-left: 50%;
+        margin-right: 50%;
+        left: 0;
+        right: 0;
+    }
+}

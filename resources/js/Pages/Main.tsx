@@ -6,6 +6,7 @@ import Layout from '../Components/Shared/Layout';
 import DownloadApp from './DownloadApp';
 import Search from './Search';
 import WordSuggestion from './WordSuggestion';
+import CookiePopup from '../Components/Shared/CookiePopup';
 
 const Main = () => {
     const [selected, setSelected] = useState(0);
@@ -29,6 +30,7 @@ const Main = () => {
             <Header searching={input !== ''} />
             <Menu setSelected={newSelected => setSelected(newSelected)} />
             {getContent()}
+            <CookiePopup />
         </Layout>
     );
 };

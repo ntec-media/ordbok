@@ -41,10 +41,10 @@ const content = (
 
 const DownloadApp = () => (
     <>
-        <div className="md:hidden">
+        <div className="md:hidden fadeIn">
             <Layout>{content}</Layout>
         </div>
-        <div className="hidden md:block">{content}</div>
+        <div className="hidden md:block fadeIn">{content}</div>
     </>
 );
 
