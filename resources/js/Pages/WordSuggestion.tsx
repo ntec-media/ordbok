@@ -6,6 +6,7 @@ import Description from '../Components/WordSuggestion/Description';
 import Form from '../Components/WordSuggestion/Form';
 import {trans} from 'matice';
 import InfoIcon from '../Components/WordSuggestion/InfoIcon';
+import Layout from '../Components/Shared/Layout';
 
 const WordSuggestion = () => {
     const [snackbarProps, setSnackbarProps] = useState<CustomSnackbarProps>({
@@ -44,9 +45,9 @@ const WordSuggestion = () => {
         }
     };
 
-    return (
+    const content = (
         <>
-            <div className="flex justify-center ">
+            <div className="flex justify-center mb-12 ">
                 <div className="flex w-full md:border md:border-blue-200 md:w-8/12 md:py-8 md:mt-16 rounded-xl">
                     <div className="w-full md:w-8/12">
                         <h1 className="hidden ml-2 text-3xl md:flex md:ml-8 ">
@@ -66,6 +67,15 @@ const WordSuggestion = () => {
                 </div>
             </div>
             <CustomSnackbar {...snackbarProps} />
+        </>
+    );
+
+    return (
+        <>
+            <div className="md:hidden fadeIn">
+                <Layout>{content}</Layout>
+            </div>
+            <div className="hidden md:block fadeIn">{content}</div>
         </>
     );
 };

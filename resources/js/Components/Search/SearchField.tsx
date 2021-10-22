@@ -34,6 +34,7 @@ const SearchField = (props: Props) => {
     return (
         <div className="flex justify-center" style={{marginRight: 0}}>
             <Autocomplete
+                id="searchfield"
                 className="w-full"
                 freeSolo
                 value={input}
@@ -44,6 +45,7 @@ const SearchField = (props: Props) => {
                 options={[]}
                 renderInput={params => (
                     <TextField
+                        autoFocus
                         {...params}
                         value={input}
                         placeholder="Søk i julevs ordbokdatabase"

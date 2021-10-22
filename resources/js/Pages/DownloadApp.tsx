@@ -1,7 +1,8 @@
 import {trans} from 'matice';
 import React from 'react';
+import Layout from '../Components/Shared/Layout';
 
-const DownloadApp = () => (
+const content = (
     <div className="flex flex-row justify-around mt-4 md:mt-20">
         <div className="flex flex-col justify-center w-11/12 text-center md:w-3/6">
             <h1 className="text-3xl text-indigo-800 lg:text-5xl">
@@ -36,6 +37,15 @@ const DownloadApp = () => (
             </div>
         </div>
     </div>
+);
+
+const DownloadApp = () => (
+    <>
+        <div className="md:hidden fadeIn">
+            <Layout>{content}</Layout>
+        </div>
+        <div className="hidden md:block fadeIn">{content}</div>
+    </>
 );
 
 export default DownloadApp;

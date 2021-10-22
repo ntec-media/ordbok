@@ -1,12 +1,8 @@
-import React from 'react';
-import {useEffect} from 'react';
-import {useState} from 'react';
-import Layout from '../Components/Shared/Layout';
-import Chart from '../Components/Statistics/Chart';
-import Tab from '../Components/Statistics/Tab';
-import Table from '../Components/Statistics/Table';
-import TableChartButtons from '../Components/Statistics/TableChartButtons';
-import {month, week, year} from '../utils';
+import React, {useEffect, useState} from 'react';
+import CountUp from 'react-countup';
+import {month, week, year} from '../../utils';
+import Chart from '../Statistics/Chart';
+import Table from '../Statistics/Table';
 
 const days = [
     'monday',
@@ -34,10 +30,10 @@ const months = [
 ];
 
 const Statistics = () => {
-    const [currentTab, setCurrentTab] = useState<string>('week');
+    const [selected, setSelected] = useState(0);
     const [data, setData] = useState<number[]>([]);
+    const [currentTab, setCurrentTab] = useState<string>('week');
     const [labels, setLabels] = useState<string[]>([]);
-    const [showTable, setShowTable] = useState(true);
 
     useEffect(() => {
         switch (currentTab) {
@@ -80,33 +76,32 @@ const Statistics = () => {
         }
     }, [currentTab]);
 
-    const content = (
-        <div className="flex flex-col px-4 ">
-            <div className="flex items-center justify-around mt-8">
-                <TableChartButtons
-                    showTable={showTable}
-                    toggle={() => setShowTable(!showTable)}
-                />
-                <Tab setTab={newTab => setCurrentTab(newTab)} />
-                <p>{}</p>
+    return (
+        <div>
+            <div className="flex justify-center w-full mt-10 space-x-5 text-3xl">
+                <div className="text-center">
+                    <CountUp duration={2} end={2300} />
+                    <p className="px-10 text-sm text-center text-gray-500">
+                        I Dag
+                    </p>
+                </div>
+                <div className="text-center">
+                    <CountUp delay={0.5} duration={2} end={32000} />
+                    <p className="px-10 text-sm text-center text-gray-500">
+                        Juni
+                    </p>
+                </div>
+                <div className="text-center">
+                    <CountUp delay={1} duration={2} end={492034} />
+                    <p className="px-10 text-sm text-center text-gray-500">
+                        2021
+                    </p>
+                </div>
             </div>
-            <div className="flex justify-center mt-8 md:mx-24">
-                {showTable ? (
-                    <Table data={data} labels={labels} />
-                ) : (
-                    <Chart data={data} labels={labels} />
-                )}
+            <div className="flex ">
+                <Chart data={data} labels={labels} />
             </div>
         </div>
-    );
-
-    return (
-        <>
-            <div className="md:hidden fadeIn">
-                <Layout>{content}</Layout>
-            </div>
-            <div className="hidden md:block fadeIn">{content}</div>
-        </>
     );
 };
 

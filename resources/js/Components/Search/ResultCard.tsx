@@ -11,7 +11,7 @@ interface Props {
 
 const escapeRE = new RegExp(/([.*+?^=!:$(){}|[\]/\\])/g);
 const safeRE = (string: string) => {
-    return string.replace(escapeRE, '\\$1');
+    return string.toLocaleLowerCase().replace(escapeRE, '\\$1');
 };
 
 const ResultCard = (props: Props) => {
@@ -19,7 +19,7 @@ const ResultCard = (props: Props) => {
 
     const getFormattedString = (string: string) => {
         const minItemsToShow = 5;
-        let newLines = string.split(';');
+        let newLines = string.toLocaleLowerCase().split(';');
         let sliced = false;
         if (!showAll) {
             if (newLines.length > minItemsToShow) sliced = true;
