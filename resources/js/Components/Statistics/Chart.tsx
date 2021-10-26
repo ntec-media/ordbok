@@ -57,9 +57,8 @@ const Chart = (props: Props) => {
             height={400}
             width={600}
             options={{
-                maintainAspectRaio: false,
+                maintainAspectRatio: false,
             }}
-            type=""
         />
     );
 };
