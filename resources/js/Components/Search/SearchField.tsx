@@ -15,7 +15,6 @@ const SearchField = (props: Props) => {
 
     useEffect(() => {
         delayedQuery(input);
-        input;
     }, [input]);
 
     const delayedQuery = useCallback(

@@ -36,3 +36,29 @@
         bottom: 0;
     }
 }
+
+.header {
+    margin-top: 5rem;
+    font-size: 3rem /* 30px */;
+    line-height: 1rem /* 36px */;
+    animation: headerAnimation ease-in-out 0.5s forwards;
+}
+
+@keyframes headerAnimation {
+    100% {
+        margin-top: 0.875rem;
+        font-size: 1.875rem /* 30px */;
+        line-height: 2.25rem /* 36px */;
+    }
+}
+
+.header-margin {
+    height: 6rem;
+    animation: headerMarginAnimation ease-in-out 0.5s forwards;
+}
+
+@keyframes headerMarginAnimation {
+    100% {
+        height: 0rem;
+    }
+}
