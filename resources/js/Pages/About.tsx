@@ -12,12 +12,16 @@ const About = () => {
                     <p>{trans('About.main')}</p>
                     <div className="mt-6">
                         <a
+                            target="_blank"
+                            rel="noopener noreferrer"
                             className="block text-indigo-600"
                             href="https://internia.no"
                         >
                             Ntec Media
                         </a>
                         <a
+                            target="_blank"
+                            rel="noopener noreferrer"
                             className="block text-indigo-600"
                             href="https://divvun.no"
                         >
