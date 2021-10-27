@@ -34,9 +34,9 @@ const SearchField = (props: Props) => {
         <div className="flex justify-center" style={{marginRight: 0}}>
             <Autocomplete
                 id="searchfield"
-                className="w-full"
                 freeSolo
                 value={input}
+                fullWidth
                 style={{marginRight: 0}}
                 onInputChange={(_e, newVal) => {
                     setInput(newVal);

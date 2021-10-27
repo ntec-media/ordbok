@@ -47,10 +47,10 @@ const SearchResultList = (props: Props) => {
                     res.data
                         ? setResults(res.data)
                         : setSnackbarProps({...snackbarProps, open: true});
-                    // Move searchfield to top of page but also steals focus which will be more frustrating
-                    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-                    // @ts-ignore
-                    // window.location = '#searchfield';
+                    window.innerWidth >= 768 &&
+                        // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+                        // @ts-ignore
+                        (window.location = '#searchfield');
                 }
                 setLoading(false);
                 res.next_page_url === null && setPage(0);
