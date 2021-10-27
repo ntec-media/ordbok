@@ -26,7 +26,8 @@ const SearchResultList = (props: Props) => {
         setPage(1);
         if (props.input !== '') {
             getResultsArray(1);
-        } else setResults([]);
+        }
+        setResults([]);
     }, [props.input, props.orderBy]);
 
     useEffect(() => {
@@ -63,12 +64,10 @@ const SearchResultList = (props: Props) => {
         <>
             {results?.length > 0 ? (
                 <>
-                    {loading ? (
-                        <div className="text-center">
-                            <CircularProgress size={20} />
+                    {loading && (
+                        <div className="mt-24 text-center">
+                            <CircularProgress size={60} />
                         </div>
-                    ) : (
-                        <h2>{'Viser ' + results.length + ' Ord'}</h2>
                     )}
                     <List>
                         {results.map((res: ISearchResult, index: number) => (
@@ -77,7 +76,7 @@ const SearchResultList = (props: Props) => {
                             </ListItem>
                         ))}
                     </List>
-                    {page !== 0 && (
+                    {page !== 0 ? (
                         <div className="mt-2 mb-6">
                             {!loading ? (
                                 <Button
@@ -89,19 +88,23 @@ const SearchResultList = (props: Props) => {
                                         getResultsArray(newPage);
                                     }}
                                 >
-                                    Last flere resultater
+                                    {'Viser ' +
+                                        results.length +
+                                        ' treff, last flere?'}
                                 </Button>
                             ) : (
-                                <div className="text-center">
-                                    <CircularProgress size={20} />
+                                <div className="mt-24 text-center">
+                                    <CircularProgress size={60} />
                                 </div>
                             )}
                         </div>
+                    ) : (
+                        <p>{'Viser ' + results.length + ' '}</p>
                     )}
                 </>
             ) : loading ? (
-                <div className="text-center">
-                    <CircularProgress size={20} />
+                <div className="mt-24 text-center">
+                    <CircularProgress size={60} />
                 </div>
             ) : (
                 <h2 className="text-center">Fant Ingen resultat</h2>

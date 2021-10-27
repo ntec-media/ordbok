@@ -13,7 +13,7 @@ const Search = (props: {input: (newInput: string) => void}) => {
 
     return (
         <div className="fadeIn">
-            <div className="pb-2 md:py-8">
+            <div className="md:pt-8 md:pb-2">
                 <SearchField
                     updateInput={newInput => setInput(newInput)}
                     setOrderBy={newVal => setOrderBy(newVal)}
