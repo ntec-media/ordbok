@@ -17,50 +17,50 @@ const Menu = (props: Props) => {
                 className="relative flex flex-col items-center justify-center"
                 onClick={() => props.setSelected(0)}
             >
-                <p className="bg-blue-500 rounded-full shadow-md cursor-pointer icon-link hover:bg-blue-600">
+                <div className="bg-blue-500 rounded-full shadow-md cursor-pointer icon-link hover:bg-blue-600">
                     <SearchIcon
                         className="py-4 text-white"
                         style={{width: 64, height: 64}}
                     />
-                </p>
-                <p className="mt-1">Søk</p>
+                </div>
+                <p className="mt-1 select-none">Søk</p>
             </li>
 
             <li
                 className="relative flex flex-col items-center justify-center"
                 onClick={() => props.setSelected(1)}
             >
-                <p className="bg-blue-500 rounded-full shadow-md cursor-pointer icon-link hover:bg-blue-600">
+                <div className="bg-blue-500 rounded-full shadow-md cursor-pointer icon-link hover:bg-blue-600">
                     <PostAddIcon
                         className="py-4 text-white"
                         style={{width: 64, height: 64}}
                     />
-                </p>
-                <p className="mt-1">Nytt ord</p>
+                </div>
+                <p className="mt-1 select-none">Nytt ord</p>
             </li>
             <li
                 className="relative flex flex-col items-center justify-center"
                 onClick={() => props.setSelected(2)}
             >
-                <p className="bg-blue-500 rounded-full shadow-md cursor-pointer icon-link hover:bg-blue-600">
+                <div className="bg-blue-500 rounded-full shadow-md cursor-pointer icon-link hover:bg-blue-600">
                     <BarChartIcon
                         className="py-4 text-white"
                         style={{width: 64, height: 64}}
                     />
-                </p>
-                <p className="mt-1">Statistikk</p>
+                </div>
+                <p className="mt-1 select-none">Statistikk</p>
             </li>
             <li
                 className="relative flex flex-col items-center justify-center"
                 onClick={() => props.setSelected(3)}
             >
-                <p className="bg-blue-500 rounded-full shadow-md cursor-pointer icon-link hover:bg-blue-600">
+                <div className="bg-blue-500 rounded-full shadow-md cursor-pointer icon-link hover:bg-blue-600">
                     <GetAppIcon
                         className="py-4 text-white"
                         style={{width: 64, height: 64}}
                     />
-                </p>
-                <p className="mt-1">Last ned app</p>
+                </div>
+                <p className="mt-1 select-none">Last ned app</p>
             </li>
         </ul>
     );
