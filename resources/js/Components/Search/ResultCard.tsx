@@ -89,7 +89,7 @@ const ResultCard = (props: Props) => {
 
     return (
         <>
-            <div className="flex-col w-full p-4 border border-indigo-200 rounded-lg shadow-md bg-gradient-to-r from-gray-100 via-gray-50 to-gray-100">
+            <div className="flex-col w-full p-4 mb-1 border border-indigo-200 rounded-lg shadow-sm bg-gradient-to-r from-gray-100 via-gray-50 to-gray-100">
                 <div className="flex justify-between w-full mb-6">
                     <div className="font-bold">
                         {getFormattedString(props.result.fra)}
