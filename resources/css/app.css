@@ -26,22 +26,13 @@
 }
 
 .slideIn {
-    -webkit-animation: slideInAnimation 2s ease-in-out forwards;
-    animation: slideInAnimation 1.5s ease-in-out forwards;
-    margin-left: auto;
-    margin-right: auto;
-    position: absolute;
-    margin-left: -50%;
-    left: -100px;
-    transform: translateX(-50%);
-    -webkit-transform: translateX(-50%);
+    animation: slideInAnimation ease-in-out 0.5s forwards;
+    bottom: -100px;
+    position: fixed;
 }
 
 @keyframes slideInAnimation {
     100% {
-        margin-left: 50%;
-        margin-right: 50%;
-        left: 0;
-        right: 0;
+        bottom: 0;
     }
 }

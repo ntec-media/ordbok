@@ -18,7 +18,7 @@ const CookiePopup = () => {
     return (
         <>
             {!approved && (
-                <div className="z-50 w-full mb-12 slideIn md:w-4/6 md:mb-32 lg:mb-36 lg:w-2/6">
+                <div className="z-50 w-full px-2 slideIn md:w-4/6 lg:w-3/6">
                     <div className="p-4 rounded-md bg-blue-50 ">
                         <div className="flex">
                             <div className="flex-shrink-0">
