@@ -4,7 +4,6 @@ import {CheckIcon} from '@heroicons/react/outline';
 import LanguageIcon from '@material-ui/icons/Language';
 import {languagesSupported} from '../../interfaces';
 import {trans} from 'matice';
-import {IconButton} from '@material-ui/core';
 
 interface Props {
     selected: string;
@@ -20,13 +19,11 @@ const LanguageDropDown = (props: Props) => {
                         <Menu.Button className="flex text-sm bg-white rounded-full focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
                             <div className="p-1 text-gray-400 bg-white rounded-full hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
                                 <span className="sr-only">Velg språk</span>
-                                <IconButton style={{width: 48, height: 48}}>
-                                    <LanguageIcon
-                                        aria-hidden="true"
-                                        style={{width: 32, height: 32}}
-                                        className="text-blue-500"
-                                    />
-                                </IconButton>
+                                <LanguageIcon
+                                    aria-hidden="true"
+                                    style={{width: 32, height: 32}}
+                                    className="text-blue-500"
+                                />
                             </div>
                         </Menu.Button>
                     </div>
