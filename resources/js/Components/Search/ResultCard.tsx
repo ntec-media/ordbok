@@ -94,16 +94,16 @@ const ResultCard = (props: Props) => {
                     <div className="font-bold">
                         {getFormattedString(props.result.fra)}
                     </div>
-                    <div>
-                        <p className="italic font-bold text-blue-600">
-                            {props.result.kredittering}
-                        </p>
-                        <div className="absolute bottom-2 right-2">
-                            <Report />
-                        </div>
+                    <p className="italic font-bold text-blue-600">
+                        {props.result.kredittering}
+                    </p>
+                </div>
+                <div className="flex justify-between">
+                    <div>{getFormattedString(props.result.til)}</div>
+                    <div className="self-end">
+                        <Report />
                     </div>
                 </div>
-                <div>{getFormattedString(props.result.til)}</div>
             </div>
         </>
     );
