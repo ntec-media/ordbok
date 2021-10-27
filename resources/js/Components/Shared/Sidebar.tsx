@@ -5,6 +5,7 @@ import {
     ListItem,
     ListItemIcon,
     ListItemText,
+    SwipeableDrawer,
 } from '@material-ui/core';
 import React from 'react';
 // Icons
@@ -98,9 +99,14 @@ const Sidebar = (props: Props) => {
     return (
         <div>
             <React.Fragment>
-                <Drawer onClose={props.toggle} anchor="left" open={props.open}>
+                <SwipeableDrawer
+                    onClose={props.toggle}
+                    onOpen={props.toggle}
+                    anchor="left"
+                    open={props.open}
+                >
                     {list()}
-                </Drawer>
+                </SwipeableDrawer>
             </React.Fragment>
         </div>
     );
