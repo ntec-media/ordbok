@@ -41,25 +41,27 @@ const Chart = (props: Props) => {
     }, [props.labels]);
 
     return (
-        <Bar
-            data={{
-                labels: labels,
-                datasets: [
-                    {
-                        label: trans('Statistics.number_of_search'),
-                        data: props.data,
-                        backgroundColor: test,
-                        borderColor: test1,
-                        borderWidth: 1,
-                    },
-                ],
-            }}
-            height={400}
-            width={600}
-            options={{
-                maintainAspectRatio: false,
-            }}
-        />
+        <div className="p-12">
+            <Bar
+                data={{
+                    labels: labels,
+                    datasets: [
+                        {
+                            label: trans('Statistics.number_of_search'),
+                            data: props.data,
+                            backgroundColor: test,
+                            borderColor: test1,
+                            borderWidth: 1,
+                        },
+                    ],
+                }}
+                height={400}
+                width={600}
+                options={{
+                    maintainAspectRatio: false,
+                }}
+            />
+        </div>
     );
 };
 
