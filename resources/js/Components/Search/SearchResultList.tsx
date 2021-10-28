@@ -82,6 +82,9 @@ const SearchResultList = (props: Props) => {
                                 <Button
                                     fullWidth
                                     variant="contained"
+                                    style={{
+                                        border: '1px solid rgba(59, 130, 246, 0.5',
+                                    }}
                                     onClick={() => {
                                         const newPage = page + 1;
                                         setPage(newPage);
@@ -93,7 +96,7 @@ const SearchResultList = (props: Props) => {
                                         ' treff, last flere?'}
                                 </Button>
                             ) : (
-                                <div className="mt-24 text-center">
+                                <div className="text-center">
                                     <CircularProgress size={60} />
                                 </div>
                             )}
@@ -107,7 +110,9 @@ const SearchResultList = (props: Props) => {
                     <CircularProgress size={60} />
                 </div>
             ) : (
-                <h2 className="text-center">Fant Ingen resultat</h2>
+                <h2 className="mt-12 text-xl text-center">
+                    Fant Ingen resultat
+                </h2>
             )}
             <CustomSnackbar {...snackbarProps} />
         </>
