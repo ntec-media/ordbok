@@ -13,7 +13,9 @@ const Header = (props: {searching: boolean}) => {
                 <div className="absolute top-0">
                     <h1
                         className={
-                            props.searching ? 'header' : 'mt-20 text-5xl'
+                            props.searching
+                                ? 'header select-none'
+                                : 'mt-20 text-5xl select-none'
                         }
                     >
                         Julevbágo
