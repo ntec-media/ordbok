@@ -2,7 +2,6 @@ import React, {useEffect, useState} from 'react';
 import CountUp from 'react-countup';
 import {month, week, year} from '../../utils';
 import Chart from '../Statistics/Chart';
-import Table from '../Statistics/Table';
 
 const days = [
     'monday',
@@ -30,7 +29,6 @@ const months = [
 ];
 
 const Statistics = () => {
-    const [selected, setSelected] = useState(0);
     const [data, setData] = useState<number[]>([]);
     const [currentTab, setCurrentTab] = useState<string>('week');
     const [labels, setLabels] = useState<string[]>([]);
@@ -77,28 +75,37 @@ const Statistics = () => {
     }, [currentTab]);
 
     return (
-        <div>
-            <div className="flex justify-center w-full mt-10 space-x-5 text-3xl">
-                <div className="text-center">
-                    <CountUp duration={2} end={2300} />
-                    <p className="px-10 text-sm text-center text-gray-500">
-                        I Dag
+        <div className="flex flex-col items-center justify-center mt-8 space-y-6">
+            <h1 className="text-4xl text-center text-blue-700">
+                Søk den siste tiden
+            </h1>
+            <div className="flex justify-center mt-10 text-3xl">
+                <div className="py-2 text-center border-b border-blue-500 cursor-pointer icon-link">
+                    <p className="text-blue-500 ">
+                        <CountUp duration={1.5} end={2300} />
+                    </p>
+                    <p className="px-10 mx-6 text-sm text-center text-gray-500">
+                        Uke 43
                     </p>
                 </div>
-                <div className="text-center">
-                    <CountUp delay={0.5} duration={2} end={32000} />
-                    <p className="px-10 text-sm text-center text-gray-500">
+                <div className="text-center cursor-pointer icon-link">
+                    <p className="text-blue-500 ">
+                        <CountUp delay={0.5} duration={1.5} end={3200} />
+                    </p>
+                    <p className="px-10 mx-6 text-sm text-center text-gray-500">
                         Juni
                     </p>
                 </div>
-                <div className="text-center">
-                    <CountUp delay={1} duration={2} end={492034} />
-                    <p className="px-10 text-sm text-center text-gray-500">
+                <div className="text-center cursor-pointer icon-link">
+                    <p className="text-blue-500 ">
+                        <CountUp delay={1} duration={1.5} end={492034} />
+                    </p>
+                    <p className="px-10 mx-6 text-sm text-center text-gray-500">
                         2021
                     </p>
                 </div>
             </div>
-            <div className="flex ">
+            <div>
                 <Chart data={data} labels={labels} />
             </div>
         </div>
