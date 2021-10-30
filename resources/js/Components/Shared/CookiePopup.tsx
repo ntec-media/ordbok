@@ -7,7 +7,7 @@ const CookiePopup = () => {
 
     useEffect(() => {
         const approved = localStorage.getItem('cookies');
-        if (approved) setApproved(false);
+        if (approved) setApproved(true);
     }, []);
 
     const confirm = () => {
