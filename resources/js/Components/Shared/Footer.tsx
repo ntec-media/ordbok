@@ -8,12 +8,16 @@ const Footer = () => {
                 <div className="flex flex-row justify-between py-6 text-gray-400 text-opacity-80">
                     <div className="flex-1">
                         <a
+                            target="_blank"
+                            rel="noopener noreferrer"
                             href="https://internia.no"
                             className="block text-blue-600 cursor-pointer text-opacity-60"
                         >
                             Ntec Media AS
                         </a>
                         <a
+                            target="_blank"
+                            rel="noopener noreferrer"
                             href="https://divvun.no"
                             className="block text-blue-600 cursor-pointer text-opacity-60"
                         >
