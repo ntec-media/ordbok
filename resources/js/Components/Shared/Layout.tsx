@@ -1,6 +1,7 @@
 import React from 'react';
 import {CookiesProvider} from 'react-cookie';
 import Store from '../../Store';
+import CookiePopup from './CookiePopup';
 import Footer from './Footer';
 import Navbar from './Navbar';
 
@@ -13,6 +14,7 @@ export default function Layout(props: {children: JSX.Element | JSX.Element[]}) {
                         <Navbar />
                         <article>{props.children}</article>
                     </div>
+                    <CookiePopup />
                 </main>
                 <Footer />
             </CookiesProvider>

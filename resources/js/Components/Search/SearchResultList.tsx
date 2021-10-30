@@ -18,7 +18,7 @@ const SearchResultList = (props: Props) => {
     const [snackbarProps, setSnackbarProps] = useState<CustomSnackbarProps>({
         type: 'error',
         open: false,
-        message: 'En feil på serveren har oppstått',
+        message: 'En feil har oppstått på serveren',
         handleClose: () => setSnackbarProps({...snackbarProps, open: false}),
     });
 

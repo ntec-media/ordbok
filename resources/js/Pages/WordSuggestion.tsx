@@ -53,10 +53,7 @@ const WordSuggestion = () => {
                         <h1 className="hidden ml-2 text-3xl md:flex md:ml-8 ">
                             {trans('WordSuggestion.header')}
                         </h1>
-                        <div className="flex justify-between md:hidden">
-                            <h1 className="mt-2 ml-2 text-3xl">
-                                {trans('WordSuggestion.header')}
-                            </h1>
+                        <div className="flex items-center justify-between md:hidden">
                             <InfoIcon />
                         </div>
                         <Form result={status => displayResponse(status)} />

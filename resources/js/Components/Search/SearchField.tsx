@@ -15,7 +15,6 @@ const SearchField = (props: Props) => {
 
     useEffect(() => {
         delayedQuery(input);
-        input;
     }, [input]);
 
     const delayedQuery = useCallback(
@@ -48,7 +47,7 @@ const SearchField = (props: Props) => {
                         autoFocus
                         {...params}
                         value={input}
-                        placeholder="Søk i julevs ordbokdatabase"
+                        placeholder="Søk i Julevbago"
                         label={trans('Search.SearchField.search')}
                         variant="outlined"
                         style={{marginRight: 0}}
@@ -67,13 +66,13 @@ const SearchField = (props: Props) => {
                                     />
                                     <button
                                         onClick={() => setInput(input + 'á')}
-                                        className="hidden px-4 py-2 mx-2 text-base font-medium text-gray-700 bg-gray-100 border border-gray-400 rounded-md md:block hover:bg-gray-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-500"
+                                        className="hidden px-4 py-2 mx-2 text-base font-medium text-gray-700 bg-white border border-gray-300 rounded-full md:block hover:bg-gray-300 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-400"
                                     >
                                         á
                                     </button>
                                     <button
                                         onClick={() => setInput(input + 'ŋ')}
-                                        className="items-center block px-4 py-2 text-sm font-medium text-gray-700 bg-gray-100 border border-gray-400 rounded-md hover:bg-gray-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-500"
+                                        className="px-4 py-2 text-base font-medium text-gray-700 bg-white border border-gray-300 rounded-full hover:bg-gray-300 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-400"
                                     >
                                         ŋ
                                     </button>

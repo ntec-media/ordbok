@@ -44,6 +44,7 @@ const Navbar = () => {
                         </IconButton>
                     </div>
                 </div>
+                {path !== '/' && <h1 className="text-3xl">Julevbago</h1>}
                 <div>
                     <LanguageDropDown
                         selected={cookies.lang}

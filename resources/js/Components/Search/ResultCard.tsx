@@ -89,21 +89,21 @@ const ResultCard = (props: Props) => {
 
     return (
         <>
-            <div className="flex-col w-full p-4 border border-indigo-200 rounded-lg shadow-md bg-gradient-to-r from-gray-100 via-gray-50 to-gray-100">
+            <div className="flex-col w-full p-4 mb-1 border border-indigo-200 rounded-lg shadow-sm bg-gradient-to-r from-gray-100 via-gray-50 to-gray-100">
                 <div className="flex justify-between w-full mb-6">
                     <div className="font-bold">
                         {getFormattedString(props.result.fra)}
                     </div>
-                    <div>
-                        <p className="italic font-bold text-blue-600">
-                            {props.result.kredittering}
-                        </p>
-                        <div className="absolute bottom-2 right-2">
-                            <Report />
-                        </div>
+                    <p className="italic font-bold text-blue-600">
+                        {props.result.kredittering}
+                    </p>
+                </div>
+                <div className="flex justify-between">
+                    <div>{getFormattedString(props.result.til)}</div>
+                    <div className="self-end">
+                        <Report />
                     </div>
                 </div>
-                <div>{getFormattedString(props.result.til)}</div>
             </div>
         </>
     );

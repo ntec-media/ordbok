@@ -6,16 +6,16 @@ const Header = (props: {searching: boolean}) => {
             <div
                 className={
                     props.searching
-                        ? 'flex items-center justify-center w-full h-0 md:hidden'
-                        : 'flex items-center justify-center w-full h-20 md:hidden'
+                        ? 'flex items-center justify-center w-full header-margin md:hidden'
+                        : 'flex items-center justify-center w-full h-24 md:hidden'
                 }
             >
                 <div className="absolute top-0">
                     <h1
                         className={
                             props.searching
-                                ? 'mt-3.5 text-3xl'
-                                : 'mt-20 text-3xl'
+                                ? 'header select-none'
+                                : 'mt-20 text-5xl select-none'
                         }
                     >
                         Julevbágo

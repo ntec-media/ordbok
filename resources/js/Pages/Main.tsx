@@ -6,16 +6,21 @@ import Layout from '../Components/Shared/Layout';
 import DownloadApp from './DownloadApp';
 import Search from './Search';
 import WordSuggestion from './WordSuggestion';
-import CookiePopup from '../Components/Shared/CookiePopup';
 
 const Main = () => {
     const [selected, setSelected] = useState(0);
-    const [input, setInput] = useState('');
+    const [searching, setSearching] = useState(false);
 
     const getContent = () => {
         switch (selected) {
             default:
-                return <Search input={newInput => setInput(newInput)} />;
+                return (
+                    <Search
+                        input={newInput =>
+                            newInput !== '' && setSearching(true)
+                        }
+                    />
+                );
             case 1:
                 return <WordSuggestion />;
             case 2:
@@ -27,10 +32,9 @@ const Main = () => {
 
     return (
         <Layout>
-            <Header searching={input !== ''} />
+            <Header searching={searching} />
             <Menu setSelected={newSelected => setSelected(newSelected)} />
             {getContent()}
-            <CookiePopup />
         </Layout>
     );
 };
