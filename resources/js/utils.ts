@@ -2,22 +2,6 @@
 import axios from 'axios';
 import INewWord from './Interfaces/INewWord';
 
-export const search = async (value: string, page: number, orderBy: string) => {
-    return await axios
-        .post('/api/search', {
-            search: value,
-            page: page,
-            orderBy: orderBy,
-        })
-        .then(res => {
-            return res.data;
-        })
-        .catch(err => {
-            console.error(err);
-            return err;
-        });
-};
-
 export const week = async () => {
     return await axios
         .post('/api/statistic/week')
