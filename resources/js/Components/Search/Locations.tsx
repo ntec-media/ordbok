@@ -1,13 +1,18 @@
 import {Dialog, DialogContent, List} from '@material-ui/core';
-import React, {useState} from 'react';
-import {MapContainer, Marker, Popup, TileLayer} from 'react-leaflet';
+import React, {useEffect, useState} from 'react';
 import {ILocation, useLocationSearch} from '../../Hooks/useLocationSearch';
 import {LocationCard} from './LocationCard';
+import {Map} from './Map';
 
 export const Locations = (props: {input: string}) => {
     const [dialogOpen, setDialogOpen] = useState(false);
     const results = useLocationSearch(props.input);
     const [selected, setSelected] = useState<ILocation>();
+
+    useEffect(() => {
+        setSelected(results[0]);
+        console.log(results);
+    }, [results]);
 
     return (
         <>
@@ -20,7 +25,7 @@ export const Locations = (props: {input: string}) => {
                 </p>
             )}
             <Dialog
-                maxWidth="md"
+                maxWidth="lg"
                 fullWidth
                 open={dialogOpen}
                 onClose={() => setDialogOpen(false)}
@@ -28,7 +33,10 @@ export const Locations = (props: {input: string}) => {
                 <DialogContent className="flex justify-between">
                     <List className="w-6/12 overflow-y-auto">
                         {results.map(location => (
-                            <div key={location.stedsnummer}>
+                            <div
+                                key={location.stedsnummer}
+                                onClick={() => setSelected(location)}
+                            >
                                 <LocationCard
                                     location={location}
                                     updateLocation={(newLocation: ILocation) =>
@@ -38,7 +46,12 @@ export const Locations = (props: {input: string}) => {
                             </div>
                         ))}
                     </List>
-                    <div className="hidden md:block">Map</div>
+                    {selected && (
+                        <Map
+                            nord={selected.representasjonspunkt.nord}
+                            øst={selected.representasjonspunkt.øst}
+                        />
+                    )}
                 </DialogContent>
             </Dialog>
         </>

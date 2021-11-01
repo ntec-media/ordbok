@@ -10,7 +10,7 @@ export interface ILocation {
     navneobjekttype: string;
     representasjonspunkt: {
         øst: number;
-        vest: number;
+        nord: number;
     };
     fylker: {
         fylkesnavn: string;
