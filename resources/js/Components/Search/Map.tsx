@@ -1,16 +1,27 @@
 import React, {useEffect, useState} from 'react';
 import {MapContainer, Marker, Popup, TileLayer} from 'react-leaflet';
+import {ILocation} from '../../Hooks/useLocationSearch';
 
-export const Map = (pos: {nord: number; øst: number}) => {
+export const Map = (props: {location: ILocation}) => {
     const [map, setMap] = useState<any>(null);
 
     useEffect(() => {
-        map && map.flyTo({lat: pos.nord, lng: pos.øst}, 13);
-    }, [pos]);
+        map &&
+            map.flyTo(
+                {
+                    lat: props.location.representasjonspunkt.nord,
+                    lng: props.location.representasjonspunkt.øst,
+                },
+                13
+            );
+    }, [props.location]);
 
     return (
         <MapContainer
-            center={[pos.nord, pos.øst]}
+            center={[
+                props.location.representasjonspunkt.nord,
+                props.location.representasjonspunkt.øst,
+            ]}
             zoom={13}
             scrollWheelZoom={false}
             whenCreated={setMap}
@@ -19,11 +30,12 @@ export const Map = (pos: {nord: number; øst: number}) => {
                 attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
                 url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
             />
-            <Marker position={[pos.nord, pos.øst]}>
-                <Popup>
-                    A pretty CSS3 popup. <br /> Easily customizable.
-                </Popup>
-            </Marker>
+            <Marker
+                position={[
+                    props.location.representasjonspunkt.nord,
+                    props.location.representasjonspunkt.øst,
+                ]}
+            />
         </MapContainer>
     );
 };

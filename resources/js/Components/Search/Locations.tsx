@@ -11,7 +11,6 @@ export const Locations = (props: {input: string}) => {
 
     useEffect(() => {
         setSelected(results[0]);
-        console.log(results);
     }, [results]);
 
     return (
@@ -30,7 +29,10 @@ export const Locations = (props: {input: string}) => {
                 open={dialogOpen}
                 onClose={() => setDialogOpen(false)}
             >
-                <DialogContent className="flex justify-between">
+                <DialogContent
+                    style={{maxHeight: 700}}
+                    className="flex justify-between"
+                >
                     <List className="w-6/12 overflow-y-auto">
                         {results.map(location => (
                             <div
@@ -38,6 +40,10 @@ export const Locations = (props: {input: string}) => {
                                 onClick={() => setSelected(location)}
                             >
                                 <LocationCard
+                                    selected={
+                                        location.stedsnummer ===
+                                        selected?.stedsnummer
+                                    }
                                     location={location}
                                     updateLocation={(newLocation: ILocation) =>
                                         setSelected(newLocation)
@@ -46,12 +52,7 @@ export const Locations = (props: {input: string}) => {
                             </div>
                         ))}
                     </List>
-                    {selected && (
-                        <Map
-                            nord={selected.representasjonspunkt.nord}
-                            øst={selected.representasjonspunkt.øst}
-                        />
-                    )}
+                    {selected && <Map location={selected} />}
                 </DialogContent>
             </Dialog>
         </>

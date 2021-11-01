@@ -23,7 +23,9 @@ export interface ILocation {
 export const useLocationSearch = (input: string) => {
     const [results, setResults] = useState<ILocation[]>([]);
 
-    useEffect(() => {}, [input]);
+    useEffect(() => {
+        setResults([]);
+    }, [input]);
 
     useEffect(() => {
         const filter =
