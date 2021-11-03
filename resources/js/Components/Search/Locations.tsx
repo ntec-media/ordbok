@@ -1,6 +1,5 @@
 import {Dialog, DialogContent, List} from '@material-ui/core';
 import React, {useEffect, useState} from 'react';
-import {resourceLimits} from 'worker_threads';
 import {ILocation, useLocationSearch} from '../../Hooks/useLocationSearch';
 import {LocationCard} from './LocationCard';
 import {Map} from './Map';

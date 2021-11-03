@@ -10,6 +10,7 @@ interface Props {
 export const LocationCard = (props: Props) => {
     return (
         <div
+            key={props.location.stedsnummer}
             className={
                 props.selected
                     ? 'p-2 border border-black rounded-md cursor-pointer bg-gray-200'
