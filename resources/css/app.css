@@ -71,3 +71,15 @@ html {
     height: 650px;
     width: 600px;
 }
+
+@media only screen and (max-width: 1300px) {
+    .leaflet-container {
+        width: 480px;
+    }
+}
+
+@media only screen and (max-width: 1000px) {
+    .leaflet-container {
+        width: 360px;
+    }
+}

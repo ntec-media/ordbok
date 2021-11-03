@@ -33,7 +33,7 @@ export const Locations = (props: {input: string}) => {
                     style={{maxHeight: 700}}
                     className="flex justify-between"
                 >
-                    <List className="w-6/12 overflow-y-auto">
+                    <List className="w-full overflow-y-auto md:w-6/12">
                         {results.map(location => (
                             <div
                                 key={location.stedsnummer}
@@ -52,7 +52,9 @@ export const Locations = (props: {input: string}) => {
                             </div>
                         ))}
                     </List>
-                    {selected && <Map location={selected} />}
+                    <div className="hidden md:block">
+                        {selected && <Map location={selected} />}
+                    </div>
                 </DialogContent>
             </Dialog>
         </>

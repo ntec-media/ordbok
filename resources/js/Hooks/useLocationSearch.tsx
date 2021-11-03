@@ -22,6 +22,7 @@ export interface ILocation {
 
 export const useLocationSearch = (input: string) => {
     const [results, setResults] = useState<ILocation[]>([]);
+    const fuzzy = false;
 
     useEffect(() => {
         setResults([]);
@@ -34,7 +35,7 @@ export const useLocationSearch = (input: string) => {
         let cancel: () => void;
         axios({
             method: 'GET',
-            url: `https://ws.geonorge.no/stedsnavn/v1/sted?sok=${input}&fuzzy=true&treffPerSide=500&filter=${filter}`,
+            url: `https://ws.geonorge.no/stedsnavn/v1/sted?sok=${input}&fuzzy=${fuzzy}&treffPerSide=500&filter=${filter}`,
             cancelToken: new axios.CancelToken(c => (cancel = c)),
         }).then(res => {
             filterResults(res.data.navn);
