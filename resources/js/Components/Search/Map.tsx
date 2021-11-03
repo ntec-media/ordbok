@@ -1,8 +1,15 @@
+import {Dialog} from '@material-ui/core';
 import React, {useEffect, useState} from 'react';
 import {MapContainer, Marker, Popup, TileLayer} from 'react-leaflet';
 import {ILocation} from '../../Hooks/useLocationSearch';
 
-export const Map = (props: {location: ILocation}) => {
+interface Props {
+    location: ILocation;
+    open: boolean;
+    closeModal: () => void;
+}
+
+export const Map = (props: Props) => {
     const [map, setMap] = useState<any>(null);
 
     useEffect(() => {
@@ -16,7 +23,7 @@ export const Map = (props: {location: ILocation}) => {
             );
     }, [props.location]);
 
-    return (
+    const GetMap = (
         <MapContainer
             center={[
                 props.location.representasjonspunkt.nord,
@@ -37,5 +44,16 @@ export const Map = (props: {location: ILocation}) => {
                 ]}
             />
         </MapContainer>
+    );
+
+    return (
+        <>
+            <div className="hidden md:block">{GetMap}</div>
+            <div className="md:hidden">
+                <Dialog open={props.open} onClose={() => props.closeModal()}>
+                    {GetMap}
+                </Dialog>
+            </div>
+        </>
     );
 };

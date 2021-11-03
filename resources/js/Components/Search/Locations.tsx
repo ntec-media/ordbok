@@ -1,5 +1,6 @@
 import {Dialog, DialogContent, List} from '@material-ui/core';
 import React, {useEffect, useState} from 'react';
+import {resourceLimits} from 'worker_threads';
 import {ILocation, useLocationSearch} from '../../Hooks/useLocationSearch';
 import {LocationCard} from './LocationCard';
 import {Map} from './Map';
@@ -8,10 +9,16 @@ export const Locations = (props: {input: string}) => {
     const [dialogOpen, setDialogOpen] = useState(false);
     const results = useLocationSearch(props.input);
     const [selected, setSelected] = useState<ILocation>();
+    const [mapDialogOpen, setMapDialogOpen] = useState(false);
 
     useEffect(() => {
         setSelected(results[0]);
     }, [results]);
+
+    const handleClick = (location: ILocation) => {
+        setSelected(location);
+        if (window.innerWidth < 768) setMapDialogOpen(true);
+    };
 
     return (
         <>
@@ -20,7 +27,9 @@ export const Locations = (props: {input: string}) => {
                     onClick={() => setDialogOpen(true)}
                     className="pt-2 text-blue-500 cursor-pointer"
                 >
-                    {'Fant ' + results.length} steder
+                    {results.length === 1
+                        ? 'Fant ' + results.length + '. sted'
+                        : 'Fant ' + results.length + ' steder'}
                 </p>
             )}
             <Dialog
@@ -37,7 +46,7 @@ export const Locations = (props: {input: string}) => {
                         {results.map(location => (
                             <div
                                 key={location.stedsnummer}
-                                onClick={() => setSelected(location)}
+                                onClick={() => handleClick(location)}
                             >
                                 <LocationCard
                                     selected={
@@ -53,7 +62,13 @@ export const Locations = (props: {input: string}) => {
                         ))}
                     </List>
                     <div className="hidden md:block">
-                        {selected && <Map location={selected} />}
+                        {selected && (
+                            <Map
+                                open={mapDialogOpen}
+                                closeModal={() => setMapDialogOpen(false)}
+                                location={selected}
+                            />
+                        )}
                     </div>
                 </DialogContent>
             </Dialog>
