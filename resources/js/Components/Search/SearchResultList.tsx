@@ -72,7 +72,7 @@ const SearchResultList = (props: Props) => {
                     <CircularProgress size={60} />
                 </div>
             )}
-            {!hasMore && <p>{'Fant ' + results.length + ' ord'}</p>}
+            {!hasMore && !loading && <p>{'Fant ' + results.length + ' ord'}</p>}
             <CustomSnackbar {...snackbarProps} />
         </div>
     );
