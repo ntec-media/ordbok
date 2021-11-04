@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import Statistics from '../Components/NewStatistics/Statistics';
+import Statistics from '../Pages/Statistics';
 import Header from '../Components/Search/Header';
 import Menu from '../Components/Search/Menu';
 import Layout from '../Components/Shared/Layout';
