@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\NewWordController;
+use App\Http\Controllers\ErrorSubmitController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -25,5 +26,7 @@ Route::inertia('/newSearch', "NewSearch");
 // New Word
 Route::post("/word", [NewWordController::class, "store"]);
 
+// Dictionary Errors
+Route::post("/error", [ErrorSubmitController::class, "store"]);
 
 
