@@ -15,7 +15,7 @@ export const useWordSearch = (
     useEffect(() => {
         setResults([]);
         setHasMore(true);
-    }, [input]);
+    }, [input, orderBy]);
 
     useEffect(() => {
         setLoading(true);
@@ -39,6 +39,6 @@ export const useWordSearch = (
                 setError(true);
             });
         return () => cancel();
-    }, [input, pageNumber]);
+    }, [input, pageNumber, orderBy]);
     return {loading, error, results, hasMore};
 };
