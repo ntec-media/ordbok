@@ -24,5 +24,10 @@ return [
         'content' => 'Julev uses cookies to optimize your personal prefrences. We save language,
          dictionaries and which languages you want to get translations from.',
         'btnText' => 'I understand'
+    ],
+    'general' => [
+        'lulesami' => 'lulesami',
+        'norwegian' => 'norwegian',
+        'sort' => 'sort'
     ]
 ];

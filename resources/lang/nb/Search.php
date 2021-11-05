@@ -1,7 +1,7 @@
 <?php
 
 return [
-    'header' => 'Søk i Julevs ordbokdatabase',
+    'header' => 'Søk i Julevbágo',
     'SearchField' => [
         'search' => 'Søk',
         'langModalHeader' => 'Velg språk for oversettelse',
@@ -10,6 +10,7 @@ return [
     'SearchResult' => [
         'found' => 'Fant',
         'words' => 'ord',
+        'showMore' => 'Vis mer'
     ],
     'NoSearch' => [
         'header' => 'Velkommen',

@@ -26,5 +26,11 @@ return [
         du ønsker å benytte og språk du ønsker å
         oversette fra.',
         'btnText' => 'Jeg forstår'
+    ],
+    'general' => [
+        'lulesami' => 'lulesamisk',
+        'norwegian' => 'norsk',
+        'sort' => 'sorter'
+
     ]
 ];

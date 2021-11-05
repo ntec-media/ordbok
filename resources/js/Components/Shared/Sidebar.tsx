@@ -17,6 +17,7 @@ import GetAppIcon from '@material-ui/icons/GetApp';
 import {InertiaLink} from '@inertiajs/inertia-react';
 // Image
 import samiFlag from '../../../images/sami_flag.png';
+import {trans} from 'matice';
 
 interface Props {
     open: boolean;
@@ -51,7 +52,7 @@ const Sidebar = (props: Props) => {
                         <ListItemIcon>
                             <SearchIcon />
                         </ListItemIcon>
-                        <ListItemText primary="Søk" />
+                        <ListItemText primary={trans('Layout.navbar.search')} />
                     </ListItem>
                 </InertiaLink>
 
@@ -60,7 +61,9 @@ const Sidebar = (props: Props) => {
                         <ListItemIcon>
                             <PostAddIcon />
                         </ListItemIcon>
-                        <ListItemText primary="Nytt ord forslag" />
+                        <ListItemText
+                            primary={trans('Layout.navbar.wordSuggestion')}
+                        />
                     </ListItem>
                 </InertiaLink>
 
@@ -69,7 +72,9 @@ const Sidebar = (props: Props) => {
                         <ListItemIcon>
                             <BarChartIcon />
                         </ListItemIcon>
-                        <ListItemText primary="Statistikk" />
+                        <ListItemText
+                            primary={trans('Layout.navbar.statistics')}
+                        />
                     </ListItem>
                 </InertiaLink>
 
@@ -78,7 +83,7 @@ const Sidebar = (props: Props) => {
                         <ListItemIcon>
                             <GetAppIcon />
                         </ListItemIcon>
-                        <ListItemText primary="Last ned app" />
+                        <ListItemText primary={trans('Layout.navbar.app')} />
                     </ListItem>
                 </InertiaLink>
             </List>
@@ -89,7 +94,7 @@ const Sidebar = (props: Props) => {
                         <ListItemIcon>
                             <InfoIcon />
                         </ListItemIcon>
-                        <ListItemText primary="Om appen" />
+                        <ListItemText primary={trans('Layout.navbar.about')} />
                     </ListItem>
                 </InertiaLink>
             </List>

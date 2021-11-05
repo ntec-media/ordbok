@@ -1,7 +1,7 @@
 <?php
 
 return [
-    'header' => 'Search in Julev\'s dictionarydatabase',
+    'header' => 'Search in Julevbágo',
     'SearchField' => [
         'search' => 'Search',
         'langModalHeader' => 'Select languages for translation',
@@ -10,6 +10,7 @@ return [
     'SearchResult' => [
         'found' => 'Found',
         'words' => 'words',
+        'showMore' => 'Show more'
     ],
     'NoSearch' => [
         'header' => 'Welcome',

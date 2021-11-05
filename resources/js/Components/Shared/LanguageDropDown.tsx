@@ -18,7 +18,9 @@ const LanguageDropDown = (props: Props) => {
                     <div>
                         <Menu.Button className="flex text-sm bg-white rounded-full focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
                             <div className="p-1 text-gray-400 bg-white rounded-full hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
-                                <span className="sr-only">Velg språk</span>
+                                <span className="sr-only">
+                                    {trans('Layout.navbar.choose_language')}
+                                </span>
                                 <LanguageIcon
                                     aria-hidden="true"
                                     style={{width: 32, height: 32}}

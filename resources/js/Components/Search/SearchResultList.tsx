@@ -1,4 +1,5 @@
 import {CircularProgress, List, ListItem} from '@material-ui/core';
+import {trans} from 'matice';
 import React, {useCallback, useEffect, useRef, useState} from 'react';
 import {useWorkSearch} from '../../Hooks/useWorkSearch';
 import ISearchResult from '../../Interfaces/ISearchResult';
@@ -72,7 +73,15 @@ const SearchResultList = (props: Props) => {
                     <CircularProgress size={60} />
                 </div>
             )}
-            {!hasMore && <p>{'Fant ' + results.length + ' ord'}</p>}
+            {!hasMore && (
+                <p>
+                    {trans('Search.SearchResult.found') +
+                        ' ' +
+                        results.length +
+                        ' ' +
+                        trans('Search.SearchResult.words')}
+                </p>
+            )}
             <CustomSnackbar {...snackbarProps} />
         </div>
     );

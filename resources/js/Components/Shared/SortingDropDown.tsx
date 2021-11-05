@@ -4,6 +4,7 @@ import {Menu, Transition} from '@headlessui/react';
 import {ChevronDownIcon} from '@heroicons/react/solid';
 import {CheckIcon} from '@heroicons/react/outline';
 import React from 'react';
+import {trans} from 'matice';
 
 interface Props {
     setOrderBy: (newVal: string) => void;
@@ -44,7 +45,7 @@ export default function SortingDropDown(props: Props) {
                     <div className="py-1">
                         <Menu.Item>
                             <p className="px-4 py-2 font-bold text-md">
-                                Sorter
+                                {trans('Layout.general.sort')}
                             </p>
                         </Menu.Item>
                         <Menu.Item>
@@ -52,7 +53,9 @@ export default function SortingDropDown(props: Props) {
                                 onClick={() => setSelected('sami')}
                                 className="flex justify-between px-4 py-2 text-sm text-gray-700 cursor-pointer hover:bg-gray-100"
                             >
-                                Lulesamisk-norsk
+                                {trans('Layout.general.lulesami') +
+                                    '-' +
+                                    trans('Layout.general.norwegian')}
                                 {selected === 'sami' && (
                                     <CheckIcon
                                         className="w-5 h-5 mr-3 text-gray-400 group-hover:text-gray-500"
@@ -66,7 +69,9 @@ export default function SortingDropDown(props: Props) {
                                 onClick={() => setSelected('norwegian')}
                                 className="flex justify-between px-4 py-2 text-sm text-gray-700 cursor-pointer hover:bg-gray-100"
                             >
-                                Norsk-lulesamisk
+                                {trans('Layout.general.norwegian') +
+                                    '-' +
+                                    trans('Layout.general.lulesami')}
                                 {selected === 'norwegian' && (
                                     <CheckIcon
                                         className="w-5 h-5 mr-3 text-gray-400 group-hover:text-gray-500"

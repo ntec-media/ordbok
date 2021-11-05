@@ -1,7 +1,7 @@
 <?php
 
 return [
-    'header' => 'Åtså Julev báhkogirjen',
+    'header' => 'Åtså Julevbágo',
     'SearchField' => [
         'search' => 'Åtså',
         'langModalHeader' => 'Vállji gielav jårggålibmáj',
@@ -10,6 +10,7 @@ return [
     'SearchResult' => [
         'found' => 'Gávnniv',
         'words' => 'báhko',
+        'showMore' => 'Vis mer'
     ],
     'NoSearch' => [
         'header' => 'Buoris boahtem',
