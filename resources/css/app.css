@@ -62,3 +62,7 @@
         height: 0rem;
     }
 }
+
+html {
+    scroll-behavior: smooth;
+}

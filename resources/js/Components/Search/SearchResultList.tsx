@@ -1,7 +1,7 @@
-import {Button, CircularProgress, List, ListItem} from '@material-ui/core';
-import React, {useEffect, useRef, useState} from 'react';
+import {CircularProgress, List, ListItem} from '@material-ui/core';
+import React, {useCallback, useEffect, useRef, useState} from 'react';
+import {useWorkSearch} from '../../Hooks/useWorkSearch';
 import ISearchResult from '../../Interfaces/ISearchResult';
-import {search} from '../../utils';
 import CustomSnackbar, {CustomSnackbarProps} from '../Shared/CustomSnackbar';
 import ResultCard from './ResultCard';
 
@@ -11,103 +11,79 @@ interface Props {
 }
 
 const SearchResultList = (props: Props) => {
-    const [results, setResults] = useState<ISearchResult[]>([]);
-    const [loading, setLoading] = useState(false);
     const [page, setPage] = useState<number>(1);
-    const mountedRef = useRef(true);
+    const {results, loading, hasMore, error} = useWorkSearch(
+        props.input,
+        page,
+        props.orderBy
+    );
     const [snackbarProps, setSnackbarProps] = useState<CustomSnackbarProps>({
         type: 'error',
-        open: false,
+        open: error,
         message: 'En feil har oppstått på serveren',
         handleClose: () => setSnackbarProps({...snackbarProps, open: false}),
     });
+    const [scrolled, setScrolled] = useState(false);
+
+    const observer = useRef<IntersectionObserver>();
+    const lastElementRef = useCallback(
+        node => {
+            if (loading) return;
+            if (observer.current) observer.current.disconnect();
+            observer.current = new IntersectionObserver(entries => {
+                if (entries[0].isIntersecting && hasMore) {
+                    setPage(prevPage => prevPage + 1);
+                }
+            });
+            if (node) observer.current.observe(node);
+        },
+        [loading, hasMore]
+    );
 
     useEffect(() => {
         setPage(1);
-        if (props.input !== '') {
-            getResultsArray(1);
-        } else setResults([]);
-    }, [props.input, props.orderBy]);
+    }, [props.input]);
 
     useEffect(() => {
-        return () => {
-            mountedRef.current = false;
-        };
-    }, []);
-
-    const getResultsArray = async (searchPage: number) => {
-        setLoading(true);
-        search(props.input, searchPage, props.orderBy)
-            .then(res => {
-                if (!mountedRef.current) return null;
-                if (results?.length > 0 && searchPage > 1) {
-                    setResults(results.concat(res.data));
-                } else {
-                    res.data
-                        ? setResults(res.data)
-                        : setSnackbarProps({...snackbarProps, open: true});
-                    // Move searchfield to top of page but also steals focus which will be more frustrating
-                    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-                    // @ts-ignore
-                    // window.location = '#searchfield';
-                }
-                setLoading(false);
-                res.next_page_url === null && setPage(0);
-            })
-            .catch(() => {
-                setLoading(false);
-            });
-    };
-
+        const height = window.innerHeight;
+        if (window.innerWidth < 768) return;
+        switch (height) {
+            default:
+                window.scrollTo(0, 300);
+        }
+    }, [results]);
     return (
-        <>
-            {results?.length > 0 ? (
-                <>
-                    {loading ? (
-                        <div className="text-center">
-                            <CircularProgress size={20} />
-                        </div>
-                    ) : (
-                        <h2>{'Viser ' + results.length + ' Ord'}</h2>
-                    )}
-                    <List>
-                        {results.map((res: ISearchResult, index: number) => (
-                            <ListItem key={index} style={{padding: '2px 0px'}}>
-                                <ResultCard input={props.input} result={res} />
-                            </ListItem>
-                        ))}
-                    </List>
-                    {page !== 0 && (
-                        <div className="mt-2 mb-6">
-                            {!loading ? (
-                                <Button
-                                    fullWidth
-                                    variant="contained"
-                                    onClick={() => {
-                                        const newPage = page + 1;
-                                        setPage(newPage);
-                                        getResultsArray(newPage);
-                                    }}
-                                >
-                                    Last flere resultater
-                                </Button>
-                            ) : (
-                                <div className="text-center">
-                                    <CircularProgress size={20} />
-                                </div>
-                            )}
-                        </div>
-                    )}
-                </>
-            ) : loading ? (
-                <div className="text-center">
-                    <CircularProgress size={20} />
+        <div className="mb-12">
+            {loading && results.length === 0 && (
+                <div className="mt-24 text-center">
+                    <CircularProgress size={60} />
                 </div>
-            ) : (
-                <h2 className="text-center">Fant Ingen resultat</h2>
             )}
+            <List>
+                {results.map((res: ISearchResult, index: number) =>
+                    results.length === index + 1 ? (
+                        <ListItem
+                            ref={lastElementRef}
+                            key={index}
+                            style={{padding: '2px 0px'}}
+                        >
+                            <ResultCard input={props.input} result={res} />
+                        </ListItem>
+                    ) : (
+                        <ListItem key={index} style={{padding: '2px 0px'}}>
+                            <ResultCard input={props.input} result={res} />
+                        </ListItem>
+                    )
+                )}
+            </List>
+            {loading && results.length > 0 && (
+                <div className="mt-24 text-center">
+                    <CircularProgress size={60} />
+                </div>
+            )}
+            {!hasMore && !loading && <p>{'Fant ' + results.length + ' ord'}</p>}
             <CustomSnackbar {...snackbarProps} />
-        </>
+        </div>
     );
 };
 
