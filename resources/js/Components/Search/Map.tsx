@@ -1,6 +1,6 @@
 import {Dialog} from '@material-ui/core';
 import React, {useEffect, useState} from 'react';
-import {MapContainer, Marker, Popup, TileLayer} from 'react-leaflet';
+import {MapContainer, Marker, TileLayer} from 'react-leaflet';
 import {ILocation} from '../../Hooks/useLocationSearch';
 
 interface Props {

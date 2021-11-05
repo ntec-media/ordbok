@@ -22,7 +22,7 @@ export interface ILocation {
 
 export const useLocationSearch = (input: string) => {
     const [results, setResults] = useState<ILocation[]>([]);
-    const fuzzy = false;
+    const fuzzy = false; // Fuzzy can return very large results
 
     useEffect(() => {
         setResults([]);

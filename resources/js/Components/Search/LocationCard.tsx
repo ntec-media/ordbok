@@ -13,8 +13,8 @@ export const LocationCard = (props: Props) => {
             key={props.location.stedsnummer}
             className={
                 props.selected
-                    ? 'p-2 border border-black rounded-md cursor-pointer bg-gray-200'
-                    : ' p-2 border border-black rounded-md cursor-pointer hover:bg-gray-200'
+                    ? 'my-1 p-2 border shadow-md border-black rounded-md cursor-pointer bg-gray-200'
+                    : 'my-1 p-2 border shadow-md border-black rounded-md cursor-pointer hover:bg-gray-200'
             }
         >
             <div className="flex justify-between w-full my-2">
@@ -26,8 +26,8 @@ export const LocationCard = (props: Props) => {
                 </h2>
             </div>
             <div>
-                {props.location.stedsnavn.map(navn => (
-                    <p>
+                {props.location.stedsnavn.map((navn, index) => (
+                    <p key={index}>
                         {navn.språk} - <span>{navn.skrivemåte}</span>
                     </p>
                 ))}
