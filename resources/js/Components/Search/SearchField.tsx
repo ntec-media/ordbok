@@ -59,6 +59,11 @@ const SearchField = (props: Props) => {
                             ),
                             endAdornment: (
                                 <div className="flex items-center">
+                                    <SortingDropDown
+                                        setOrderBy={newVal =>
+                                            props.setOrderBy(newVal)
+                                        }
+                                    />
                                     <button
                                         onClick={() => setInput(input + 'á')}
                                         className="hidden px-4 py-2 mx-2 text-base font-medium text-gray-700 bg-white border border-gray-300 rounded-full md:block hover:bg-gray-300 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-400"
@@ -71,11 +76,6 @@ const SearchField = (props: Props) => {
                                     >
                                         ŋ
                                     </button>
-                                    <SortingDropDown
-                                        setOrderBy={newVal =>
-                                            props.setOrderBy(newVal)
-                                        }
-                                    />
                                 </div>
                             ),
                         }}
