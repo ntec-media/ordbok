@@ -23,6 +23,7 @@ const SearchResultList = (props: Props) => {
         message: 'En feil har oppstått på serveren',
         handleClose: () => setSnackbarProps({...snackbarProps, open: false}),
     });
+    const [scrolled, setScrolled] = useState(false);
 
     const observer = useRef<IntersectionObserver>();
     const lastElementRef = useCallback(
@@ -43,6 +44,14 @@ const SearchResultList = (props: Props) => {
         setPage(1);
     }, [props.input]);
 
+    useEffect(() => {
+        const height = window.innerHeight;
+        if (window.innerWidth < 768) return;
+        switch (height) {
+            default:
+                window.scrollTo(0, 300);
+        }
+    }, [results]);
     return (
         <div className="mb-12">
             {loading && results.length === 0 && (
@@ -72,7 +81,7 @@ const SearchResultList = (props: Props) => {
                     <CircularProgress size={60} />
                 </div>
             )}
-            {!hasMore && <p>{'Fant ' + results.length + ' ord'}</p>}
+            {!hasMore && !loading && <p>{'Fant ' + results.length + ' ord'}</p>}
             <CustomSnackbar {...snackbarProps} />
         </div>
     );
