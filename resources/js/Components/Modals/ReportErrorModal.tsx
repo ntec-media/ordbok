@@ -7,6 +7,7 @@ import {
     FormControl,
     TextField,
 } from '@material-ui/core';
+import {trans} from 'matice';
 import React, {useEffect, useState} from 'react';
 
 interface ErrorReport {
@@ -31,21 +32,26 @@ const ReportErrorModal = (props: Props) => {
     const submit = () => {};
 
     return (
-        <Dialog open={props.open} maxWidth="sm" fullWidth>
+        <Dialog
+            open={props.open}
+            maxWidth="sm"
+            fullWidth
+            onClose={props.closeModal}
+        >
             <DialogTitle className="flex justify-center">
-                Rapporter feil
+                {trans('Search.reportDialog.header')}
             </DialogTitle>
             <DialogContent>
                 <FormControl className="flex flex-col w-full space-y-4">
                     <TextField
-                        label="Fra"
+                        label={trans('Search.reportDialog.from')}
                         variant="outlined"
                         color="primary"
                         disabled
                         value={inputs?.norwegian}
                     />
                     <TextField
-                        label="Til"
+                        label={trans('Search.reportDialog.to')}
                         variant="outlined"
                         color="primary"
                         disabled
@@ -55,7 +61,7 @@ const ReportErrorModal = (props: Props) => {
                         multiline
                         variant="outlined"
                         rows="10"
-                        label="Beskrivelse av feil"
+                        label={trans('Search.reportDialog.description')}
                     />
                 </FormControl>
             </DialogContent>
@@ -65,10 +71,10 @@ const ReportErrorModal = (props: Props) => {
                     variant="outlined"
                     onClick={() => props.closeModal()}
                 >
-                    Avbryt
+                    {trans('Search.reportDialog.cancel')}
                 </Button>
                 <Button color="primary" variant="contained" onClick={submit}>
-                    Send inn
+                    {trans('Search.reportDialog.submit')}
                 </Button>
             </DialogActions>
         </Dialog>

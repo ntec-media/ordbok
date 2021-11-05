@@ -1,10 +1,11 @@
 /* This example requires Tailwind CSS v2.0+ */
 import {Fragment, useEffect, useState} from 'react';
 import {Menu, Transition} from '@headlessui/react';
-import {ChevronDownIcon} from '@heroicons/react/solid';
+import SortingIcon from '@material-ui/icons/MenuBook';
 import {CheckIcon} from '@heroicons/react/outline';
 import React from 'react';
 import {trans} from 'matice';
+import {Tooltip} from '@material-ui/core';
 
 interface Props {
     setOrderBy: (newVal: string) => void;
@@ -28,7 +29,13 @@ export default function SortingDropDown(props: Props) {
             <div>
                 <Menu.Button className="flex items-center mx-2 text-gray-400 bg-gray-100 rounded-full hover:text-gray-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-100 focus:ring-indigo-500">
                     <span className="sr-only">Open options</span>
-                    <ChevronDownIcon className="w-8 h-8 " aria-hidden="true" />
+                    <Tooltip title={trans('Layout.general.sort')}>
+                        <SortingIcon
+                            color="primary"
+                            className="w-8 h-8 "
+                            aria-hidden="true"
+                        />
+                    </Tooltip>
                 </Menu.Button>
             </div>
 

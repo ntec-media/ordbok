@@ -26,8 +26,8 @@ return [
         'btnText' => 'I understand'
     ],
     'general' => [
-        'lulesami' => 'lulesami',
-        'norwegian' => 'norwegian',
-        'sort' => 'sort'
+        'lulesami' => 'Lulesami',
+        'norwegian' => 'Norwegian',
+        'sort' => 'Sort'
     ]
 ];
