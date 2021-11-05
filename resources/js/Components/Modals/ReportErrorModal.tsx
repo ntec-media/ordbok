@@ -8,6 +8,7 @@ import {
     TextField,
 } from '@material-ui/core';
 import axios from 'axios';
+import {trans} from 'matice';
 import React, {useEffect, useState} from 'react';
 import CustomSnackbar, {CustomSnackbarProps} from '../Shared/CustomSnackbar';
 
@@ -46,6 +47,7 @@ const ReportErrorModal = (props: Props) => {
             .then(res => {
                 if (res.status === 200) {
                     setSnackbarProps({...snackbarProps, open: true});
+                    props.closeModal();
                 }
             });
     };
@@ -54,19 +56,19 @@ const ReportErrorModal = (props: Props) => {
         <>
             <Dialog open={props.open} maxWidth="sm" fullWidth>
                 <DialogTitle className="flex justify-center">
-                    Rapporter feil
+                    {trans('Search.reportDialog.header')}
                 </DialogTitle>
                 <DialogContent>
                     <FormControl className="flex flex-col w-full space-y-4">
                         <TextField
-                            label="Fra"
+                            label={trans('Search.reportDialog.from')}
                             variant="outlined"
                             color="primary"
                             disabled
                             value={inputs?.norwegian}
                         />
                         <TextField
-                            label="Til"
+                            label={trans('Search.reportDialog.to')}
                             variant="outlined"
                             color="primary"
                             disabled
@@ -76,7 +78,7 @@ const ReportErrorModal = (props: Props) => {
                             multiline
                             variant="outlined"
                             rows="10"
-                            label="Beskrivelse av feil"
+                            label={trans('Search.reportDialog.description')}
                             value={inputs?.description}
                             onChange={e =>
                                 setInput({
@@ -93,14 +95,14 @@ const ReportErrorModal = (props: Props) => {
                         variant="outlined"
                         onClick={() => props.closeModal()}
                     >
-                        Avbryt
+                        {trans('Search.reportDialog.cancel')}
                     </Button>
                     <Button
                         color="primary"
                         variant="contained"
                         onClick={submit}
                     >
-                        Send inn
+                        {trans('Search.reportDialog.submit')}
                     </Button>
                 </DialogActions>
             </Dialog>

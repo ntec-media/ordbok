@@ -4,6 +4,7 @@ import PostAddIcon from '@material-ui/icons/PostAdd';
 import BarChartIcon from '@material-ui/icons/BarChart';
 import GetAppIcon from '@material-ui/icons/GetApp';
 import SearchIcon from '@material-ui/icons/Search';
+import {trans} from 'matice';
 
 interface Props {
     selected?: number;
@@ -23,7 +24,9 @@ const Menu = (props: Props) => {
                         style={{width: 64, height: 64}}
                     />
                 </div>
-                <p className="mt-1 cursor-pointer select-none">Søk</p>
+                <p className="mt-1 cursor-pointer select-none">
+                    {trans('Layout.navbar.search')}
+                </p>
             </li>
 
             <li
@@ -36,7 +39,9 @@ const Menu = (props: Props) => {
                         style={{width: 64, height: 64}}
                     />
                 </div>
-                <p className="mt-1 cursor-pointer select-none">Nytt ord</p>
+                <p className="mt-1 cursor-pointer select-none">
+                    {trans('Layout.navbar.wordSuggestion')}
+                </p>
             </li>
             <li
                 className="relative flex flex-col items-center justify-center"
@@ -48,7 +53,9 @@ const Menu = (props: Props) => {
                         style={{width: 64, height: 64}}
                     />
                 </div>
-                <p className="mt-1 cursor-pointer select-none">Statistikk</p>
+                <p className="mt-1 cursor-pointer select-none">
+                    {trans('Layout.navbar.statistics')}
+                </p>
             </li>
             <li
                 className="relative flex flex-col items-center justify-center"
@@ -60,7 +67,9 @@ const Menu = (props: Props) => {
                         style={{width: 64, height: 64}}
                     />
                 </div>
-                <p className="mt-1 cursor-pointer select-none">Last ned app</p>
+                <p className="mt-1 cursor-pointer select-none">
+                    {trans('Layout.navbar.app')}
+                </p>
             </li>
         </ul>
     );

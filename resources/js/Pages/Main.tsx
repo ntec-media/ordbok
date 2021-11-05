@@ -3,7 +3,7 @@ import Statistics from './Statistics';
 import Header from '../Components/Search/Header';
 import Menu from '../Components/Search/Menu';
 import Layout from '../Components/Shared/Layout';
-import DownloadApp from './DownloadApp';
+import App from './App';
 import Search from './Search';
 import WordSuggestion from './WordSuggestion';
 
@@ -26,7 +26,7 @@ const Main = () => {
             case 2:
                 return <Statistics />;
             case 3:
-                return <DownloadApp />;
+                return <App />;
         }
     };
 

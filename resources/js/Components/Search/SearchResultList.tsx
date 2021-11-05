@@ -1,6 +1,7 @@
 import {CircularProgress, List, ListItem} from '@material-ui/core';
+import {trans} from 'matice';
 import React, {useCallback, useEffect, useRef, useState} from 'react';
-import {useWorkSearch} from '../../Hooks/useWorkSearch';
+import {useWordSearch} from '../../Hooks/useWordSearch';
 import ISearchResult from '../../Interfaces/ISearchResult';
 import CustomSnackbar, {CustomSnackbarProps} from '../Shared/CustomSnackbar';
 import ResultCard from './ResultCard';
@@ -10,9 +11,11 @@ interface Props {
     orderBy: string;
 }
 
+const RESULTS_PER_PAGE = 25;
+
 const SearchResultList = (props: Props) => {
     const [page, setPage] = useState<number>(1);
-    const {results, loading, hasMore, error} = useWorkSearch(
+    const {results, loading, hasMore, error} = useWordSearch(
         props.input,
         page,
         props.orderBy
@@ -23,7 +26,6 @@ const SearchResultList = (props: Props) => {
         message: 'En feil har oppstått på serveren',
         handleClose: () => setSnackbarProps({...snackbarProps, open: false}),
     });
-    const [scrolled, setScrolled] = useState(false);
 
     const observer = useRef<IntersectionObserver>();
     const lastElementRef = useCallback(
@@ -45,12 +47,8 @@ const SearchResultList = (props: Props) => {
     }, [props.input]);
 
     useEffect(() => {
-        const height = window.innerHeight;
         if (window.innerWidth < 768) return;
-        switch (height) {
-            default:
-                window.scrollTo(0, 300);
-        }
+        results.length <= RESULTS_PER_PAGE && window.scrollTo(0, 305);
     }, [results]);
     return (
         <div className="mb-12">
@@ -81,7 +79,15 @@ const SearchResultList = (props: Props) => {
                     <CircularProgress size={60} />
                 </div>
             )}
-            {!hasMore && !loading && <p>{'Fant ' + results.length + ' ord'}</p>}
+            {!hasMore && (
+                <p>
+                    {trans('Search.SearchResult.found') +
+                        ' ' +
+                        results.length +
+                        ' ' +
+                        trans('Search.SearchResult.words')}
+                </p>
+            )}
             <CustomSnackbar {...snackbarProps} />
         </div>
     );

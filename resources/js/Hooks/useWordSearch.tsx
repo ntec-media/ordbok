@@ -2,7 +2,7 @@ import axios from 'axios';
 import {useEffect, useState} from 'react';
 import ISearchResult from '../Interfaces/ISearchResult';
 
-export const useWorkSearch = (
+export const useWordSearch = (
     input: string,
     pageNumber: number,
     orderBy: string
@@ -15,7 +15,7 @@ export const useWorkSearch = (
     useEffect(() => {
         setResults([]);
         setHasMore(true);
-    }, [input]);
+    }, [input, orderBy]);
 
     useEffect(() => {
         setLoading(true);
@@ -39,6 +39,6 @@ export const useWorkSearch = (
                 setError(true);
             });
         return () => cancel();
-    }, [input, pageNumber]);
+    }, [input, pageNumber, orderBy]);
     return {loading, error, results, hasMore};
 };

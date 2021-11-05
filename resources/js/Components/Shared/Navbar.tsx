@@ -1,30 +1,24 @@
 import React, {useContext, useEffect, useState} from 'react';
 import MenuIcon from '@material-ui/icons/Menu';
 import {IconButton} from '@material-ui/core';
-import {Context} from '../../Store';
-import {localDictsSupported} from '../../interfaces';
 import {setLocale} from 'matice';
 import LanguageDropDown from './LanguageDropDown';
 import Sidebar from './Sidebar';
 
 const Navbar = () => {
     const [path, setPath] = useState('');
-    const [cookies, setCookies] = useContext(Context);
     const [sidebarOpen, setSidebarOpen] = useState(false);
 
     useEffect(() => {
-        if (!cookies.lang) {
-            setCookies('lang', 'nb', {path: '/'});
-        } else setLocale(cookies.lang);
-        if (!cookies.dicts) {
-            setCookies('dicts', localDictsSupported, {path: '/'});
-        }
+        const lang = localStorage.getItem('lang');
+        lang ? setLocale(lang) : localStorage.setItem('lang', 'nb');
+
         setPath(window.location.pathname);
     }, []);
 
     const updateLang = (newLang: string) => {
-        setCookies('lang', newLang, {path: '/'});
-        setLocale('en');
+        localStorage.setItem('lang', newLang);
+        setLocale('newLang');
         window.location.href = path;
     };
 
@@ -47,7 +41,7 @@ const Navbar = () => {
                 {path !== '/' && <h1 className="text-3xl">Julevbago</h1>}
                 <div>
                     <LanguageDropDown
-                        selected={cookies.lang}
+                        selected={localStorage.getItem('lang') || 'no'}
                         setSelected={newLang => updateLang(newLang)}
                     />
                 </div>
