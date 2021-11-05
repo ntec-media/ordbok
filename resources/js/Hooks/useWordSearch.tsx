@@ -2,7 +2,7 @@ import axios from 'axios';
 import {useEffect, useState} from 'react';
 import ISearchResult from '../Interfaces/ISearchResult';
 
-export const useWorkSearch = (
+export const useWordSearch = (
     input: string,
     pageNumber: number,
     orderBy: string
