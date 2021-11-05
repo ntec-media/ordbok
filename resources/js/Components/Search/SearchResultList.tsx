@@ -11,6 +11,8 @@ interface Props {
     orderBy: string;
 }
 
+const RESULTS_PER_PAGE = 25;
+
 const SearchResultList = (props: Props) => {
     const [page, setPage] = useState<number>(1);
     const {results, loading, hasMore, error} = useWordSearch(
@@ -45,12 +47,8 @@ const SearchResultList = (props: Props) => {
     }, [props.input]);
 
     useEffect(() => {
-        const height = window.innerHeight;
         if (window.innerWidth < 768) return;
-        switch (height) {
-            default:
-                window.scrollTo(0, 305);
-        }
+        results.length <= RESULTS_PER_PAGE && window.scrollTo(0, 305);
     }, [results]);
     return (
         <div className="mb-12">
