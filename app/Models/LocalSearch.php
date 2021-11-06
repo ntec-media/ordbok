@@ -75,9 +75,10 @@ class LocalSearch implements SearchInterface
             ->orderBy('oversatt_fra', $orderBy)
             ->simplePaginate(25, ['*']);
 
-        return $query8;
 
         ProcessStatistic::dispatch();
+
+        return $query8;
     }
 
     /**
