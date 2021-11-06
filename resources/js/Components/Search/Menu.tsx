@@ -23,7 +23,7 @@ const Menu = (props: Props) => {
                         style={{width: 64, height: 64}}
                     />
                 </div>
-                <p className="mt-1 select-none">Søk</p>
+                <p className="mt-1 cursor-pointer select-none">Søk</p>
             </li>
 
             <li
@@ -36,7 +36,7 @@ const Menu = (props: Props) => {
                         style={{width: 64, height: 64}}
                     />
                 </div>
-                <p className="mt-1 select-none">Nytt ord</p>
+                <p className="mt-1 cursor-pointer select-none">Nytt ord</p>
             </li>
             <li
                 className="relative flex flex-col items-center justify-center"
@@ -48,7 +48,7 @@ const Menu = (props: Props) => {
                         style={{width: 64, height: 64}}
                     />
                 </div>
-                <p className="mt-1 select-none">Statistikk</p>
+                <p className="mt-1 cursor-pointer select-none">Statistikk</p>
             </li>
             <li
                 className="relative flex flex-col items-center justify-center"
@@ -60,7 +60,7 @@ const Menu = (props: Props) => {
                         style={{width: 64, height: 64}}
                     />
                 </div>
-                <p className="mt-1 select-none">Last ned app</p>
+                <p className="mt-1 cursor-pointer select-none">Last ned app</p>
             </li>
         </ul>
     );

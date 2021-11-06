@@ -2,6 +2,7 @@ import React, {useEffect, useState} from 'react';
 import SearchField from '../Components/Search/SearchField';
 import SearchResultList from '../Components/Search/SearchResultList';
 import NoSearch from '../Components/Search/NoSearch';
+import {Locations} from '../Components/Search/Locations';
 
 const Search = (props: {input: (newInput: string) => void}) => {
     const [input, setInput] = useState('');
@@ -12,7 +13,7 @@ const Search = (props: {input: (newInput: string) => void}) => {
     }, [input]);
 
     return (
-        <div className="fadeIn">
+        <div className="h-screen fadeIn">
             <div className="md:pt-8 md:pb-2">
                 <SearchField
                     updateInput={newInput => setInput(newInput)}
@@ -20,7 +21,10 @@ const Search = (props: {input: (newInput: string) => void}) => {
                 />
             </div>
             {input !== '' ? (
-                <SearchResultList input={input} orderBy={orderBy} />
+                <>
+                    <Locations input={input} />
+                    <SearchResultList input={input} orderBy={orderBy} />
+                </>
             ) : (
                 <NoSearch />
             )}

@@ -66,3 +66,20 @@
 html {
     scroll-behavior: smooth;
 }
+
+.leaflet-container {
+    height: 650px;
+    width: 650px;
+}
+
+@media only screen and (max-width: 1300px) {
+    .leaflet-container {
+        width: 480px;
+    }
+}
+
+@media only screen and (max-width: 1000px) {
+    .leaflet-container {
+        width: 360px;
+    }
+}
