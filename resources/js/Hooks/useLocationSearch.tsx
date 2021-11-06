@@ -45,7 +45,7 @@ export const useLocationSearch = (input: string) => {
 
     const filterResults = (results: ILocation[]) => {
         const resFiltered: ILocation[] = [];
-        const languages = ['Lulesamisk', 'Nordsamisk'];
+        const languages = ['Lulesamisk', 'Nordsamisk', 'Sørsamisk'];
         results.forEach(res => {
             let isPushed = false;
             res.stedsnavn.forEach(sted => {
