@@ -13,7 +13,7 @@ const Search = (props: {input: (newInput: string) => void}) => {
     }, [input]);
 
     return (
-        <div className="fadeIn">
+        <div className="fadeIn h-screen">
             <div className="md:pt-8 md:pb-2">
                 <SearchField
                     updateInput={newInput => setInput(newInput)}
