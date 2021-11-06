@@ -1,9 +1,11 @@
 /* This example requires Tailwind CSS v2.0+ */
 import {Fragment, useEffect, useState} from 'react';
 import {Menu, Transition} from '@headlessui/react';
-import {ChevronDownIcon} from '@heroicons/react/solid';
+import SortingIcon from '@material-ui/icons/MenuBook';
 import {CheckIcon} from '@heroicons/react/outline';
 import React from 'react';
+import {trans} from 'matice';
+import {Tooltip} from '@material-ui/core';
 
 interface Props {
     setOrderBy: (newVal: string) => void;
@@ -27,7 +29,13 @@ export default function SortingDropDown(props: Props) {
             <div>
                 <Menu.Button className="flex items-center mx-2 text-gray-400 bg-gray-100 rounded-full hover:text-gray-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-100 focus:ring-indigo-500">
                     <span className="sr-only">Open options</span>
-                    <ChevronDownIcon className="w-8 h-8 " aria-hidden="true" />
+                    <Tooltip title={trans('Layout.general.sort')}>
+                        <SortingIcon
+                            color="primary"
+                            className="w-8 h-8 "
+                            aria-hidden="true"
+                        />
+                    </Tooltip>
                 </Menu.Button>
             </div>
 
@@ -44,7 +52,7 @@ export default function SortingDropDown(props: Props) {
                     <div className="py-1">
                         <Menu.Item>
                             <p className="px-4 py-2 font-bold text-md">
-                                Sorter
+                                {trans('Layout.general.sort')}
                             </p>
                         </Menu.Item>
                         <Menu.Item>
@@ -52,7 +60,9 @@ export default function SortingDropDown(props: Props) {
                                 onClick={() => setSelected('sami')}
                                 className="flex justify-between px-4 py-2 text-sm text-gray-700 cursor-pointer hover:bg-gray-100"
                             >
-                                Lulesamisk-norsk
+                                {trans('Layout.general.lulesami') +
+                                    '-' +
+                                    trans('Layout.general.norwegian')}
                                 {selected === 'sami' && (
                                     <CheckIcon
                                         className="w-5 h-5 mr-3 text-gray-400 group-hover:text-gray-500"
@@ -66,7 +76,9 @@ export default function SortingDropDown(props: Props) {
                                 onClick={() => setSelected('norwegian')}
                                 className="flex justify-between px-4 py-2 text-sm text-gray-700 cursor-pointer hover:bg-gray-100"
                             >
-                                Norsk-lulesamisk
+                                {trans('Layout.general.norwegian') +
+                                    '-' +
+                                    trans('Layout.general.lulesami')}
                                 {selected === 'norwegian' && (
                                     <CheckIcon
                                         className="w-5 h-5 mr-3 text-gray-400 group-hover:text-gray-500"

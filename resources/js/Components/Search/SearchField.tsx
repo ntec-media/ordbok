@@ -47,7 +47,7 @@ const SearchField = (props: Props) => {
                         autoFocus
                         {...params}
                         value={input}
-                        placeholder="Søk i Julevbago"
+                        placeholder={trans('Search.header')}
                         label={trans('Search.SearchField.search')}
                         variant="outlined"
                         style={{marginRight: 0}}

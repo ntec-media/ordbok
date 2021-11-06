@@ -3,6 +3,7 @@ import React, {useState} from 'react';
 import ISearchResult from '../../Interfaces/ISearchResult';
 import FlagIcon from '@material-ui/icons/Flag';
 import ReportErrorModal from '../Modals/ReportErrorModal';
+import {trans} from 'matice';
 
 interface Props {
     input: string;
@@ -54,7 +55,7 @@ const ResultCard = (props: Props) => {
                             onClick={() => setShowAll(true)}
                             className="text-blue-500 cursor-pointer"
                         >
-                            Se mer
+                            {trans('Search.SearchResult.showMore')}
                         </p>
                     )}
                 </div>

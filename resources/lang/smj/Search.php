@@ -1,7 +1,7 @@
 <?php
 
 return [
-    'header' => 'Åtså Julev báhkogirjen',
+    'header' => 'Åtså Julevbágo',
     'SearchField' => [
         'search' => 'Åtså',
         'langModalHeader' => 'Vállji gielav jårggålibmáj',
@@ -10,9 +10,19 @@ return [
     'SearchResult' => [
         'found' => 'Gávnniv',
         'words' => 'báhko',
+        'showMore' => 'Vuoseda ienebu',
+        'error' => 'Vihke l ihtám serverij'
     ],
     'NoSearch' => [
         'header' => 'Buoris boahtem',
        'subtitle' => 'Åtså Anders Kintala báhkogirjen 2013, Sáme Giellagáldon 2013 ja Medisijnalasj báhkogirjen' 
+    ],
+    'reportDialog' => [
+        'header' => 'Diededa vigev',
+        'from' => 'Gæssta',
+        'to' => 'Gesi',
+        'description' => 'Tjielggi vigev',
+        'cancel' => 'Boarkki',
+        'submit' => 'Sáddi'
     ]
 ];
