@@ -28,7 +28,7 @@ export const Locations = (props: {input: string}) => {
                     href="#"
                 >
                     {results.length === 1
-                        ? 'Fant ' + results.length + '. sted'
+                        ? 'Fant ' + results.length + ' sted'
                         : 'Fant ' + results.length + ' steder'}
                 </a>
             )}
