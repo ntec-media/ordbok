@@ -1,4 +1,5 @@
 import {Dialog, DialogContent, List} from '@material-ui/core';
+import {trans} from 'matice';
 import React, {useEffect, useState} from 'react';
 import {ILocation, useLocationSearch} from '../../Hooks/useLocationSearch';
 import {LocationCard} from './LocationCard';
@@ -28,8 +29,17 @@ export const Locations = (props: {input: string}) => {
                     href="#"
                 >
                     {results.length === 1
-                        ? 'Fant ' + results.length + ' sted'
-                        : 'Fant ' + results.length + ' steder'}
+                        ? trans('Search.SearchResult.found') +
+                          ' ' +
+                          results.length +
+                          ' ' +
+                          trans('Search.SearchResult.places')
+                        : trans('Search.SearchResult.found') +
+                          ' ' +
+                          results.length +
+                          ' ' +
+                          trans('Search.SearchResult.places')}{' '}
+                    (Kartverket)
                 </a>
             )}
             <Dialog

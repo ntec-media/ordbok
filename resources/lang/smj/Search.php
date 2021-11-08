@@ -11,7 +11,10 @@ return [
         'found' => 'Gávnniv',
         'words' => 'báhko',
         'showMore' => 'Vuoseda ienebu',
-        'error' => 'Vihke l ihtám serverij'
+        'error' => 'Vihke l ihtám serverij',
+        'scroll_to_top' => 'Scroll to top',
+        'found' => 'Fant',
+        'places' => 'Steder',
     ],
     'NoSearch' => [
         'header' => 'Buoris boahtem',

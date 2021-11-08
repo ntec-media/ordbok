@@ -3,9 +3,9 @@ import React from 'react';
 import Layout from '../Components/Shared/Layout';
 
 const content = (
-    <div className="flex flex-col items-center mt-10 space-y-8 md:flex-row md:justify-between md:space-x-16 md:space-y-0">
+    <div className="flex flex-col items-center mt-10 space-y-8 md:flex-row md:justify-center md:space-x-16 md:space-y-0">
         <a
-            className="w-1/2"
+            className="w-1/2 md:w-2/6"
             href="https://apps.apple.com/no/app/julevb%C3%A1go/id878913855"
             target="_blank"
         >
@@ -16,7 +16,7 @@ const content = (
             />
         </a>
         <a
-            className="w-1/2"
+            className="w-1/2 md:w-2/6"
             href="https://play.google.com/store/apps/details?id=no.ntec.same"
             target="_blank"
         >
@@ -35,10 +35,10 @@ const App = () => (
             <Layout>
                 <div className="flex flex-row justify-around mt-4 md:mt-20">
                     <div className="flex flex-col justify-center w-11/12 text-center md:w-3/6">
-                        <h1 className="text-3xl text-indigo-800 lg:text-5xl">
+                        <h1 className="text-3xl text-blue-600 lg:text-5xl">
                             {trans('App.header')}
                         </h1>
-                        <h2 className="mt-6 text-xl text-indigo-500">
+                        <h2 className="mt-6 text-xl text-blue-500">
                             {trans('App.subtitle')}
                         </h2>
                     </div>
@@ -46,13 +46,13 @@ const App = () => (
                 {content}
             </Layout>
         </div>
-        <div className="hidden md:block fadeIn">
+        <div className="hidden min-h-screen md:block fadeIn">
             <div className="flex flex-row justify-around mt-4 md:mt-20">
                 <div className="flex flex-col justify-center w-11/12 text-center md:w-3/6">
-                    <h1 className="text-3xl text-indigo-800 lg:text-5xl">
+                    <h1 className="text-3xl text-blue-600 lg:text-5xl">
                         {trans('App.header')}
                     </h1>
-                    <h2 className="mt-6 text-xl text-indigo-500">
+                    <h2 className="mt-6 text-xl text-blue-500">
                         {trans('App.subtitle')}
                     </h2>
                 </div>

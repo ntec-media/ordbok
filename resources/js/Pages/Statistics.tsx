@@ -132,7 +132,7 @@ const Statistics = () => {
         </Dialog>
     );
     const content = (
-        <div className="flex flex-col items-center justify-center mt-10 lg:mt-20 fadeIn">
+        <div className="flex flex-col items-center mt-10 md:min-h-screen lg:mt-20 fadeIn">
             <h1 className="text-xl text-blue-600 md:text-3xl ">
                 {trans('Statistics.number_of_search')}
             </h1>

@@ -25,12 +25,20 @@ export const LocationCard = (props: Props) => {
                     {props.location.kommuner[0]?.kommunenavn}
                 </h2>
             </div>
-            <div>
-                {props.location.stedsnavn.map((navn, index) => (
-                    <p key={index}>
-                        {navn.språk} - <span>{navn.skrivemåte}</span>
-                    </p>
-                ))}
+            <div className="flex justify-between">
+                <div>
+                    {props.location.stedsnavn.map((navn, index) => (
+                        <p key={index}>
+                            {navn.språk} - <span>{navn.skrivemåte}</span>
+                            <span className="mx-2 opacity-60">
+                                {navn.skrivemåtestatus}
+                            </span>
+                        </p>
+                    ))}
+                </div>
+                <p className="self-end text-blue-500 cursor-pointer md:hidden ">
+                    Se kart
+                </p>
             </div>
         </div>
     );

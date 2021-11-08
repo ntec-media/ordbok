@@ -11,7 +11,10 @@ return [
         'found' => 'Fant',
         'words' => 'ord',
         'showMore' => 'Vis mer',
-        'error' => 'En feil har oppstått på serveren'
+        'error' => 'En feil har oppstått på serveren',
+        'scroll_to_top' => 'Scroll til toppen',
+        'found' => 'Fant',
+        'places' => 'Steder',
     ],
     'NoSearch' => [
         'header' => 'Velkommen',
