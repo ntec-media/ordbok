@@ -15,12 +15,12 @@ return [
     ],
     'NoSearch' => [
         'header' => 'Velkommen',
-       'subtitle' => 'Søk i Anders Kintels ordbok 2013, Sáme Giellagálldo 2013 og Medisijnalasj báhkogirjje.' 
+       'subtitle' => 'Søk i Anders Kintels ordbok 2013, Sáme Giellagálldo 2013, Medisinsk ordbok og Kartverket' 
     ],
     'reportDialog' => [
         'header' => 'Rapportert feil',
-        'from' => 'Fra',
-        'to' => 'Til',
+        'from' => 'Ord',
+        'to' => 'Beskrivelse',
         'description' => 'Beskriv feil',
         'cancel' => 'Avbryt',
         'submit' => 'Send inn'

@@ -4,6 +4,7 @@ import {IconButton} from '@material-ui/core';
 import {setLocale} from 'matice';
 import LanguageDropDown from './LanguageDropDown';
 import Sidebar from './Sidebar';
+import {InertiaLink} from '@inertiajs/inertia-react';
 
 const Navbar = () => {
     const [path, setPath] = useState('');
@@ -38,7 +39,9 @@ const Navbar = () => {
                         </IconButton>
                     </div>
                 </div>
-                {path !== '/' && <h1 className="text-3xl">Julevbago</h1>}
+                <InertiaLink href="/">
+                    {path !== '/' && <h1 className="text-3xl">Julevágo</h1>}
+                </InertiaLink>
                 <div>
                     <LanguageDropDown
                         selected={localStorage.getItem('lang') || 'no'}

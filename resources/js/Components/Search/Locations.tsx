@@ -43,7 +43,7 @@ export const Locations = (props: {input: string}) => {
                     style={{maxHeight: 700, padding: 0}}
                     className="flex justify-between"
                 >
-                    <div className="flex flex-col w-full m-4">
+                    <div className="relative flex flex-col w-full m-4">
                         <List
                             className="w-full overflow-y-auto"
                             style={{height: 570}}
@@ -66,14 +66,22 @@ export const Locations = (props: {input: string}) => {
                                 </div>
                             ))}
                         </List>
-                        <a
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            className="absolute bottom-0 left-0 p-1 text-xs text-blue-400 cursor-pointer"
-                            href="https://kartverket.no"
-                        >
-                            © Kartverket
-                        </a>
+                        <div className="absolute bottom-0 flex justify-between w-full p-1 text-xs">
+                            <a
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="text-blue-500 cursor-pointer"
+                                href="https://kartverket.no"
+                            >
+                                © Kartverket
+                            </a>
+                            <p
+                                onClick={() => setDialogOpen(false)}
+                                className="text-blue-500 cursor-pointer "
+                            >
+                                Lukk
+                            </p>
+                        </div>
                     </div>
                     <div className="hidden md:block">
                         {selected && (
