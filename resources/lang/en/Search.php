@@ -14,6 +14,7 @@ return [
         'error' => 'Server error',
         'scroll_to_top' => 'Scroll to top',
         'found' => 'Found',
+        'place' => 'place',
         'places' => 'places',
     ],
     'NoSearch' => [

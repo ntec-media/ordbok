@@ -14,7 +14,8 @@ return [
         'error' => 'En feil har oppstått på serveren',
         'scroll_to_top' => 'Scroll til toppen',
         'found' => 'Fant',
-        'places' => 'Steder',
+        'place' => 'sted',
+        'places' => 'steder',
     ],
     'NoSearch' => [
         'header' => 'Velkommen',

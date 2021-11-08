@@ -33,7 +33,7 @@ export const Locations = (props: {input: string}) => {
                           ' ' +
                           results.length +
                           ' ' +
-                          trans('Search.SearchResult.places')
+                          trans('Search.SearchResult.place')
                         : trans('Search.SearchResult.found') +
                           ' ' +
                           results.length +

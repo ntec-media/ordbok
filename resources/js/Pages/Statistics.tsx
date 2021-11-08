@@ -138,7 +138,7 @@ const Statistics = () => {
             </h1>
             <div className="w-4/12 px-4 mt-10 text-center md:hidden md:px-10 md:w-3/12">
                 <p className="text-sm text-center text-gray-500 md:text-lg">
-                    I dag
+                    {trans('Statistics.today')}
                 </p>
                 <p className="py-2 text-blue-600">
                     <CountUp duration={1.5} end={data.day} />
@@ -150,7 +150,7 @@ const Statistics = () => {
             <div className="flex flex-wrap justify-center w-full mt-10 text-xl md:text-3xl lg:mt-20">
                 <div className="hidden w-4/12 px-4 text-center md:inline md:px-10 md:w-3/12">
                     <p className="text-sm text-center text-gray-500 md:text-lg">
-                        I dag
+                        {trans('Statistics.today')}
                     </p>
                     <p className="py-2 text-blue-600">
                         <CountUp duration={1.5} end={data.day} />
@@ -164,7 +164,7 @@ const Statistics = () => {
                     className="w-4/12 px-4 text-center cursor-pointer md:px-10 md:w-3/12 icon-link"
                 >
                     <p className="text-sm text-center text-gray-500 md:text-lg">
-                        Siste uke
+                        {trans('Statistics.this_week')}
                     </p>
                     <p className="py-2 text-blue-600">
                         <CountUp duration={1.5} end={data.week} />

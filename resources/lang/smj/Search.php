@@ -12,9 +12,10 @@ return [
         'words' => 'báhko',
         'showMore' => 'Vuoseda ienebu',
         'error' => 'Vihke l ihtám serverij',
-        'scroll_to_top' => 'Scroll to top',
-        'found' => 'Fant',
-        'places' => 'Steder',
+        'scroll_to_top' => 'Jållerda bajás',
+        'found' => 'Gávnniv',
+        'place' => 'bájkke',
+        'places' => 'bájke',
     ],
     'NoSearch' => [
         'header' => 'Buoris boahtem',
