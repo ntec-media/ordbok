@@ -11,16 +11,21 @@ return [
         'found' => 'Found',
         'words' => 'words',
         'showMore' => 'Show more',
-        'error' => 'Server error'
+        'error' => 'Server error',
+        'scroll_to_top' => 'Scroll to top',
+        'found' => 'Found',
+        'place' => 'place',
+        'places' => 'places',
+        'close' => 'close',
     ],
     'NoSearch' => [
         'header' => 'Welcome',
-       'subtitle' => 'Search in Anders Kintels dictionary 2013, Sáme Giellagálldo 2013 and Medisijnalasj báhkogirjje.' 
+       'subtitle' => 'Search in Anders Kintels dictionary 2013, Sáme Giellagálldo 2013, Medical Dictionary and Kartverket' 
     ],
     'reportDialog' => [
         'header' => 'Report error',
-        'from' => 'From',
-        'to' => 'To',
+        'from' => 'Word',
+        'to' => 'Description',
         'description' => 'Describe error',
         'cancel' => 'Cancel',
         'submit' => 'Submit'

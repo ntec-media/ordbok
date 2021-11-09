@@ -30,6 +30,15 @@ const SearchField = (props: Props) => {
         }
     }, []);
 
+    const appendSpecialChars = (char: string) => {
+        // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+        // @ts-ignore
+        const position = document.getElementById('searchfield')?.selectionStart;
+        const textBeforeCursorPosition = input.substring(0, position);
+        const textAfterCursorPosition = input.substring(position, input.length);
+        setInput(textBeforeCursorPosition + char + textAfterCursorPosition);
+    };
+
     return (
         <div className="flex justify-center" style={{marginRight: 0}}>
             <Autocomplete
@@ -65,13 +74,13 @@ const SearchField = (props: Props) => {
                                         }
                                     />
                                     <button
-                                        onClick={() => setInput(input + 'á')}
+                                        onClick={() => appendSpecialChars('á')}
                                         className="hidden px-4 py-2 mx-2 text-base font-medium text-gray-700 bg-white border border-gray-300 rounded-full md:block hover:bg-gray-300 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-400"
                                     >
                                         á
                                     </button>
                                     <button
-                                        onClick={() => setInput(input + 'ŋ')}
+                                        onClick={() => appendSpecialChars('ŋ')}
                                         className="px-4 py-2 text-base font-medium text-gray-700 bg-white border border-gray-300 rounded-full hover:bg-gray-300 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-400"
                                     >
                                         ŋ

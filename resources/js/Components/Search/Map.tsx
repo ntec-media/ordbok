@@ -1,7 +1,8 @@
-import {Dialog} from '@material-ui/core';
+import {Dialog, IconButton} from '@material-ui/core';
 import React, {useEffect, useState} from 'react';
 import {MapContainer, Marker, TileLayer} from 'react-leaflet';
 import {ILocation} from '../../Hooks/useLocationSearch';
+import CancelIcon from '@material-ui/icons/CancelPresentation';
 
 interface Props {
     location: ILocation;
@@ -52,6 +53,11 @@ export const Map = (props: Props) => {
             <div className="md:hidden">
                 <Dialog open={props.open} onClose={() => props.closeModal()}>
                     {GetMap}
+                    <div className="absolute top-0 right-0 z-50">
+                        <IconButton onClick={props.closeModal}>
+                            <CancelIcon fontSize="large" />
+                        </IconButton>
+                    </div>
                 </Dialog>
             </div>
         </>

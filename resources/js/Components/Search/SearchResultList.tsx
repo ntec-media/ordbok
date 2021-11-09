@@ -1,10 +1,17 @@
-import {CircularProgress, List, ListItem} from '@material-ui/core';
+import {
+    CircularProgress,
+    IconButton,
+    List,
+    ListItem,
+    Tooltip,
+} from '@material-ui/core';
 import {trans} from 'matice';
 import React, {useCallback, useEffect, useRef, useState} from 'react';
 import {useWordSearch} from '../../Hooks/useWordSearch';
 import ISearchResult from '../../Interfaces/ISearchResult';
 import CustomSnackbar, {CustomSnackbarProps} from '../Shared/CustomSnackbar';
 import ResultCard from './ResultCard';
+import ArrowUpwardIcon from '@material-ui/icons/ArrowUpwardOutlined';
 
 interface Props {
     input: string;
@@ -89,6 +96,18 @@ const SearchResultList = (props: Props) => {
                 </p>
             )}
             <CustomSnackbar {...snackbarProps} />
+            {results.length > 25 && !loading && (
+                <div className="fixed bottom-5 right-5 md:right-20 md:bottom-20">
+                    <Tooltip title={trans('Search.SearchResult.scroll_to_top')}>
+                        <IconButton
+                            style={{backgroundColor: 'lightgray', opacity: 0.8}}
+                            onClick={() => window.scrollTo(0, 0)}
+                        >
+                            <ArrowUpwardIcon style={{height: 48, width: 48}} />
+                        </IconButton>
+                    </Tooltip>
+                </div>
+            )}
         </div>
     );
 };

@@ -41,7 +41,7 @@ const Sidebar = (props: Props) => {
                                 className="w-6 h-6 rounded-full"
                             />
                         </ListItemIcon>
-                        <h1 className="text-xl font-bold">Julevbago</h1>
+                        <h1 className="text-xl font-bold">Julevbágo</h1>
                     </ListItem>
                 </InertiaLink>
             </List>

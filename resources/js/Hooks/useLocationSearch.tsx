@@ -5,6 +5,7 @@ export interface ILocation {
     stedsnummer: number;
     stedsnavn: {
         skrivemåte: string;
+        skrivemåtestatus: string;
         språk: string;
     }[];
     navneobjekttype: string;
@@ -30,7 +31,7 @@ export const useLocationSearch = (input: string) => {
 
     useEffect(() => {
         const filter =
-            'metadata,navn.stedsnavn.skrivemåte,navn.stedsnavn.språk,navn.navneobjekttype,navn.representasjonspunkt,navn.fylker.fylkesnavn,navn.kommuner.kommunenavn';
+            'metadata,navn.stedsnavn.skrivemåte,navn.stedsnavn.språk,navn.navneobjekttype,navn.representasjonspunkt,navn.fylker.fylkesnavn,navn.kommuner.kommunenavn,navn.stedsnavn.skrivemåtestatus';
 
         let cancel: () => void;
         axios({

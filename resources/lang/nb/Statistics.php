@@ -25,5 +25,7 @@ return [
     'november' => 'November',
     'december' => 'Desember',
     'search' => 'Søk',
-    'number_of_search' => 'Antall søk'
+    'number_of_search' => 'Antall søk',
+    'today' => 'I dag',
+    'this_week' => 'Denne uken'
 ];
