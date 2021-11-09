@@ -16,6 +16,7 @@ return [
         'found' => 'Found',
         'place' => 'place',
         'places' => 'places',
+        'close' => 'close',
     ],
     'NoSearch' => [
         'header' => 'Welcome',

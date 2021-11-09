@@ -1,9 +1,10 @@
-import {Dialog, DialogContent, List} from '@material-ui/core';
+import {Dialog, DialogContent, IconButton, List} from '@material-ui/core';
 import {trans} from 'matice';
 import React, {useEffect, useState} from 'react';
 import {ILocation, useLocationSearch} from '../../Hooks/useLocationSearch';
 import {LocationCard} from './LocationCard';
 import {Map} from './Map';
+import CancelIcon from '@material-ui/icons/CancelPresentation';
 
 export const Locations = (props: {input: string}) => {
     const [dialogOpen, setDialogOpen] = useState(false);
@@ -89,7 +90,7 @@ export const Locations = (props: {input: string}) => {
                                 onClick={() => setDialogOpen(false)}
                                 className="text-blue-500 cursor-pointer "
                             >
-                                Lukk
+                                {trans('Search.SearchResult.close')}
                             </p>
                         </div>
                     </div>
@@ -101,6 +102,12 @@ export const Locations = (props: {input: string}) => {
                                 location={selected}
                             />
                         )}
+
+                        <div className="absolute top-0 right-0 z-50">
+                            <IconButton onClick={() => setDialogOpen(false)}>
+                                <CancelIcon fontSize="large" />
+                            </IconButton>
+                        </div>
                     </div>
                 </DialogContent>
             </Dialog>

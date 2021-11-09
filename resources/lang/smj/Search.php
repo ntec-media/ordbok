@@ -16,6 +16,7 @@ return [
         'found' => 'Gávnniv',
         'place' => 'bájkke',
         'places' => 'bájke',
+        'close' => 'Dahppalit',
     ],
     'NoSearch' => [
         'header' => 'Buoris boahtem',
