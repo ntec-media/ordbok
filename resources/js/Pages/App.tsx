@@ -35,7 +35,7 @@ const App = () => (
             <Layout>
                 <div className="flex flex-row justify-around mt-4 md:mt-20">
                     <div className="flex flex-col justify-center w-11/12 text-center md:w-3/6">
-                        <h1 className="text-3xl text-blue-600 lg:text-5xl">
+                        <h1 className="text-3xl text-blue-600 lg:text-3xl">
                             {trans('App.header')}
                         </h1>
                         <h2 className="mt-6 text-xl text-blue-500">
@@ -47,9 +47,9 @@ const App = () => (
             </Layout>
         </div>
         <div className="hidden min-h-screen md:block fadeIn">
-            <div className="flex flex-row justify-around mt-4 md:mt-20">
+            <div className="flex flex-row justify-around mt-4 md:mt-16">
                 <div className="flex flex-col justify-center w-11/12 text-center md:w-3/6">
-                    <h1 className="text-3xl text-blue-600 lg:text-5xl">
+                    <h1 className="text-3xl text-blue-600 lg:text-3xl">
                         {trans('App.header')}
                     </h1>
                     <h2 className="mt-6 text-xl text-blue-500">
