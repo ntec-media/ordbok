@@ -40,7 +40,7 @@ const Navbar = () => {
                     </div>
                 </div>
                 <InertiaLink href="/">
-                    {path !== '/' && <h1 className="text-3xl">Julevágo</h1>}
+                    {path !== '/' && <h1 className="text-3xl">Julevbágo</h1>}
                 </InertiaLink>
                 <div>
                     <LanguageDropDown
