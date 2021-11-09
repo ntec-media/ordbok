@@ -3,7 +3,7 @@ import {InformationCircleIcon} from '@heroicons/react/solid';
 import {trans} from 'matice';
 
 const CookiePopup = () => {
-    const [approved, setApproved] = useState(false);
+    const [approved, setApproved] = useState(true);
 
     useEffect(() => {
         const approved = localStorage.getItem('cookies');
