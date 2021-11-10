@@ -12,7 +12,7 @@ const NoSearch = () => {
             </h3>
             <div className="flex justify-center w-full">
                 <h3 className="py-10 text-xl italic text-center text-gray-500 md:w-8/12 lg:w-10/12 2xl:w-8/12">
-                    «Julevbágo er begynnelsen på en samisk digital bokbuss" ,
+                    «Julevbágo er begynnelsen på en "samisk digital bokbuss" ,
                     der vi vil gjøre samisk musikk, film, lydbøker, bøker,
                     ordbøker, læremidler og andre samiske verk lett tilgjengelig
                     for alle.»
