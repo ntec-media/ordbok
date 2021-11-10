@@ -5,8 +5,8 @@ import AccountCircleIcon from '@material-ui/icons/AccountCircle';
 
 const About = () => {
     const content = (
-        <div className="flex flex-col items-center justify-between p-4 md:mt-16">
-            <h1 className="text-3xl text-blue-600">Om oss</h1>
+        <div className="flex flex-col items-center justify-between p-4 mt-6 md:mt-16">
+            <h1 className="text-xl text-blue-600 md:text-3xl">Om oss</h1>
             <div className="my-8 md:w-8/12 lg:w-10/12 2xl:w-8/12 md:text-center">
                 Julevbágo er utviklet av Ntec Media AS i samarbeid med
                 Universitetet i Tromsø, med støtte fra Sametinget. Søkeord kan

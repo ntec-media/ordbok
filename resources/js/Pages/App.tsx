@@ -33,7 +33,7 @@ const App = () => (
     <>
         <div className="md:hidden fadeIn">
             <Layout>
-                <div className="flex flex-row justify-around mt-4 md:mt-20">
+                <div className="flex flex-row justify-around mt-10 md:mt-20">
                     <div className="flex flex-col justify-center w-11/12 text-center md:w-3/6">
                         <h1 className="text-xl text-blue-600 lg:text-3xl">
                             {trans('App.header')}

@@ -48,13 +48,15 @@ const WordSuggestion = () => {
     const content = (
         <div className="md:min-h-screen">
             <div className="flex justify-center mb-12 ">
-                <div className="flex w-full md:border md:border-blue-200 md:w-8/12 md:py-8 md:mt-16 rounded-xl">
+                <div className="flex w-full mt-10 md:border md:border-blue-200 md:w-8/12 md:py-8 md:mt-16 rounded-xl">
                     <div className="w-full md:w-8/12">
-                        <h1 className="hidden ml-2 text-3xl text-blue-600 md:flex md:ml-8 ">
-                            {trans('WordSuggestion.header')}
-                        </h1>
-                        <div className="flex items-center justify-between md:hidden">
-                            <InfoIcon />
+                        <div className="relative flex items-center justify-center w-full md:block ">
+                            <h1 className="ml-2 text-xl text-blue-600 md:text-3xl md:ml-8">
+                                {trans('WordSuggestion.header')}
+                            </h1>
+                            <div className="absolute right-0 md:hidden">
+                                <InfoIcon />
+                            </div>
                         </div>
                         <Form result={status => displayResponse(status)} />
                     </div>
