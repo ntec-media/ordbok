@@ -14,7 +14,7 @@ return [
         'choose_language' => 'Choose language',
         'choose_translations' => 'Choose language for translation',
         'choose_dicts' => 'Choose dictionaries',
-        'about' => 'About the app' 
+        'about' => 'About us' 
     ],
     'footer' => [
         'content' => 'Julev is a online dictionary developed by Ntec Media with support from the  Sámi Parliament of Norway',

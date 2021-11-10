@@ -14,7 +14,7 @@ return [
         'choose_language' => 'Velg språk',
         'choose_translations' => 'Velg språk for oversettelse',
         'choose_dicts' => 'Velg ordbøker',
-        'about' => 'Om appen' 
+        'about' => 'Om oss' 
     ],
     'footer' => [
         'content' => 'Julevbágo er utviklet av Ntec Media AS i samarbeid med Universitetet i Tromsø, med støtte fra Sametinget.'

@@ -1,6 +1,5 @@
 import {
     Divider,
-    Drawer,
     List,
     ListItem,
     ListItemIcon,
@@ -9,7 +8,7 @@ import {
 } from '@material-ui/core';
 import React from 'react';
 // Icons
-import InfoIcon from '@material-ui/icons/Info';
+import AboutIcon from '@material-ui/icons/Group';
 import SearchIcon from '@material-ui/icons/Search';
 import PostAddIcon from '@material-ui/icons/PostAdd';
 import BarChartIcon from '@material-ui/icons/BarChart';
@@ -92,7 +91,7 @@ const Sidebar = (props: Props) => {
                 <InertiaLink href="/about">
                     <ListItem button key="about">
                         <ListItemIcon>
-                            <InfoIcon />
+                            <AboutIcon />
                         </ListItemIcon>
                         <ListItemText primary={trans('Layout.navbar.about')} />
                     </ListItem>
