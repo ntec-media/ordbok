@@ -88,11 +88,17 @@ const SearchResultList = (props: Props) => {
             )}
             {!hasMore && (
                 <p>
-                    {trans('Search.SearchResult.found') +
-                        ' ' +
-                        results.length +
-                        ' ' +
-                        trans('Search.SearchResult.words')}
+                    {results.length > 1
+                        ? trans('Search.SearchResult.found') +
+                          ' ' +
+                          results.length +
+                          ' ' +
+                          trans('Search.SearchResult.words')
+                        : trans('Search.SearchResult.found') +
+                          ' ' +
+                          results.length +
+                          ' ' +
+                          trans('Search.SearchResult.word')}
                 </p>
             )}
             <CustomSnackbar {...snackbarProps} />
