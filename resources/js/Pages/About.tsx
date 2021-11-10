@@ -1,6 +1,7 @@
 import {trans} from 'matice';
 import React from 'react';
 import Layout from '../Components/Shared/Layout';
+import AccountCircleIcon from '@material-ui/icons/AccountCircle';
 
 const About = () => {
     const content = (
@@ -20,18 +21,30 @@ const About = () => {
             </div>
             <div className="flex flex-col flex-wrap items-center justify-center w-full mt-6 space-y-8 text-center md:space-y-0 md:mt-10 md:flex-row md:space-x-24">
                 <div>
+                    <AccountCircleIcon
+                        style={{height: 64, width: 64, marginBottom: 8}}
+                        color="primary"
+                    />
                     <p>Odd Levi Paulsen</p>
                     <p>Daglig leder</p>
                     <p>post@internia.no</p>
                     <p>+47 984 07 676</p>
                 </div>
                 <div>
+                    <AccountCircleIcon
+                        style={{height: 64, width: 64, marginBottom: 8}}
+                        color="primary"
+                    />
                     <p>Thomas Andre Karlsen</p>
                     <p>Utviklingsleder</p>
                     <p>thomas@internia.no</p>
                     <p>+47 977 25 316</p>
                 </div>
                 <div>
+                    <AccountCircleIcon
+                        style={{height: 64, width: 64, marginBottom: 8}}
+                        color="primary"
+                    />
                     <p>Patrick Lønhaug</p>
                     <p>Utvikler</p>
                     <p>patrick@internia.no</p>

@@ -9,7 +9,7 @@ import WordSuggestion from './WordSuggestion';
 import About from './About';
 
 const Main = () => {
-    const [selected, setSelected] = useState(4);
+    const [selected, setSelected] = useState(9);
     const [searching, setSearching] = useState(false);
 
     const getContent = () => {

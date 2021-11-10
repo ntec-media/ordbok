@@ -39,7 +39,7 @@ export const LocationCard = (props: Props) => {
                     {props.location.stedsnavn.map((navn, index) => (
                         <p key={index}>
                             {navn.språk} - <span>{navn.skrivemåte}</span>
-                            <span className="mx-2 opacity-60">
+                            <span className="mx-2 opacity-50">
                                 {getNameStatus(navn.skrivemåtestatus)}
                             </span>
                         </p>
