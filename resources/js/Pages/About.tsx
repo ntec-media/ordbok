@@ -9,15 +9,13 @@ const About = () => {
             <h1 className="text-xl text-blue-600 md:text-3xl">Om oss</h1>
             <div className="my-8 md:w-8/12 lg:w-10/12 2xl:w-8/12 md:text-center">
                 Julevbágo er utviklet av Ntec Media AS i samarbeid med
-                Universitetet i Tromsø, med støtte fra Sametinget. Søkeord kan
-                være samisk eller norsk.
+                Universitetet i Tromsø, med støtte fra Sametinget.
                 <br />
                 <br /> Ntec Media AS er et utviklingsselskap som er etablert av
-                samiske gründere. <br />
+                samiske gründere. Vår samarbeidspartner er Ramsalt LAB AS. Vi
+                har kontorer i Hamarøy og i Tromsø. <br />
                 <br /> Ta gjerne kontakt med oss hvis dere vil at vi skal hjelpe
-                dere med store og små digitale utviklingsprosjekter. Vår
-                samarbeidspartner på utvikling er selskapet Ramsalt LAB og vi
-                har kontorer på Hamarøy- og i Tromsø kommune.
+                dere med store og små digitale utviklingsprosjekter.
             </div>
             <div className="flex flex-col flex-wrap items-center justify-center w-full mt-6 space-y-8 text-center md:space-y-0 md:mt-10 md:flex-row md:space-x-24">
                 <div>
