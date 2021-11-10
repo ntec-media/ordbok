@@ -10,6 +10,7 @@ return [
     'SearchResult' => [
         'found' => 'Found',
         'words' => 'words',
+        'word' => 'word',
         'showMore' => 'Show more',
         'error' => 'Server error',
         'scroll_to_top' => 'Scroll to top',
@@ -19,7 +20,7 @@ return [
         'close' => 'close',
     ],
     'NoSearch' => [
-        'header' => 'Welcome',
+        'header' => 'Welcome!',
        'subtitle' => 'Search in Anders Kintels dictionary 2013, Sáme Giellagálldo 2013, Medical Dictionary and Kartverket' 
     ],
     'reportDialog' => [
@@ -29,5 +30,17 @@ return [
         'description' => 'Describe error',
         'cancel' => 'Cancel',
         'submit' => 'Submit'
+    ],
+    'map' => [
+        'vedtatt' => 'Decided',
+        'godkjent' => 'Approved',
+        'foreslått' => 'Suggested',
+        'internasjonalt' => 'International',
+        'historisk' => 'Historic',
+        'historisk og prioritert' => 'Historic and prioritized',     
+        'privat' => 'Private',
+        'vedtatt navneledd og prioritert' => 'Decided name and prioritized',
+        'uvurdert' => 'Unsorted',
+        'godkjent og prioritert' => 'Approved and prioritized',
     ]
 ];

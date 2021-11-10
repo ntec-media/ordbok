@@ -28,6 +28,6 @@ return [
     'general' => [
         'lulesami' => 'Lulesami',
         'norwegian' => 'Norwegian',
-        'sort' => 'Sort'
+        'sort' => 'Dictionary'
     ]
 ];

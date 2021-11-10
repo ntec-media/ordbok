@@ -28,6 +28,6 @@ return [
     'general' => [
         'lulesami' => 'Julevsámegiella',
         'norwegian' => 'Dárogiella',
-        'sort' => 'Tjuolldet'
+        'sort' => 'Báhkogirjje'
     ]
 ];

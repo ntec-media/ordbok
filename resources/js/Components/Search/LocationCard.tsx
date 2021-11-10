@@ -1,3 +1,4 @@
+import {trans} from 'matice';
 import React from 'react';
 import {ILocation} from '../../Hooks/useLocationSearch';
 
@@ -8,6 +9,14 @@ interface Props {
 }
 
 export const LocationCard = (props: Props) => {
+    const getNameStatus = (status: string) => {
+        try {
+            return trans(`Search.map.${status}`);
+        } catch (err) {
+            return status;
+        }
+    };
+
     return (
         <div
             key={props.location.stedsnummer}
@@ -31,7 +40,7 @@ export const LocationCard = (props: Props) => {
                         <p key={index}>
                             {navn.språk} - <span>{navn.skrivemåte}</span>
                             <span className="mx-2 opacity-60">
-                                {navn.skrivemåtestatus}
+                                {getNameStatus(navn.skrivemåtestatus)}
                             </span>
                         </p>
                     ))}
