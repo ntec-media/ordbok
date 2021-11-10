@@ -12,23 +12,9 @@ const About = () => {
                     <p>{trans('About.main')}</p>
                 </div>
                 <div></div>
-                <div className="flex justify-between py-4 boder-gray-200">
-                    <a
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="inline text-indigo-600"
-                        href="https://internia.no"
-                    >
-                        © Ntec Media AS 2021
-                    </a>
-                    <a
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="inline text-indigo-600"
-                        href="https://divvun.no"
-                    >
-                        Divvun
-                    </a>
+                <div className="flex justify-between py-4 text-gray-400 boder-gray-200">
+                    <p className="inline ">© Ntec Media AS 2021</p>
+                    <p className="inline ">Divvun</p>
                 </div>
             </div>
         </Layout>

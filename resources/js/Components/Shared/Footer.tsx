@@ -7,30 +7,14 @@ const Footer = () => {
             <div className="px-4 mx-auto max-w-7xl sm:px-6 lg:px-8">
                 <div className="flex flex-row justify-between py-6 text-gray-400 text-opacity-80">
                     <div className="flex-1">
-                        <a
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            href="https://internia.no"
-                            className="block text-blue-600 cursor-pointer text-opacity-60"
-                        >
+                        <p className="block cursor-pointer text-opacity-60">
                             Ntec Media AS
-                        </a>
-                        <a
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            href="https://divvun.no"
-                            className="block text-blue-600 cursor-pointer text-opacity-60"
-                        >
-                            Divvun
-                        </a>
-                    </div>
-                    <div className="flex-1">
-                        <p className="flex-1">
-                            {'© Ntec Media AS ' + new Date().getFullYear()}
                         </p>
-                        <p className="cursor-pointer ">Cookie Policy</p>
+                        <p className="block cursor-pointer text-opacity-60">
+                            Divvun
+                        </p>
                     </div>
-                    <p className="flex-1">{trans('Layout.footer.content')}</p>
+                    <p className=" w-96">{trans('Layout.footer.content')}</p>
                 </div>
             </div>
         </div>
