@@ -1,6 +1,6 @@
 <?php
 
 return [
-    'header' => 'Julevbágo er også tilgjengelig for nedlastning på Android og IOS enheter.',
+    'header' => 'Last ned appen Julevbágo på mobil: ',
 ];
 

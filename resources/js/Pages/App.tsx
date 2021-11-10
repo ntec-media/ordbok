@@ -3,7 +3,7 @@ import React from 'react';
 import Layout from '../Components/Shared/Layout';
 
 const content = (
-    <div className="flex flex-col items-center mt-10 space-y-8 md:flex-row md:justify-center md:space-x-16 md:space-y-0">
+    <div className="flex flex-col items-center mt-10 space-y-8 md:flex-row md:mt-20 md:justify-center md:space-x-16 md:space-y-0">
         <a
             className="w-2/3 md:w-2/6"
             href="https://apps.apple.com/no/app/julevb%C3%A1go/id878913855"
@@ -44,7 +44,7 @@ const App = () => (
             </Layout>
         </div>
         <div className="hidden min-h-screen md:block fadeIn">
-            <div className="flex flex-row justify-around mt-4 md:mt-16">
+            <div className="flex flex-row justify-around mt-4 md:mt-20">
                 <div className="flex flex-col justify-center w-11/12 text-center md:w-4/6">
                     <h1 className="text-3xl text-blue-600 lg:text-3xl">
                         {trans('App.header')}

@@ -7,12 +7,10 @@ const Footer = () => {
             <div className="px-4 mx-auto max-w-7xl sm:px-6 lg:px-8">
                 <div className="flex flex-row justify-between py-6 text-gray-400 text-opacity-80">
                     <div className="flex-1">
-                        <p className="block cursor-pointer text-opacity-60">
-                            Ntec Media AS
+                        <p className="inline text-opacity-60">
+                            © Ntec Media AS
                         </p>
-                        <p className="block cursor-pointer text-opacity-60">
-                            Divvun
-                        </p>
+                        <p className="inline text-opacity-60"> og Divvun</p>
                     </div>
                     <p className=" w-96">{trans('Layout.footer.content')}</p>
                 </div>

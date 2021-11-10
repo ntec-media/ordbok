@@ -3,21 +3,51 @@ import React from 'react';
 import Layout from '../Components/Shared/Layout';
 
 const About = () => {
-    return (
-        <Layout>
-            <div className="flex flex-col justify-between p-4">
+    const content = (
+        <div className="flex flex-col items-center justify-between p-4 md:mt-16">
+            <h1 className="text-3xl text-blue-600">Om oss</h1>
+            <div className="my-8 md:w-8/12 lg:w-10/12 2xl:w-8/12 md:text-center">
+                Julevbágo er utviklet av Ntec Media AS i samarbeid med
+                Universitetet i Tromsø, med støtte fra Sametinget. Søkeord kan
+                være samisk eller norsk.
+                <br />
+                <br /> Ntec Media AS er et utviklingsselskap som er etablert av
+                samiske gründere. <br />
+                <br /> Ta gjerne kontakt med oss hvis dere vil at vi skal hjelpe
+                dere med store og små digitale utviklingsprosjekter. Vår
+                samarbeidspartner på utvikling er selskapet Ramsalt LAB og vi
+                har kontorer på Hamarøy- og i Tromsø kommune.
+            </div>
+            <div className="flex flex-col flex-wrap items-center justify-center w-full mt-6 space-y-8 text-center md:space-y-0 md:mt-10 md:flex-row md:space-x-24">
                 <div>
-                    <h1 className="font-bold">{trans('About.header')}</h1>
-                    <br />
-                    <p>{trans('About.main')}</p>
+                    <p>Odd Levi Paulsen</p>
+                    <p>Daglig leder</p>
+                    <p>post@internia.no</p>
+                    <p>+47 984 07 676</p>
                 </div>
-                <div></div>
-                <div className="flex justify-between py-4 text-gray-400 boder-gray-200">
-                    <p className="inline ">© Ntec Media AS 2021</p>
-                    <p className="inline ">Divvun</p>
+                <div>
+                    <p>Thomas Andre Karlsen</p>
+                    <p>Utviklingsleder</p>
+                    <p>thomas@internia.no</p>
+                    <p>+47 977 25 316</p>
+                </div>
+                <div>
+                    <p>Patrick Lønhaug</p>
+                    <p>Utvikler</p>
+                    <p>patrick@internia.no</p>
+                    <p>+47 416 99 376</p>
                 </div>
             </div>
-        </Layout>
+        </div>
+    );
+
+    return (
+        <>
+            <div className="h-auto md:hidden fadeIn">
+                <Layout>{content}</Layout>
+            </div>
+            <div className="hidden min-h-screen md:block fadeIn">{content}</div>
+        </>
     );
 };
 

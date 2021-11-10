@@ -4,6 +4,7 @@ import PostAddIcon from '@material-ui/icons/PostAdd';
 import BarChartIcon from '@material-ui/icons/BarChart';
 import GetAppIcon from '@material-ui/icons/GetApp';
 import SearchIcon from '@material-ui/icons/Search';
+import AboutIcon from '@material-ui/icons/Group';
 import {trans} from 'matice';
 
 interface Props {
@@ -70,6 +71,18 @@ const Menu = (props: Props) => {
                 <p className="mt-1 cursor-pointer select-none">
                     {trans('Layout.navbar.app')}
                 </p>
+            </li>
+            <li
+                className="relative flex flex-col items-center justify-center"
+                onClick={() => props.setSelected(4)}
+            >
+                <div className="bg-blue-500 rounded-full shadow-md cursor-pointer icon-link hover:bg-blue-600">
+                    <AboutIcon
+                        className="py-4 text-white"
+                        style={{width: 64, height: 64}}
+                    />
+                </div>
+                <p className="mt-1 cursor-pointer select-none">Om oss</p>
             </li>
         </ul>
     );

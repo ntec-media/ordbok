@@ -27,5 +27,5 @@ return [
     'search' => 'Søk',
     'number_of_search' => 'Antall søk',
     'today' => 'I dag',
-    'this_week' => 'Denne uken'
+    'this_week' => 'Denne uka'
 ];

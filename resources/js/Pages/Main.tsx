@@ -6,9 +6,10 @@ import Layout from '../Components/Shared/Layout';
 import App from './App';
 import Search from './Search';
 import WordSuggestion from './WordSuggestion';
+import About from './About';
 
 const Main = () => {
-    const [selected, setSelected] = useState(0);
+    const [selected, setSelected] = useState(4);
     const [searching, setSearching] = useState(false);
 
     const getContent = () => {
@@ -27,6 +28,8 @@ const Main = () => {
                 return <Statistics />;
             case 3:
                 return <App />;
+            case 4:
+                return <About />;
         }
     };
 

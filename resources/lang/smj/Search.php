@@ -21,7 +21,7 @@ return [
     ],
     'NoSearch' => [
         'header' => 'Buoris boahtem!',
-       'subtitle' => 'Åtså Anders Kintala báhkogirjen 2013, Sáme Giellagáldon 2013, Medisijnalasj báhkogirjen ja Kartverket' 
+       'subtitle' => 'Åtså Anders Kintala báhkogirjen 2013, Sáme Giellagáldon 2013, Medisijnalasj báhkogirjen ja Kartverket.' 
     ],
     'reportDialog' => [
         'header' => 'Diededa vigev',

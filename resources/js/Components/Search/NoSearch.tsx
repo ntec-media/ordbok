@@ -3,7 +3,7 @@ import {trans} from 'matice';
 
 const NoSearch = () => {
     return (
-        <div className="p-4 text-gray-500 md:text-black ">
+        <div className="p-4 mt-6 text-gray-500 md:text-black">
             <h2 className="text-3xl text-center">
                 {trans('Search.NoSearch.header')}
             </h2>
