@@ -14,7 +14,7 @@ return [
         'choose_language' => 'Giella',
         'choose_translations' => 'Choose language for translation',
         'choose_dicts' => 'Báhkogirjje',
-        'about' => 'App:a birra' 
+        'about_us' => 'Mijá birra'
     ],
     'footer' => [
         'content' => 'Julev la báhkogirjje majt la Ntec Media AS aktan UiT:jn dahkam, doarjjagijn sámedikkes.'

@@ -8,20 +8,13 @@ const About = () => {
         <div className="flex flex-col items-center justify-between p-4 mt-6 md:mt-16">
             <h1 className="text-xl text-blue-600 md:text-3xl">Om oss</h1>
             <div className="my-8 md:w-8/12 lg:w-10/12 2xl:w-8/12 md:text-center">
-                Julevbágo er utviklet av NTec Media AS. Prosjektet er
-                gjennomført i samarbeid med Universitetet i Tromsø og med støtte
-                fra Sametinget.
+                {trans('About.p1')}
                 <br />
                 <br />
-                NTec Media AS er et utviklingsselskap etablert av samiske
-                gründere, som ønsker å forenkle hverdagen til store og små
-                bedrifter. Vi samarbeider med Ramsalt LAB AS som har lang
-                erfaring innenfor webutvikling.
+                {trans('About.p2')}
                 <br />
                 <br />
-                Dersom du eller din bedrift har behov for digital
-                utviklingskompetanse, ta gjerne kontakt med oss for en hyggelig
-                prat. Vi har kontorer i Hamarøy og Tromsø.
+                {trans('About.p3')}
             </div>
             <div className="flex flex-col flex-wrap items-center justify-center w-full mt-6 space-y-8 text-center md:space-y-0 md:mt-10 md:flex-row md:space-x-24">
                 <div>

@@ -93,7 +93,9 @@ const Sidebar = (props: Props) => {
                         <ListItemIcon>
                             <AboutIcon />
                         </ListItemIcon>
-                        <ListItemText primary={trans('Layout.navbar.about')} />
+                        <ListItemText
+                            primary={trans('Layout.navbar.about_us')}
+                        />
                     </ListItem>
                 </InertiaLink>
             </List>

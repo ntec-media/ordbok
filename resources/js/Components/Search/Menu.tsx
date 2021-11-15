@@ -82,7 +82,9 @@ const Menu = (props: Props) => {
                         style={{width: 64, height: 64}}
                     />
                 </div>
-                <p className="mt-1 cursor-pointer select-none">Om oss</p>
+                <p className="mt-1 cursor-pointer select-none">
+                    {trans('Layout.navbar.about_us')}
+                </p>
             </li>
         </ul>
     );
