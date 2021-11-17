@@ -21,7 +21,9 @@ return [
     ],
     'NoSearch' => [
         'header' => 'Welcome!',
-       'subtitle' => 'Search in Anders Kintels dictionary 2013, Sáme Giellagálldo 2013, Medical Dictionary and Kartverket.' 
+       'subtitle' => 'Search in Anders Kintels dictionary 2013, Sáme Giellagálldo 2013, Medical Dictionary and Kartverket.',
+       'subtitle2' => 'Julevágo is the beginning of a sami digital bookbus, where we wishes to make sami music, movies, books, audiobooks, dictionaries,
+        teaching aids and other sami materials easely available for the public.' 
     ],
     'reportDialog' => [
         'header' => 'Report error',

@@ -21,7 +21,8 @@ return [
     ],
     'NoSearch' => [
         'header' => 'Buoris boahtem!',
-       'subtitle' => 'Åtså Anders Kintala báhkogirjen 2013, Sáme Giellagáldon 2013, Medisijnalasj báhkogirjen ja Kartverket.' 
+        'subtitle' => 'Åtså Anders Kintala báhkogirjen 2013, Sáme Giellagáldon 2013, Medisijnalasj báhkogirjen ja Kartverket.',
+        'subtitle2' => 'Julevbágo l álggo sáme digitála girjjebussaj, gånnå sáme musihkav, filmajt, jiednagirjijt, báhkogirjijt, oahppamnævojt ja ietjá sámegiel bargojt biedjap sadjihij divnajda.' 
     ],
     'reportDialog' => [
         'header' => 'Diededa vigev',

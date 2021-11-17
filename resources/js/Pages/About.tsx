@@ -23,7 +23,7 @@ const About = () => {
                         color="primary"
                     />
                     <p>Odd Levi Paulsen</p>
-                    <p>Daglig leder</p>
+                    <p>{trans('About.CEO')}</p>
                     <p>post@internia.no</p>
                     <p>+47 984 07 676</p>
                 </div>
@@ -33,7 +33,7 @@ const About = () => {
                         color="primary"
                     />
                     <p>Thomas Andre Karlsen</p>
-                    <p>Utviklingsleder</p>
+                    <p>{trans('About.CTO')}</p>
                     <p>thomas@internia.no</p>
                     <p>+47 977 25 316</p>
                 </div>
@@ -43,7 +43,7 @@ const About = () => {
                         color="primary"
                     />
                     <p>Patrick Lønhaug</p>
-                    <p>Utvikler</p>
+                    <p>{trans('About.Developer')}</p>
                     <p>patrick@internia.no</p>
                     <p>+47 416 99 376</p>
                 </div>

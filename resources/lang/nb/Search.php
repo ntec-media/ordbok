@@ -21,7 +21,9 @@ return [
     ],
     'NoSearch' => [
         'header' => 'Velkommen!',
-       'subtitle' => 'Søk i Anders Kintels ordbok 2013, Sáme Giellagálldo 2013, Medisinsk ordbok og Kartverket.' 
+       'subtitle' => 'Søk i Anders Kintels ordbok 2013, Sáme Giellagálldo 2013, Medisinsk ordbok og Kartverket.',
+       'subtitle2' => 'Julevbágo er begynnelsen på en samisk digital bokbuss, hvor vi ønsker å gjøre samisk musikk, film, lydbøker, bøker, ordbøker,
+       læremidler og andre samiske verk lett tilgjengelig for alle.' 
     ],
     'reportDialog' => [
         'header' => 'Rapportert feil',
