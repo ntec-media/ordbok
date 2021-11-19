@@ -19,7 +19,8 @@
             </div>
             <div class="text-lg">
                 <p>For at vi skal kunne levere en ny og mer moderne versjon av Julevbágo har vi måttet bytte ut appen du bruker.</p>
-                <p>Du kan laste ned den nye versjonen fra Google Play.</p>
+                <br>
+                <p>Du kan laste ned den nye versjonen ved å trykke på bildet under eller søke opp <span class="italic">"Julevbágo"</span> på Google Play.</p>
             </div>
             <a
                 class="flex justify-center pt-6"
