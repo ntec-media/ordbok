@@ -1,30 +1,34 @@
 import React, {useEffect, useState} from 'react';
-import {useCookies} from 'react-cookie';
-import Header from '../Components/Search/Header';
 import SearchField from '../Components/Search/SearchField';
 import SearchResultList from '../Components/Search/SearchResultList';
-import {ILang} from '../interfaces';
-import Layout from './Layout';
+import NoSearch from '../Components/Search/NoSearch';
+import {Locations} from '../Components/Search/Locations';
 
-const Search = () => {
+const Search = (props: {input: (newInput: string) => void}) => {
     const [input, setInput] = useState('');
-    const [dicts, setDicts] = useState<ILang[]>([]);
-    const [cookies] = useCookies(['dicts']);
-    const [page, setPage] = useState(1);
+    const [orderBy, setOrderBy] = useState('sami');
 
     useEffect(() => {
-        setDicts(cookies.dicts);
-    }, [cookies]);
+        props.input(input);
+    }, [input]);
 
     return (
-        <Layout>
-            <Header />
-            <SearchField
-                updateInput={newInput => setInput(newInput)}
-                resetPage={() => setPage(1)}
-            />
-            <SearchResultList input={input} page={page} dicts={dicts} />
-        </Layout>
+        <div className="md:min-h-screen fadeIn">
+            <div className="md:pt-8 md:pb-2">
+                <SearchField
+                    updateInput={newInput => setInput(newInput)}
+                    setOrderBy={newVal => setOrderBy(newVal)}
+                />
+            </div>
+            {input !== '' ? (
+                <>
+                    <Locations input={input} />
+                    <SearchResultList input={input} orderBy={orderBy} />
+                </>
+            ) : (
+                <NoSearch />
+            )}
+        </div>
     );
 };
 

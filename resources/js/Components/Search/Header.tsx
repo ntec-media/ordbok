@@ -1,24 +1,32 @@
 import React from 'react';
-import samiFlag from '../../../images/sami_flag.png';
-import norwegianFlag from '../../../images/norwegian_flag.png';
-import {trans} from 'matice';
 
-const Header = () => (
-    <div className="items-center justify-center hidden pt-10 md:flex">
-        <img
-            src={samiFlag}
-            className="h-8 mx-3 transform rounded-full -rotate-12 "
-            alt="sami flag"
-        />
-        <h1 style={{fontFamily: 'lobster'}} className="text-4xl">
-            {trans('Search.header')}
-        </h1>
-        <img
-            src={norwegianFlag}
-            className="h-8 mx-3 transform rounded-full rotate-12"
-            alt="sami flag"
-        />
-    </div>
-);
+const Header = (props: {searching: boolean}) => {
+    return (
+        <>
+            <div
+                className={
+                    props.searching
+                        ? 'flex items-center justify-center w-full header-margin md:hidden'
+                        : 'flex items-center justify-center w-full h-24 md:hidden'
+                }
+            >
+                <div className="absolute top-0">
+                    <h1
+                        className={
+                            props.searching
+                                ? 'header select-none'
+                                : 'mt-20 text-5xl select-none'
+                        }
+                    >
+                        Julevbágo
+                    </h1>
+                </div>
+            </div>
+            <div className="justify-center hidden py-12 text-5xl md:flex 2xl:text-7xl">
+                Julevbágo
+            </div>
+        </>
+    );
+};
 
 export default Header;

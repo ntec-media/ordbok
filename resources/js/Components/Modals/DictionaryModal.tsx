@@ -2,13 +2,14 @@ import {trans} from 'matice';
 import React, {useContext} from 'react';
 import {Context} from '../../Store';
 import {localDictsSupported} from '../../interfaces';
-import MultipleSelectModal from '../Modals/MultipleSelectModal';
+import MultipleSelectModal from './MultipleSelectModal';
 
 interface Props {
     open: boolean;
     closeModal: () => void;
 }
 
+// Unused component. Can be used in a potential v2
 const DictionaryModal = (props: Props) => {
     const [cookies, setCookies] = useContext(Context);
 

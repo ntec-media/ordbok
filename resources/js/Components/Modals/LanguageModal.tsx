@@ -10,6 +10,7 @@ interface Props {
     closeModal: () => void;
 }
 
+// Unused component. Can be used in a potential v2
 const LanguageModal = (props: Props) => {
     const [cookies, setCookies] = useCookies(['lang']);
 

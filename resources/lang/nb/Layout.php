@@ -14,10 +14,10 @@ return [
         'choose_language' => 'Velg språk',
         'choose_translations' => 'Velg språk for oversettelse',
         'choose_dicts' => 'Velg ordbøker',
-        'about' => 'Om appen' 
+        'about_us' => 'Om oss'
     ],
     'footer' => [
-        'content' => 'Julev er en ordbok som er utviklet av Ntec Media AS i samarbeid med UiT og med støtte fra sametinget.'
+        'content' => 'Julevbágo er utviklet av Ntec Media AS i samarbeid med Universitetet i Tromsø, med støtte fra Sametinget.'
     ],
 
     'cookie' => [
@@ -26,5 +26,10 @@ return [
         du ønsker å benytte og språk du ønsker å
         oversette fra.',
         'btnText' => 'Jeg forstår'
+    ],
+    'general' => [
+        'lulesami' => 'Lulesamisk',
+        'norwegian' => 'Norsk',
+        'sort' => 'Ordbok'
     ]
 ];

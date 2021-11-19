@@ -1,7 +1,7 @@
 <?php
 
 return [
-    'header' => 'Søk i Julevs ordbok database',
+    'header' => 'Søk i Julevbágo',
     'SearchField' => [
         'search' => 'Søk',
         'langModalHeader' => 'Velg språk for oversettelse',
@@ -10,9 +10,39 @@ return [
     'SearchResult' => [
         'found' => 'Fant',
         'words' => 'ord',
+        'word' => 'ord',
+        'showMore' => 'Vis mer',
+        'error' => 'En feil har oppstått på serveren',
+        'scroll_to_top' => 'Scroll til toppen',
+        'found' => 'Fant',
+        'place' => 'sted',
+        'places' => 'steder',
+        'close' => 'Lukk',
     ],
     'NoSearch' => [
-        'header' => 'Velkommen',
-       'subtitle' => 'Søk i Anders Kintels ordbok 2013, Sáme Giellagálldo 2013 og Medisijnalasj báhkogirjje.' 
+        'header' => 'Velkommen!',
+       'subtitle' => 'Søk i Anders Kintels ordbok 2013, Sáme Giellagálldo 2013, Medisinsk ordbok og Kartverket.',
+       'subtitle2' => 'Julevbágo er begynnelsen på en samisk digital bokbuss, hvor vi ønsker å gjøre samisk musikk, film, lydbøker, bøker, ordbøker,
+       læremidler og andre samiske verk lett tilgjengelig for alle.' 
+    ],
+    'reportDialog' => [
+        'header' => 'Rapportert feil',
+        'from' => 'Ord',
+        'to' => 'Beskrivelse',
+        'description' => 'Beskriv feil',
+        'cancel' => 'Avbryt',
+        'submit' => 'Send inn'
+    ],
+    'map' => [
+        'vedtatt' => 'Vedtatt',
+        'godkjent' => 'Godkjent',
+        'foreslått' => 'Foreslått',
+        'internasjonalt' => 'Internasjonalt',
+        'historisk' => 'Historisk',
+        'privat' => 'Privat',
+        'historisk og prioritert' => 'Historisk og prioritert',     
+        'vedtatt navneledd og prioritert' => 'Vedtatt navneledd og prioritert',
+        'uvurdert' => 'Uvurdert',
+        'godkjent og prioritert' => 'Godkjent og prioritert',
     ]
 ];
