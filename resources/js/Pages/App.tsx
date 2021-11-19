@@ -17,7 +17,7 @@ const content = (
         </a>
         <a
             className="w-2/3 md:w-2/6"
-            href="https://play.google.com/store/apps/details?id=no.ntec.same"
+            href="https://play.google.com/store/apps/details?id=no.ntec.julevbago"
             target="_blank"
         >
             <img
