@@ -15,6 +15,9 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+// Legacy app
+Route::view("/legacy", "legacy");
+
 // Search
 Route::inertia("/", "Main");
 Route::inertia('/statistics', 'Statistics');
