@@ -24,7 +24,7 @@ return [
     'october' => 'Gålgådismánno',
     'november' => 'Basádismánno',
     'december' => 'Javllamánno',
-    'search' => 'Li åhtsåm',
+    'search' => 'li åhtsåm',
     'number_of_search' => 'Galles li åhtsåm',
     'today' => 'Uddni',
     'this_week' => 'Dá vahko'
