@@ -52,7 +52,7 @@ const Statistics = () => {
             const chd = monthRes.map((s: any) => s.searches);
             setChartData(chd);
             setData({
-                day: weekRes[0].searches,
+                day: weekRes[0]?.searches,
                 week: weekRes.reduce(
                     (sum: number, obj: {searches: number}) =>
                         sum + obj.searches,

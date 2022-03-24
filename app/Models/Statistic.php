@@ -72,7 +72,7 @@ class Statistic extends Model
     {
         $arr = [];
         for ($i = 0; $i < 7; $i++) {
-            $arr[$i] = (new DateTime())->setISODate(2021, $weekNumber, $i + 1)->format('Y/m/d');
+            $arr[$i] = (new DateTime())->setISODate(date("Y"), $weekNumber, $i + 1)->format('Y/m/d');
         }
 
         return $arr;
