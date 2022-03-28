@@ -22,7 +22,7 @@ return [
     'NoSearch' => [
         'header' => 'Buorisboahtem!',
         'subtitle' => 'Åtså Anders Kintala báhkogirjen 2013, Sáme Giellagáldon 2013, Medisijnalasj báhkogirjen ja Kartverket.',
-        'subtitle2' => 'Julevbágo l álggo sáme digitála girjjebussaj, gånnå sáme musihkav, filmajt, jiednagirjijt, báhkogirjijt, oahppamnævojt ja ietjá sámegiel bargojt biedjap vaj álkkep la dajt gávnnat.' 
+        'subtitle2' => 'Julevbágo l álggo sáme digitála girjjebussaj, gåsi biedjap sáme musihkav, filmajt, jiednagirjijt, báhkogirjijt, oahppamnævojt ja ietjá sámegiel bargojt, vaj la álkkep dajt gávnnat.' 
     ],
     'reportDialog' => [
         'header' => 'Diededa vigev',
