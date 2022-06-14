@@ -24,7 +24,8 @@ class Kernel extends ConsoleKernel
      */
     protected function schedule(Schedule $schedule)
     {
-        // $schedule->command('inspire')->hourly();
+        // Populate horizon dashboard
+        $schedule->command('horizon:snapshot')->everyFiveMinutes();
     }
 
     /**
