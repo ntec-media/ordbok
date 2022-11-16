@@ -2,10 +2,10 @@
 
 namespace App\Console\Commands;
 
+use App\Imports\TranslationsImport;
+use App\Models\Translation;
 use Exception;
 use Illuminate\Console\Command;
-use App\Models\Translation;
-use App\Imports\TranslationsImport;
 use Maatwebsite\Excel\Facades\Excel;
 
 class ImportTranslations extends Command
@@ -35,13 +35,13 @@ class ImportTranslations extends Command
             $filename = $this->argument('filename');
             if ($filename === 'nob-smj.xlsx') {
                 $from_smj = false;
-            } else if ($filename === 'smj-nob.xlsx') {
+            } elseif ($filename === 'smj-nob.xlsx') {
                 $from_smj = true;
             } else {
                 return $this->error('Plase name file smj-nob.xlsx or nob-smj.xlsx');
             }
 
-            $array =  Excel::toArray(new TranslationsImport, $filename);
+            $array = Excel::toArray(new TranslationsImport(), $filename);
             $existingWords = [];
             $newWords = [];
             foreach ($array[0] as $el) {
@@ -49,14 +49,14 @@ class ImportTranslations extends Command
                 if ($el[0]) {
                     $word = Translation::where([
                     'fra' => $el[0],
-                    'kildeid' => 0, // Medisijnalasj báhkogirjje  
+                    'kildeid' => 0, // Medisijnalasj báhkogirjje
                     ])->first();
                     if ($word) {
                         if ($word->til !== $el[1]) {
                             $word->til = $el[1];
                             $word->save();
                             array_push($existingWords, $word);
-                        } 
+                        }
                     } else {
                         $newWord = new Translation([
                             'fra' => $el[0],
@@ -67,16 +67,15 @@ class ImportTranslations extends Command
                             'kredittering' => 'Medisijnalasj báhkogirjje',
                             'publisert' => 1,
                         ]);
-                            $newWord->save();
+                        $newWord->save();
                         array_push($newWords, $newWord);
                     }
-
                 }
             }
-        return $this->info(count($existingWords) . " Ord oppdatert. " . count($newWords) . " Nye ord lagt til");
-        } catch(Exception $e) {
+
+            return $this->info(count($existingWords) . " Ord oppdatert. " . count($newWords) . " Nye ord lagt til");
+        } catch (Exception $e) {
             return $this->error($e);
         }
-
     }
 }

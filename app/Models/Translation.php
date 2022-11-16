@@ -1,10 +1,11 @@
 <?php
 
 namespace App\Models;
+
 use App\Imports\TranslationsImport;
-use Maatwebsite\Excel\Facades\Excel;
-use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Model;
+use Maatwebsite\Excel\Facades\Excel;
 
 class Translation extends Model
 {
@@ -25,8 +26,9 @@ class Translation extends Model
 
     public $timestamps = false;
 
-    public static function import() {
-        $array =  Excel::toArray(new TranslationsImport, 'nob-smj.xlsx');
+    public static function import()
+    {
+        $array = Excel::toArray(new TranslationsImport(), 'nob-smj.xlsx');
         $exArr = [];
         $newArr = [];
 
@@ -38,12 +40,12 @@ class Translation extends Model
                 ])->first();
                 if ($exist) {
                     $exist->til !== $el[1] && array_push($exArr, $exist);
-                    
                 } else {
-                    array_push($newArr, [$el]); 
+                    array_push($newArr, [$el]);
                 }
             }
         }
+
         return $newArr;
     }
 }
