@@ -1,8 +1,10 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\LocalDictionaryController;
+use App\Http\Controllers\SearchController;
+use App\Http\Controllers\ErrorSubmitController;
 use App\Http\Controllers\StatisticsController;
+use App\Http\Controllers\NewWordController;
 
 /*
 |--------------------------------------------------------------------------
@@ -15,7 +17,14 @@ use App\Http\Controllers\StatisticsController;
 |
 */
 
-Route::post("/search", [LocalDictionaryController::class, "words"]);
+// Index page - Search
+Route::get("/search", [SearchController::class, "get"]);
+Route::post("/error", [ErrorSubmitController::class, "store"]);
+
+// Statistics
 Route::post("/statistic/week", [StatisticsController::class, "week"]);
 Route::post("/statistic/month", [StatisticsController::class, "month"]);
 Route::post("/statistic/year", [StatisticsController::class, "year"]);
+
+// Word suggestion
+Route::post("/word", [NewWordController::class, "store"]);

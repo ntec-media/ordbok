@@ -39,7 +39,7 @@ const ReportErrorModal = (props: Props) => {
 
     const submit = async () => {
         return await axios
-            .post('/error', {
+            .post('/api/error', {
                 from: inputs?.norwegian,
                 to: inputs?.sami,
                 description: inputs?.description,

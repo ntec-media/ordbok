@@ -40,7 +40,7 @@ export const year = async () => {
 
 export const newWord = async (values: INewWord) => {
     return await axios
-        .post('/word', {
+        .post('/api/word', {
             norwegian: values.norwegian,
             sami: values.sami,
             description: values.description,

@@ -22,7 +22,7 @@ export const useWordSearch = (
         setError(false);
         let cancel: () => void;
         axios({
-            method: 'POST',
+            method: 'GET',
             url: '/api/search',
             params: {search: input, page: pageNumber, orderBy: orderBy},
             cancelToken: new axios.CancelToken(c => (cancel = c)),

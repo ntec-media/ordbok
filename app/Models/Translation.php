@@ -2,10 +2,12 @@
 
 namespace App\Models;
 
-use App\Imports\TranslationsImport;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use Maatwebsite\Excel\Facades\Excel;
+use Illuminate\Pagination\Paginator;
+use App\Jobs\ProcessStatistic;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class Translation extends Model
 {
@@ -26,26 +28,69 @@ class Translation extends Model
 
     public $timestamps = false;
 
-    public static function import()
+    public static function localSearch(Request $request)
     {
-        $array = Excel::toArray(new TranslationsImport(), 'nob-smj.xlsx');
-        $exArr = [];
-        $newArr = [];
+        $search = $request->input('search');
+        $orderBy = $request->input('orderBy') === "sami" ? "DESC" : "ASC";
+        $currentPage = $request->input('page');
+        Paginator::currentPageResolver(function () use ($currentPage) {
+            return $currentPage;
+        });
 
-        foreach ($array[0] as $el) {
-            if ($el[0]) {
-                $exist = self::where([
-                    'fra' => $el[0],
-                    'kildeid' => 0,
-                ])->first();
-                if ($exist) {
-                    $exist->til !== $el[1] && array_push($exArr, $exist);
-                } else {
-                    array_push($newArr, [$el]);
-                }
-            }
-        }
+        $dictionaries = ["A. Kintel 2013", "Sáme Giellagálldo 2013", "Medisijnalasj báhkogirjje"];
 
-        return $newArr;
+        $query1 = DB::table('smj_translations')
+            ->select()
+            ->where("til", "LIKE", "%{$search}%")
+            ->whereIn('kredittering', $dictionaries);
+
+        $query2 = DB::table('smj_translations')
+            ->select()
+            ->where("til", "LIKE", "%{$search}")
+            ->whereIn('kredittering', $dictionaries);
+
+        $query3 = DB::table('smj_translations')
+            ->select()
+            ->where("til", "LIKE", "{$search}%")
+            ->whereIn('kredittering', $dictionaries);
+
+        $query4 = DB::table('smj_translations')
+            ->select()
+            ->where("til", "LIKE", "{$search}")
+            ->whereIn('kredittering', $dictionaries);
+
+        $query5 = DB::table('smj_translations')
+            ->select()
+            ->where("fra", "LIKE", "%{$search}%")
+            ->whereIn('kredittering', $dictionaries);
+
+        $query6 = DB::table('smj_translations')
+            ->select()
+            ->where("fra", "LIKE", "%{$search}")
+            ->whereIn('kredittering', $dictionaries);
+
+        $query7 = DB::table('smj_translations')
+            ->select()
+            ->where("fra", "LIKE", "{$search}%")
+            ->whereIn('kredittering', $dictionaries);
+
+        $query8 = DB::table('smj_translations')
+            ->select()
+            ->where("fra", "LIKE", "{$search}")
+            ->whereIn('kredittering', $dictionaries)
+            ->union($query7)
+            ->union($query6)
+            ->union($query5)
+            ->union($query4)
+            ->union($query3)
+            ->union($query2)
+            ->union($query1)
+            ->orderBy('oversatt_fra', $orderBy)
+            ->simplePaginate(25, ['*']);
+
+
+        ProcessStatistic::dispatch();
+
+        return $query8;
     }
 }
