@@ -4,7 +4,7 @@ import INewWord from './Interfaces/INewWord';
 
 export const week = async () => {
     return await axios
-        .post('/api/statistic/week')
+        .get('/api/statistic/week')
         .then(res => {
             return res.data;
         })
@@ -16,7 +16,7 @@ export const week = async () => {
 
 export const month = async () => {
     return await axios
-        .post('/api/statistic/month')
+        .get('/api/statistic/month')
         .then(res => {
             return res.data;
         })
@@ -28,7 +28,7 @@ export const month = async () => {
 
 export const year = async () => {
     return await axios
-        .post('/api/statistic/year')
+        .get('/api/statistic/year')
         .then(res => {
             return res.data;
         })

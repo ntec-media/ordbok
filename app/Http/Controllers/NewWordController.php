@@ -12,6 +12,8 @@ class NewWordController extends Controller
         $word = NewWord::firstOrCreate([
             'norwegian' => $request->input('norwegian'),
             'sami' => $request->input('sami'),
+            'description' => $request->input('description'),
+            'email' => $request->input('email'),
         ]);
 
 
