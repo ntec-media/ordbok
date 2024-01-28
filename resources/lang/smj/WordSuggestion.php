@@ -10,7 +10,7 @@ return [
     'description' => 'Tjielggidus (vállji iesj)',
     'email' => 'E-poassta/namma (vállji iesj)',
     'btnText' => 'Sáddi',
-    'success' => 'Oajvvadus la vuorkkiduvvam! ',
+    'success' => 'Oajvvadus la vuorkkiduvvam!',
     'warning' => 'Oajvvadus la juo vuorkkiduvvam!',
     'error' => 'Vihke idij, oajvvadus ittjij vuorkkiduvá',
     'invalid' => 'Ij dåhkki'
